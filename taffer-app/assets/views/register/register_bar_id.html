@@ -1,0 +1,27 @@
+<form id="l-reg-tm-bar-id-form" name="regTMBarIDForm" class="m-form center">
+	<div class="l-reg-bar-id-error">
+		{{message}}
+	</div>
+	<input type="text"
+		name="regTMBarID"
+		placeholder="Bar ID Code"
+		ng-model="barID"
+		ng-minlength="6"
+		ng-maxlength="6"
+		ng-class="{'s-error':
+			regTMBarIDForm.regTMBarID.$invalid &&
+			regTMBarIDForm.regTMBarID.$dirty}"
+		ng-keypress="enterBarId()"
+		required>
+</form>
+<div id="l-register-bar-id-btn-container" class="center">
+	<button name="reg-bar-id"
+		class="m-btn center"
+		ng-click="submitBarID()">SUBMIT</button>
+	<div class="m-separator">
+		OR
+	</div>
+	<button name="button"
+		class="m-btn center"
+		ui-sref="Registration.BarInfo">NEW BAR</button>
+</div>

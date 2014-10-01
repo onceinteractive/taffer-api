@@ -1,0 +1,76 @@
+<div class="pageHeader">
+	User Management
+</div>
+
+<div ng-hide="userData._id" align="center">
+	Sorry, no corresponding user was found.
+</div>
+
+<div ng-show="userData._id" align="center">
+
+	<div class="inlineDiv">
+		<div class="blackBlock">
+			<div class="inlineDiv">
+				<image src="imgs/noImage.jpg" width="100">
+					
+				<div class="smallText" align="left" style="padding-top:10px;">
+					<b>Status:</b> {{userData.status}} <br />
+					<b>Locked:</b> {{userData.locked}} <input type="checkbox" ng-model="userData.locked">
+				</div>
+			</div>
+
+			<div class="inlineDiv" >
+				<table>
+					<tr><td><b>Firstname: </b></td><td><input type="text" ng-model='userData.firstName'></td></tr>
+					<tr><td><b>Lastname: </b></td><td><input type="text" ng-model='userData.lastName' class="blockInputs"></td></tr>
+					<tr><td><b>Email: </b></td><td><input type="text" ng-model='userData.email' class="blockInputs"></td></tr>
+					<tr><td><b>Password: </b></td><td><input type="text" ng-model='userData.password' class="blockInputs"></td></tr>
+				</table>
+
+			</div>
+			<div class="smallText" align="right" style="padding:10px;">
+				Leave password feild blank to retain current password.
+			</div>
+			<hr />
+		
+			<table class="midText" cellpadding="3">
+			<tr><td><b>User ID: </b></td><td>{{userData._id}}</td></tr>
+			<tr><td><b>Bar ID: </b><br /><br /></td><td><a href="#/viewBar/{{userData.barId}}">{{userData.barId}}</a><br /><br /></td></tr>
+			<tr><td><b>Last Login: </b></td><td>{{userData.lastLogin}}</td></tr>
+			<tr><td><b>Created: </b></td><td>{{userData.created}}</td></tr>
+			<tr><td><b>Last updated: </b></td><td>{{userData.updated}}</td></tr>
+			</table>
+		</div>
+
+
+
+		<div ng-show="updatedText" style="margin-bottom:10px; text-align:center; color:red;">
+			{{updatedText}}
+		</div>
+		
+		<div align="center">
+			<input type="submit" value="Save Changes" ng-click="updateUser()">
+		</div>
+
+
+	</div>
+
+	<div class="inlineDiv" style="max-width:280px">
+		<div class="blackBlock" >
+
+			<u><b>User Permissions</b></u><br />
+			<div class="midText inlineDiv" style="text-align:left; margin-top:10px; margin-right:10px; width:100%;" ng-repeat="(name, permission) in userData.permissions">
+				<b><u>{{name | capitalize}}:</u></b><br />
+
+				<div class="inlineDiv smidText" ng-repeat="(type, value) in permission" style="margin-left:-5px; margin-bottom:-12px;">
+					{{permissions[name][type].description}}
+					<input type="checkbox" ng-model="userData.permissions[name][type]">
+				</div>
+				
+			</div>
+
+		</div>
+	</div>
+
+
+</div>

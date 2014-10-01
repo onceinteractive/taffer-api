@@ -1,0 +1,159 @@
+<div id="dashboard" class="view" ng-cloak>
+
+	<div id="profile-details" ng-click="go('Main.Profile')">
+		<div id="profile-col-one">
+			<div id="profile-image" ng-if="auth.getUser().pictureURI">
+				<img ng-src="http://s3.amazonaws.com/taffer-dev/{{auth.getUser().pictureURI}}" />
+			</div>
+			<div id="profile-image" ng-if="!auth.getUser().pictureURI">
+				<img src="img/avatar.png" />
+			</div>
+		</div>
+
+		<div id="profile-col-two">
+			<div id="user-details">
+				<p class="user-name">{{auth.getUser().firstName}} {{auth.getUser().lastName}}</p>
+				<p class="user-title">{{auth.getUser().role | capitalize}}</p>
+			</div>
+			<div id="bar-details">
+				<p class="bar-name">{{bar.name}}</p>
+			</div>
+		</div>
+
+		<div id="profile-col-three">
+			<div id="row1">
+				<div class="big-arrow"></div>
+			</div>
+		</div>
+	</div>
+
+	<div id="l-tile-container">
+		<large-tile tile-title="SALES TRACKER" icon="m-sales-icon"
+			ng-click="go('Main.Sales.View')"
+			ng-show="auth.hasPermission('sales', 'read')">
+			<div class="tile-message-center" ng-show="salesDash.allSales.length == 0">
+				Enter Sales Data
+			</div>
+			<div ng-if="salesDash && salesDash.allSales.length > 0">
+				<div class="l-sales-dash l-sales-dash-table">
+					<div class="l-sales-dash-row">
+						<div class="l-sales-percentage l-sales-dash-cell">
+							<div class="l-sales-dash-table">
+								<div class="l-sales-dash-row">
+									<span class="l-sales-dash-cell">Total Sales</span>
+									<span class="l-sales-dash-cell"
+										ng-class="{'sales-dash-pos': salesDash.totalSalesChange.type == 'pos','sales-dash-neg': salesDash.totalSalesChange.type == 'neg'}">
+										<i class="fa fa-caret-up fa-lg" ng-show="salesDash.totalSalesChange.type == 'pos'"></i>
+										<i class="fa fa-caret-down fa-lg" ng-show="salesDash.totalSalesChange.type == 'neg'"></i>
+										{{salesDash.totalSalesChange.value}}
+									</span>
+								</div>
+								<div class="l-sales-dash-row">
+									<span class="l-sales-dash-cell">Guest Count</span>
+									<span class="l-sales-dash-cell"
+										ng-class="{'sales-dash-pos': salesDash.guestCountChange.type == 'pos','sales-dash-neg': salesDash.guestCountChange.type == 'neg'}">
+										<i class="fa fa-caret-up fa-lg" ng-show="salesDash.guestCountChange.type == 'pos'"></i>
+										<i class="fa fa-caret-down fa-lg" ng-show="salesDash.guestCountChange.type == 'neg'"></i>
+										{{salesDash.guestCountChange.value}}
+									</span>
+								</div>
+								<div class="l-sales-dash-row">
+									<span class="l-sales-dash-cell">Sales per Hour</span>
+									<span class="l-sales-dash-cell"
+										ng-class="{'sales-dash-pos': salesDash.perHourChange.type == 'pos','sales-dash-neg': salesDash.perHourChange.type == 'neg'}">
+										<i class="fa fa-caret-up fa-lg" ng-show="salesDash.perHourChange.type == 'pos'"></i>
+										<i class="fa fa-caret-down fa-lg" ng-show="salesDash.perHourChange.type == 'neg'"></i>
+										{{salesDash.perHourChange.value}}
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="l-sales-average l-sales-dash-cell">
+							<div>
+								Average Daily Sales
+							</div>
+							<div class="sales-dash-currency">
+								{{salesAvgWeekly() | currency:"$"}}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</large-tile>
+
+
+		<large-tile ui-sref="Main.Schedule.Overview" tile-title="SCHEDULER" icon="m-schedule-icon">
+			<div id="l-next-scheduled-title">Next Scheduled</div>
+			<div class="l-next-scheduled-container" ng-if="nextShifts && nextShifts.length > 0" ng-repeat="nextShift in nextShifts">
+				<div class="l-next-scheduled-data">
+					<div class="l-next-scheduled-day">{{getNextScheduledDay(nextShift)}}</div>
+					<div class="l-next-scheduled-date">{{nextShift.startTime | date:'MMM d'}}</div>
+					<div class="l-next-scheduled-time">
+						{{nextShift.startTime | date:'h:mm'}}<span>{{nextShift.startTimeUTC | date:'a'}}</span> -
+						{{nextShift.endTime | date:'h:mm'}}<span>{{nextShift.endTimeUTC | date:'a'}}</span>
+					</div>
+				</div>
+			</div>
+			<div id="l-next-scheduled-none" ng-show="nextShifts.length == 0">No upcoming shifts.</div>
+		</large-tile>
+
+		<div class="m-large-tile">
+			<taffer-tile class="live-tile two-wide" data-mode="carousel" data-direction="horizontal" data-delay="4500"></taffer-tile>
+		</div>
+
+		<small-tile tile-title="MESSAGES" icon="m-messages-icon" ng-click="go('Main.Messages.List')"></small-tile>
+		<small-tile tile-title="PRE SHIFT" icon="m-preshift-icon" ng-click="go('Main.Preshift.List')"></small-tile>
+		<small-tile tile-title="COURSES" icon="m-courses-icon" ng-click="go('Main.Courses.List')"></small-tile>
+
+		<small-tile tile-title="LOG BOOK" icon="m-logbook-icon" ng-click="go('Main.LogBook.List')" ng-show="auth.hasPermission('logbooks', 'read')"></small-tile>
+		<small-tile tile-title="MY TEAM" icon="m-myteam-icon" ng-click="go('Main.MyTeam.List')" ng-show="auth.hasPermission('users', 'read')"></small-tile>
+		<small-tile tile-title="TAFFER" icon="m-qa-icon" ng-click="go('Main.Questions')" ng-show="{{auth.hasRole('owner') || auth.hasRole('manager')}}"></small-tile>
+
+		<div class="m-large-menu-tile" ng-click="go('Main.Promotions.Scheduled')">
+			<div id="l-promo-leader-container" class="center">
+				<div id="l-promo-img">
+					<img src="img/specials.png"/>
+				</div>
+				<div id="l-promo-text">PROMOTIONS</div>
+			</div>
+		</div>
+
+		<div class="m-large-menu-tile" ng-click="showPartender()" ng-show="shouldShowPartender()">
+			<div id="l-partender-leader-container" class="center">
+				<div id="l-partender-img">
+					<img src="img/partender_2.png"/>
+				</div>
+				<div id="l-partender-text">FREE<br />TRIAL</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="l-sponsored-content-container" class="clearfix" ng-if="sponsors">
+		<div id="l-sponsor-holder-1">
+			<div class="m-large-tile" ng-show="sponsors.large" ng-click="viewSponsor(sponsors.large)">
+				<img ng-src="http://s3.amazonaws.com/taffer-dev/{{sponsors.large.dashboardImage}}"/>
+			</div>
+		</div><!--
+
+		--><div id="l-sponsor-holder-2">
+			<div class="m-medium-tile" ng-show="sponsors.small.length > 0" ng-click="viewSponsor(sponsors.small[0])">
+				<img ng-src="http://s3.amazonaws.com/taffer-dev/{{sponsors.small[0].dashboardImage}}"/>
+			</div>
+			<div class="m-medium-tile" ng-show="sponsors.small.length > 1" ng-click="viewSponsor(sponsors.small[1])">
+				<img ng-src="http://s3.amazonaws.com/taffer-dev/{{sponsors.small[1].dashboardImage}}"/>
+			</div>
+		</div>
+	</div>
+
+	<div id="l-app-footer">
+		<div class="l-app-footer-row">
+			<div class="l-app-footer-spread" ng-click="logout()">Sign Out</div>
+			<div class="l-app-footer-spread" ng-click="go('Main.Legal.FAQ')">FAQ</div>
+		</div>
+		<div class="l-app-footer-row">
+			<div class="l-app-footer-near" ng-click="go('Main.Legal.TermsOfUse')">Terms of Use</div>|
+			<div class="l-app-footer-near" ng-click="go('Main.Legal.PrivacyPolicy')">Privacy Policy</div>
+		</div>
+	</div>
+
+</div>

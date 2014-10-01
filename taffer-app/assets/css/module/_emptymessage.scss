@@ -1,0 +1,14 @@
+.m-empty-message {
+  font-family: "Helvetica Neue Medium Condensed", arial, sans-serif;
+  font-weight: normal;
+  color: $c-primary-4;
+  font-size: 18px;
+  text-align: center;
+  padding: 20px;
+}
+
+@media only screen and (min-device-width : 600px) {
+	.m-empty-message {
+		font-size: 22px;
+	}
+}

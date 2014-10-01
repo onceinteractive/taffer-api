@@ -1,0 +1,38 @@
+// -----------------------------
+// 				GLOBAL SETTINGS
+// -----------------------------
+
+// Theme Color Palette
+$c-primary-1: #202020; // Dark Grey/Charcoal
+$c-primary-2: #404143; // Light Grey
+$c-primary-3: #29bbea; // Light Blue
+$c-primary-4: #cdcdcd; // Smoke White
+$c-primary-5: #7da9bc; // Lighter Blue
+$c-primary-6: #c1c1c1; // Darker Smoke White
+
+$c-secondary-5: #ffffff; // White
+$c-secondary-6: #181818; // Almost Black
+$c-secondary-7: #1e759e; // Dark Blue
+$c-secondary-8: #f0483e; // Hazy/Off Red
+$c-secondary-9: #3ed229; // Green
+$c-secondary-10: #666666; // Much lighter grey #555658
+$c-secondary-11: #BB342C; // Dark hazy/off red
+$c-secondary-12: #313131; // Very dark charcoal for active states
+
+// Background Color
+$background-color: $c-primary-1;
+
+// Body
+$body-font-size: 16px;
+
+// Header Settings
+$header-color: $c-primary-1;
+$header-height: 50px;
+$header-font-size: 22px;
+
+// Base Font
+$base-font: "Helvetica Neue Roman", arial, sans-serif;
+
+// Social Button Colors
+$c-twitter: #429ede;
+$c-facebook: #41599d;

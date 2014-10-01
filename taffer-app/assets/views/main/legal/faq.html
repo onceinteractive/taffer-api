@@ -1,0 +1,37 @@
+<div id="l-my-team">
+	<div class="m-page-header">
+		<p>FAQ</p>
+	</div>
+	<div class="l-landing-faq-container l-landing-temp" >
+		<form class="m-form">
+			<div class="m-form-select">
+				<select ng-model="currentFAQ">
+					<option ng-repeat="faq in dropdown" value="{{faq.objName}}">{{faq.cleanName}}</option>
+				</select>
+			</div>
+		</form>
+
+
+
+		<div ng-repeat="(key,faq) in faq[currentFAQ]" class="m-section">
+			<div class="m-faq-list-item" ng-click="showDesc(key)">
+				<div class="m-faq-list-icon">
+					<div class="m-arrow-btn-icon rotate" ng-show="faq.show"></div>
+					<div class="m-arrow-btn-icon s-black" ng-hide="faq.show"></div>
+				</div>
+					<div class="m-faq-list-content">
+						<p class="m-faq-list-title">
+							{{faq.title}}
+						</p>
+					</div>
+				</div>
+
+				<div class="m-faq-list-desc" ng-show="faq.show" ng-init="faq.show=false">
+					{{faq.answer}}
+				</div>
+			</div>
+		</div>
+
+
+
+</div>

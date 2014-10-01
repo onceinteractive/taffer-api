@@ -1,0 +1,197 @@
+#l-logbook {
+  width: 100%;
+  height: 100%;
+}
+
+#l-logbook-search {
+  width: 100%;
+  height: 45px;
+  padding: 5px;
+  display: table;
+
+  input {
+    width: 100%;
+    height: 35px;
+    background-color: $c-primary-4;
+    border: none;
+    outline: none;
+    padding: 5px;
+    font-size: 16px;
+    -webkit-appearance: none; //iOS5 issue
+    -webkit-border-radius: 0; //iOS5 issue
+    border-radius: 0; //iOS5 issue
+  }
+
+  @include placeholder {
+    font-family: "Helvetica Neue Roman", arial, sans-serif;
+    color: $c-primary-2;
+    font-size: 14px;
+  }
+}
+
+#l-logbook-search-input-cell {
+  display: table-cell;
+  vertical-align: top;
+  padding-right: 5px;
+}
+
+#l-logbook-search-icon-cell {
+  display: table-cell;
+  vertical-align: top;
+  width: 65px;
+}
+
+#l-logbook-clear-search-cell {
+  display: table-cell;
+  vertical-align: top;
+  width: 35px;
+}
+
+#l-logbook-search-icon-container {
+  height: 35px;
+  background-color: $c-primary-3;
+  padding-top: 4px;
+  margin-right: 5px;
+
+  &:active {
+    background-color: $c-secondary-7;
+  }
+}
+
+#l-logbook-search-icon {
+  background-image: url(icons/search_icon.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 30px;
+  height: 30px;
+}
+
+#l-logbook-clear-search {
+  height: 35px;
+  padding-top: 4px;
+  background-color: black;
+  border: 1px solid $c-secondary-10;
+  text-align: center;
+  font-size: 25px;
+  color: $c-secondary-10;
+
+  &:active {
+    background-color: $c-primary-2;
+    color: black;
+  }
+}
+
+.l-logbook-entry {
+  width: 100%;
+  height: 100px;
+  display: table;
+  border-top: 1px solid $c-secondary-10;
+  font-family: "Helvetica Neue", arial, sans-serif;
+  font-size: 12px;
+}
+
+.l-logbook-entry:last-child {
+  border-bottom: 1px solid $c-secondary-10;
+}
+
+.l-logbook-entry:nth-child(odd) {
+  background-color: black;
+
+  &:active {
+    background-color: $c-primary-2;
+  }
+}
+
+.l-logbook-entry:nth-child(even) {
+  background-color: $c-secondary-6;
+
+  &:active {
+    background-color: $c-primary-2;
+  }
+}
+
+.l-logbook-avatar-container {
+  width: 21%;
+  height: 100%;
+  max-width: 80px;
+  display: table-cell;
+  border-right: 1px solid $c-secondary-10;
+  padding: 10px;
+  vertical-align: top;
+}
+
+.l-logbook-priority-container {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  margin-right: 3px;
+}
+
+.l-logbook-priority-icon {
+  background-image: url(icons/high_priority_icon.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+.l-logbook-entry-message {
+  display: table-cell;
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  vertical-align: top;
+}
+
+.l-logbook-entry-header {
+  margin-bottom: 3px;
+  width: 100%;
+  color: $c-primary-4;
+  font-family: "Helvetica Neue Medium", arial, sans-serif;
+  font-size: 14px;
+}
+
+.l-logbook-entry-sub-header {
+  color: $c-secondary-10;
+  font-size: 10px;
+  margin-bottom: 5px;
+  span {
+    font-family: "Helvetica Neue Italic", arial, sans-serif;
+  }
+}
+
+.l-dot-spacer {
+  display: inline-block;
+  background-color: $c-secondary-10;
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  margin: 0 3px;
+}
+
+.l-number-replies {
+  color: $c-primary-3;
+}
+
+.l-logbook-entry-text {
+  color: $c-primary-4;
+  font-size: 11px;
+}
+
+@media only screen and (min-device-width : 600px) {
+  .l-logbook-avatar-container {
+    width: 15%;
+  }
+
+  .l-logbook-entry-text {
+    font-size: 16px;
+  }
+
+  .l-logbook-entry-sub-header {
+    font-size: 12px;
+  }
+
+  .l-logbook-entry-header {
+    font-size: 18px;
+  }
+}

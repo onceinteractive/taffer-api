@@ -1,0 +1,118 @@
+#l-preshift {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+
+#l-preshift-nav {
+  width: 100%;
+  height: 50px;
+}
+
+.l-preshift-tab {
+  width: 50%;
+  height: 100%;
+  display: inline-block;
+  background-color: $c-primary-1;
+  color: $c-secondary-10;
+  font-family: "Helvetica Neue Bold", arial, sans-serif;
+  text-align: center;
+  padding-top: 14px;
+}
+
+.selectedPreshiftTab {
+  background-color: black;
+  color: $c-primary-3;
+}
+
+#l-preshift-container {
+  width: 100%;
+  height: 100%;
+}
+
+.l-preshift-entry {
+  width: 100%;
+  height: 100px;
+  display: table;
+  border-top: 1px solid $c-secondary-10;
+  font-family: "Helvetica Neue", arial, sans-serif;
+  font-size: 12px;
+}
+
+.l-preshift-entry:last-child {
+  border-bottom: 1px solid $c-secondary-10;
+}
+
+.l-preshift-entry:nth-child(odd) {
+  background-color: $c-secondary-6;
+
+  &:active {
+    background-color: $c-primary-2;
+  }
+}
+
+.l-preshift-entry:nth-child(even) {
+  background-color: black;
+
+  &:active {
+    background-color: $c-primary-2;
+  }
+}
+
+.l-preshift-avatar-container {
+  width: 21%;
+  height: 100%;
+  max-width: 80px;
+  display: table-cell;
+  border-right: 1px solid $c-secondary-10;
+  padding: 10px;
+  vertical-align: top;
+}
+
+.l-preshift-entry-message {
+  display: table-cell;
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  vertical-align: top;
+}
+
+.l-preshift-entry-header {
+  margin-bottom: 3px;
+  width: 100%;
+  color: $c-primary-4;
+  font-family: "Helvetica Neue Medium", arial, sans-serif;
+  font-size: 14px;
+}
+
+.l-preshift-entry-sub-header {
+  color: $c-secondary-10;
+  font-size: 10px;
+  margin-bottom: 5px;
+  span {
+    font-family: "Helvetica Neue Italic", arial, sans-serif;
+  }
+}
+
+.l-preshift-entry-text {
+  color: $c-primary-4;
+  font-size: 11px;
+}
+
+@media only screen and (min-device-width : 600px) {
+  .l-preshift-avatar-container {
+    width: 15%;
+  }
+
+  .l-preshift-entry-header {
+    font-size: 18px;
+  }
+
+  .l-preshift-entry-sub-header {
+    font-size: 14px;
+  }
+
+  .l-preshift-entry-text {
+    font-size: 16px;
+  }
+}

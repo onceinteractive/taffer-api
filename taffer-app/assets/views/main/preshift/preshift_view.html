@@ -1,0 +1,40 @@
+<div id="l-preshift-viewer">
+  <div class="m-page-header">
+    <p>RECEIVED PRE-SHIFT MESSAGE</p>
+  </div>
+
+  <div id="l-preshift-received-message-container">
+    <div id="l-preshift-message-avatar-container">
+      <user-avatar avatar-source="{{selectedMessage.by.pictureURI}}"
+        avatar-first-name="{{selectedMessage.by.firstName}}"
+        avatar-last-name="{{selectedMessage.by.lastName}}"
+        avatar-role="{{selectedMessage.by.role}}"
+        ng-show="selectedMessage.by">
+      </user-avatar>
+    </div>
+
+    <div id="l-preshift-message-text-container">
+      <div id="l-preshift-message-text-title">{{selectedMessage.title | uppercase}}</div>
+      <div id="l-preshift-message-text-date">
+        <relative-time datetime="{{selectedMessage.created}}"></relative-time>
+      </div>
+      <div id="l-preshift-message-text-message">{{selectedMessage.message}}</div>
+      <div id="l-preshift-message-text-image" ng-if="selectedMessage.image" ng-click="viewImage()">
+        <img ng-src="http://s3.amazonaws.com/taffer-dev/{{selectedMessage.image}}" />
+      </div>
+    </div>
+  </div>
+
+  <div id="l-preshift-sent-to">
+    <p id="l-preshift-sent-to-label">SENT TO:</p>
+    <div class="l-preshift-message-recipients" ng-repeat="recipient in selectedMessage.to">
+      <user-avatar avatar-source="{{recipient.pictureURI}}"
+        avatar-first-name="{{recipient.firstName}}"
+        avatar-last-name="{{recipient.lastName}}"
+        avatar-role="{{recipient.role}}"
+        avatar-selected="{{isSelected(recipient)}}">
+      </user-avatar>
+    </div>
+  </div>
+
+</div>

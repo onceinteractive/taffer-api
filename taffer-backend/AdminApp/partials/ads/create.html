@@ -1,0 +1,48 @@
+<div class="pageHeader">
+	Create Ad
+</div>
+
+<div align="center">
+
+	<div class="inlineDiv">
+		<div class="blackBlock">
+			<div class="inlineDiv">
+				<form class="ads">
+					<div>
+						Type: <br/>
+						<select ng-model="type" style="width:100px">
+							<option value="">-- Select --</option>
+							<option value="{{type}}" ng-repeat="type in allTypes">{{type}}
+						</select>
+					</div>
+					<br/>
+					<div>
+						Image:<br/>
+						<input type="file" accept="image/x-png, image/jpeg" file-input="images"/>
+					</div>
+					<br/>
+					<div>
+						States:<br/>
+						<div >
+							<input type="checkbox" value="false" ng-model="allStates">All
+						</div>
+						<div ng-repeat="(key, value) in states" style="display:inline-block;width:65px;text-align:left;">
+							<input type="checkbox" value="{{value}}" ng-model="states[key]">{{key}}&nbsp
+						</div>
+					</div>
+					<br/>
+					<div ng-show="resText" style="margin-bottom:10px; text-align:center; color:red;">
+						{{resText}}<br/></br>
+						<a href="#/createAd"><input type="submit" value="Back"></a>
+					</div>
+					<div ng-hide="resText">
+						<input type="submit" value="Create Ad" ng-click="createAd();">
+					</div>
+				</form>
+				<div ng-show="finished">
+					<h3 style="color:#ff0000">{{finished}}</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> 

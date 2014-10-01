@@ -1,0 +1,68 @@
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin transform($action) {
+  -webkit-transform: $action;
+  -moz-transform: $action;
+  -ms-transform: $action;
+  transform: $action;
+}
+
+@mixin font-face($name, $font-file, $format, $weight: false, $style: false) {
+  @font-face {
+    font-family: quote($name);
+    src: url($font-file) format($format);
+    @if $weight {
+      font-weight: $weight;
+    }
+    @if $style {
+      font-style: $style;
+    }
+  }
+}
+
+@mixin font-face-otf($name, $font-file) {
+  @font-face {
+    font-family: quote($name);
+    src: url("fonts/" + $font-file) format("opentype");
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+
+@mixin gradient-linear($start, $from, $to) {
+	/* Safari 4-5, Chrome 1-9 */
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from($from), to($to));
+
+	/* Safari 5.1, Chrome 10+ */
+	background: -webkit-linear-gradient($start, $from, $to);
+
+	/* Firefox 3.6+ */
+	background: -moz-linear-gradient($start, $from, $to);
+
+	/* IE 10 */
+	background: -ms-linear-gradient($start, $from, $to);
+
+	/* Opera 11.10+ */
+	background: -o-linear-gradient($start, $from, $to);
+}
+
+// Stays at bottom of mixin file because the syntax colors not matching for ones that follow annoy me
+@mixin placeholder {
+  ::-webkit-input-placeholder {
+    @content
+  }
+  :-moz-placeholder {
+    @content
+  }
+  ::-moz-placeholder {
+    @content
+  }
+  :-ms-input-placeholder {
+    @content
+  }
+}

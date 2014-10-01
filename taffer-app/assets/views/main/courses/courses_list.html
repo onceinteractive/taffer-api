@@ -1,0 +1,70 @@
+<main id="l-courses-view" ng-init="help()">
+
+  <section ng-if="auth.hasPermission('courses', 'viewAll')" >
+    <div id="l-new-courses" class="l-course-section">
+      <div class="m-page-header">
+        <p>NEW COURSES</p>
+      </div>
+      
+      <div class="m-empty-message" ng-show="receivedCourses.length == 0">No new courses.</div>
+      <div class="l-course-slider" ng-hide="receivedCourses.length == 0">
+        <div class="m-course-preview" ng-repeat="course in receivedCourses" ng-click="viewCourse(course)" class="l-course-slide l-course-nonDraggableImage"
+          ng-swipe-right="nextReceivedCourse()" ng-swipe-left="prevReceivedCourse()" ng-hide="!isCurrentReceivedCourseIndex($index)" >
+          <div class="m-preview-image" back-image="http://s3.amazonaws.com/taffer-dev/{{course.previewImageKey}}">
+            <p>{{course.title}}</p>
+          </div>
+        </div>
+      </div>
+
+    <div id="l-previous-courses" class="l-course-section">
+      <div class="m-page-header">
+        <p>COMPLETED COURSES</p>
+      </div>
+
+      <div class="m-empty-message" ng-show="previousCourses.length == 0">No viewed courses.</div>
+        <div class="l-course-slider" ng-hide="previousCourses.length == 0">
+          <div class="m-course-preview" ng-repeat="course in previousCourses" ng-click="viewCourse(course)" class="l-course-slide l-course-nonDraggableImage"
+            ng-swipe-right="nextPreviousCourse()" ng-swipe-left="prevPreviousCourse()" ng-hide="!isCurrentPreviousCourseIndex($index)" >
+            <div class="m-preview-image" back-image="http://s3.amazonaws.com/taffer-dev/{{course.previewImageKey}}">
+              <p>{{course.title}}</p>
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <section id="l-tm-courses" ng-if="!auth.hasPermission('courses', 'viewAll')">
+    <div class="m-page-header">
+      <p>COURSES</p>
+    </div>
+
+    <div id="l-tm-courses-nav">
+      <div class="l-tm-courses-tab" ng-click="showBox('received')" ng-class="{selectedTMTab: tab == 'received'}">RECEIVED<br/>COURSES</div><!--
+    --><div class="l-tm-courses-tab" ng-click="showBox('previous')" ng-class="{selectedTMTab: tab == 'previous'}">COMPLETED<br/>COURSES</div>
+    </div>
+
+    <div id="l-tm-rec-courses-container" class="l-tm-courses-layout-tab" ng-show="tab == 'received'" ng-style="courseContainerStyle">
+      <div class="m-empty-message" ng-show="receivedCourses.length == 0">No new courses.</div>
+      <div class="l-tm-course" ng-repeat="received in receivedCourses" ng-click="viewCourse(received)">
+        <div class="m-course-preview">
+          <div class="m-preview-image" back-image="http://s3.amazonaws.com/taffer-dev/{{received.previewImageKey}}">
+            <p>{{received.title}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="l-tm-prev-courses-container" class="l-tm-courses-layout-tab" ng-show="tab == 'previous'" ng-style="courseContainerStyle">
+      <div class="m-empty-message" ng-show="previousCourses.length == 0">No completed courses.</div>
+      <div class="l-tm-course" ng-repeat="previous in previousCourses" ng-click="viewCourse(previous)">
+        <div class="m-course-preview">
+          <div class="m-preview-image" back-image="http://s3.amazonaws.com/taffer-dev/{{previous.previewImageKey}}">
+            <p>{{previous.title}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</main>

@@ -1,0 +1,13 @@
+<div class="col-xs-12">
+    <div class="row">
+        <p class="requested-user-instructions">Who would you like to swap shifts with?</p>
+        <div ng-repeat="user in users" class="col-xs-3 no-pad text-center">
+            <div class="l-shift-avatar-container center" ng-click="selectUser(user)">
+              <user-avatar avatar-source="{{user.pictureURI}}"
+                avatar-first-name="{{user.firstName}}"
+                avatar-role="{{user.role}}">
+              </user-avatar>
+            </div>
+        </div>
+    </div>
+</div>

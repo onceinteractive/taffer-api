@@ -1,0 +1,108 @@
+<div id="l-myteam-profile" class="m-blade">
+  <blade-header blade-title="MEMBER PROFILE" save="save()" cancel="cancel()"></blade-header>
+
+  <div id="l-myteam-profile-container">
+    <div id="l-myteam-profile-avatar-container" class="l-myteam-profile-section">
+      <div id="l-myteam-profile-avatar">
+        <user-avatar avatar-source="{{member.pictureURI}}" avatar-role="{{member.role}}"></user-avatar>
+      </div>
+      <div id="l-myteam-profile-send-message" class="center" ng-click="sendMessage()">Send Message</div>
+    </div>
+
+    <div id="l-myteam-profile-badges-container" class="l-myteam-profile-section" ng-if="member.badges.length > 0">
+      <div class="l-myteam-profile-badges" ng-repeat="badge in member.badges">
+        <img ng-src="http://s3.amazonaws.com/taffer-dev/{{badge.imageKey}}" />
+      </div>
+    </div>
+
+    <div id="l-myteam-profile-promotions" class="l-myteam-profile-section">
+       <div>{{member.shared.length > 0 ? member.shared.length : 0}}</div> <p>Promotions Shared Socially</p>
+    </div>
+
+    <div id="l-myteam-profile-info">
+      <form name="profileForm" novalidate>
+        <table cellspacing="0">
+          <tr class="l-myteam-profile-row">
+            <td class="l-myteam-profile-header">FIRST NAME</td>
+            <td>
+              <input id="l-myteam-profile-firstName"
+                type="text"
+                name="firstName"
+                ng-model="memberCopy.firstName"
+                ng-class="{error: profileForm.firstName.$invalid && profileForm.firstName.$dirty}"
+                required>
+            </td>
+          </tr>
+          <tr class="l-myteam-profile-row">
+            <td class="l-myteam-profile-header">LAST NAME</td>
+            <td>
+              <input id="l-myteam-profile-lastName"
+                type="text"
+                name="lastName"
+                ng-model="memberCopy.lastName"
+                ng-class="{error: profileForm.lastName.$invalid && profileForm.lastName.$dirty}"
+                required>
+            </td>
+          </tr>
+          <tr class="l-myteam-profile-row">
+            <td class="l-myteam-profile-header">EMAIL</td>
+            <td>
+              <input id="l-myteam-profile-email"
+                type="email"
+                name="email"
+                ng-model="memberCopy.email"
+                ng-pattern="/^[A-Za-z0-9!#$%&'*+/=?^_`{|}~.-]+@[A-Za-z0-9-]+\.[A-Za-z0-9-]+$/"
+                ng-class="{error: profileForm.email.$invalid && profileForm.email.$dirty}"
+                required>
+            </td>
+          </tr>
+          <!-- <tr class="l-myteam-profile-row">
+            <td class="l-myteam-profile-header">PHONE</td>
+            <td>
+              <input id="l-myteam-profile-phone"
+                type="tel"
+                name="phoneNumber"
+                ng-model="member.phoneNumber"
+                ng-max="11"
+                ng-min="7"
+                ng-class="{error: profileForm.phoneNumber.$invalid && profileForm.phoneNumber.$dirty}">
+            </td>
+          </tr> -->
+          <!-- <tr class="l-myteam-profile-row">
+            <td class="l-myteam-profile-header">PAY RATE</td>
+            <td>
+              <span>$</span><input id="l-myteam-profile-pay-rate"
+                type="text"
+                name="payRate"
+                ng-model="member.payRate"
+                ng-class="{error: profileForm.phoneNumber.$invalid && profileForm.phoneNumber.$dirty}">
+            </td>
+          </tr> -->
+          <tr class="l-myteam-profile-row">
+            <td class="l-myteam-profile-header">POSITION</td>
+            <td>
+              <div class="m-form">
+                <div class="m-form-select">
+                  <select  id="l-myteam-profile-select" ng-options="roleKey for roleKey in roleKeys" ng-model="memberCopy.role" ng-selected="currentRole"></select>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+
+    <div id="l-myteam-profile-permissions" class="l-myteam-profile-section">
+      <div id="l-myteam-profile-permissions-button" class="center" ng-click="setPermissions()">
+        <div id="l-permissions-button-text">Set Permissions</div>
+        <div id="l-permissions-button-image"><img src="img/lock.png" /></div>
+      </div>
+    </div>
+
+    <div id="l-myteam-profile-deactivate">
+      <div class="l-myteam-profile-deactivated center" ng-hide="memberCopy.locked" ng-click="deactivate()">DEACTIVATE TEAM MEMBER</div>
+      <!-- <div class="l-myteam-profile-activated center" ng-show="member.locked" ng-click="deactivate()">ACTIVATE TEAM MEMBER</div> -->
+    </div>
+  </div>
+
+</div>

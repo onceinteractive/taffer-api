@@ -1,0 +1,228 @@
+//temp resets
+img {
+  padding: 0;
+  margin: 0;
+}
+
+.schedule {
+
+  .sch-btn-red {
+    @extend .m-btn-red;
+    padding: 5px 0px 3px 0px;
+    margin-bottom: 5px;
+  }
+
+  .sch-btn-green {
+    @extend .m-btn-green;
+    padding: 5px 0px 3px 0px;
+    margin-bottom: 5px;
+  }
+
+  .sch-btn-blue {
+    @extend .m-btn;
+    padding: 5px 0px 3px 0px;
+    margin-bottom: 5px;
+  }
+
+  .sch-btn-grey {
+    @extend .m-btn-grey;
+    padding: 5px 0px 3px 0px;
+    margin-bottom: 5px;
+  }
+
+  //base font styles for schedule component
+  font-family: $sch-font-family;
+  font-size: $sch-font-size-base;
+  color: $sch-white;
+
+  //layouts
+  .no-pad {
+    padding: 0;
+  }
+  .no-pad-left {
+    padding-left: 0;
+  }
+  .no-pad-right {
+    padding-right: 0;
+  }
+  .no-margin {
+    margin: 0;
+  }
+
+  //validation class
+  .error {
+    font-size: $sch-font-size-xs;
+    color: $sch-off-red;
+  }
+
+  .margin-top-10 {
+    margin-top: 10px;
+  }
+  .margin-top-20 {
+    margin-top: 20px;
+  }
+  .pad-top-5 {
+    padding-top: 5px;
+  }
+  .pad-top-10 {
+    padding-top: 10px;
+  }
+  //font-type
+  .font-italic {
+    font-style: italic;
+  }
+  .font-bold {
+    font-style: bold;
+  }
+
+  //font-sizes
+  .font-jumbo {
+    font-size: $sch-font-size-jumbo;
+    @media only screen and (min-device-width : 600px) {
+      font-size: 42px;
+    }
+  }
+  .font-xxxl {
+    font-size: $sch-font-size-xxxl;
+    @media only screen and (min-device-width : 600px) {
+      font-size: 36px;
+    }
+  }
+  .font-xxl {
+    font-size: $sch-font-size-xxl;
+    @media only screen and (min-device-width : 600px) {
+      font-size: 26px;
+    }
+  }
+  .font-xl {
+    font-size: $sch-font-size-xl;
+    @media only screen and (min-device-width : 600px) {
+      font-size: 24px;
+    }
+  }
+  .font-lg {
+    font-size: $sch-font-size-lg;
+    @media only screen and (min-device-width : 600px) {
+      font-size: 22px;
+    }
+  }
+  .font-md {
+    font-size: $sch-font-size-md;
+    @media only screen and (min-device-width : 600px) {
+      font-size: 20px;
+    }
+  }
+  .font-sm {
+    font-size: $sch-font-size-sm;
+    @media only screen and (min-device-width : 600px) {
+      font-size: 18px;
+    }
+  }
+  .font-xs {
+    font-size: $sch-font-size-xs;
+    @media only screen and (min-device-width : 600px) {
+      font-size: 16px;
+    }
+  }
+  .font-xxs {
+    font-size: $sch-font-size-xxs;
+    @media only screen and (min-device-width : 600px) {
+      font-size: 14px;
+    }
+  }
+  .font-xxxs {
+    font-size: $sch-font-size-xxxs;
+    @media only screen and (min-device-width : 600px) {
+      font-size: 12px;
+    }
+  }
+  .font-micro {
+    font-size: $sch-font-size-micro;
+    @media only screen and (min-device-width : 600px) {
+      font-size: 10px;
+    }
+  }
+
+  //font colors
+  .light-gray-font {
+    color: $sch-light-gray;
+  }
+  .lighter-gray-font {
+    color:$sch-lighter-gray;
+  }
+  .charcoal-font {
+    color: $sch-charcoal;
+  }
+  .light-blue-font {
+    color: $sch-light-blue;
+  }
+  .smoke-white-font {
+    color: $sch-smoke-white;
+  }
+  .lighter-blue-font {
+    color: $sch-lighter-blue;
+  }
+  .white-font {
+    color: $sch-white;
+  }
+  .dark-blue-font {
+    color: $sch-dark-blue;
+  }
+  .off-red-font {
+    color: $sch-off-red;
+  }
+  .green-font {
+    color: $sch-green;
+  }
+  .light-green-font {
+    color: $sch-light-green;
+  }
+
+  //bg colors
+  .black-background {
+    background-color: $sch-black;
+  }
+  .light-gray-background {
+    background-color: $sch-light-gray;
+  }
+  .charcoal-background {
+    background-color: $sch-charcoal;
+  }
+  .light-blue-background {
+    background-color: $sch-light-blue;
+  }
+  .smoke-white-background {
+    background-color: $sch-smoke-white;
+  }
+  .lighter-blue-background {
+    background-color: $sch-lighter-blue;
+  }
+  .white-background {
+    background-color: $sch-white;
+  }
+  .dark-blue-background {
+    background-color: $sch-dark-blue;
+  }
+  .off-red-background {
+    background-color: $sch-off-red;
+  }
+  .green-background {
+    background-color: $sch-green;
+  }
+  .light-green-background {
+    background-color: $sch-light-green;
+  }
+  .border-left-blue {
+    border-left: solid 5px $sch-light-blue;
+  }
+  .border-left-gray {
+    border-left: solid 5px $sch-smoke-white;
+  }
+
+  //image styles
+
+  .employee-img {
+    width: 65%;
+    margin-top: 5px;
+  }
+}

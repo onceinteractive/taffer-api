@@ -1,0 +1,47 @@
+<div id="l-logbook-view" ng-init="help()">
+  <sub-header subtitle="MANAGER LOGBOOK"></sub-header>
+
+  <div id="l-logbook-search">
+    <div id="l-logbook-search-input-cell">
+      <input id="l-logbook-search-input" type="search" name="logbookSearch" placeholder="SEARCH" results="1" ng-model="searchText">
+    </div>
+    <div id="l-logbook-search-icon-cell">
+      <div id="l-logbook-search-icon-container" ng-click="search()">
+        <div id="l-logbook-search-icon" class="center"></div>
+      </div>
+    </div>
+    <div id="l-logbook-clear-search-cell">
+      <div id="l-logbook-clear-search" ng-click="clearSearch()">X</div>
+    </div>
+  </div>
+
+  <div id="l-logbook-entries-container">
+    <div class="l-logbook-entry" ng-repeat="log in logs | orderBy:'created':true">
+      <div class="l-logbook-avatar-container">
+        <user-avatar avatar-source="{{log.entries[0].by.pictureURI}}"
+          avatar-first-name="{{log.entries[0].by.firstName}}"
+          avatar-last-name="{{log.entries[0].by.lastName}}"
+          avatar-role="{{log.entries[0].by.role}}"
+          ng-show="log.entries[0].by">
+        </user-avatar>
+      </div>
+      <div class="l-logbook-entry-message" ng-click="view(log)">
+        <div class="l-logbook-entry-header">
+          <div class="l-logbook-priority-container" ng-show="log.priority">
+            <div class="l-logbook-priority-icon"></div>
+          </div>
+          {{log.title | uppercase | truncate:true:75}}
+        </div>
+        <div class="l-logbook-entry-sub-header">
+          <relative-time datetime="{{log.created}}"></relative-time>
+          <div class="l-dot-spacer"></div>
+          <span ng-hide="log.entries.length > 1">NO REPLIES</span>
+          <span class="l-number-replies" ng-show="log.entries.length > 1">{{log.entries.length - 1}} REPLIES</span>
+        </div>
+        <div class="l-logbook-entry-text" ng-hide="log.message">{{log.entries[0].message | truncate:true:140}}</div>
+        <div class="l-logbook-entry-text" ng-show="log.message">{{log.message}}</div>
+      </div>
+    </div>
+  </div>
+
+</div>

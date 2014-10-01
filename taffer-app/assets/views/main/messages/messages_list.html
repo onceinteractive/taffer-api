@@ -1,0 +1,93 @@
+<div id="l-messages-list" ng-style="containerStyle" ng-init='help()'>
+  <div class="m-page-header">
+    <p>MESSAGES</p>
+  </div>
+
+  <div id="l-messages-page-container">
+    <div id="l-messages-nav">
+      <div id="step1" class="l-messages-tab" ng-click="showBox('mail')" ng-class="{selectedTab: tab == 'mail'}">INBOX</div><!--
+    --><div id="step2" class="l-messages-tab" ng-click="showBox('suggestion')" ng-class="{selectedTab: tab == 'suggestion'}">SUGGESTIONS</div>
+    </div>
+
+    <div id="l-messages-container" class="l-messages-layout-tab" ng-show="tab == 'mail'">
+      <div class="m-empty-message" ng-show="messageThreads.length == 0">No messages.</div>
+      <div class="l-message" ng-repeat="messageThread in messageThreads track by messageThread._id">
+
+        <div class="l-message-delete" ng-click="toggleObject(messageThread)" ng-show="deleting && !isObjectSelected(messageThread)">
+          <div class="l-delete-icon-container">
+            <div class="m-delete-icon"></div>
+          </div>
+        </div>
+
+        <div class="l-message-avatar" ng-show="!isObjectSelected(messageThread)" ng-click="viewConversation($index)">
+          <user-avatar avatar-source="{{messageThread.participants[0].pictureURI}}"
+            ng-if="messageThread.participants.length == 1">
+          </user-avatar>
+          <user-avatar avatar-source="group"
+            ng-if="messageThread.participants.length > 1">
+          </user-avatar>
+          <user-avatar avatar-source="{{auth.getUser().pictureURI}}"
+            ng-if="messageThread.participants.length == 0">
+          </user-avatar>
+        </div>
+
+        <div class="l-message-container" ng-click="viewConversation($index)">
+          <div class="l-message-meta">
+            <div class="l-message-from" ng-if="messageThread.participants.length == 1">{{messageThread.participants[0].firstName | uppercase | truncate:true:15}}</div>
+            <div class="l-message-from" ng-if="messageThread.participants.length > 1">{{getParticipantNames(messageThread.participants) | uppercase | truncate:true:15}}</div>
+            <div class="l-message-from" ng-if="messageThread.participants.length == 0">Me</div>
+            <div class="l-message-time">
+              <div class="l-arrow-deco">
+                <div class="l-arrow-deco-icon m-icon"></div>
+              </div>
+              <relative-time datetime="{{getLatestTimestamp(messageThread.messages)}}"></relative-time>
+            </div>
+          </div>
+          <div class="l-message-teaser">{{getLatestMessage(messageThread.messages) | truncate:true:55}}</div>
+        </div>
+
+        <div class="l-message-delete-active" ng-click="deleteMessage(messageThread)" ng-show="deleting && isObjectSelected(messageThread)">DELETE</div>
+      </div>
+    </div>
+
+    <div id="l-suggestion-input-container" class="l-messages-layout-tab" ng-show="tab == 'suggestion' && !auth.hasPermission('suggestionBox', 'read') || showSuggestionForm">
+      <label for="suggestionInput">ALL SUBMISSIONS ARE ANONYMOUS</label>
+      <textarea ng-model="suggestion"></textarea>
+      <div class="m-btn center" ng-click="submitSuggestion()">SUBMIT</div>
+    </div>
+
+    <div id="l-suggestions-container" class="l-messages-layout-tab" ng-show="tab == 'suggestion' && auth.hasPermission('suggestionBox', 'read')">
+      <div class="m-empty-message" ng-show="suggestions.length == 0">No suggestions.</div>
+
+      <div class="l-suggestion" ng-repeat="sug in suggestions | orderBy:'created':true track by sug._id">
+        <div class="l-message-delete" ng-click="toggleObject(sug)" ng-show="deleting && !isObjectSelected(sug)">
+          <div class="l-delete-icon-container">
+            <div class="m-delete-icon"></div>
+          </div>
+        </div>
+
+        <div class="l-suggestion-container" ng-click="viewSuggestion(sug)">
+          <div class="l-suggestion-meta">
+            <relative-time datetime="{{sug.created}}"></relative-time>
+            <div class="l-arrow-deco">
+              <div class="l-arrow-deco-icon m-icon"></div>
+            </div>
+          </div>
+          <div class="l-suggestion-message">{{sug.message | truncate:false:85}}</div>
+        </div>
+
+        <div class="l-message-delete-active" ng-click="deleteSuggestion(sug)" ng-show="deleting && isObjectSelected(sug)">DELETE</div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer id="l-messages-footer" class="step3">
+    <div id="l-messages-write-icon"
+      ng-show="tab == 'mail' || (tab == 'suggestion' && auth.hasPermission('suggestionBox', 'read'))"
+      ng-click="writeNew()">
+      <div class="m-write-icon"></div>
+    </div>
+  </footer>
+
+</div>

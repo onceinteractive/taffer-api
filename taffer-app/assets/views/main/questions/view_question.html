@@ -1,0 +1,19 @@
+<div id="l-question-view" class="view">
+  <sub-header subtitle="Q&amp;A WITH JON TAFFER"></sub-header>
+
+  <div id="l-response-container">
+    <div id="l-submitted-question">
+      {{question.question}}
+      <div class="l-question-meta">
+        Submitted by: {{question.by.firstName}} {{question.by.lastName.charAt(0)}}
+        <span>{{question.created | date:'shortDate'}} &#183;
+        {{question.created | date:'shortTime'}}</span>
+      </div>
+    </div>
+
+
+    <div id="l-response-label">JON'S RESPONSE</div>
+    <div id="l-taffers-response">{{question.answer}}</div>
+  </div>
+
+</div>

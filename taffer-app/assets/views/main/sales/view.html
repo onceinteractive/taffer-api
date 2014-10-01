@@ -1,0 +1,66 @@
+<div class="m-chart-controls" ng-controller="ChartControlsCtrl" ng-init="help()">
+	<table class="m-sales-view">
+		<tr class="m-sales-view-header" id="step3">
+			<td colspan="1">
+				<div class="m-sales-btn-left" ng-click="previousChart()">
+					<div class="m-cal-back-icon"></div>
+				</div>
+			</td>
+			<td colspan="5">
+				{{label}}
+			</td>
+			<td colspan="1">
+				<div class="m-sales-btn-right" ng-click="nextChart()">
+					<div class="m-cal-forward-icon"></div>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<table class="m-sales-view-types" id="step2">
+		<tr>
+			<td class="m-sales-view-type"
+				ng-click="updateGranularity('weekly')"
+				ng-class="{'s-active': isSelected('weekly')}">
+				WEEKLY
+			</td>
+			<td class="m-sales-view-type"
+				ng-click="updateGranularity('monthly')"
+				ng-class="{'s-active': isSelected('monthly')}">
+				MONTHLY
+			</td>
+			<td class="m-sales-view-type"
+				ng-click="updateGranularity('yearly')"
+				ng-class="{'s-active': isSelected('yearly')}">
+				YEARLY
+			</td>
+		</tr>
+	</table>
+
+	<div class="m-d3-chart" id="step1">
+		<div ng-show="data.length === 0" class="m-d3-no-data-message">
+			<p>
+				No Sales Data to Chart
+			</p>
+		</div>
+		<div class="m-test-sales-graph"
+			ng-show="data.length > 0"
+			fm-d3-line
+			height="200"
+			label="Test Label"
+			data="data"
+			sum-index="{{getIndex()}}"
+			margin="14,10,20,24"
+			granularity="{{granularity}}"
+			click="test(d,i)"></div>
+	</div>
+</div>
+<table class="m-sales-view-btn-container">
+	<tr>
+		<td>
+			<button id="step4" class="btn-trend" ui-sref="Main.Sales.Trends">TRENDS</button>
+		</td>
+		<td>
+			<button id="step5" class="btn-edit" ui-sref="Main.Sales.Edit">EDIT</button>
+		</td>
+	</tr>
+</table>

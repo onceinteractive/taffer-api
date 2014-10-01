@@ -1,0 +1,26 @@
+<div class="m-modal-overlay">
+</div>
+<!-- <div class="m-modal absolute-center">
+	<p>
+		Welcome to <span>Taffer's Bar HQ!</span>
+	</p>
+	<p>
+		Before we get started, we need to know a little bit about you and your bar.  First we need some basic information about you.
+	</p>
+	<div class=m-modal-btn-container>
+		<button class="m-btn" oc-modal-close>OKAY</button>
+	</div>
+</div> -->
+<div class="absolute-center" style="z-index:9999;">
+	<video id="m-welcome-video"
+		class="fixed-center"
+		fm-video="" src="http://d7rt0x9mnvn33.cloudfront.net/welcome.mp4"
+		end="videoEnd()"
+		autoplay="true"
+		webkit-playsinline />
+	<div class="m-video-controls">
+		<button class="m-btn" ng-click="play()" ng-show="isPaused">Play</button>
+		<button class="m-btn" ng-click="pause()" ng-show="!isPaused">Pause</button>
+		<button class="m-btn" oc-modal-close>Skip</button>
+	</div>
+</div>

@@ -1,0 +1,265 @@
+.m-promotion-social-form {
+	.m-promo-soc-section {
+		border-bottom: 1px solid $c-secondary-10;
+		padding: 0 10px 5px 10px;
+		margin: 10px 0px 0px;
+
+		text-align: left;
+	}
+
+	textarea {
+		width: 100%;
+		text-align: left;
+		padding: 15px;
+
+		font-size: 14px;
+
+		background: $c-primary-4;
+		color: $c-primary-1;
+	}
+
+	label {
+		color: $c-primary-3;
+		font-size: 10px;
+		padding: 0px;
+	}
+}
+
+.m-promotion-soc-image {
+	table {
+		margin-left: 0px;
+		margin-top: 10px;
+		width: 100%;
+	}
+
+	td {
+		width: 25%;
+		height: 80px;
+		div {
+			width: 100%;
+			height: 100%;
+			background: $c-primary-2;
+			position: relative;
+		}
+
+		i {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+
+			margin-right: 5px;
+			margin-bottom: 5px;
+		}
+	}
+
+	.m-new-date-label {
+		text-align: right;
+		color: $c-secondary-10;
+		font-size: 12px;
+		vertical-align: top;
+		width: 30%;
+	}
+
+	.m-soc-image-title {
+		color: $c-primary-3;
+		font-size: 10px;
+	}
+}
+
+.m-promo-soc-image-list {
+	width: 100%;
+	display: table;
+
+	.m-promo-soc-image-list-item {
+		display: table-cell;
+		margin: 0px auto;
+		width: 20%;
+		text-align: center;
+		vertical-align: middle;
+
+		div {
+			height: 70px;
+			margin: 2px;
+			background: $c-primary-2;
+			position: relative;
+		}
+
+		i {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+
+			margin-right: 5px;
+			margin-bottom: 5px;
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+		}
+
+		span {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			top: 0;
+			margin-top: 15px;
+		}
+
+		&.s-active {
+			border: 1px solid $c-primary-3;
+		}
+	}
+}
+
+.m-promotion-soc-post {
+	display: table;
+	width: 100%;
+	background: black;
+	padding: 10px 0px;
+
+	div {
+		padding: 0px 5px;
+	}
+
+	.m-soc-post-date {
+		display: table-cell;
+		vertical-align: middle;
+		text-align: right;
+
+		.m-post-date-when {
+			color: $c-primary-4;
+		}
+
+		.m-post-date-day {
+			color: $c-primary-3;
+		}
+
+		p {
+			padding: 0;
+			margin: 0;
+		}
+	}
+
+	.m-soc-post-time {
+		display: table-cell;
+		vertical-align: middle;
+		color: $c-primary-4;
+		text-align: center;
+	}
+
+	.m-soc-post-networks {
+		display: table-cell;
+		vertical-align: middle;
+		width: 20px;
+
+		.fa-twitter {
+			color: #fff;
+		}
+
+		.fa-facebook {
+			color: #fff;
+		}
+
+		.fa-square {
+			&.twitter {
+				color: #429ede;
+			}
+
+			&.facebook {
+				color: #41599d;
+			}
+		}
+	}
+
+	.m-soc-post-edit {
+		display: table-cell;
+		vertical-align: middle;
+	}
+
+	.m-soc-post-trash {
+		display: table-cell;
+		vertical-align: middle;
+	}
+}
+
+.m-promotion-soc-schedule-btn {
+	display: table;
+	color: $c-secondary-10;
+	background: black;
+	width: 100%;
+	border-bottom: 1px solid $c-secondary-10;
+	text-align: center;
+
+	p {
+		padding: 24px 0px 20px;
+		margin: 0;
+	}
+
+	div {
+		display: table-cell;
+		vertical-align: middle;
+	}
+
+	.m-promo-soc-btn-icon {
+		display: inline-block;
+	}
+
+	.m-promo-soc-btn-text {
+		display: inline-block;
+		padding-right: 10px;
+	}
+}
+
+@media only screen and (min-device-width : 600px) {
+	.m-promotion-social-form {
+		label {
+			font-size: 14px;
+		}
+	}
+
+	.m-promotion-soc-image {
+		.m-soc-image-title {
+			font-size: 14px;
+		}
+	}
+
+	.m-promo-soc-image-list {
+		.m-promo-soc-image-list-item {
+			div {
+				height: 135px;
+			}
+		}
+	}
+
+	.m-promotion-soc-post {
+		.m-soc-post-date {
+			.m-post-date-when {
+				font-size: 18px;
+			}
+
+			.m-post-date-day {
+				font-size: 18px;
+			}
+		}
+
+		.m-soc-post-time {
+			font-size: 18px;
+		}
+	}
+
+	.m-promotion-soc-schedule-btn {
+		.m-promo-soc-btn-icon {
+			.m-add-icon {
+				width: 30px;
+				height: 30px;
+			}
+		}
+
+		.m-promo-soc-btn-text {
+			font-size: 18px;
+		}
+	}
+
+}

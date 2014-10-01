@@ -1,0 +1,59 @@
+<div class="m-section"
+	ng-show="auth.hasPermission('social', 'manage')"  ng-init="help()">
+	<sub-header subtitle="PROMOTIONS"></sub-header>
+	<p class="m-section-text">
+		Use the menu below to choose from several unique bar promotions, learn how to run them, and put them into action by sharing on your bar’s social media accounts as well as with your staff.
+	</p>
+	<div class="m-promotions-btn-container">
+		<button class="m-btn"
+			ui-sref="Main.Promotions.List">PROMOTIONS LIST</button>
+		<div class="m-separator">
+			OR
+		</div>
+		<button class="m-btn-grey"
+			ui-sref="Main.Promotions.New">CUSTOM PROMOTION</button>
+	</div>
+</div>
+
+<div class="m-section" id="step2">
+	<sub-header subtitle="SCHEDULED PROMOTIONS"></sub-header>
+	<div class="m-scheduled-promotion" ng-repeat="p in scheduledPromotions">
+		<div class="m-promotion-image">
+			<img ng-src="{{getImage(p)}}" />
+		</div>
+		<div class="m-promotion-content">
+			<p class="m-promotion-title">{{p.title}}</p>
+			<p class="m-promotion-date">{{p.startDate | date:"EEE, MMM dd"}}
+				<span ng-show="p.occurences && p.occurences.length > 0">RECURRING</span>
+			</p>
+			<p class="m-promotion-time">
+				{{p.startDate | date:"h:mm"}}<span>{{p.startDate | date:"a"}}</span> - {{p.endDate | date:"h:mm"}}<span>{{p.endDate | date:"a"}}</span>
+			</p>
+		</div>
+		<div class="m-promotion-icons">
+			<div class="m-edit-icon"
+				ng-click="editPromotion($index)"
+				ng-show="auth.hasPermission('social', 'manage')"></div>
+			<div class="fa fa-twitter fa-2x"
+				ng-click="teamMemberTwitter($index)"
+				ng-show="!auth.hasPermission('social', 'manage') && p.shareables.length > 0 && p.shareables[0].twitterMessage"></div>
+		</div>
+		<div class="m-promotion-icons">
+			<div class="m-trash-icon"
+				ng-click="deletePromotion(p._id)"
+				ng-show="auth.hasPermission('social', 'manage')"></div>
+			<!-- <div class="m-arrow-btn-icon s-black"
+				ng-click="teamMemberDetail($index)"
+				ng-show="user.role.toLowerCase()!== 'admin' && user.role.toLowerCase()!== 'manager'"></div> -->
+			<div class="fa fa-facebook fa-2x"
+				ng-click="teamMemberFacebook($index)"
+				ng-show="!auth.hasPermission('social', 'manage') && p.shareables.length > 0 && p.shareables[0].facebookMessage"></div>
+		</div>
+	</div>
+</div>
+
+<div class="m-section" ng-show="savedPromotions.length > 0">
+	<div class="m-section-header m-section-header-blue">
+		SAVED PROMOTIONS
+	</div>
+</div>

@@ -1,0 +1,32 @@
+<div class="col-xs-12 events">
+    <div class="row">
+        <div class="col-xs-12">
+            <fm-calendar mode="single" type="no-click" selected="selectedDate" eventdays="eventDays"></fm-calendar>
+        </div>
+    </div>
+    <div class="m-empty-message" ng-hide="events.length > 0">No scheduled events.</div>
+    <div ng-repeat="event in events" class="row event-item-row black-background">
+        <div class="col-xs-2 pad-top">
+            <div class="circle-brder pad-top-left" ng-class="{'selected': {{event.date===todaysDate}}}">{{ event.date | date:"d" }}</div>
+        </div>
+        <div class="col-xs-6 pad-left-right-none">
+            <div class="row">
+                <div class="col-xs-12 font-sm font-bold">{{ event.title }}</div>
+            </div>
+            <div class="row">
+                <div ng-if="!event.isAllDay" class="col-xs-12 font-xxs">{{ event.start }} - {{ event.end }}</div>
+                <div ng-if="event.isAllDay" class="col-xs-12 font-xxs">ALL DAY</div>
+            </div>
+        </div>
+        <div class="col-xs-2">
+            <div ng-if="auth.hasRole('owner') || auth.hasRole('manager')">
+                <i ng-click="edit(event)" class="fa fa-pencil-square-o font-xxxl pad-left-right-none pad-top"></i>
+            </div>
+        </div>
+        <div class="col-xs-2">
+            <div ng-if="auth.hasRole('owner') || auth.hasRole('manager')">
+                <i ng-click="delete(event);" class="fa fa-trash-o font-xxxl pad-top"></i>
+            </div>
+        </div>
+    </div>
+</div>

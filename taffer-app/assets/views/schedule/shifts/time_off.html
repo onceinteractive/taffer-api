@@ -1,0 +1,51 @@
+<div class="time-off-picker">
+    <form name="toRequestForm">
+        <div class="row">
+            <div class="col-xs-12">
+                <fm-calendar mode="single" highlight="false" selected="selectedDate"></fm-calendar>
+            </div>
+        </div>
+
+        <!-- Day Off? -->
+        <div id="l-time-off-table">
+            <div class="l-time-off-table-row">
+                <div class="l-time-off-table-header header-middle">ALL DAY OFF?</div>
+                <div class="l-time-off-table-cell">
+                    <div class="tafferChkBox text-center">
+                        <input type="checkbox" id="dayOffChkBox" name="dayoff" ng-model="isAllDay">
+                        <label for="dayOffChkBox" class="fa fa-check font-xxl"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="l-time-off-table-row" ng-if="!isAllDay">
+                <div class="l-time-off-table-header header-middle">START TIME</div>
+                <div class="l-time-off-table-cell">
+                     <!-- <input type="time" id="startTime" name="startTime" ng-model="timeOff.startTime"
+                           placeholder="HH:mm" min="08:00" max="17:00" required /> -->
+                    <fm-time-input steps="15" ng-model="timeOff.startTime"></fm-time-input>
+                </div>
+            </div>
+
+            <div class="l-time-off-table-row" ng-if="!isAllDay">
+                <div class="l-time-off-table-header header-middle">END TIME</div>
+                <div class="l-time-off-table-cell">
+                    <!-- <input type="time" id="endTime" name="endTime" ng-model="timeOff.endTime"
+                           placeholder="HH:mm" min="08:00" max="17:00" required /> -->
+                    <fm-time-input steps="15" ng-model="timeOff.endTime"></fm-time-input>
+                </div>
+            </div>
+
+            <div class="l-time-off-table-row">
+                <div class="l-time-off-table-header header-top">MESSAGE (Optional)</div>
+                <div class="l-time-off-table-cell">
+                    <textarea
+                        class="shift-swap-message-input"
+                        ng-model="timeOffMessage">
+                    </textarea>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>

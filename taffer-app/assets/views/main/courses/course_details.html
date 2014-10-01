@@ -1,0 +1,77 @@
+<div id="l-course-details-view">
+  <div class="m-page-header">
+    <p>COURSE DETAILS</p>
+  </div>
+
+  <section id="l-course-details">
+    <div id="l-course-header" class="clearfix">
+
+      <div class="m-course-preview" ng-click="play()">
+        <div class="m-preview-image" back-image="http://s3.amazonaws.com/taffer-dev/{{selectedCourse.previewImageKey}}">
+          <div class="m-play fa fa-play-circle-o fa-3x"></div>
+        </div>
+      </div>
+
+      <div id="l-course-title">{{selectedCourse.title}}</div>
+    </div>
+
+    <div id="l-course-description" ng-show="selectedCourse.description && selectedCourse.description != 'undefined'">{{selectedCourse.description}}</div>
+    <div id="l-course-description" ng-show="selectedCourse.from && selectedCourse.from != 'undefined'">
+      <b>{{selectedCourse.from.firstName}} {{selectedCourse.from.lastName}} has shared this course with you.</b></div>
+    <div id="l-course-description" ng-show="selectedCourse.message && selectedCourse.message != 'undefined'">
+      {{selectedCourse.message}}</div>
+
+    <div id="l-course-buttons">
+      <div class="m-btn" ng-click="takeQuiz()" ng-if="selectedCourse.quiz && selectedCourse.quiz.length > 0">TAKE QUIZ</div>
+      <div class="m-btn-grey" ng-click="share()" ng-show="auth.hasPermission('courses', 'share')">SHARE WITH TEAM</div>
+    </div>
+  </section>
+
+  <section id="l-course-share" ng-show="showShare || showMessage">
+    <div id="l-course-share-message">
+      <label for="shareMessage">MESSAGE <span ng-show="showShare">(Optional)</span></label>
+      <textarea name="shareMessage" ng-model="message"></textarea>
+    </div>
+  </section>
+
+  <section id="l-course-share-all-members" ng-show="showShare">
+    <form class="l-course-share-input">
+      <label id="memberButtonLabel" for="memberButton">
+        <input type="checkbox" id="memberButton" name="memberButton" value="" ng-model="selectAll" ng-change="deselectMembers()">
+        <span></span>
+        SELECT ALL TEAM MEMBERS?
+      </label>
+    </form>
+  </section>
+
+  <section id="l-course-available-recipients" ng-show="showShare">
+    <div id="l-course-recipients-container">
+      <div class="l-course-recipients" ng-class="{selectedCourseRecipient: isSelected(recipient)}" ng-repeat="recipient in recipients" ng-click="selectRecipient(recipient)">
+        <user-avatar avatar-source="{{recipient.pictureURI}}"
+          avatar-first-name="{{recipient.firstName}}"
+          avatar-last-name="{{recipient.lastName}}"
+          avatar-role="{{recipient.role}}"
+          avatar-selected="{{isSelected(recipient)}}">
+        </user-avatar>
+      </div>
+    </div>
+
+    <div id="l-course-share-button">
+      <button class="m-btn center" ng-click="shareCourse()">SEND</button>
+    </div>
+  </section>
+
+  <div id="l-course-video-container" ng-show="showVideo">
+    <video fm-video=""
+      id="l-courses-video"
+      src="http://d7rt0x9mnvn33.cloudfront.net/app.mp4"
+      end="videoEnd()"
+      webkit-playsinline/>
+    <div class="m-video-controls">
+        <button class="m-btn" ng-click="play()" ng-show="isPaused">Play</button>
+        <button class="m-btn" ng-click="pause()" ng-show="!isPaused">Pause</button>
+        <button class="m-btn" ng-click="skip()">Skip</button>
+    </div>
+  </div>
+
+</div>

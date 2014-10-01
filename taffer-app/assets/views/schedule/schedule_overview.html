@@ -1,0 +1,83 @@
+<!-- Schedule Prev and Next Header -->
+<div id="schedule-show-container" ng-if="hasSchedules" ng-cloak ng-init="help()">
+    <div class="schedule-redo-header">
+        <div class="schedule-header-row which-week">
+            <div></div>
+            <div class="schedule-header-range text-center">{{whichWeek}}</div>
+            <div></div>
+        </div>
+        <div class="schedule-header-row">
+            <div class="schedule-header-btn btn-left">
+                <div ng-click="back()" class="page-control page-left text-center black-background" ng-hide="firstSched">
+                    <i class="font-jumbo fa fa-angle-left"></i>
+                </div>
+            </div>
+            <div class="schedule-header-range">
+                <div class="text-center">
+                    <span class="light-blue-font font-italic">{{days[0].format("M/D/YY")}} - {{days[6].format("M/D/YY")}}</span>
+                </div>
+            </div>
+            <div class="schedule-header-btn btn-left">
+                <div ng-click="next()" class="page-control page-right text-center black-background" ng-hide="lastSched">
+                    <i class="font-jumbo fa fa-angle-right"></i>
+                </div>
+            </div>
+        </div>
+        <div class="schedule-header-row publish-button" ng-show="showPublishButton()">
+            <div></div>
+            <div class="schedule-header-range">
+                <button class="m-btn-red" ng-click="publish()">Publish</div>
+            </div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- Schedule Grid -->
+    <div class="schedule-redo-grid">
+        <!-- Schedule day labels -->
+        <div class="schedule-day-labels">
+            <div class="schedule-day-label sch-hd">
+            </div>
+            <div class="schedule-day-label" ng-class="{'sch-col-last' : $last}" ng-repeat="day in days">
+                <div class="sch-hd">
+                    <div>{{day.format("ddd") | uppercase}}</div>
+                    <div>{{day.format("M/D")}}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Schedule Rows -->
+        <div class="schedule-rows" ng-repeat="user in users">
+            <!-- Avatar Cell -->
+            <div class="schedule-row-cell">
+                <user-avatar avatar-source="{{user.pictureURI}}"
+                  avatar-first-name="{{user.firstName}}"
+                  avatar-role="{{user.role}}">
+                </user-avatar>
+            </div>
+
+            <!-- Schedule Cell -->
+            <div ng-repeat="day in days" ng-class="{'sch-col-last' : $last}" class="schedule-row-cell">
+                <div ng-click="editShift(user._id, $index)">
+                    <div ng-if="hasShift(user._id, $index)" ng-class="{'not-saved': !shift.isSaved}" class="shift-times">
+                        <div ng-if="getShift(user._id, $index).isOpening">OPEN</div>
+                        <div ng-if="!getShift(user._id, $index).isOpening">{{getShift(user._id, $index).startTime | date:"h:mma" | lowercase}}</div>
+                        <div ng-if="getShift(user._id, $index).isClosing">CLOSE</div>
+                        <div ng-if="!getShift(user._id, $index).isClosing">{{getShift(user._id, $index).endTime | date:"h:mma" | lowercase}}</div>
+                    </div>
+                    <div ng-if="!hasShift(user._id, $index)" class="shift-times">
+                        <div ng-if="!hasTimeOff(user._id, $index) || !getTimeOff(user._id, $index).isAllDay"><i class="fa fa-circle-thin shift-off font-xxxl"></i></div>
+                        <div ng-if="getTimeOff(user._id, $index).status==='pending' && getTimeOff(user._id, $index).isAllDay" class="text-center shift-pending font-xxs">TBD</div>
+                        <div ng-if="getTimeOff(user._id, $index).status==='approved' && getTimeOff(user._id, $index).isAllDay"><i class="fa fa-times font-xxxl shift-off"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-show="!hasSchedules">
+    <div class="m-empty-message">
+        Currently no schedules.
+    </div>
+</div>

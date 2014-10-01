@@ -1,0 +1,229 @@
+.m-icon {
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.m-small-icon {
+	@extend .m-icon;
+	width: 15px;
+	height: 15px;
+}
+
+.m-medium-icon {
+	@extend .m-icon;
+	width: 30px;
+	height: 30px;
+}
+
+.m-large-icon {
+	@extend .m-icon;
+	margin: 10px auto;
+	height: 50px;
+}
+
+/***************** HEADER ICONS **********************/
+.m-notifications-icon {
+	@extend .m-medium-icon;
+	background-image: url(icons/notification_icon.svg);
+
+	&:active {
+		background-image: url(icons/notification_icon_active.svg);
+	}
+}
+
+.m-home-icon {
+	@extend .m-medium-icon;
+	background-image: url(icons/home_icon.svg);
+
+	&:active {
+		background-image: url(icons/home_icon_active.svg);
+	}
+}
+
+.m-create-icon {
+	@extend .m-medium-icon;
+	background-image: url(icons/add_icon_blue.svg);
+
+	&:active {
+		background-image: url(icons/add_icon_active.svg);
+	}
+}
+
+.m-write-icon {
+	@extend .m-medium-icon;
+	background-image: url(icons/write_icon.svg);
+
+	&:active {
+		background-image: url(icons/write_icon_active.svg);
+	}
+}
+
+/***************** SMALL HEADER ICONS **********************/
+.m-sales-icon {
+	@extend .m-small-icon;
+	background-image: url(icons/sales_icon.svg);
+	margin: 2px 10px 0 5px;
+}
+
+.m-schedule-icon {
+	@extend .m-small-icon;
+	background-image: url(icons/schedule_icon.svg);
+	margin: 2px 10px 0 5px;
+}
+
+/***************** MEDIUM ICONS **********************/
+.m-camera-icon {
+	@extend .m-medium-icon;
+	background-image: url(icons/camera_icon.svg);
+
+	&:active {
+		background-image: url(icons/camera_icon_active.svg);
+	}
+}
+
+.m-write-icon {
+	@extend .m-medium-icon;
+	background-image: url(icons/write_icon.svg);
+}
+
+.m-delete-icon {
+	@extend .m-medium-icon;
+	background-image: url(icons/delete_icon.svg);
+	margin: 10px;
+}
+
+.m-arrow-blue-icon {
+	@extend .m-medium-icon;
+	background-image: url(icons/arrow_blue.svg);
+}
+
+.m-search-icon {
+	@extend .m-medium-icon;
+	background-image: url(icons/search_icon.svg);
+}
+
+/***************** NAV ICONS **********************/
+.m-messages-icon {
+	@extend .m-large-icon;
+	background-image: url(icons/messages_icon.svg);
+	width: 50px;
+}
+
+.m-logbook-icon {
+	@extend .m-large-icon;
+	background-image: url(icons/logbook_icon.svg);
+	width: 40px;
+}
+
+.m-courses-icon {
+	@extend .m-large-icon;
+	background-image: url(icons/courses_icon.svg);
+	width: 50px;
+}
+
+.m-preshift-icon {
+	@extend .m-large-icon;
+	background-image: url(icons/preshift_icon.svg);
+	width: 50px;
+}
+
+.m-myteam-icon {
+	@extend .m-large-icon;
+	background-image: url(icons/myteam_icon.svg);
+	width: 70px;
+}
+
+.m-qa-icon {
+	@extend .m-large-icon;
+	background-image: url(icons/QA_icon.svg);
+	width: 90px;
+}
+
+/************** PROMOTION ICONS *******************/
+.m-edit-icon {
+	@extend .m-medium-icon;
+	background-image: url(icons/edit_icon.svg);
+}
+
+.m-trash-icon {
+	@extend .m-medium-icon;
+	background-image: url(icons/trash_icon.svg);
+	width: 25px;
+}
+
+.m-add-icon {
+	@extend .m-small-icon;
+	background-image: url(icons/add_icon.svg);
+	width: 25px;
+	height: 25px;
+
+	&:active {
+		background-image: url(icons/add_icon_blue.svg);
+	}
+
+	&.s-blue {
+		background-image: url(icons/add_icon_blue.svg);
+	}
+
+	&.s-black {
+		background-image: url(icons/add_icon_black.svg);
+	}
+
+	&.s-grey {
+		background-image: url(icons/add_icon_grey.svg);
+	}
+}
+
+.m-arrow-btn-icon {
+	@extend .m-medium-icon;
+	background-image: url(icons/arrow_button_icon.svg);
+	width: 25px;
+	height: 25px;
+
+	&.s-blue {
+		background-image: url(icons/arrow_button_icon_blue.svg);
+	}
+
+	&.s-black {
+		background-image: url(icons/arrow_button_icon_black.svg);
+	}
+
+	&.s-rotate {
+		transform: rotate(90deg);
+	}
+}
+
+.m-cal-back-icon {
+	@extend .m-medium-icon;
+	background-image: url(icons/cal_back_icon.svg);
+
+	&:active {
+		background-image: url(icons/cal_back_icon_active.svg);
+	}
+}
+
+.m-cal-forward-icon {
+	@extend .m-medium-icon;
+	background-image: url(icons/cal_forward_icon.svg);
+
+	&:active {
+		background-image: url(icons/cal_forward_icon_active.svg);
+	}
+}
+
+@media only screen and (min-device-width : 600px) {
+	.m-large-icon {
+		width: 90px;
+		height: 75px;
+	}
+
+	.m-myteam-icon, .m-qa-icon {
+		width: 140px;
+		height: 75px;
+	}
+
+	.m-small-icon {
+		width: 22px;
+		height: 22px;
+	}
+}

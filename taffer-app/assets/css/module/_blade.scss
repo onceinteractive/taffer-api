@@ -1,0 +1,73 @@
+.m-blade {
+	width: 100%;
+	height: 100%;
+	background-color: $c-primary-1;
+
+	#blade-header {
+		width: 100%;
+		height: $header-height;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 5555;
+		text-align: center;
+		color: white;
+		letter-spacing: 1px;
+		font-family: "Helvetica Neue Bold Condensed", arial, sans-serif;
+		font-size: $header-font-size;
+		border-bottom: 1px solid $c-primary-3;
+		background-color: $c-primary-1;
+		p {
+			margin-top: 15px;
+		}
+	}
+
+	#blade-nav {
+		width: 100%;
+		height: $header-height;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 5555;
+
+		.blade-text {
+			margin: 18px 10px;
+			color: $c-primary-3;
+			font-size: 18px;
+			font-family: "Helvetica Neue Roman", arial, sans-serif;
+			position: relative;
+		}
+
+		.blade-text:active {
+			color: #fff;
+		}
+
+		.blade-text:before {
+			content: ".";
+			text-indent:-9999px;
+			left:-20px;
+			right:-10px;
+			bottom:-15px;
+			top:-20px;
+			position:absolute;
+			opacity:0;
+			width: 210%;
+		}
+
+		#blade-cancel, #blade-back {
+			float: left;
+		}
+
+		#blade-save, #blade-done, #blade-submit {
+			float: right;
+		}
+
+		.positionRight {
+			float: right !important;
+		}
+
+		.positionLeft {
+			float: left !important;
+		}
+	}
+}

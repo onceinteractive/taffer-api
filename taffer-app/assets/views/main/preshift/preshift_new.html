@@ -1,0 +1,53 @@
+<div id="l-preshift-message-view" class="m-blade" ng-init="help()">
+  <blade-header blade-title="NEW PRE-SHIFT" cancel="cancel()" save="save()"></blade-header>
+
+  <section>
+    <div id="l-preshift-recipient-container">
+      <div id="l-preshift-recipients-label">To:</div>
+      <div id="l-preshift-recipients-list">
+        <div class="l-preshift-selected-recipient" ng-repeat="selectedRecipient in selectedRecipients" ng-show="!allSelected">
+          <div class="l-preshift-selected-recipient-name-container">
+            <div class="l-preshift-selected-recipient-name" ng-click="deleteRecipient(selectedRecipient)">{{selectedRecipient.firstName}} {{selectedRecipient.lastName.charAt(0)}}.<span class="l-remove-recipient">X</span></div>
+          </div>
+        </div>
+        <div class="l-preshift-selected-recipient" ng-show="allSelected">
+          <div class="l-selected-recipient-name" ng-click="unselectAll()">ALL MEMBERS<span class="l-remove-recipient">X</span></div>
+        </div>
+      </div>
+      <div id="l-preshift-add-icon" ng-click="selectRecipients()">
+        <div class="m-icon"></div>
+      </div>
+    </div>
+
+    <div id="l-preshift-input-container">
+      <form class="m-form">
+        <label for="preshiftTitle" class="l-preshift-label">MESSAGE TITLE</label>
+        <input name="preshiftTitle" id="l-preshift-title" ng-model="newTitle"/>
+
+        <label for="preshiftMessage" class="l-preshift-label">MESSAGE</label>
+        <textarea name="preshiftMessage" id="l-preshift-message" ng-model="newMessage"></textarea>
+      </form>
+    </div>
+
+    <div id="l-preshift-image-container">
+      <div id="l-preshift-photo-button"
+          ng-model="file"
+          on-success="imageSuccess({uri: uri})"
+          ng-show="!imageKey"
+          fm-image-upload>
+        <div class="m-camera-icon"></div>
+        <p>ADD PHOTO</p>
+      </div>
+
+      <div id="l-preshift-remove-button" ng-click="removeImage()" ng-show="imageKey">
+        <p>REMOVE PHOTO</p>
+      </div>
+
+      <div class="l-preshift-image center" ng-show="imageKey">
+        <img alt="Preshift Photo" ng-src="{{imageKey}}"/>
+      </div>
+    </div>
+  <section>
+
+
+</div>

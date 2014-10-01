@@ -1,0 +1,27 @@
+<div id="l-promotions-date" class="m-blade">
+	<blade-header blade-title="PROMOTIONS" cancel="cancel()" save="save()"></blade-header>
+	<fm-calendar mode="range" selected="selectedDates"></fm-calendar>
+	<form class="promotions-window-form m-form"
+		name="promoWindowForm">
+		<div class="m-promotions-window-days-label">
+			Select Recurring Days:
+		</div>
+		<table class="m-social-form-days">
+			<tr>
+				<td class="m-social-form-day"
+					ng-repeat="day in weekdays">
+					<label>
+						<input type="checkbox" ng-model="selectedDays[day]">
+						<span></span>
+					</label>
+				</td>
+			</tr>
+			<tr>
+				<td class="m-social-form-day-label"
+					ng-repeat="day in weekdays">
+					{{day | uppercase}}
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>

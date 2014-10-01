@@ -1,0 +1,140 @@
+<div id="bar-questions-header">
+	<h1>TELL US ABOUT YOUR BAR</h1>
+	<br />
+	<!-- <button class="m-btn" ng-click="skip()">
+		Skip to Finish
+	</button> -->
+	<div id="bar-questions-progress">
+		Question {{activeQuestion}} of {{questions.length}}
+	</div>
+</div>
+<div class="registration-question">
+	<p class="registration-question-question">
+		{{question.question}}
+	</p>
+	<p class="registration-question-instruction">
+		{{question.instruction}}
+	</p>
+
+	<!-- Select One Questions -->
+	<form id="barQuestionRadio"
+		class="bar-question-radio center"
+		ng-show="question.type == 'radio'">
+		<label for="radio-{{$index}}"
+			ng-repeat="option in question.choices">
+			<input type="radio"
+				id="radio-{{$index}}"
+				name="questionButton"
+				ng-model='answers[question._id].answer'
+				value="{{option.id}}">
+			<span></span>
+			{{option.answer}}
+		</label>
+	</form>
+
+	<!-- Select One with Other Option Questions -->
+	<form id="barQuestionRadioOther"
+		ng-show="question.type == 'radio:other'"
+		class="bar-question-radio-other center">
+		<label for="radio-o-t-{{$index}}"
+			ng-repeat="option in question.choices">
+			<input type="radio"
+				id="radio-o-t-{{$index}}"
+				name="questionOtherButton"
+				ng-model='answers[question._id].answer'
+				value="{{option.id}}">
+			<span></span>
+			{{option.answer}}
+		</label>
+		<label for="radio-o" id="radio-o-label">
+			<input type="radio"
+				id="radio-o"
+				name="questionOtherButton"
+				ng-model='answers[question._id].answer'
+				value="other">
+			<span></span>
+			<span ng-hide='question.otherReplacement'>Other</span>
+			<span ng-show='question.otherReplacement'>{{ question.otherReplacement }}</span>
+		</label>
+		<input type="text"
+			id="radio-o-text"
+			name="radioOtherText"
+			ng-model='answers[question._id].other'
+			ng-keypress="onEnter()">
+	</form>
+
+	<!-- Multiple Questions -->
+	<form id="barQuestionRadio"
+		ng-show="question.type == 'multiple'"
+		class="bar-question-multiple center">
+		<label for="multiple-{{$index}}"
+			ng-repeat="option in question.choices">
+			<input type="checkbox"
+				id="multiple-{{$index}}"
+				ng-model='answers[question._id][option.id]'
+				name="questionButton"
+				value="true">
+			<span></span>
+			{{option.answer}}
+		</label>
+	</form>
+
+	<!-- Multiple with Other Option Questions -->
+	<form id="barQuestionRadioOther"
+		ng-show="question.type == 'multiple:other'"
+		class="bar-question-multiple-other center">
+		<label for="multiple-o-{{$index}}"
+			ng-repeat="option in question.choices">
+			<input type="checkbox"
+				id="multiple-o-{{$index}}"
+				name="questionOtherButton"
+				ng-model='answers[question._id][option.id]'
+				value="true">
+			<span></span>
+			{{option.answer}}
+		</label>
+		<label for="multiple-o" id="multiple-o-label">
+			<input type="checkbox"
+				id="multiple-o"
+				name="questionOtherButton"
+				ng-model='answers[question._id].other'
+				value="true">
+			<span></span>
+			<span ng-hide='question.otherReplacement'>Other</span>
+			<span ng-show='question.otherReplacement'>{{ question.otherReplacement }}</span>
+		</label>
+		<input type="text"
+			id="multiple-o-text"
+			name="radioOtherText"
+			ng-model='answers[question._id].otherText'
+			ng-keypress="onEnter()">
+	</form>
+
+	<!-- Text Questions -->
+	<form id="barQuestionRadio"
+		class="bar-question-text center"
+		ng-show="question.type == 'text'">
+		<input type="text"
+			name="questionButton"
+			ng-model='answers[question._id].answer'
+			placeholder="www.bigwhiskey.com"
+			ng-keypress="onEnter()">
+	</form>
+
+	<!-- Percentage Questions -->
+	<form id="barQuestionPercentage"
+		class="bar-question-text center clearfix"
+		ng-show="question.type == 'percentage'">
+		<label class="bar-question-percentage-label" ng-repeat-start="option in question.choices">
+			{{option.answer}} (%)
+		</label>
+		<input ng-repeat-end
+			class="bar-question-percentage-input"
+			type="text"
+			placeholder="{{option.answer}}"
+			ng-model='answers[question._id][option.id]'
+			style="margin-bottom: 10px;"
+			ng-keypress="onEnter()">
+	</form>
+
+</div>

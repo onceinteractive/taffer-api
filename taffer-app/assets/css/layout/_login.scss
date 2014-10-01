@@ -1,0 +1,110 @@
+#l-login-layout-container {
+	width: 100%;
+	height: 100%;
+	max-width: 500px;
+	max-height: 710px;
+}
+
+.l-login-image {
+	width: 100%;
+	height: auto;
+        max-height: auto;
+}
+
+#l-login-recover-password {
+	font-family: "Helvetica Neue Thin";
+	font-style: normal;
+	font-weight: normal;
+
+	font-size: 14px;
+	letter-spacing: 1px;
+	color: $c-primary-4;
+
+	float: right;
+	margin-top: 4px;
+}
+
+#l-login-btn-container {
+	width: 100%;
+	padding: 0px 40px;
+	margin-top: 50px;
+
+	.m-btn {
+		max-width: none;
+	}
+}
+
+#l-login-social-btn-container {
+	font-family: "Helvetica Neue Thin", arial, sans-serif;
+	font-style: normal;
+	font-weight: normal;
+
+	font-size: 14px;
+	text-align: center;
+
+	color: $c-primary-4;
+	display: inline-block;
+}
+
+#l-login-social-btns {
+	span {
+		.fa-twitter {
+			color: #fff;
+		}
+
+		.fa-facebook {
+			color: #fff;
+		}
+
+		.fa-square {
+			&.twitter {
+				color: #429ede;
+			}
+
+			&.facebook {
+				color: #41599d;
+			}
+		}
+	}
+}
+
+#l-login-sign-in {
+	display: table;
+	width: 100%;
+
+	button {
+		display: inline-block;
+		width: 100%;
+	}
+
+	div {
+		display: table-cell;
+	}
+
+	#l-login-social-btn-holder {
+		width: 33%;
+		vertical-align: top;
+	}
+
+	#l-login-btn-holder {
+		padding-left: 10px;
+	}
+}
+
+#l-separator {
+	font-family: "Helvetica Neue Light", arial, sans-serif;
+	font-style: normal;
+	font-weight: normal;
+
+	text-align: center;
+	color: $c-primary-4;
+
+	margin-top: 12px;
+}
+
+.l-login-error {
+	height: 14px;
+	color: red;
+	font-size: 12px;
+	text-align: center;
+}

@@ -1,0 +1,87 @@
+<div id="l-preshift" ng-style="preshiftContainerStyle" ng-init="help()">
+  <div class="m-page-header">
+    <p>PRE-SHIFT MESSAGES</p>
+  </div>
+
+  <!-- MANAGER VIEW -->
+  <section class="l-preshift-messages-container" ng-if="auth.hasPermission('preshift', 'send')">
+    <div id="l-preshift-nav">
+      <div class="l-preshift-tab" ng-click="updateSelectedTab('received')" ng-class="{selectedPreshiftTab: selectedTab == 'received'}">RECEIVED</div><!--
+    --><div class="l-preshift-tab" ng-click="updateSelectedTab('sent')" ng-class="{selectedPreshiftTab: selectedTab == 'sent'}">SENT</div>
+    </div>
+
+    <div id="l-preshift-container" class="l-preshift-layout-tab" ng-show="selectedTab == 'received'">
+      <div class="m-empty-message" ng-show="receivedMessages.length == 0">No messages.</div>
+      <div class="l-preshift-entry" ng-repeat="message in receivedMessages | orderBy:'created':true">
+        <div class="l-preshift-avatar-container">
+          <user-avatar avatar-source="{{message.by.pictureURI}}"
+            avatar-first-name="{{message.by.firstName}}"
+            avatar-last-name="{{message.by.lastName}}"
+            avatar-role="{{message.by.role}}"
+            ng-show="message.by">
+          </user-avatar>
+        </div>
+        <div class="l-preshift-entry-message" ng-click="view(message)">
+          <div class="l-preshift-entry-header">
+            {{message.title | uppercase | truncate:true:75}}
+          </div>
+          <div class="l-preshift-entry-sub-header">
+            <relative-time datetime="{{message.created}}"></relative-time>
+          </div>
+          <div class="l-preshift-entry-text" >{{message.message | truncate:true:140}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="l-preshift-container" class="l-preshift-layout-tab" ng-show="selectedTab == 'sent'">
+      <div class="m-empty-message" ng-show="sentMessages.length == 0">No messages.</div>
+      <div class="l-preshift-entry" ng-repeat="message in sentMessages | orderBy:'created':true">
+        <div class="l-preshift-avatar-container">
+          <user-avatar avatar-source="{{message.by.pictureURI}}"
+            avatar-first-name="{{message.by.firstName}}"
+            avatar-last-name="{{message.by.lastName}}"
+            avatar-role="{{message.by.role}}"
+            ng-show="message.by">
+          </user-avatar>
+        </div>
+        <div class="l-preshift-entry-message" ng-click="view(message)">
+          <div class="l-preshift-entry-header">
+            {{message.title | uppercase | truncate:true:75}}
+          </div>
+          <div class="l-preshift-entry-sub-header">
+            <relative-time datetime="{{message.created}}"></relative-time>
+          </div>
+          <div class="l-preshift-entry-text" >{{message.message | truncate:true:140}}</div>
+        </div>
+      </div>
+    </div>
+</section>
+
+  <!-- TEAM VIEW -->
+  <section class="l-preshift-messages-container" ng-if="!auth.hasPermission('preshift', 'send')">
+    <div class="m-empty-message" ng-show="receivedMessages.length == 0">No messages.</div>
+    <div class="l-preshift-entry" ng-repeat="message in receivedMessages | orderBy:'created':true">
+
+      <div class="l-preshift-avatar-container">
+        <user-avatar avatar-source="{{message.by.pictureURI}}"
+          avatar-first-name="{{message.by.firstName}}"
+          avatar-last-name="{{message.by.lastName}}"
+          avatar-role="{{message.by.role}}"
+          ng-show="message.by">
+        </user-avatar>
+      </div>
+
+      <div class="l-preshift-entry-message" ng-click="view(message)">
+        <div class="l-preshift-entry-header">
+          {{message.title | uppercase | truncate:true:75}}
+        </div>
+        <div class="l-preshift-entry-sub-header">
+          <relative-time datetime="{{message.created}}"></relative-time>
+        </div>
+        <div class="l-preshift-entry-text" >{{message.message | truncate:true:140}}</div>
+      </div>
+
+    </div>
+
+  </section>
+</div>

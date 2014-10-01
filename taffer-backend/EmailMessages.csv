@@ -1,0 +1,2 @@
+App category,Description of how to activate message,Variables,Message
+(Example) Messages,"I click ""send an email"" when sending a user message. This is a fake use case.",%NAME% = name of user. %GREETING% = chosen greeting,"%GREETING%, Sir %NAME% of the app."

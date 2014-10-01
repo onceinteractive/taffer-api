@@ -1,0 +1,22 @@
+.m-breadcrumbs {
+	width: 100%;
+	text-align: center;
+	padding: 0px;
+	margin: 0px;
+	ul {
+		padding: 0px;
+		margin: 0px;
+		list-style: none;
+	}
+
+	li {
+		display: inline-block;
+		width: 10px;
+		height: 10px;
+		background: $c-primary-2;
+
+		&.s-selected {
+			background: $c-primary-3;
+		}
+	}
+}

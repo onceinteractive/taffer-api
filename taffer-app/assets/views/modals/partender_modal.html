@@ -1,0 +1,19 @@
+<div class="m-modal-overlay">
+</div>
+<!-- <div>
+	Playing Video
+</div> -->
+<div class="fixed-center" style="z-index: 9999;">
+	<!-- <button class="m-btn" oc-modal-close>Skip</button> -->
+	<video id="m-partender-video"
+		class="fixed-center"
+		fm-video="" src="http://d7rt0x9mnvn33.cloudfront.net/partender.mp4"
+		end="videoEnd()"
+		autoplay="true"
+		webkit-playsinline />
+	<div class="m-video-controls">
+		<button class="m-btn" ng-click="play()" ng-show="isPaused">Play</button>
+		<button class="m-btn" ng-click="pause()" ng-show="!isPaused">Pause</button>
+		<button class="m-btn" ng-click="videoEnd()">Skip</button>
+	</div>
+</div>

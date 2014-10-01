@@ -1,0 +1,232 @@
+$footer-height: 40px; // Sets the height of the fixed footer bar
+
+#l-messages {
+  // A min-height is programmatically set here to ensure
+  // the entire container appears black
+  height: 100%;
+  width: 100%;
+  background-color: black;
+}
+
+#l-messages-nav {
+  width: 100%;
+  height: 50px;
+}
+
+.l-messages-tab {
+  width: 50%;
+  height: 100%;
+  display: inline-block;
+  background-color: $c-primary-1;
+  color: $c-primary-2;
+  font-family: "Helvetica Neue Bold", arial, sans-serif;
+  text-align: center;
+  padding-top: 14px;
+}
+
+.selectedTab {
+  background-color: black;
+  color: $c-primary-3;
+}
+
+#l-messages-page-container {
+  padding-bottom: $footer-height;
+}
+
+#l-messages-container {
+  width: 100%;
+  height: 100%;
+}
+
+.l-arrow-deco {
+  width: 11px;
+  height: 18px;
+  float: right;
+  margin-left: 10px;
+
+  div {
+    background-image: url(icons/arrow_gray.svg);
+    width: 100%;
+    height: 100%;
+  }
+}
+
+#l-messages-footer {
+  width: 100%;
+  height: $footer-height;
+  border-top: 1px solid $c-primary-3;
+  background-color: $c-primary-2;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+#l-messages-write-icon {
+  float:right;
+  margin: 3px 10px 3px 3px;
+}
+
+//*************************** MAIL BOX ************************
+.l-message {
+  width: 100%;
+  height: 85px;
+  display: table;
+  border-bottom: 1px solid $c-secondary-10;
+  font-size: 14px;
+
+  &:active {
+    background-color: $c-primary-2;
+  }
+}
+
+.l-message-delete {
+  width: 10%;
+  height: 100%;
+  display: table-cell;
+  vertical-align: middle;
+  color: red;
+
+  .m-delete-icon {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+.l-message-avatar {
+  width: 20%;
+  height: 100%;
+  display: table-cell;
+  vertical-align: middle;
+  padding-left: 10px;
+  text-align: center;
+
+  .m-user-avatar {
+    max-width: 60px;
+  }
+}
+
+.l-message-container {
+  display: table-cell;
+  padding-left: 10px;
+  vertical-align: middle;
+  padding-right: 10px;
+}
+
+.l-message-delete-active {
+  width: 10%;
+  height: 100%;
+  display: table-cell;
+  vertical-align: middle;
+  color: $c-primary-4;
+  background-color: $c-secondary-8;
+  padding: 10px;
+}
+
+.l-message-from {
+  color: $c-primary-3;
+  font-family: "Helvetica Neue Bold", arial, sans-serif;
+  float: left;
+}
+
+.l-message-time {
+  color: $c-secondary-10;
+  float: right;
+  vertical-align: top;
+  font-size: 12px;
+}
+
+.l-message-teaser {
+  color: $c-primary-4;
+  clear: both;
+}
+
+//************************* SUGGESTIONS ***********************
+#l-suggestion-input-container {
+  padding: 15px 23px;
+  text-align: center;
+
+  label {
+    color: $c-primary-3;
+    font-family: "Helvetica Neue Bold", arial, sans-serif;
+    letter-spacing: 1px;
+    font-size: 12px;
+  }
+
+  textarea {
+    font-family: "Helvetica Neue Roman", arial, sans-serif;
+    padding: 10px;
+    color: $c-primary-1;
+    background-color: $c-primary-4;
+    width: 100%;
+    height: 150px;
+    margin-top: 5px;
+    font-size: 16px;
+    border-radius: 2px;
+  }
+
+  .m-btn {
+    margin-top: 15px;
+    width: 50%;
+    font-size: 12px;
+    padding: 7px 15px;
+  }
+}
+
+#l-suggestions-container {
+  color: $c-primary-4;
+}
+
+.l-suggestion {
+  width: 100%;
+  height: 85px;
+  border-bottom: 1px solid $c-primary-1;
+  display: table;
+
+  &:active {
+    background-color: $c-primary-2;
+  }
+}
+
+.l-suggestion-container {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0 10px;
+}
+
+.l-suggestion-meta {
+  font-family: "Helvetica Neue Ultralight", arial, sans-serif;
+  font-size: 14px;
+  color: $c-secondary-10;
+}
+
+.l-suggestion-message {
+  font-size: 14px;
+}
+
+#l-view-suggestion {
+  padding: 15px;
+  color: $c-primary-4;
+  font-family: "Helvetica Neue Light", arial, sans-serif;
+  div {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+}
+
+@media only screen and (min-device-width : 600px) {
+  .l-message-avatar {
+    width: 14%;
+  }
+
+  .l-message-from {
+    font-size: 18px;
+  }
+
+  .l-message-time, .l-suggestion-meta {
+    font-size: 16px;
+  }
+
+  .l-message-teaser, .l-suggestion-message {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,15 @@
+<div class="pageHeader">View Admin Accounts</div>
+
+<div class="centerResults">
+	<a href="#/viewAdmin/{{user._id}}"  ng-repeat="user in Results" ng-show="Results">
+		<div class="inlineDiv userResultDiv blackBlock">
+			<div class="inlineDiv">
+				<image src="imgs/noImage.jpg" width="100">
+			</div>
+
+			<div class="inlineDiv">
+				<b>{{user.firstName}} {{user.lastName}}</b><br />
+				<span class="smidText">{{user.email}}</span>
+			</div>  
+		</div>
+	</a>

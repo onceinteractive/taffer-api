@@ -1,0 +1,34 @@
+#l-promotions {
+	width: 100%;
+	height: 100%;
+
+	text-align: center;
+
+	button {
+		font-size: 12px;
+		padding-bottom: 8px;
+	}
+
+	.m-separator {
+		font-size: 14px;
+	}
+}
+
+#l-promotions-date-container {
+	width: 100%;
+	border-top: 1px solid $c-primary-2;
+}
+
+#l-promotions-date {
+	table {
+		border: none;
+	}
+}
+
+@media only screen and (min-device-width : 600px) {
+	#l-promotions {
+		button {
+			font-size: 14px;
+		}
+	}
+}

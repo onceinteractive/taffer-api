@@ -1,0 +1,409 @@
+<div ng-show="viewView">
+
+<div class="pageHeader">View Courses</div>
+<div align="center" >
+	<form class="course">
+		<div class="inlineDiv blackBlock">
+			<div "text-align:center"><b>Title: </b><br/>
+				<span >(search lowercase)</span><br/><br/>
+				<span class="smallText" style="color:red;">LEAVE BLANK FOR "ALL"</span>
+			</div>
+			<br/>
+				<input type="text" ng-model="filterTitle" />
+			<br/>
+			<br/>
+			<div>
+				<input type="submit" value="Get Courses" ng-click="getCourses();">
+			</div>
+			<br/>
+			<hr/>
+			<span class="smallText">CLICK COURSE TO EDIT.</span>
+		</div>
+	</form>
+</div>
+
+<div ng-show="didFilter">
+	Search results for "{{ filterTitle || "All" }}":<br />
+</div>
+
+<div ng-show="error" style="margin-bottom:10px; text-align:center; color:red;">
+	There was an error collecting the courses<br/></br>
+</div>
+
+<div class="centerResults" ng-show="courseResults.length > 0">
+	<div class="inlineDiv" ng-repeat="course in courseResults">
+		<a ng-click="viewCourse(course._id)" class="course">
+			<div class="blackBlock">
+				<div class="inlineDiv">
+					<div>
+						<b>Title: </b>{{ course.title || "none" }}
+					</div><br/>
+					<div>
+						<b>Type: </b>{{ course.type || "none" }}					
+					</div><br/>
+					<div>
+						<b>Video Link: </b>
+						<span ng-show="course.videoLink">
+							{{ course.videoLink }}
+						</span>
+						<span ng-hide="course.videoLink">
+							none
+						</span>
+					</div><br/>
+					<div>
+						<b>Preview Image:</b><br/>
+						<span ng-show="course.previewImageKey">
+							<img ng-src="{{imagePreview(course.previewImageKey)}}" />
+						</span>
+						<span ng-hide="course.previewImageKey">
+							none
+						</span>
+					</div><br/>
+					<div>
+						<b>Description: </b>{{ course.description || "none" }}
+					</div><br/>
+					<div>
+						<b>Bar Categories:</b><br/>
+						<span ng-hide="course.barCategories.length > 0">
+							none
+						</span>
+						<span ng-repeat="category in course.barCategories">
+							{{ category }},&nbsp;
+						</span>
+					</div><br/>
+					<div>
+						<b>Published: </b>{{ course.published || "undefined" }}
+					</div>
+					<div>
+						<b>Start Date: </b>{{ course.publishedStartDate || "none" }}
+						<br/>
+						<b>End Date: </b>{{ course.publishedEndDate || "none" }}
+					</div><br/>
+					<div>
+						<b>Quiz Questions:</b>
+					</div>
+					<div style="border: 1px dashed #b2b4b3;">
+						<div ng-hide="course.quiz.length > 0" style="text-align:center;padding:10px;">
+							none
+						</div>
+						<div id="quiz-display" ng-repeat="question in course.quiz" style="display:inline-block;padding:10px;">
+							Q: <span style="color:white;"><em>"{{question.question || "none" }}"</em></span><br/>
+							A: <span style="color:green;"><em>"{{question.correctAnswer || "none" }}"</em></span><br/>
+							R: <span style="color:yellow;"><em>"{{question.reason || "none" }}"</em></span><br/>
+							Wrong: <span ng-hide="question.wrongAnswers.length > 0">none</span>
+							<span ng-repeat="wrongAnswer in question.wrongAnswers"><span style="color:red;">"<em>{{wrongAnswer}}</em>" </span></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+</div>
+
+</div>
+
+<div ng-show="updateView">
+
+<div class="pageHeader">
+	Update Course
+</div>
+
+<div align="center">
+	<div class="inlineDiv">
+		<div class="blackBlock">
+			<div class="inlineDiv">
+				<form class="course">
+					<table>
+						<tr>
+							<td>
+								<div>
+									<b>Title:</b><br/>
+									<input type="text" ng-model="course.title" />
+								</div>
+							</td>
+							<td>
+								<div>
+									<b>Video Link:</b><br/>
+									<input type="url" ng-model="course.videoLink" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<b>Preview Image:</b><br/>
+								<span ng-show="course.previewImageKey">
+								<img ng-src="{{imagePreview(course.previewImageKey)}}" />
+								</span>
+								<span ng-hide="course.previewImageKey">
+									none
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div>
+									Change Image?</br>
+									<span class="smallText" style="color:red;">LEAVE BLANK FOR NO CHANGE</span><br/>
+									<input type="file" accept="image/x-png, image/jpeg" file-input="course.previewImage"/>
+								</div>
+							</td>
+							<td>
+								<div>
+									<b>Type:</b><br/>
+									<input type="text" ng-model="course.type" />
+								</div>
+							</td>
+						<td>
+						</tr>
+						<tr>
+							<td>
+								<div>
+									<b>Description:</b><br/>
+									<textarea rows="10" cols="30" ng-model="course.description"></textarea>
+								</div>
+							</td>
+							<td>
+								<div>
+									<b>Bar Categories:</b><br/>
+									<div style="text-align:left;">
+										<div ng-repeat="(key, value) in course.barCategories">
+											<input type="checkbox" value="{{value}}" ng-model="course.barCategories[key]">{{key}}
+										</div>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td style="padding-bottom:0px;vertical-align:bottom;">
+								<input type="checkbox" value="false" ng-model="course.published" style="margin-right:10px;" /><b>Published</b>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div>
+									<b>Start Date: </b><br/>
+									{{course.publishedStartDate || "none" }}<br/><br/>
+									Change date?<br/>
+									<span class="smallText" style="color:red;">LEAVE BLANK FOR NO CHANGE</span><br/>
+									<input type="date" ng-model="course.publishedStartDate" />
+								</div>
+							</td>
+							<td>
+								<div>
+									<b>End Date:</b><br/>
+									{{course.publishedEndDate || "none" }}<br/><br/>
+									Change date?<br/>
+									<span class="smallText" style="color:red;">LEAVE BLANK FOR NO CHANGE</span><br/>
+									<input type="date" ng-model="course.publishedEndDate" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td style="padding-bottom:0px;vertical-align:bottom;">
+								<div>
+									<b>Quiz Questions:</b>
+								</div>
+							</td>
+							<td>
+								<div ng-show="course.quiz.length > 0">
+									<input type="submit" value="Remove Last" ng-click="course.quiz.pop()">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<div style="border: 1px dashed #b2b4b3;">
+									<div ng-hide="course.quiz.length > 0" style="text-align:center;padding:10px;">
+										none
+									</div>
+									<div id="quiz-display" ng-repeat="question in course.quiz" style="display:inline-block;padding:10px;">
+										Q: <br/>
+										<span style="color:white;"><em>{{question.question}}</em></span><br/>
+										A: <br/>
+										<span style="color:green;"><em>{{question.correctAnswer}}</em></span><br/>
+										R: <br/>
+										<span style="color:yellow;"><em>{{question.reason}}</em></span><br/>
+										Wrong: </br>
+										<span ng-repeat="wrongAnswer in question.wrongAnswers"><span style="color:red;"><em>{{wrongAnswer}}</em></span><br/></span>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr ng-show="submitted">
+							<td colspan="2" style="text-align:center;">
+								{{submitted}}
+							</td>
+						<tr>
+						<tr>
+							<td colspan="2" style="text-align:center;">
+								<input type="submit" value="Update Course" ng-click="updateCourse()" style="width:200px;height:50px;" />
+							</td>
+						</tr>
+					</table>		
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="secondaryPageHeader">
+	Add Question
+</div>
+<div align="center">
+	<div class="inlineDiv">
+		<div class="blackBlock">
+			<div class="inlineDiv">
+				<form>
+					<div style="text-align:left;">
+						Question: <br/>
+						<input type="text" ng-model="tempQuestion.question" />
+					</div>
+					<div style="text-align:left;">
+						Correct Answer: <br/>
+						<input type="text" ng-model="tempQuestion.correctAnswer" />
+					</div>
+					<div style="text-align:left;">
+						Reason: <br/>
+						<input type="text" ng-model="tempQuestion.reason" />
+					</div>
+					<div style="text-align:left;">
+						Wrong Answers: <br/>
+						<div style="border: 1px dashed #b2b4b3;text-align:center;padding:10px;">
+							<span ng-show="tempQuestion.wrongAnswers" ng-repeat="wrongAnswer in tempQuestion.wrongAnswers">{{wrongAnswer}}<br/></span>
+						</div>
+						<div ng-show="tempQuestion.wrongAnswers.length > 0">
+							<input type="submit" value="Remove Last" ng-click="tempQuestion.wrongAnswers.pop()">
+						</div>
+						<div>
+							<input type="text" ng-model="tempWrongAnswer" />
+							<div style="text-align:right;">
+								<input type="submit" value="Add" ng-click="addWrongAnswerToQuestionForm()" />
+							</div>
+						</div>
+					</div>
+					<hr/>
+					<input type="submit" value="Add Question to Quiz" ng-click="addQuestionToQuizForm()" />
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+<!-- <div class="pageHeader">
+	Update Promotion
+</div>
+
+<div align="center">
+
+	<div class="inlineDiv">
+		<div class="blackBlock">
+			<div class="inlineDiv">
+				<div class="error" ng-show="error">
+					<h2>There was an error loading the page</h2>
+					<p>{{error}}</p>
+				</div>
+				<form class="promotions">
+					<div>
+						Title: <br/>
+						<input type="text" ng-model="promotion.title" />
+					</div>
+					<br/>
+					<div>
+						Description: <br/>
+						<textarea rows="10" cols="30" ng-model="promotion.description"></textarea>
+					</div>
+					<br/>
+					<div>
+						Areas: <br/>
+						<div>
+							<input type="checkbox" value="false" ng-model="allAreas">All
+						</div>
+						<div ng-repeat="(key, value) in promotion.areas" style="display:inline-block">
+							<input type="checkbox" value="{{value}}" ng-model="promotion.areas[key]" />{{key}}&nbsp
+						</div>
+					</div>
+					<br/>
+					<div>
+						Categories: <br/>
+						<div>
+							<input type="checkbox" value="false" ng-model="allCategories" />All
+						</div>
+						<div>
+							<div ng-repeat="(key, value) in promotion.categories" style="display:inline-block">
+								<input type="checkbox" value="{{value}}" ng-model="promotion.categories[key]" />{{key}}&nbsp
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div>
+						Start Date: <br/>
+						{{promotion.startDate}}<br/><br/>
+						Change date?<br/>
+						<span class="smallText" style="color:red;">LEAVE BLANK FOR NO CHANGE</span><br/>
+						<input type="date" ng-model="promotion.newStartDate" />
+					</div>
+					<br/>
+					<div>
+						End Date: <br/>
+						{{promotion.endDate}}<br/><br/>
+						Change date?<br/>
+						<span class="smallText" style="color:red;">LEAVE BLANK FOR NO CHANGE</span><br/>
+						<input type="date" ng-model="promotion.newEndDate" />
+					</div>
+					<br/>
+					<div>
+						Social Images:
+						<div ng-repeat="image in promotion.socialImages">
+							<div style="padding:15px; display:inline-block">
+								<img ng-src="{{imagePrefix+image}}" style="max-width:290px;height:auto;">
+							</div>
+						</div>
+						Change Images?<br/>
+						<span class="smallText" style="color:red;">LEAVE BLANK FOR NO CHANGE</span><br/>
+						<input type="file" accept="image/x-png, image/jpeg" file-input="promotion.newSocialImages" multiple/>
+						<div ng-repeat="file in promotion.newSocialImages">
+							{{file.name}}
+						</div>
+					</div>
+					<br/>
+					<div>
+						Bar Id: <br/>
+						?????
+					</div>
+					<br/>
+					<div>
+						<input type="checkbox" value="promotion.custom" ng-model="promotion.custom" />Custom
+					</div>
+					<br/>
+					<div>
+						<input type="checkbox" value="promotion.sponsored" ng-model="promotion.sponsored" />Sponsored
+					</div>
+					<br/>
+					<div ng-show="submitted" style="margin-bottom:10px; text-align:center; color:red;">
+						{{submitted}}<br/></br>
+					</div>
+					<div>
+						<input type="submit" value="Back" ng-click="backToView()">
+						<input type="submit" value="Update Promotion" ng-click="updatePromotion()">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div> 
+
+</div>
+
+<div align="center" ng-show="finalView">
+	<div class="inlineDiv">
+		<div class="blackBlock">
+			<div class="inlineDiv">
+				<div style="margin-bottom:10px; text-align:center;">
+						{{submitted}}<br/></br>
+						<input type="submit" value="Back" ng-click="backToView()">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

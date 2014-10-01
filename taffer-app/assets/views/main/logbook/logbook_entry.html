@@ -1,0 +1,38 @@
+<div id="l-log-entry" class="m-blade">
+	<blade-header blade-title="NEW ENTRY" cancel="cancel()" save="save()"></blade-header>
+
+	<div id="l-log-entry-input-container">
+		<form name="logForm">
+			<label for="entryTitle">TITLE</label>
+			<input type="text" id="entryTitle" name="entryTitle" ng-model="newLogThread.title"	required>
+			<br />
+			<label for="logEntry">LOG ENTRY</label>
+			<textarea cols="50" rows="10" name="logEntry" ng-model="newLogThread.message" required></textarea>
+		</form>
+	</div>
+
+	<div id="l-log-entry-button-container">
+		<div id="l-logbook-priority-input">
+			<input type="checkbox" id="highPriority" name="highPriority" ng-model="newLogThread.priority">
+			<label for="highPriority">HIGH PRIORITY?</label>
+		</div>
+
+		<div id="l-logbook-photo-button"
+			ng-model="file"
+			on-success="imageSuccess({uri: uri})"
+			ng-show="!newLogThread.imageKey"
+			fm-image-upload>
+			<div class="m-camera-icon"></div>
+			<p>ADD PHOTO</p>
+		</div>
+
+		<div id="l-logbook-remove-button" ng-click="removeImage()" ng-show="newLogThread.imageKey">
+			<p>REMOVE PHOTO</p>
+		</div>
+
+		<div class="l-logbook-image center" ng-show="newLogThread.imageKey">
+			<img alt="Logbook Photo" ng-src="{{newLogThread.imageKey}}"/>
+		</div>
+	</div>
+
+</div>

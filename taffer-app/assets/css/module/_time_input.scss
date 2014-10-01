@@ -1,0 +1,86 @@
+.m-time-input {
+	padding: 0 !important;
+	margin: 0;
+	border: none !important;
+	display: inline-block;
+	color: $c-primary-4;
+
+	div {
+		border: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.ti-table {
+		display: table;
+		padding-top: 2px;
+		width: 150px;
+	}
+	.ti-row {
+		padding: 0px;
+		margin: 0px;
+		display: table-row;
+		height: 100%;
+		width: 110%;
+		select {
+			height: 100%;
+		}
+	}
+	.ti-cell {
+		padding: 2px;
+		display: table-cell;
+		vertical-align: middle;
+	}
+
+	.ti-hour, .ti-minute {
+		color: black;
+		padding: 6px 0px 2px 0px;
+		background: $c-primary-4;
+		text-align: center;
+	}
+
+	.ti-select {
+		height: 30px;
+		width: 30px;
+		display: inline-block;
+		background: $c-primary-4;
+		background-size: 40px;
+		overflow: hidden;
+		vertical-align: top;
+		margin: 0px 0px 5px 0px;
+		@include border-radius(2px);
+
+		select {
+			outline: none;
+			font-family: "Helvetica Neue Roman", arial, sans-serif;
+			font-weight: normal;
+			font-style: normal;
+			font-size: 16px;
+			padding-top: 6px;
+			padding-left: 7px;
+			background: transparent;
+			border: 0px;
+			width: 200%;
+			height: 100%;
+			text-align: center;
+			@include border-radius(0px);
+		}
+
+		&.m-form-half {
+			width: 49%;
+		}
+	}
+}
+
+@media only screen and (min-device-width : 600px) {
+	.m-time-input {
+		.ti-select {
+			width: 35px;
+			height: 35px;
+
+			select {
+				font-size: 18px;
+			}
+		}
+	}
+}

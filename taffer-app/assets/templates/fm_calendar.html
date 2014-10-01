@@ -1,0 +1,59 @@
+<table class="m-fm-calendar">
+    <tr class="m-fm-cal-header">
+        <td colspan="1">
+            <div ng-show="!isStatic"
+                 ng-click="previousMonth()"
+                 class="m-fm-cal-btn m-fm-cal-btn-left">
+                <div class="m-cal-back-icon"></div>
+            </div>
+        </td>
+        <td colspan="5">{{seedDate.toDate() | date:"MMMM yyyy" | uppercase}}</td>
+        <td colspan="1">
+            <div ng-show="!isStatic && !noFuture"
+                 ng-click="nextMonth()"
+                 class="m-fm-cal-btn m-fm-cal-btn-right">
+                <div class="m-cal-forward-icon"></div>
+            </div>
+        </td>
+    </tr>
+    <tr class="m-fm-cal-days">
+        <td>Sun</td>
+        <td>Mon</td>
+        <td>Tue</td>
+        <td>Wed</td>
+        <td>Thu</td>
+        <td>Fri</td>
+        <td>Sat</td>
+    </tr>
+    <tr class="m-fm-cal-row"
+        ng-repeat="week in cal">
+        <td ng-class="{'s-inactive': !isInMonth($index,0) || isDisabledFutureDate($index,0),
+                's-selected': (isSelected($index,0) && isClickable && !isDisabledFutureDate($index,0)) || (isCurrentDay(week[0])),
+                'circle-brder': (hasEvent(week[0]) && isInMonth($index,0))}"
+            ng-click="select($index, 0)">{{week[0].toDate() | date:"d"}}</td>
+        <td ng-class="{'s-inactive': !isInMonth($index,1) || isDisabledFutureDate($index,1),
+                's-selected': (isSelected($index,1) && isClickable && !isDisabledFutureDate($index,1)) || (isCurrentDay(week[1])),
+                'circle-brder': (hasEvent(week[1]) && isInMonth($index,1))}"
+            ng-click="select($index, 1)">{{week[1].toDate() | date:"d"}}</td>
+        <td ng-class="{'s-inactive': !isInMonth($index,2) || isDisabledFutureDate($index,2),
+                's-selected': (isSelected($index,2) && isClickable && !isDisabledFutureDate($index,2)) || (isCurrentDay(week[2])),
+                'circle-brder': (hasEvent(week[2]) && isInMonth($index,2))}"
+            ng-click="select($index, 2)">{{week[2].toDate() | date:"d"}}</td>
+        <td ng-class="{'s-inactive': !isInMonth($index,3) || isDisabledFutureDate($index,3),
+                's-selected': (isSelected($index,3) && isClickable && !isDisabledFutureDate($index,3)) || (isCurrentDay(week[3])),
+                'circle-brder': (hasEvent(week[3]) && isInMonth($index,3))}"
+            ng-click="select($index, 3)">{{week[3].toDate() | date:"d"}}</td>
+        <td ng-class="{'s-inactive': !isInMonth($index,4) || isDisabledFutureDate($index,4),
+                's-selected': (isSelected($index,4) && isClickable && !isDisabledFutureDate($index,4)) || (isCurrentDay(week[4])),
+                'circle-brder': (hasEvent(week[4]) && isInMonth($index,4))}"
+            ng-click="select($index, 4)">{{week[4].toDate() | date:"d"}}</td>
+        <td ng-class="{'s-inactive': !isInMonth($index,5) || isDisabledFutureDate($index,5),
+                's-selected': (isSelected($index,5) && isClickable && !isDisabledFutureDate($index,5)) || (isCurrentDay(week[5])),
+                'circle-brder': (hasEvent(week[5]) && isInMonth($index,5))}"
+            ng-click="select($index, 5)">{{week[5].toDate() | date:"d"}}</td>
+        <td ng-class="{'s-inactive': !isInMonth($index,6) || isDisabledFutureDate($index,6),
+                's-selected': (isSelected($index,6) && isClickable && !isDisabledFutureDate($index,6)) || (isCurrentDay(week[6])),
+                'circle-brder': (hasEvent(week[6]) && isInMonth($index,6))}"
+            ng-click="select($index, 6)">{{week[6].toDate() | date:"d"}}</td>
+    </tr>
+</table>

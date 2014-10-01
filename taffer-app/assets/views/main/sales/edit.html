@@ -1,0 +1,102 @@
+<div class="m-blade m-sales-edit" ng-init="help()">
+	<blade-header blade-title="EDIT SALES" cancel="cancel()" save="save()"></blade-header>
+	<div class="sales-edit-container">
+		<fm-calendar
+			mode="single"
+			selected="selectedDate"
+			on-month-change="monthChanged({date: date})"
+			on-day-change="dayChanged({date: date})"
+			disable-future="true" id="step1"></fm-calendar>
+		<form name="salesEditForm"
+			class="m-sales-edit-form">
+			<div class="m-sales-form-container">
+				<div class="m-sales-edit-row">
+					<div class="m-sales-form-label">
+						<span>TOTAL SALES</span>
+					</div>
+					<div class="m-sales-form-input">
+						<input type="text"
+							ui-money-mask="0"
+							id="l-sales-total-sales-input"
+							name="salesTotalSales"
+							ng-model="total"
+							placeholder="Enter Total Sales"
+							ng-class="{'s-error':
+								salesEditForm.salesTotalSales.$invalid &&
+								salesEditForm.salesTotalSales.$dirty}"
+							required>
+					</div>
+				</div>
+				<div class="m-sales-edit-row">
+					<div class="m-sales-form-label">
+						<span>TOTAL GUEST COUNT</span>
+					</div>
+					<div class="m-sales-form-input">
+						<input type="number"
+							class="l-sales-form-input-input"
+							name="salesGuestCount"
+							ng-model="guestCount"
+							ng-class="{'s-error':
+								salesEditForm.salesGuestCount.$invalid &&
+								salesEditForm.salesGuestCount.$dirty}"
+							placeholder="Enter Guest Count"
+							required>
+					</div>
+				</div>
+				<div class="m-sales-edit-row">
+					<div class="m-sales-form-label">
+						<span>NO. OF STAFF SCHEDULED</span>
+					</div>
+					<div class="m-sales-form-input">
+						<input type="number"
+							class="l-sales-form-input-input"
+							name="salesMembers"
+							ng-model="numMembers"
+							ng-class="{'s-error':
+								salesEditForm.salesMembers.$invalid &&
+								salesEditForm.salesMembers.$dirty}"
+							placeholder="Enter No. of Staff"
+							required>
+					</div>
+				</div>
+			</div>
+			<div>
+				<span class="m-sales-form-label m-sales-sub">HOURS OF OPERATION</span>
+				<div class="m-sales-form-sub-container center">
+					<div class="m-sales-edit-row">
+						<div class="m-sales-form-label">
+							<span>OPENING TIME</span>
+						</div>
+						<div class="m-sales-form-input">
+							<!-- <input type="time"
+								name="salesOpen"
+								ng-model="openTime"
+								ng-class="{'s-error':
+									salesEditForm.salesMembers.$invalid &&
+									salesEditForm.salesMembers.$dirty}"
+								required> -->
+							<fm-time-input ng-model="openTime" existing-time="{{openTime}}" steps="15">
+							</fm-time-input>
+						</div>
+					</div>
+					<div class="m-sales-edit-row">
+						<div class="m-sales-form-label">
+							<span>CLOSING TIME</span>
+						</div>
+						<div class="m-sales-form-input">
+							<!-- <input type="time"
+								name="salesClose"
+								ng-model="closeTime"
+								ng-class="{'s-error':
+									salesEditForm.salesClose.$invalid &&
+									salesEditForm.salesClose.$dirty}"
+								required> -->
+							<fm-time-input ng-model="closeTime" existing-time="{{closeTime}}" steps="15">
+							</fm-time-input>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

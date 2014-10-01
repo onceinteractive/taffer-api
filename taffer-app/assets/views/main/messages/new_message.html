@@ -1,0 +1,43 @@
+<section ng-show="!showSelectRecipients"> 
+  <div id="l-new-message" class="m-blade">
+    <blade-header blade-title="NEW MESSAGE" cancel="cancel()" cancel-position="right"></blade-header>
+
+    <div id="l-new-message-recipient-container">
+      <div id="l-new-message-recipients-label">To:</div>
+      <div id="l-new-message-recipients">
+        <div class="l-selected-recipient" ng-repeat="selectedRecipient in selectedRecipients">
+          <div class="l-selected-recipient-name-container">
+            <div class="l-selected-recipient-name" ng-click="deleteRecipient(selectedRecipient)">{{selectedRecipient.firstName}} {{selectedRecipient.lastName.charAt(0)}}.<span class="l-remove-recipient">X</span></div>
+          </div>
+        </div>
+      </div>
+      <div id="l-new-message-add-icon" ng-click="selectRecipients()">
+        <div class="m-icon"></div>
+      </div>
+    </div>
+
+    <message-input
+      message-model="newMessage"
+      send-message="sendMessage()"
+      file="file">
+    </message-input>
+
+  </div>
+</section>
+
+<section ng-show="showSelectRecipients">
+  <div id="l-message-recipients" class="m-blade">
+    <blade-header blade-title="ADD RECIPIENTS" done="done()" cancel="cancelSelectRecipients()"></blade-header>
+
+    <div id="l-recipients-container">
+      <div class="l-recipients" ng-class="{selectedRecipient: isSelected(recipient)}" ng-repeat="recipient in recipients" ng-click="selectRecipient(recipient)">
+        <user-avatar avatar-source="{{recipient.pictureURI}}"
+          avatar-first-name="{{recipient.firstName}}"
+          avatar-last-name="{{recipient.lastName}}"
+          avatar-role="{{recipient.role}}"
+          avatar-selected="{{isSelected(recipient)}}">
+        </user-avatar>
+      </div>
+    </div>
+  </div>
+</section>

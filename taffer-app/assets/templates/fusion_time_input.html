@@ -1,0 +1,29 @@
+<div class="m-time-input">
+	<div class="ti-table">
+		<div class="ti-row">
+			<div class="ti-cell">
+				<div class="ti-select">
+					<select class="ti-hour-select"
+						ng-model="hour"
+						ng-options="hour for hour in hours">
+					</select>
+				</div>
+			</div>
+			<div class="ti-cell">
+				<div>:</div>
+			</div>
+			<div class="ti-cell">
+				<div class="ti-select">
+					<select class="ti-minute-select"
+						ng-model="minute"
+						ng-options="minute for minute in minutes">
+					</select>
+				</div>
+			</div>
+			<div class="ti-cell">
+				<fm-switch model="ampm" off-text="am" on-text="pm">
+				</fm-switch>
+			</div>
+		</div>
+	</div>
+</div>

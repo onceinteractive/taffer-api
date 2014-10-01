@@ -1,0 +1,106 @@
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: $background-color;
+	font-size: $body-font-size;
+	font-family: $base-font;
+}
+
+.view {
+	padding-top: $header-height;
+}
+
+// This statement should remove the tap highlight from all elements
+// except inputs to avoid the non-responsive issue found in iOS7
+
+*:not(input):not(textarea):not(select) {
+	-webkit-tap-highlight-color: rgba(255,255,255,0);
+	-webkit-tap-highlight-color: transparent;
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+}
+//
+// // Adding this in case not css property not support
+// a,h1,h2,h3,h4,h5,h6,div,section,nav,aside,p,span,ul,li,table,tr,tbody,td,ol {
+// 	-webkit-tap-highlight-color: rgba(255,255,255,0);
+// 	-webkit-tap-highlight-color: transparent;
+// 	-webkit-user-select: none;
+// 	-webkit-touch-callout: none;
+// }
+//
+// input,textarea,select,.enable-click {
+// 	-webkit-user-select: auto !important;
+// 	-webkit-touch-callout: default !important;
+// }
+
+// Prevents sizing issues when adding padding to an already sized box
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.clearfix:before, .clearfix:after {
+	content: "";
+	display: table;
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+// Centers horizontally
+.center {
+	margin: auto;
+}
+
+// Centers horizontally and vertically
+.absolute-center {
+	margin: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.fixed-center {
+	margin: auto;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+// To use with fullscreen for modal images/windows/etc.
+.underlay {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9;
+}
+
+// To use with underlay for fullscreening an image/etc.
+.fullscreen {
+	width: auto !important;
+	max-width: 100%;
+	height: auto !important;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	margin: auto !important;
+	@extend .absolute-center;
+}
+
+video {
+	width: 100%;
+	height: 100%;
+}

@@ -1,0 +1,81 @@
+<div class="m-section" ng-init="help()">
+	<div class="m-section-header">NEW PROMOTION</div>
+	<form class="m-promotion-new-form">
+		<div class="m-promo-new-section" id="step2">
+			<label for="promotionTitle">TITLE</label>
+			<textarea name="promotionTitle" rows="2" cols="32"
+				ng-model="workingPromotion.title"></textarea>
+		</div>
+		<div class="m-promo-new-section" id="step3">
+			<label for="promotionDesc">DESCRIPTION</label>
+			<textarea name="promotionDesc" rows="8" cols="32"
+				ng-model="workingPromotion.description"></textarea>
+		</div>
+		<div class="m-promotion-new-date m-promo-new-section" id="step4">
+			<!-- <span class="m-new-date-title">DATE &amp; TIME</span> -->
+			<div class="m-promo-new-btn-container center">
+				<button class="m-btn-grey" ng-click="setPromotionDate()">
+					SELECT DATE &amp; TIME
+				</button>
+			</div>
+			<table>
+				<tr>
+					<td class="m-new-date-label">DATE:</td>
+					<td class="m-new-date-content">
+						<span ng-show="!workingPromotion.startDate">- - -</span>
+						{{workingPromotion.startDate | date:"MMMM dd, yyyy"}}
+					</td>
+				</tr>
+				<tr>
+					<td class="m-new-date-label">START TIME:</td>
+					<td class="m-new-date-content">
+						<span ng-show="!workingPromotion.startDate">- - -</span>
+						{{workingPromotion.startDate | date:"h:mm a"}}
+					</td>
+				</tr>
+				<tr>
+					<td class="m-new-date-label">END TIME:</td>
+					<td class="m-new-date-content">
+						<span ng-show="!workingPromotion.endDate">- - -</span>
+						{{workingPromotion.endDate | date:"h:mm a"}}
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="m-promotion-new-window m-promo-new-section" id="step5">
+			<div class="m-promo-new-btn-container center">
+				<button class="m-btn-grey"
+					ui-sref="Main.Promotions.Window">
+					SET PROMOTION WINDOW
+				</button>
+			</div>
+			<table>
+				<tr>
+					<td class="m-new-date-label">REPEAT:</td>
+					<td class="m-new-date-content">{{getDays()}}</td>
+				</tr>
+				<tr>
+					<td class="m-new-date-label">START DATE:</td>
+					<td class="m-new-date-content">
+						<span ng-show="!workingPromotion.startDate">- - -</span>
+						{{workingPromotion.startDate | date:"MMMM dd, yyyy"}}
+					</td>
+				</tr>
+				<tr>
+					<td class="m-new-date-label">END DATE:</td>
+					<td class="m-new-date-content">
+						<span ng-show="!workingPromotion.endDate">- - -</span>
+						{{workingPromotion.endDate | date:"MMMM dd, yyyy"}}
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="m-promo-new-last-btn">
+			<button class="m-btn"
+				ng-click="schedulePromotion()" id="step6">
+				SCHEDULE PROMOTION
+			</button>
+		</div>
+	</form>
+
+</div>

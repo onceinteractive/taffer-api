@@ -1,0 +1,189 @@
+<div class="col-xs-12 events">
+    <div class="row">
+        <div class="col-xs-12">
+            <fm-calendar mode="single" highlight="false" selected="selectedDate"></fm-calendar>
+        </div>
+    </div>
+    <div class="event-add font-sm light-blue-font">
+        <form name="eventForm">
+            <div id="l-event-form-table">
+                <div class="l-event-form-table-row">
+                    <div class="l-event-form-table-header header-top">TITLE</div>
+                    <div class="l-event-form-table-cell">
+                        <input type="text" class="pull-right" ng-model="event.title" name="title" placeholder="ENTER TITLE" required>
+                    </div>
+                </div>
+                
+                <div class="l-event-form-table-row">
+                    <div class="l-event-form-table-header header-top">DESCRIPTION</div>
+                    <div class="l-event-form-table-cell l-event-form-table-textarea">
+                        <textarea
+                            class="pull-right"
+                            ng-model="event.description"
+                            name="description"
+                            placeholder="ENTER DESCRIPTION"
+                            rows="4"
+                            required>
+                        </textarea>
+                    </div>
+                </div>
+
+                <div class="l-event-form-table-row" ng-show="!editingSeries">
+                    <div class="l-event-form-table-header header-middle">ALL DAY EVENT?</div>
+                    <div class="l-event-form-table-cell">
+                        <div class="l-taffer-check-box">
+                            <div class="tafferChkBox text-center">
+                                <input type="checkbox" id="allDayChkBox" name="allDayEvent" ng-model="event.isAllDay">
+                                <label for="allDayChkBox" class="fa fa-check font-xxl"></label>
+                            </div>
+                        </div>
+                        <div class="l-taffer-check-box-label">CHECK IF YES</div>
+                    </div>
+                </div>
+
+                <div class="l-event-form-table-row" ng-if="!event.isAllDay">
+                    <div class="l-event-form-table-header header-middle">START TIME</div>
+                    <div class="l-event-form-table-cell">
+                         <!-- <input type="time" id="startTime" name="startTime" ng-model="event.startTime"
+                                           placeholder="HH:mm" min="08:00" max="17:00" required /> -->
+                        <fm-time-input steps="15" ng-model="event.startTime" existing-time="{{event.originalStartTime}}"></fm-time-input>
+                    </div>
+                </div>
+
+                <div class="l-event-form-table-row" ng-if="!event.isAllDay">
+                    <div class="l-event-form-table-header header-middle">END TIME</div>
+                    <div class="l-event-form-table-cell">
+                         <!-- <input type="time" id="endTime" name="endTime" ng-model="event.endTime"
+                                           placeholder="HH:mm" min="08:00" max="17:00" required /> -->
+                        <fm-time-input steps="15" ng-model="event.endTime" existing-time="{{event.originalEndTime}}"></fm-time-input>
+                    </div>
+                </div>
+
+                <div class="l-event-form-table-row" ng-if="addingNewEvent">
+                    <div class="l-event-form-table-header header-middle">RECURRING EVENT?</div>
+                    <div class="l-event-form-table-cell">
+                        <div class="l-taffer-check-box">
+                            <div class="tafferChkBox text-center">
+                                <input type="checkbox" id="recurringChkBox" name="recurring" ng-model="event.isRecurring">
+                                <label for="recurringChkBox" class="fa fa-check font-xxl"></label>
+                            </div>
+                        </div>
+                        <div class="l-taffer-check-box-label">CHECK IF YES</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div ng-if="addingNewEvent && event.isRecurring" class="row recurring border-top">
+                <div class="col-xs-12">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            SELECT RECURRING DAYS
+                        </div>
+                    </div>
+                    <div class="row recurring-days-row">
+                        <div class="col-xs-1">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="tafferChkBox text-center">
+                                        <input type="checkbox" id="monChkBox" name="mon" ng-model="event.days[0]">
+                                        <label for="monChkBox" class="fa fa-check font-xxl"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 font-xxs text-center">MON</div>
+                            </div>
+                        </div>
+                        <div class="col-xs-1">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="tafferChkBox text-center">
+                                        <input type="checkbox" id="tuesChkBox" name="tues" ng-model="event.days[1]">
+                                        <label for="tuesChkBox" class="fa fa-check font-xxl"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 font-xxs text-center">TUES</div>
+                            </div>
+                        </div>
+                        <div class="col-xs-1">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="tafferChkBox text-center">
+                                        <input type="checkbox" id="wedChkBox" name="wed" ng-model="event.days[2]">
+                                        <label for="wedChkBox" class="fa fa-check font-xxl"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 font-xxs text-center">WED</div>
+                            </div>
+                        </div>
+                        <div class="col-xs-1">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="tafferChkBox text-center">
+                                        <input type="checkbox" id="thursChkBox" name="thur" ng-model="event.days[3]">
+                                        <label for="thursChkBox" class="fa fa-check font-xxl"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 font-xxs text-center">THUR</div>
+                            </div>
+                        </div>
+                        <div class="col-xs-1">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="tafferChkBox text-center">
+                                        <input type="checkbox" id="friChkBox" name="fri" ng-model="event.days[4]">
+                                        <label for="friChkBox" class="fa fa-check font-xxl"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 font-xxs text-center">FRI</div>
+                            </div>
+                        </div>
+                        <div class="col-xs-1">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="tafferChkBox text-center">
+                                        <input type="checkbox" id="satChkBox" name="sat" ng-model="event.days[5]">
+                                        <label for="satChkBox" class="fa fa-check font-xxl"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 font-xxs text-center">SAT</div>
+                            </div>
+                        </div>
+                        <div class="col-xs-1">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="tafferChkBox text-center">
+                                        <input type="checkbox" id="sunChkBox" name="sun" ng-model="event.days[6]">
+                                        <label for="sunChkBox" class="fa fa-check font-xxl"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 font-xxs text-center">SUN</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 pad-top">
+                            SERIES END DATE
+                        </div>
+                        <div class="col-xs-6 text-center">
+                            <input type="date" id="endDate" name="endDate" ng-model="event.endDate" min="selectedDate" ng-required="event.isRecurring">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

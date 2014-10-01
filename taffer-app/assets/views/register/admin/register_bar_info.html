@@ -1,0 +1,67 @@
+<form id="l-reg-admin-bar-info-form" name="regAdminBarInfoForm" class="m-form">
+	<input type="text"
+		name="regAdminBarInfoName"
+		placeholder="Bar Name"
+		ng-model="bar.name"
+		ng-class="{'s-error':
+			regAdminBarInfoForm.regAdminBarInfoName.$invalid &&
+			regAdminBarInfoForm.regAdminBarInfoName.$dirty}"
+		ng-keypress="onGo()"
+		required>
+	<div class="m-form-select"
+		ng-class="{'s-error':
+			regAdminBarInfoForm.regAdminBarInfoCat.$invalid &&
+			regAdminBarInfoForm.regAdminBarInfoCat.$dirty}">
+		<select name="regAdminBarInfoCat"
+			placeholder="Bar Category"
+			ng-model="bar.category"
+			ng-options="cat for cat in cats"
+			required>
+			<option value="">Bar Category</option>
+		</select>
+	</div>
+	<input type="text"
+		name="regAdminBarInfoAddr"
+		placeholder="Bar Address"
+		ng-model="bar.streetAddress"
+		ng-class="{'s-selected':
+			regAdminBarInfoForm.regAdminBarInfoAddr.$invalid &&
+			regAdminBarInfoForm.regAdminBarInfoAddr.$dirty}"
+		ng-keypress="onGo()"
+		required>
+	<input type="text"
+		name="regAdminBarInfoCity"
+		placeholder="City"
+		ng-model="bar.city"
+		ng-class="{'s-error':
+			regAdminBarInfoForm.regAdminBarInfoCity.$invalid &&
+			regAdminBarInfoForm.regAdminBarInfoCity.$dirty}"
+		ng-keypress="onGo()"
+		required>
+	<div class="m-form-select"
+		id="l-register-bar-state"
+		ng-class="{'s-error':
+			regAdminBarInfoForm.regAdminBarInfoState.$invalid &&
+			regAdminBarInfoForm.regAdminBarInfoState.$dirty}">
+		<select name="regAdminBarInfoState"
+			placeholder="State"
+			ng-model="bar.state"
+			ng-options="state as (state | statename) for state in states"
+			required>
+			<option value="">State</option>
+		</select>
+	</div>
+	<input type="text"
+		id="l-register-bar-zipcode"
+		name="regAdminBarInfoZip"
+		placeholder="Zipcode"
+		ng-model="bar.zipcode"
+		ng-class="{'s-selected':
+			regAdminBarInfoForm.regAdminBarInfoZip.$invalid &&
+			regAdminBarInfoForm.regAdminBarInfoZip.$dirty}"
+		ng-minlength="5"
+		ng-maxlength="5"
+		no-letters
+		ng-keypress="onGo()"
+		required>
+</form>

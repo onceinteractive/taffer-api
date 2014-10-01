@@ -1,0 +1,142 @@
+.m-tile {
+	min-height: 100px;
+	max-height: 110px;
+	margin: 5px;
+	overflow: hidden;
+}
+
+.m-small-tile {
+	@include column(4);
+	@extend .m-tile;
+	display: inline-block;
+	background-color: $c-primary-3;
+
+	.m-tile-header {
+		background-color: transparent;
+	}
+
+	&:active {
+		background-color: $c-secondary-7;
+	}
+}
+
+.m-medium-tile {
+	@include column(6);
+	@extend .m-tile;
+	display: inline-block;
+}
+
+.m-large-tile {
+	@include column(12);
+	@extend .m-tile;
+}
+
+.m-large-data-tile {
+	@extend .m-large-tile;
+	background-color: $c-primary-2;
+
+	&:active {
+		background-color: $c-primary-1;
+
+		.m-tile-header {
+			background-color: $c-secondary-7;
+		}
+	}
+}
+
+.m-large-menu-tile {
+	@extend .m-large-tile;
+	background-color: $c-primary-1;
+	border: 1px solid $c-primary-3;
+
+	&:active {
+		background-color: black;
+	}
+}
+
+.m-large-live-tile {
+	@extend .m-large-tile;
+	background-color: $c-primary-1;
+	border: 1px solid $c-primary-3;
+	padding: 5px;
+	font-family: "Helvetica Neue Roman", arial, sans-serif;
+
+	&:active {
+		background-color: black;
+	}
+}
+
+
+/*************** TILE GUTS ***************/
+.m-tile-header {
+	height: 27px;
+	background-color: $c-primary-3;
+	padding: 3px 0 3px 5px;
+}
+
+.m-tile-header-with-border {
+	@extend .m-tile-header;
+	border-bottom: 2px solid $c-primary-1;
+}
+
+.m-tile-icon {
+	float: left;
+}
+
+.m-tile-arrow-blue {
+	background: url(../img/Taffer_Arrow_blue.svg) no-repeat top right;
+	background-size: 100% 100%;
+	width: 15px;
+	height: 15px;
+	float: right;
+	margin-top: 2px;
+}
+
+.m-tile-title {
+	font-family: "Helvetica Neue Bold Condensed", arial, sans-serif;
+	color: $c-primary-1;
+	font-size: 14px;
+	letter-spacing: .5px;
+	float: left;
+	padding-top: 4px // title too high on iOS5
+}
+
+.m-arrow-wrapper {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.m-tile-content {
+	padding: 10px;
+}
+
+@media only screen and (min-device-width : 600px) {
+		.m-tile {
+			min-height: 150px;
+			max-height: 160px;
+		}
+
+		.live-tile {
+			height: 150px !important;
+		}
+
+		.m-tile-header {
+			height: 40px;
+			background-color: $c-primary-3;
+			padding: 5px 0 3px 5px;
+		}
+
+		.m-tile-title {
+			text-align: center;
+			font-size: 18px;
+			float: none;
+		}
+
+		.m-tile-content {
+			padding: 0;
+		}
+
+		.m-tile-tablet-title {
+			float: left !important;
+		}
+}

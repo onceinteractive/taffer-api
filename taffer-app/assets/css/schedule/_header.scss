@@ -1,0 +1,35 @@
+.schedule {
+  .header-btn {
+    color: $sch-light-blue;
+  }
+  .header-title {
+    margin: 10px 0;
+  }
+  .header-row {
+    border-top: 1px solid $sch-lighter-blue;
+    border-bottom: 1px solid $sch-lighter-blue;
+    .header-row-span {
+      line-height: 20px;
+      display: block
+    }
+  }
+  .schedule-pager {
+    border-bottom: 1px solid $sch-light-gray;
+    .page-control {
+      margin: 5px;
+      padding: 0;
+    }
+    .page-right {
+      margin-left: 15px;
+    }
+    .page-left {
+      margin-right: 15px;
+    }
+    .schedule-title-col {
+      margin-top: 10px;
+    }
+    .schedule-status-col {
+      margin-top: -5px;
+    }
+  }
+}

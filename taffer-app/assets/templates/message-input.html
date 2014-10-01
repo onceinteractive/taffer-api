@@ -1,0 +1,18 @@
+<div class="m-message-input">
+  <div class="m-message-icon-container enable-click"
+      ng-model="tempimage"
+      on-success="imageSuccess({uri: uri})"
+      fm-image-upload>
+    <div class="m-camera-icon"></div>
+  </div>
+  <div class="m-message-input-container enable-click">
+    <section id="m-new-message-container" 
+      class="enable-click" 
+      contenteditable="true" 
+      onclick="$(this).focus();"
+      contentedit 
+      ng-model="messageModel">
+    </section>
+  </div>
+  <div class="m-message-send-button" ng-click="send()" ng-disabled="isDisabled" ng-class="{mSendDisabled: isDisabled}">Send</div>
+</div>

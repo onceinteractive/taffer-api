@@ -1,0 +1,7 @@
+<div class="m-user-avatar">
+  <div ng-class="{avatarManager: isManager, avatarSelected: isSelected}">
+    <img ng-show='!imageLoaded' src="img/avatar.png" />
+    <img ng-show='imageLoaded' ng-src="{{userPictureSource}}" image-load-dispatcher/>
+  </div>
+  <p ng-class="{avatarManagerName: isManager}">{{userFirstName | uppercase | truncate:true:6}} {{userLastName | uppercase}}</p>
+</div>

@@ -1,0 +1,43 @@
+<div id="l-quiz" class="m-blade">
+  <blade-header blade-title="QUIZ" cancel="cancel()"></blade-header>
+
+  <div id="l-quiz-questions-progress">
+    Question {{activeQuestion}} of {{questions.length}}
+  </div>
+
+  <div id="l-quiz-navigation" ng-show="goNext || finished">
+    <div class="l-quiz-button-container" ng-show="goNext">
+      <div ng-click="next()">NEXT</div>
+    </div>
+    <div class="l-quiz-button-container" ng-show="finished">
+      <div ng-click="finish()">FINISH</div>
+    </div>
+  </div>
+    
+  <div id="l-quiz-question" class="center">
+    <p id="l-quiz-question-question">
+      {{question.question}}
+    </p>
+
+    <div id="l-quiz-form-container" class="center">
+      <form id="l-quiz-question-form" class="l-quiz-question-radio" name="quizForm">
+        <label for="radio-{{$index}}" ng-repeat="option in questionOptions" ng-click="setAnswer(option)">
+          <input type="radio" id="radio-{{$index}}" name="questionButton" value="" ng-disabled="inputDisabled">
+          <span></span>
+          {{option}}
+        </label>
+      </form>
+    </div>
+
+    <div id="l-quiz-feedback">
+      <div id="l-quiz-right" ng-show="correct">Correct!</div>
+      <div id="l-quiz-wrong" ng-show="wrong">Wrong!
+        <span class="l-quiz-answer"><br/>The correct answer is<br/>"{{question.correctAnswer}}"<br/><span ng-show="question.reason">Reason: {{question.reason}}</div></span></span>
+    </div>
+
+    <div id="l-quiz-submit-container" ng-hide="!answerSelected || submitted">
+      <button class="m-btn center" ng-click="submitAnswer()">SUBMIT</button>
+    </div>
+
+  </div>
+</div>

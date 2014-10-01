@@ -1,0 +1,123 @@
+<div class="m-section" ng-init="help()">
+	<div class="m-section-header m-section-header-blue">POST PROMOTION TO SOCIAL MEDIA</div>
+	<form class="m-promotion-social-form">
+
+		<div id="step1">
+			<div class="m-promo-soc-section">
+				<label for="promotionFacebook">FACEBOOK MESSAGE</label>
+				<textarea name="promotionFacebook" rows="5" cols="32" ng-model="facebookMessage"></textarea>
+			</div>
+
+			<div class="m-promo-soc-section">
+				<label for="promotionTwitter">TWITTER MESSAGE</label>
+				<textarea name="promotionTwitter" rows="2" cols="32" ng-model="twitterMessage"></textarea>
+			</div>
+		</div>
+		<div id="step2">
+			<div class="m-promotion-soc-image m-promo-soc-section">
+				<span class="m-soc-image-title">SELECT AN IMAGE</span>
+				<div class="m-promo-soc-image-list">
+					<div class="m-promo-soc-image-list-item"
+						ng-class="{'s-active': isSelected(0)}"
+						ng-click="select(0)">
+						<div>
+							<img ng-if="workingPromotion.socialImages && workingPromotion.socialImages.length > 0"
+								ng-src="{{getImageURI(workingPromotion.socialImages[0])}}"></img>
+							<span ng-if="!workingPromotion.socialImages || workingPromotion.socialImages.length == 0">
+								NO IMAGE
+							</span>
+						</div>
+					</div>
+					<div class="m-promo-soc-image-list-item"
+						ng-class="{'s-active': isSelected(1)}"
+						ng-click="select(1)">
+						<div>
+							<img ng-if="workingPromotion.socialImages && workingPromotion.socialImages.length > 1"
+								ng-src="{{getImageURI(workingPromotion.socialImages[1])}}"></img>
+							<span ng-if="!workingPromotion.socialImages || workingPromotion.socialImages.length < 2">
+								NO IMAGE
+							</span>
+						</div>
+					</div>
+					<div class="m-promo-soc-image-list-item"
+						ng-class="{'s-active': isSelected(2)}"
+						ng-click="select(2)">
+						<div>
+							<img ng-if="workingPromotion.socialImages && workingPromotion.socialImages.length > 2"
+								ng-src="{{getImageURI(workingPromotion.socialImages[2])}}"></img>
+							<span ng-if="!workingPromotion.socialImages || workingPromotion.socialImages.length < 3">
+								NO IMAGE
+							</span>
+						</div>
+					</div>
+					<div class="m-promo-soc-image-list-item enable-click"
+					      ng-model="tempimage"
+					      on-success="imageSuccess({uri: uri})"
+					      fm-image-upload
+					      ng-show='!tempimage'>
+						<div id="name">
+							<i class="fa fa-camera fa-lg"></i>
+						</div>
+					</div>
+					<div class="m-promo-soc-image-list-item" ng-show='tempimage'>
+						<div>
+							<img ng-src='{{tempimage}}'>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="m-promotion-soc-posts" id="step3">
+			<div class="m-promotion-soc-schedule-btn"
+				ng-click="schedulePost()">
+				<div class="m-promo-soc-btn-text">
+					<p>
+						Schedule Post(s)...
+					</p>
+				</div>
+				<div class="m-promo-soc-btn-icon">
+					<div class="m-add-icon s-grey"></div>
+				</div>
+			</div>
+
+			<div class="m-promotion-soc-post"
+				ng-repeat="soc in workingPromotion.sharables">
+				<div class="m-soc-post-date">
+					<p class="m-post-date-when" ng-show="workingPromotion.occurences.length == 0">
+						{{soc.postOn[0].daysBefore}} Days Before
+					</p>
+					<p class="m-post-date-when" ng-show="workingPromotion.occurences.length > 0">
+						Recurring
+					</p>
+					<p class="m-post-date-day">
+						{{workingPromotion.startDate | date:"MMM d" | uppercase}}
+					</p>
+				</div>
+				<div class="m-soc-post-time">
+					@ {{soc.postOn[0].postTime | date:"h:mm"}}
+					<span>{{soc.postOn[0].postTime | date:"a" | uppercase}}</span>
+				</div>
+				<div class="m-soc-post-networks">
+					<span class="fa-stack fa-sm"
+						ng-show="onFacebook(soc.postOn)">
+						<i class="fa fa-square fa-stack-2x facebook"></i>
+						<i class="fa fa-facebook fa-stack-1x"></i>
+					</span>
+					<span class="fa-stack fa-sm"
+						ng-show="onTwitter(soc.postOn)">
+						<i class="fa fa-square fa-stack-2x twitter"></i>
+						<i class="fa fa-twitter fa-stack-1x"></i>
+					</span>
+				</div>
+				<div class="m-soc-post-edit" ng-click="edit($index)">
+					<div class="m-edit-icon"></div>
+				</div>
+				<div class="m-soc-post-trash" ng-click="delete($index)">
+					<div class="m-trash-icon"></div>
+				</div>
+			</div>
+		</div>
+		<button class="m-btn center" ng-click="save()">Save</button>
+	</form>
+</div>
