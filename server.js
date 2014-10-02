@@ -45,7 +45,7 @@ if(cluster.isMaster && process.argv.indexOf('noCluster') == -1){
 	} else {
 		mongoDbURI = 'mongodb://54.221.103.199/taffer'
 	}
-
+	console.log("Mongo DB - Server: " +  mongoDbURI);
 	var mongoDbOptions = {}
 	if(process.env.MONGODB_URI)
 		mongoDbURI = process.env.MONGODB_URI

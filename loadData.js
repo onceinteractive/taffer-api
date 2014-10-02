@@ -38,7 +38,7 @@ if(process.argv.indexOf('localdb') != -1){
 } else {
 	mongoDbURI = 'mongodb://54.221.103.199/taffer'
 }
-
+console.log("Mongo DB - Load Data: " +  mongoDbURI);
 var mongoDbOptions = {}
 if(process.env.MONGODB_URI)
 	mongoDbURI = process.env.MONGODB_URI
