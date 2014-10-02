@@ -43,7 +43,8 @@ if(cluster.isMaster && process.argv.indexOf('noCluster') == -1){
 	if(process.argv.indexOf('localdb') != -1){
 		mongoDbURI = 'mongodb://localhost/taffer'
 	} else {
-		mongoDbURI = 'mongodb://54.221.103.199/taffer'
+		//mongoDbURI = 'mongodb://54.221.103.199/taffer'
+        mongoDbURI = 'mongodb://tafferUser:welcome83@ds043170.mongolab.com:43170/heroku_app30278662';
 	}
 	console.log("Mongo DB - Server: " +  mongoDbURI);
 	var mongoDbOptions = {}
@@ -51,7 +52,7 @@ if(cluster.isMaster && process.argv.indexOf('noCluster') == -1){
 		mongoDbURI = process.env.MONGODB_URI
 	if(process.env.MONGODB_OPTIONS)
 		mongoDbOptions = JSON.stringify(process.env.MONGODB_OPTIONS)
-	console.log("DB Options: " + mongoDbOptions);
+
 	var app = express()
 	app.use(bodyParser({ limit: '25mb' }))
 	app.use(cookieParser(process.env.COOKIE_SECRET || 'dev-secret'))
