@@ -51,7 +51,7 @@ if(cluster.isMaster && process.argv.indexOf('noCluster') == -1){
 		mongoDbURI = process.env.MONGODB_URI
 	if(process.env.MONGODB_OPTIONS)
 		mongoDbOptions = JSON.stringify(process.env.MONGODB_OPTIONS)
-
+	console.log("DB Options: " + mongoDbOptions);
 	var app = express()
 	app.use(bodyParser({ limit: '25mb' }))
 	app.use(cookieParser(process.env.COOKIE_SECRET || 'dev-secret'))
