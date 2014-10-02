@@ -72,7 +72,7 @@ if(cluster.isMaster && process.argv.indexOf('noCluster') == -1){
 	});
 
 	mongoose.connect(mongoDbURI, mongoDbOptions)
-
+	console.log("Debug Point:  Email");
 	//E-mail
 	app.mail = require('./Modules/email')()
 
@@ -95,7 +95,7 @@ if(cluster.isMaster && process.argv.indexOf('noCluster') == -1){
 				process.exit(0)
 			})
 		})
-
+		console.log("Debug Point:  Models");
 		//Begin loading our schema
 		require('./Models/models')(mongoose, function(err, models){
 
@@ -104,6 +104,7 @@ if(cluster.isMaster && process.argv.indexOf('noCluster') == -1){
 				process.exit()
 			}
 
+			console.log("Debug Point:  Agenda");
 			//Set up the agenda piece
 			var Agenda = require('agenda')
 			models.Agenda = new Agenda()
