@@ -1,8 +1,0 @@
-node_modules
-doc
-bin
-.uploads
-.idea
-npm-debug.log
-taffer-backend.iml
-.elasticbeanstalk
