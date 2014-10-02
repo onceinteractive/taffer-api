@@ -1,0 +1,289 @@
+<!-- <div ng-show="createView"> -->
+
+<div class="pageHeader">
+	Create Question
+</div>
+
+<!-- <div align="center">
+
+	<div class="inlineDiv">
+		<div class="blackBlock">
+			<div class="inlineDiv">
+				<div class="error" ng-show="error">
+					<h2>There was an error loading the page</h2>
+					<p>{{error}}</p>
+				</div>
+				<form class="course">
+					<table>
+						<tr>
+							<td>
+								<div>
+									<b>Title:</b><br/>
+									<input type="text" ng-model="course.title" />
+								</div>
+							</td>
+							<td>
+								<div>
+									<b>Video Link:</b><br/>
+									<input type="url" ng-model="course.videoLink" />
+								</div>
+							</td>
+						</tr>
+							<td>
+								<div>
+									<b>Type:</b><br/>
+									<input type="text" ng-model="course.type" />
+								</div>
+							</td>
+							<td>
+								<div>
+									<b>Preview Image:</b><br/>
+									<input type="file" accept="image/x-png, image/jpeg" file-input="course.previewImage"/>
+								</div>
+							</td>
+						<td>
+						</tr>
+						<tr>
+							<td>
+								<div>
+									<b>Description:</b><br/>
+									<textarea rows="10" cols="30" ng-model="course.description"></textarea>
+								</div>
+							</td>
+							<td>
+								<div>
+									<b>Bar Categories:</b><br/>
+									<div style="text-align:left;">
+										<input type="checkbox" value="false" ng-model="allBarCategories">All
+										<div ng-repeat="(key, value) in course.barCategories">
+											<input type="checkbox" value="{{value}}" ng-model="course.barCategories[key]">{{key}}
+										</div>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td style="padding-bottom:0px;vertical-align:bottom;">
+									<input type="checkbox" value="false" ng-model="course.published" style="margin-right:10px;" /><b>Published</b>
+							</td>
+							<td>
+						</tr>
+						<tr ng-show="course.published">
+							<td>
+								<div>
+									<b>Start Date: </b><br/>
+									<input type="date" ng-model="tempQuestion.publishedStartDate" />
+								</div>
+							</td>
+							<td>
+								<div>
+									<b>End Date:</b><br/>
+									<input type="date" ng-model="tempQuestion.publishedEndDate" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td style="padding-bottom:0px;vertical-align:bottom;">
+								<div>
+									<b>Quiz Questions:</b>
+								</div>
+							</td>
+							<td>
+								<div ng-show="course.quiz.length > 0">
+									<input type="submit" value="Remove Last" ng-click="course.quiz.pop()">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<div style="border: 1px dashed #b2b4b3;">
+									<div ng-hide="course.quiz.length > 0" style="text-align:center;padding:10px;">
+										None so far.
+									</div>
+									<div id="quiz-display" ng-repeat="question in course.quiz" style="display:inline-block;padding:10px;">
+										Q: <br/>
+										<span style="color:white;"><em>{{question.question}}</em></span><br/>
+										A: <br/>
+										<span style="color:green;"><em>{{question.correctAnswer}}</em></span><br/>
+										R: <br/>
+										<span style="color:yellow;"><em>{{question.reason}}</em></span><br/>
+										Wrong: </br>
+										<span ng-repeat="wrongAnswer in question.wrongAnswers"><span style="color:red;"><em>{{wrongAnswer}}</em></span><br/></span>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" style="text-align:center;">
+								<input type="submit" value="Create Course" ng-click="createCourse()" style="width:200px;height:50px;" />
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="secondaryPageHeader">
+	Create Question
+</div>
+<div align="center">
+	<div class="inlineDiv">
+		<div class="blackBlock">
+			<div class="inlineDiv">
+				<form> -->
+<!-- 					<table>
+						<tr>
+						</tr>
+						<tr>
+						</tr>
+						<tr>
+						</tr> -->
+						
+					<!-- <div style="text-align:left;">
+						Question: <br/>
+						<input type="text" ng-model="tempQuestion.question" />
+					</div>
+					<div style="text-align:left;">
+						Correct Answer: <br/>
+						<input type="text" ng-model="tempQuestion.correctAnswer" />
+					</div>
+					<div style="text-align:left;">
+						Reason: <br/>
+						<input type="text" ng-model="tempQuestion.reason" />
+					</div>
+					<div style="text-align:left;">
+						Wrong Answers: <br/>
+						<div style="border: 1px dashed #b2b4b3;text-align:center;padding:10px;"> -->
+<!-- 							<div ng-hide="tempQuestion.wrongAnswers.length > 0">
+								None so far.
+							</div> -->
+					<!-- 		<span ng-show="tempQuestion.wrongAnswers" ng-repeat="wrongAnswer in tempQuestion.wrongAnswers">{{wrongAnswer}}<br/></span>
+						</div>
+						<div ng-show="tempQuestion.wrongAnswers.length > 0">
+							<input type="submit" value="Remove Last" ng-click="tempQuestion.wrongAnswers.pop()">
+						</div>
+						<div>
+							<input type="text" ng-model="tempWrongAnswer" />
+							<div style="text-align:right;">
+								<input type="submit" value="Add" ng-click="addWrongAnswerToQuestionForm()" />
+							</div>
+						</div>
+					</div>
+					<hr/>
+					<input type="submit" value="Add Question to Quiz" ng-click="addQuestionToQuizForm()" />
+				</form>
+			</div>
+		</div>
+	</div>
+</div> -->
+
+<!-- 						<tr>
+							<td>
+								<div style="text-align:left;">
+									Question: <br/>
+									<input type="text" ng-model="tempQuestion.question" />
+								</div>
+							</td>
+							<td>
+								<div style="text-align:left;">
+									Correct Answer: <br/>
+									<input type="text" ng-model="tempQuestion.correctAnswer" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div style="text-align:left;">
+									Reason: <br/>
+									<input type="text" ng-model="tempQuestion.reason" />
+								</div>
+							</td>
+							<td>
+								<div>
+									Add Wrong Answer: <br/>
+									<input type="text" ng-model="tempWrongAnswer" />
+									<input type="submit" value="Add Wrong Answer" ng-click="addWrongAnswerToQuestionForm()" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<div>
+									Wrong Answers: <br/>
+									<span ng-show="tempQuestion.wrongAnswers" ng-repeat="wrongAnswer in tempQuestion.wrongAnswers">{{wrongAnswer}}<br/></span>
+								</div>
+							<td>
+						</tr>
+						<tr>
+							<td> -->
+<!-- 								<div id="question-form" style="border:2px solid yellow;width:225px;padding:5px;margin:5px;"> -->
+								<!-- <div> -->
+<!-- 									<b>New Question:</b>
+									<div style="text-align:left;">
+										Question: <br/>
+										<input type="text" ng-model="tempQuestion.question" />
+									</div>
+									<div style="text-align:left;">
+										Correct Answer: <br/>
+										<input type="text" ng-model="tempQuestion.correctAnswer" />
+									</div>
+									<div style="text-align:left;">
+										Reason: <br/>
+										<input type="text" ng-model="tempQuestion.reason" />
+									</div> -->
+<!-- 									<div style="text-align:left;">
+										Wrong Answers: <br/>
+										<span ng-show="tempQuestion.wrongAnswers" ng-repeat="wrongAnswer in tempQuestion.wrongAnswers">{{wrongAnswer}}<br/></span> -->
+<!-- 										Add Wrong Answer: <br/>
+										<input type="text" ng-model="tempWrongAnswer" />
+										<input type="submit" value="Add Wrong Answer" ng-click="addWrongAnswerToQuestionForm()" /> -->
+<!-- 										<input type="submit" value="Remove Last" ng-click="tempQuestion.wrongAnswers.pop()">
+									</div>
+									<hr/> -->
+<!-- 									<input type="submit" value="Add Question to Quiz" ng-click="addQuestionToQuizForm()" />
+									<input type="submit" value="Remove Question" ng-click="course.quiz.pop()"> -->
+<!-- 								</div>
+							</td>
+						</tr>
+					</table> -->
+
+					<!-- 							<th colspan="2">
+								<b>Add Question to Quiz:</b>
+								<input type="submit" value="Add Question to Quiz" ng-click="addQuestionToQuizForm()" />
+								<input type="submit" value="Remove Question" ng-click="course.quiz.pop()">
+							</th> -->
+
+					<!-- 							<td>
+								<div>
+									<b>Quiz Questions:</b>
+									<div ng-hide="course.quiz.length > 0" style="border: 1px dashed green">
+										None so far.
+									</div>
+									<div id="quiz-display" ng-repeat="question in course.quiz" style="border: 1px dashed green">
+										Q: <br/>
+										<span style="color:white;"><em>{{question.question}}</em></span><br/>
+										Correct Answer: <br/>
+										<span style="color:green;"><em>{{question.correctAnswer}}</em></span><br/>
+										Reason: <br/>
+										<span style="color:yellow;"><em>{{question.reason}}</em></span><br/>
+										Wrong Answers: </br>
+										<span ng-repeat="wrongAnswer in question.wrongAnswers"><span style="color:red;"><em>{{wrongAnswer}}</em></span><br/></span>
+									</div>
+								</div>
+							</td> -->
+
+					<!-- <input type="submit" value="Create Course" ng-click="createCourse()" /> -->
+
+<!-- <div align="center" ng-show="finalView">
+	<div class="inlineDiv">
+		<div class="blackBlock">
+			<div class="inlineDiv">
+				<div style="margin-bottom:10px; text-align:center;">
+						{{submitted}}<br/></br>
+						<a href="#/viewPromotions"<input type="submit" value="View Promotions" ng-click="backToView()"></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

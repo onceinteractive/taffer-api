@@ -1,0 +1,219 @@
+<div ng-show="viewView">
+
+<div class="pageHeader">View Promotions</div>
+
+<div align="center">
+	<form class="promotions">
+		<div class="inlineDiv blackBlock">
+			<div "text-align:center"><b>Active during date: </b><br/><br/>
+				<span class="smallText" style="color:red;">LEAVE BLANK FOR "ALL"</span>
+			</div>
+			<br/>
+				<input type="date" ng-model="filterDate" />
+			<br/>
+			<br/>
+			<div>
+				<input type="submit" value="Get Promotions" ng-click="getPromotions();">
+			</div>
+			<br/>
+			<hr/>
+			<span class="smallText">CLICK PROMOTION TO EDIT.</span>
+		</div>
+	</form>
+</div>
+
+<div ng-show="didFilter">
+Search results for {{filterDate || "All"}}:<br />
+</div>
+<div ng-show="error" style="margin-bottom:10px; text-align:center; color:red;">
+	Sorry, there was an error <br/></br>
+</div>
+
+<div class="centerResults">
+	<a ng-click="viewPromotion(promotion._id)"  ng-repeat="promotion in promotionResults" ng-show="promotionResults">
+		<div class="blackBlock"> 
+			<div class="inlineDiv">
+				<div>
+					<b>Title: </b>
+					{{ promotion.title || "none" }}
+				</div>
+				<br/>
+				<div>
+					<b>Description: </b>
+					{{ promotion.description || "none" }}
+				</div>
+				<br/>
+				<div>
+					<b>Social Images: </b>
+					<span ng-hide="{{promotion.socialImages.length}}">none</span>
+					<div style="text-align: center">
+						<!-- <span ng-repeat="image in promotion.socialImages">{{image}}</span> -->
+						<div ng-repeat="image in promotion.socialImages" style="display:inline-block;padding:10px;">
+							<img ng-src="{{image}}" style="max-width:290px;height:auto;" /></br>
+						</div>
+					</div>
+				</div>
+				<br/>
+				<div>
+					<b>Start Date: </b>
+					{{ promotion.startDate || "none" }}
+				</div>
+				<br/>
+				<div>
+					<b>End Date: </b>
+					{{ promotion.endDate || "none" }}
+				</div>
+				<br/>
+				<div>
+					<b>Categories: </b>
+					<span ng-repeat="category in promotion.categories">{{ category }}, </span>
+					<span ng-hide="{{promotion.categories.length}}">none</span>
+				</div>
+				<br/>
+				<div>
+					<b>Areas: </b>
+					<span ng-repeat="area in promotion.areas">{{ area }}, </span>
+					<span ng-hide="{{promotion.areas.length}}">none</span>
+				</div>
+				<br/>
+				<div>
+					<b>Bar Id: </b>
+					??????
+				</div>
+				<br/>
+				<div>
+					<b>Custom: </b>{{ promotion.custom }}
+				</div>
+				<br/>
+				<div>
+					<b>Sponsored: </b>{{ promotion.sponsored }}
+				</div>
+			</div>  
+		</div>
+	</a>
+</div>
+
+</div>
+
+<div ng-show="updateView">
+
+<div class="pageHeader">
+	Update Promotion
+</div>
+
+<div align="center">
+
+	<div class="inlineDiv">
+		<div class="blackBlock">
+			<div class="inlineDiv">
+				<div class="error" ng-show="error">
+					<h2>There was an error loading the page</h2>
+					<p>{{error}}</p>
+				</div>
+				<form class="promotions">
+					<div class="input-div">
+						Title: <br/>
+						<input type="text" ng-model="promotion.title" />
+					</div>
+					<br/>
+					<div>
+						Description: <br/>
+						<textarea rows="10" cols="30" ng-model="promotion.description"></textarea>
+					</div>
+					<br/>
+					<div>
+						Areas: <br/>
+						<span>
+							<input type="checkbox" value="false" ng-model="allAreas">All
+						</span>
+						<div ng-repeat="(key, value) in promotion.areas" style="display:inline-block">
+							<input type="checkbox" value="{{value}}" ng-model="promotion.areas[key]" />{{key}}&nbsp;
+						</div>
+					</div>
+					<br/>
+					<div>
+						Categories (only checked items will be saved):<br/>
+						<div style="text-align:center">
+							<div ng-repeat="(key, value) in promotion.categories" class="checkbox-list">
+								<div style="display:inline-block;text-align:center;width=25px;">
+									<input type="checkbox" value="{{value}}" ng-model="promotion.categories[key]" />
+								</div>
+								<div style="text-align:left;display:inline-block;width:200px;">
+									{{key}}
+								</div>
+							</div>
+							<div class="checkbox-list" ng-hide="{{Object.keys(promotion.categories).length % 2}}"></div>
+						</div>
+						<br/>
+						<div id="new-category">
+							<input type="text" placeholder="New Category" ng-model="newCategory" />
+							<input type="submit" value="Add Category" ng-click="addCategory()" />
+						</div>
+					</div>
+					<br/>
+					<div>
+						<div style="display:inline-block;">
+							Start Date: <br/>
+							{{promotion.startDate || "undefined" }}<br/><br/>
+							Change date?<br/>
+							<span class="smallText" style="color:red;">LEAVE BLANK FOR NO CHANGE</span><br/>
+							<input type="date" ng-model="promotion.newStartDate" />
+						</div>&nbsp;&nbsp;&nbsp;&nbsp;
+						<div style="display:inline-block;">
+							End Date: <br/>
+							{{promotion.endDate || "undefined" }}<br/><br/>
+							Change date?<br/>
+							<span class="smallText" style="color:red;">LEAVE BLANK FOR NO CHANGE</span><br/>
+							<input type="date" ng-model="promotion.newEndDate" />
+						</div>
+					</div>
+					<br/>
+					<div>
+						Social Images:<br/>
+						<div ng-repeat="image in promotion.socialImages" style="display:inline-block;padding:10px;">
+							<img ng-src="{{image}}" style="max-width:290px;height:auto;">
+						</div>
+					</div>
+					<br/>
+					<div>
+						Change Images?<br/>
+						<span class="smallText" style="color:red;">LEAVE BLANK FOR NO CHANGE</span><br/>
+						<input type="file" accept="image/x-png, image/jpeg" file-input="promotion.newSocialImages" multiple/>
+						<div ng-repeat="file in promotion.newSocialImages">
+							{{file.name}}
+						</div>
+					</div>
+					<br/>
+					<div>
+						<span>Bar Id: ?????</span>&nbsp;&nbsp;&nbsp;&nbsp;
+						<span><input type="checkbox" value="promotion.custom" ng-model="promotion.custom" />Custom</span>&nbsp;&nbsp;&nbsp;&nbsp;
+						<span><input type="checkbox" value="promotion.sponsored" ng-model="promotion.sponsored" />Sponsored</span>
+					</div>
+					<br/>
+					<div ng-show="submitted" style="margin-bottom:10px; text-align:center; color:red;">
+						{{submitted}}<br/></br>
+					</div>
+					<div>
+						<input type="submit" value="Back" ng-click="backToView()">
+						<input type="submit" value="Update Promotion" ng-click="updatePromotion()">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div> 
+
+</div>
+
+<div align="center" ng-show="finalView">
+	<div class="inlineDiv">
+		<div class="blackBlock">
+			<div class="inlineDiv">
+				<div style="margin-bottom:10px; text-align:center;">
+						{{submitted}}<br/></br>
+						<input type="submit" value="Back" ng-click="backToView()">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

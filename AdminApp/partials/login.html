@@ -1,0 +1,24 @@
+<div class="shadeBack">
+
+<div class="loginBlock">
+	<div class="blockHeader">
+		Please Login to Continue:
+	</div>
+	<div class="innerBlock">
+		<form ng-controller="ctrlLogin">
+			<table align="center">
+				<tr><td>Email:</td><td><input type="text" ng-model="login.email"></td></tr>
+				<tr><td>Password:</td><td><input type="password" ng-model="login.password"></td></tr>
+				<tr><td colspan="2" align="right">
+					<span class="smallText">Forgotten Password?</span>
+				</td></tr>
+				<tr><td colspan="2" align="right">
+					<span class="loginText">{{loginStatus}}</span>
+					<input type="submit" value="Log in" ng-click="doSubmit()">
+				</td></tr>
+			</table>
+		</form>
+	</div>
+</div>
+
+</div>

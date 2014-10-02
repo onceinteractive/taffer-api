@@ -1,0 +1,9 @@
+App category,Description of how to activate message,Variables,Message
+(Example) Messages,"I click ""send an email"" when sending a user message. This is a fake use case.",%NAME% = name of user. %GREETING% = chosen greeting,"%GREETING%, Sir %NAME% of the app."
+Registration Approval,A manager of a bar is being asked to approve/disprove a new employee user,"%FIRSTNAME%, %LASTNAME%, %POSITION% = chosen position",
+New message,A user sends a message to you,"%FIRSTNAME%, %LASTNAME%, %MESSAGE%",
+High priority logbook,A manager adds an item marked high priority to the logbook,"%FIRSTNAME%, %LASTNAME%, %SUBJECT%= subject of logbook thread, %MESSAGE%= message of item added (could be blank as it could be a picture)",
+Schedule set,A manager has published your schedule for the week,,
+Shift Swap request,Another employee has requested that you swap shifts with them,,
+Shift Swap approval,Two employees are requesting approval for their shift swap,,
+Shift change,A manager has modified your schedule/shifts,,

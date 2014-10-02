@@ -1,0 +1,75 @@
+<div class="pageHeader">View Questions</div>
+
+<div align="center">
+	<form>
+		<div class="inlineDiv blackBlock">
+			<div "text-align:center">Type: </div><br/>
+			<select ng-model="searchType" style="width:100px">
+				<option value=""> All </option>
+				<option value="answered">Answered
+				<option value="open">Open
+			</select>
+			<br/>
+			<br/>
+			<div>
+				<input type="submit" value="Get Questions" ng-click="getQuestions();">
+			</div>
+			<br/>
+			<hr />
+			<span class="smallText">CLICK QUESTION TO VIEW.</span>
+		</div>
+	</form>
+</div>
+
+<div ng-show="error" style="text-align:center;color:red;font-size:25px;">
+	Sorry, there was an error retrieving questions. 
+</div>
+
+<div ng-show="searchHappened">
+Search results for {{searchType || "All"}}:<br />
+</div>
+
+<div class="centerResults">
+	<!-- User result div -->
+	<div ng-repeat="question in questionResults" class="questionResultDiv">
+	<a>
+		<div class="blackBlock">
+			<div class="inlineDiv">
+				<b>By:</b><br/>
+				<a href="#/viewUser/{{question.by.id}}">
+					<div>
+						{{question.by.firstName}} {{question.by.lastName}}
+						<br/>
+						<span style="font-size:16px;">{{question.by.email}}</span>
+					</div>
+				</a>
+				<br/>
+				<b>Question Title:</b><br/>
+				{{question.questionTitle || "none"}}
+				<br/>
+				<br/>
+				<b>Question:</b><br/>
+				{{question.question  || "none"}}
+				<br/>
+				<br/>
+				<b>Published Question Title:</b><br/>
+				{{question.publishedQuestionTitle || "none"}}
+				<br/>
+				<br/>
+				<b>Published Question:</b><br/>
+				{{question.publishedQuestion || "none"}}
+				<br/>
+				<br/>
+				<div ng-show="question.answer">
+					<b>Answer Title:</b><br/>
+					{{question.answerTitle || "none"}}
+					<br/>
+					<br/>
+					<b>Answer:</b><br/>
+					{{question.answer}}
+				</div>
+			</div>  
+		</div>
+	</a>
+	</div>
+</div>
