@@ -54,7 +54,7 @@ db.once('open', function(){
 
         models.Admin.findOne({
             email: 'kchester@thisisfusion.com'
-        }, function(err, admin){
+        }, function(err, admin) {
             if(!err && !admin){
                 var password = Math.random().toString(36).slice(-8)
                 console.log('Creating new admin user. Password is ' + password)
@@ -62,7 +62,7 @@ db.once('open', function(){
                     email: 'kchester@thisisfusion.com',
                     firstName: 'Keith',
                     lastName: 'Chester',
-                    permissions: models.Admin.AdminPermissions 
+                    permissions: models.Admin.AdminPermissions
                 }, function(err, admin){
                     if(!err && admin){
                         admin.setPassword(password, function(err){})
