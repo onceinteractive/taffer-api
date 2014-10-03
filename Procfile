@@ -1,1 +1,1 @@
-web: node adminServer.js noHealthCheck
+web: node loadData.js noHealthCheck
