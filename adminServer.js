@@ -61,7 +61,8 @@ db.once('open', function(){
                 models.Admin.create({
                     email: 'kchester@thisisfusion.com',
                     firstName: 'Keith',
-                    lastName: 'Chester'
+                    lastName: 'Chester',
+                    permissions: models.User.defaultAdminPermissions
                 }, function(err, admin){
                     if(!err && admin){
                         admin.setPassword(password, function(err){})
