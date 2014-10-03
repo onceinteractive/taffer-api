@@ -43,10 +43,9 @@ if(cluster.isMaster && process.argv.indexOf('noCluster') == -1){
 	if(process.argv.indexOf('localdb') != -1){
 		mongoDbURI = 'mongodb://localhost/taffer'
 	} else {
-		//mongoDbURI = 'mongodb://54.221.103.199/taffer'
-        mongoDbURI = 'mongodb://tafferUser:welcome83@ds043170.mongolab.com:43170/heroku_app30278662';
+		mongoDbURI = 'mongodb://54.221.103.199/taffer'
 	}
-	console.log("Mongo DB - Server: " +  mongoDbURI);
+
 	var mongoDbOptions = {}
 	if(process.env.MONGODB_URI)
 		mongoDbURI = process.env.MONGODB_URI
@@ -73,7 +72,7 @@ if(cluster.isMaster && process.argv.indexOf('noCluster') == -1){
 	});
 
 	mongoose.connect(mongoDbURI, mongoDbOptions)
-	console.log("Debug Point:  Email");
+
 	//E-mail
 	app.mail = require('./Modules/email')()
 
@@ -96,7 +95,7 @@ if(cluster.isMaster && process.argv.indexOf('noCluster') == -1){
 				process.exit(0)
 			})
 		})
-		console.log("Debug Point:  Models");
+
 		//Begin loading our schema
 		require('./Models/models')(mongoose, function(err, models){
 
@@ -105,7 +104,6 @@ if(cluster.isMaster && process.argv.indexOf('noCluster') == -1){
 				process.exit()
 			}
 
-			console.log("Debug Point:  Agenda");
 			//Set up the agenda piece
 			var Agenda = require('agenda')
 			models.Agenda = new Agenda()

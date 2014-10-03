@@ -99,64 +99,6 @@ module.exports = function(mongoose, models){
 
 	}
 
-    schema.statics.AdminPermissions = {
-        pushNotifications: {
-            bulk: false,
-            users: false
-        },
-
-        infrastructure: {
-            view: true
-        },
-
-        admins: {
-            edit: true,
-            create:true,
-            read:true
-        },
-
-        bars: {
-            read: true,
-            edit: true
-        },
-
-        questions: {
-            read: true,
-            edit: true
-        },
-
-        users: {
-            read: true,
-            edit:true,
-            approve:true,
-            deactivate:true,
-            permissions:true
-        },
-
-        tips: {
-            create: true,
-            read: true,
-            edit:true
-        },
-
-        promotions: {
-            create: true,
-            delete:true,
-            view:true
-        },
-
-        courses: {
-            create: true,
-            read: true,
-            delete:true
-        },
-
-        ads: {
-            create: true,
-            read: true
-        }
-    }
-
 	schema.statics.permissionsExplanations = {
 		admins: {
 			create: 'Create or edit admin accounts',

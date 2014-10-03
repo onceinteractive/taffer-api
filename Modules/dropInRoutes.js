@@ -5,18 +5,15 @@ module.exports = function(app, models){
 
 	var dropInRoutes
 
-	dropInRoutes = function(path, cb, root){   console.log("Route:");
+	dropInRoutes = function(path, cb, root){
 		fs.readdir(path, function(err, files){
-            console.log("1");
 			if(err){
 				console.log(err)
 				cb(err)
 			} else {
-                console.log("2");
 				async.each(files, function(file, cb){
 					fs.lstat(path + '/' + file, function(err, stat){
 						if(err){
-                            console.log("3");
 							cb(err)
 						} else {
 							if(stat.isDirectory()){

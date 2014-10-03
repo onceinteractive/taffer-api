@@ -22,8 +22,7 @@ var mongoDbURI
 if(process.argv.indexOf('localdb') != -1){
     mongoDbURI = 'mongodb://localhost/taffer'
 } else {
-    //mongoDbURI = 'mongodb://54.221.103.199/taffer'
-    mongoDbURI = 'mongodb://tafferUser:welcome83@ds043170.mongolab.com:43170/heroku_app30278662';
+    mongoDbURI = 'mongodb://54.221.103.199/taffer'
 }
 
 var mongoDbOptions = {}
@@ -54,15 +53,14 @@ db.once('open', function(){
 
         models.Admin.findOne({
             email: 'kchester@thisisfusion.com'
-        }, function(err, admin) {
+        }, function(err, admin){
             if(!err && !admin){
                 var password = Math.random().toString(36).slice(-8)
                 console.log('Creating new admin user. Password is ' + password)
                 models.Admin.create({
                     email: 'kchester@thisisfusion.com',
                     firstName: 'Keith',
-                    lastName: 'Chester',
-                    permissions: models.Admin.AdminPermissions
+                    lastName: 'Chester'
                 }, function(err, admin){
                     if(!err && admin){
                         admin.setPassword(password, function(err){})
