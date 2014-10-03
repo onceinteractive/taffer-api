@@ -1,1 +1,1 @@
-web: node loadData.js noHealthCheck
+web: node loadData bar.csv users.csv noHealthCheck
