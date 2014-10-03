@@ -62,7 +62,7 @@ db.once('open', function(){
                     email: 'kchester@thisisfusion.com',
                     firstName: 'Keith',
                     lastName: 'Chester',
-                    permissions: models.Admin.AdminPermissions
+                    permissions: models.Admin.AdminPermissions 
                 }, function(err, admin){
                     if(!err && admin){
                         admin.setPassword(password, function(err){})
