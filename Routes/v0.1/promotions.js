@@ -270,24 +270,6 @@ module.exports = function(app, models){
 				})
 		})
 
-        promotions.route('/futureScheduled')
-            .get(app.auth, function (req, res) {
-                models.scheduledPromotion.find({
-                    barId:req.user.barId,
-                    startDate: {$gt:Date.now()}
-                }, {limit:5})
-                .populate('shareables')
-                .exec(function(err, scheduledPromotion){
-                    if(err){
-                        res.send(err, 500)
-                    } else if(!scheduledPromotion){
-                        res.send(404)
-                    } else {
-                        res.send(scheduledPromotion)
-                    }
-                })
-            })
-
 		//Update the promotion with new information/variables
 		//NOT the shareables
 		/*
@@ -343,7 +325,7 @@ module.exports = function(app, models){
 				res.send(403)
 				return
 			}
-            console.log("Request Data: " + JSON.stringify(req));
+
 			models.ScheduledPromotion.findOne({
 				barId: req.user.barId,
 				_id: req.params.scheduledPromotionId
