@@ -275,7 +275,7 @@ module.exports = function(app, models){
                 models.scheduledPromotion.find({
                     barId:req.user.barId,
                     startDate: {$gt:Date.now()}
-                })
+                }, {limit:5})
                 .populate('shareables')
                 .exec(function(err, scheduledPromotion){
                     if(err){
