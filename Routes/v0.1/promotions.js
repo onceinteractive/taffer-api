@@ -343,7 +343,7 @@ module.exports = function(app, models){
 				res.send(403)
 				return
 			}
-
+            console.log("Request Data: " + JSON.stringify(req));
 			models.ScheduledPromotion.findOne({
 				barId: req.user.barId,
 				_id: req.params.scheduledPromotionId
