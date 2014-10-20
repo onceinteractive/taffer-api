@@ -42,6 +42,7 @@ module.exports = function(mongoose, models){
 		created: { type: Date, default: Date.now }
 	})
 
+    /*
 	schema.statics.categoriesList = [
 			'Bar/Pub/Tavern/Lounge',
 			'Nightclub (Dance/Live)',
@@ -52,6 +53,17 @@ module.exports = function(mongoose, models){
 			'Adult',
 			'Media'
 		]
+    */
+
+    schema.statics.categoriesList = [
+        'NightClub',
+        'Dance Club',
+        'Pub/Tavern',
+        'Fine Dining ($$$$)',
+        'Casual Dining ($$-$$$)',
+        'Fast Casual Dining ($$)',
+        'Quick Serve Dining ($)'
+    ]
 
 	schema.statics.requiredAttributes = [
 			'name',
