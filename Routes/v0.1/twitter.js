@@ -1,7 +1,7 @@
 var express = require('express')
 var twitterAPI = require('node-twitter-api')
 
-var baseUrl = process.env.BASE_URL || 'http://taffer-dev.herokuapp.com'
+var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
 var consumerKey = process.env.TWITTER_CONSUMER_KEY || '6kk1hqDGjz8Q8BxS4JFRP9dTz'
 var consumerSecret = process.env.TWITTER_CONSUMER_SECRET || 'zTKjwtRt5Vn3jgd3czIE5qGBvudcMfyMxgrDOY5TANFjoFPWrZ'
 
