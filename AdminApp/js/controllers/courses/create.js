@@ -39,10 +39,8 @@ angular.module('appControllers')
 		var barCategories;
 		$http.get('bar/categoriesList', {})
 			.success(function(data) {
-                console.log("Before: " + JSON.stringify(data));
 				barCategories = utility.loadObjFromArray(data, false);
 				$scope.course.barCategories = barCategories;
-                console.log("Before: " + JSON.stringify(barCategories));
 			});
 
 		// watch allBarCategories checkbox to easily toggle all values
