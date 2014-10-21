@@ -3,9 +3,9 @@ var uuid = require('node-uuid')
 var express = require('express')
 
 //Twitter stuff
-var baseUrl = process.env.BASE_URL || 'http://taffer-dev.herokuapp.com'
-var consumerKey = process.env.TWITTER_CONSUMER_KEY || 'Q4sO32c1lysd7m6L75CqcaAOq'
-var consumerSecret = process.env.TWITTER_CONSUMER_SECRET || '0kU5xYGFS9llBdvFEjDte890bYQRw51NmrPfS5Q9iLpgcsmpQ9'
+var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
+var consumerKey = process.env.TWITTER_CONSUMER_KEY || '6kk1hqDGjz8Q8BxS4JFRP9dTz'
+var consumerSecret = process.env.TWITTER_CONSUMER_SECRET || 'zTKjwtRt5Vn3jgd3czIE5qGBvudcMfyMxgrDOY5TANFjoFPWrZ'
 var twitterAPI = require('node-twitter-api')
 var twitter = new twitterAPI({
 		consumerKey: consumerKey,
