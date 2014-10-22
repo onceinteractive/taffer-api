@@ -56,13 +56,14 @@ module.exports = function(mongoose, models){
     */
 
     schema.statics.categoriesList = [
-        'NightClub',
-        'Dance Club',
-        'Pub/Tavern',
-        'Fine Dining ($$$$)',
-        'Casual Dining ($$-$$$)',
-        'Fast Casual Dining ($$)',
-        'Quick Serve Dining ($)'
+        'Nightclub (Dance floor/Entertainment)',
+        'Sports Bar',
+        'Pub/Tavern/Lounge',
+        'Theme Bar (60\'s, Beach, etc.)',
+        'Mixology Bar (Premium spirits, cocktails, etc)',
+        'Live Venue Bar (Live comedy)',
+        'Brew House or Beer Based Concept',
+        'Adult (Gentlemen\'s club)'
     ]
 
 	schema.statics.requiredAttributes = [
