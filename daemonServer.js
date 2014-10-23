@@ -24,7 +24,7 @@ if(cluster.isMaster){
         /*Test Database*/
         //mongoDbURI = 'mongodb://tafferUser:welcome83@ds043170.mongolab.com:43170/heroku_app30278662'
         /*Demo Database*/
-        mongoDbURI = 'mongodb://mongodb://tafferUser:welcome83@linus.mongohq.com:10051/app30886667'
+        mongoDbURI = 'mongodb://tafferUser:welcome83@linus.mongohq.com:10051/app30886667'
 	}
 
 	var mongoDbOptions = {}
