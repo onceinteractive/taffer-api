@@ -26,7 +26,8 @@ if(process.argv.indexOf('localdb') != -1){
     /*Test Database*/
     //mongoDbURI = 'mongodb://tafferUser:welcome83@ds043170.mongolab.com:43170/heroku_app30278662'
     /*Demo Database*/
-    mongoDbURI = 'mongodb://tafferUser:welcome83@linus.mongohq.com:10051/app30886667'
+    mongoDbURI = 'mongodb://tafferUser:welcome83@ds047930.mongolab.com:47930/heroku_app30886667'
+    //mongoDbURI = 'mongodb://tafferUser:welcome83@linus.mongohq.com:10051/app30886667'
 }
 
 var mongoDbOptions = {}
