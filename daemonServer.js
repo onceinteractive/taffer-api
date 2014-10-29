@@ -84,12 +84,14 @@ if(cluster.isMaster){
 			var async = require('async')
 			fs.readdir('./Daemons/', function(err, files){
 				if(err){
+                    console.log("Issue 1")
 					console.log(err)
 					cb(err)
 				} else {
 					async.each(files, function(file, cb){
 						fs.lstat('./Daemons/' + file, function(err, stat){
 							if(err){
+                                console.log("Issue 2")
 								cb(err)
 							} else {
 								if(stat.isFile()){
@@ -97,6 +99,7 @@ if(cluster.isMaster){
 									agenda.define(daemon.name, daemon.options, daemon.job)
 									cb(null)
 								} else {
+                                    console.log("Issue 3")
 									cb(err)
 								}
 							}
