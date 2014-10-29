@@ -45,7 +45,7 @@ module.exports = function(models){
 						} else {
 							if(scheduledPost.shareableId.selectedPicture.indexOf('https://') == -1
 								|| scheduledPost.shareableId.selectedPicture.indexOf('http://') == -1){
-								scheduledPost.shareableId.selectedPicture = 'htttps://s3.amazonaws.com/'
+								scheduledPost.shareableId.selectedPicture = 'https://s3.amazonaws.com/'
 								+ process.env.IMAGE_BUCKET + '/' + scheduledPost.shareableId.selectedPicture
 							}
 
