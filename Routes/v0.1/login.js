@@ -15,8 +15,8 @@ var twitter = new twitterAPI({
 
 //Facebook stuff
 var graph = require('fbgraph')
-var appId = process.env.FACEBOOK_APP_ID || '199873480059586'
-var appSecret = process.env.FACEBOOK_APP_SECRET || '76b3a099f27fc3240ab4a3d847f6a466'
+var appId = process.env.FACEBOOK_APP_ID || '717433561644223'
+var appSecret = process.env.FACEBOOK_APP_SECRET || 'c2438639d21449396b4ef5fa3258682e'
 
 module.exports = function(app, models){
 
