@@ -15,6 +15,23 @@ if(cluster.isMaster){
 
 } else {
 
+        var express = require('express')
+        var app = express()
+
+    //Use the Express Body Parser and Cookie Parser
+        var bodyParser = require('body-parser')
+        var cookieParser = require('cookie-parser')
+        app.use(bodyParser())
+        app.use(cookieParser(process.env.COOKIE_SECRET || 'dev-secret'))
+    //Bring in multer to deal with multi-part
+        var multer = require('multer')
+        app.use(multer({
+            dest: './.uploads/',
+            rename: function (fieldname, filename) {
+                return fieldname + '_' + filename.replace(/\W+/g, '-').toLowerCase() + Date.now()
+            }
+        }))
+
 	var mongoose = require('mongoose')
 	var mongoDbURI
 	if(process.argv.indexOf('localdb') != -1){
@@ -111,6 +128,8 @@ if(cluster.isMaster){
 						}
 
 						console.log("Starting daemon server")
+                        //Launch the server, start listening
+                        app.listen(process.env.PORT || 8688)
 						agenda.start()
 
 					})
