@@ -15,34 +15,13 @@ if(cluster.isMaster){
 
 } else {
 
-        var express = require('express')
-        var app = express()
-
-    //Use the Express Body Parser and Cookie Parser
-        var bodyParser = require('body-parser')
-        var cookieParser = require('cookie-parser')
-        app.use(bodyParser())
-        app.use(cookieParser(process.env.COOKIE_SECRET || 'dev-secret'))
-    //Bring in multer to deal with multi-part
-        var multer = require('multer')
-        app.use(multer({
-            dest: './.uploads/',
-            rename: function (fieldname, filename) {
-                return fieldname + '_' + filename.replace(/\W+/g, '-').toLowerCase() + Date.now()
-            }
-        }))
-
 	var mongoose = require('mongoose')
 	var mongoDbURI
 	if(process.argv.indexOf('localdb') != -1){
 		mongoDbURI = 'mongodb://localhost/taffer'
 	} else {
 		//mongoDbURI = 'mongodb://54.221.103.199/taffer'
-        /*Test Database*/
-        mongoDbURI = 'mongodb://tafferUser:welcome83@ds043170.mongolab.com:43170/heroku_app30278662'
-        /*Demo Database*/
-        //mongoDbURI = 'mongodb://tafferUser:welcome83@ds047930.mongolab.com:47930/heroku_app30886667'
-        //mongoDbURI = 'mongodb://tafferUser:welcome83@linus.mongohq.com:10051/app30886667'
+		mongoDbURI = 'mongodb://tafferUser:welcome83@ds043170.mongolab.com:43170/heroku_app30278662'
 	}
 
 	var mongoDbOptions = {}
@@ -101,14 +80,12 @@ if(cluster.isMaster){
 			var async = require('async')
 			fs.readdir('./Daemons/', function(err, files){
 				if(err){
-                    console.log("Issue 1")
 					console.log(err)
 					cb(err)
 				} else {
 					async.each(files, function(file, cb){
 						fs.lstat('./Daemons/' + file, function(err, stat){
 							if(err){
-                                console.log("Issue 2")
 								cb(err)
 							} else {
 								if(stat.isFile()){
@@ -116,7 +93,6 @@ if(cluster.isMaster){
 									agenda.define(daemon.name, daemon.options, daemon.job)
 									cb(null)
 								} else {
-                                    console.log("Issue 3")
 									cb(err)
 								}
 							}
@@ -128,8 +104,6 @@ if(cluster.isMaster){
 						}
 
 						console.log("Starting daemon server")
-                        //Launch the server, start listening
-                        app.listen(process.env.PORT || 8688)
 						agenda.start()
 
 					})
