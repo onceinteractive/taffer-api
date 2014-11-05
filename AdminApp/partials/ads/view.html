@@ -31,11 +31,27 @@ Search results for {{category || "All"}}:<br />
 		<div class="inlineDiv userResultDiv blackBlock">
 			<div class="inlineDiv">
 				<b>Type:</b><br/>
-				{{ad.type}}
+				{{ad.dashboardImageSize}}
 				<br/>
 				<br/>
+
+                <b>Title:</b><br/>
+                {{ad.title}}
+                <br/>
+                <br/>
+
+                <b>Description:</b><br/>
+                {{ad.description}}
+                <br/>
+                <br/>
+
+                <b>Link:</b><br/>
+                {{ad.url}}
+                <br/>
+                <br/>
+
 				<b>Image:</b><br/>
-				<img ng-src="https://s3.amazonaws.com/taffer-dev/{{ad.image}}" style="max-width:290px; height:auto;">
+				<img ng-src="https://s3.amazonaws.com/taffer-dev/{{ad.dashboardImage}}" style="max-width:290px; height:auto;">
 				<br/>
 				<br/>
 				<b>States:</b><br/>

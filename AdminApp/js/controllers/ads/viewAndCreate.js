@@ -32,7 +32,7 @@ angular.module('appControllers')
 			$scope.adResults = true;
 			if($scope.searchType) {
 				ads.forEach(function(ad){
-					if (ad.type === $scope.searchType) {
+					if (ad.dashboardImageSize === $scope.searchType) {
 						$scope.Results.push(ad);
 					}
 				})
@@ -44,7 +44,7 @@ angular.module('appControllers')
 
 	//FOR AD.CREATE
 	$scope.createAd = function() {
-		if ($scope.images && $scope.states && $scope.type){
+		if ($scope.ads.dashboardImage && $scope.states && $scope.ads.dashboardImageSize && $scope.ads.title && $scope.ads.description && $scope.ads.url){
 
 			//initialize states array and fill it with selected states
 			var states = [];
@@ -55,11 +55,14 @@ angular.module('appControllers')
 			}
 			// use formData api to append post object with images from fileInput directive
 			var fd = new FormData();
-			angular.forEach($scope.images, function(file) {
+			angular.forEach($scope.ads.dashboardImage, function(file) {
 				fd.append("image", file);
 			});
 			fd.append("states", states);
-			fd.append("type", $scope.type);
+			fd.append("dashboardImageSize", $scope.ads.dashboardImageSize);
+            fd.append("title", $scope.ads.title);
+            fd.append("description", $scope.ads.description);
+            fd.append("url", $scope.ads.url);
 			// POST
 			post(fd);
 		} else {

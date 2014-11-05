@@ -1,1 +1,1 @@
-web: node daemonServer.js noHealthCheck
+web: node adminServer.js noHealthCheck
