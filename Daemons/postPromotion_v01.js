@@ -53,6 +53,7 @@ module.exports = function(models){
 
 								function(done){
 									if(scheduledPost.network == 'facebook' || scheduledPost.network.indexOf('facebook') != -1){
+										console.log("schedule....posting...fb message="+scheduledPost.shareableId.facebookMessage);
 										postToFacebook(bar,
 											scheduledPost.shareableId.facebookMessage,
 											scheduledPost.shareableId.selectedPicture,
@@ -77,6 +78,7 @@ module.exports = function(models){
 
 								function(done){
 									if(scheduledPost.network == 'twitter' || scheduledPost.network.indexOf('twitter') != -1){
+										console.log("schedule....posting...twitter message="+scheduledPost.shareableId.twitterMessage);
 										postToTwitter(bar,
 											scheduledPost.shareableId.twitterMessage,
 											scheduledPost.shareableId.selectedPicture,
