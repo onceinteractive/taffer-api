@@ -83,18 +83,14 @@ if(cluster.isMaster){
 					console.log(err)
 					cb(err)
 				} else {
-					console.log("testing.....1");
 					async.each(files, function(file, cb){
 						fs.lstat('./Daemons/' + file, function(err, stat){
 							if(err){
 								cb(err)
 							} else {
-								console.log("testing.....2");
 								if(stat.isFile()){
-									console.log("testing.....3");
 									var daemon = require('./Daemons/' + file)(models)
 									agenda.define(daemon.name, daemon.options, daemon.job)
-									console.log("testing.....4");
 									cb(null)
 								} else {
 									cb(err)

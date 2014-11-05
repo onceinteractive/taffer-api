@@ -1,1 +1,1 @@
-web: node --debug=$PORT daemonServer.js noHealthCheck
+web: node daemonServer.js noHealthCheck
