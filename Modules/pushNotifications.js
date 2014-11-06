@@ -2,7 +2,7 @@ var async = require('async');
 var GCM = require('node-gcm');
 
 if(!process.env.GCM_SENDER_ID) {
-	process.env.GCM_SENDER_ID = 'AIzaSyCp3ZgFZDOGa_gbGJ77yFedFA5zJG5TOFs';
+	process.env.GCM_SENDER_ID = 'AIzaSyBesX3lo34OveN71gKqv8PbloWOU7r9078';
 }
 
 module.exports = function(app, models) {
