@@ -1,5 +1,4 @@
 var cluster = require('cluster')
-var express = require('express')
 
 if(cluster.isMaster){
 
@@ -15,7 +14,7 @@ if(cluster.isMaster){
 	})
 
 } else {
-    var app = express()
+
 	var mongoose = require('mongoose')
 	var mongoDbURI
 	if(process.argv.indexOf('localdb') != -1){
@@ -106,7 +105,7 @@ if(cluster.isMaster){
 
 						console.log("Starting daemon server")
 						agenda.start()
-						app.listen(process.env.PORT || 8688)
+
 					})
 				}
 			})
