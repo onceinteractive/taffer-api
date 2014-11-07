@@ -54,7 +54,6 @@ module.exports = function(app, models){
 			})
 
 			twitter.getRequestToken(function(err, requestToken, requestTokenSecret, results){
-				console.log("...................requestToken :: "+requestToken+", requestTokenSecret :: "+requestTokenSecret+"..........................");
 				if(err){
 					res.send(err, 500)
 				} else {
@@ -237,7 +236,7 @@ module.exports = function(app, models){
 			if(!req.user.hasPermission('social.manage')){
 				res.send("You do not have permission to access this bar's social media", 403)
 			} else {
-
+				console.log("req.user.barId : "+req.user.barId);
 				models.Bar.findOne({
 					_id: req.user.barId
 				}, function(err, bar){
@@ -246,7 +245,7 @@ module.exports = function(app, models){
 					} else if(!bar){
 						res.send('Error loading bar', 500)
 					} else {
-
+						console.log("bar.twitterAccessToken : "+bar.twitterAccessToken+".....bar.twitterSecretToken : "+bar.twitterSecretToken);
 						if(!bar.twitterAccessToken ||
 							!bar.twitterSecretToken){
 							res.send('We do not have the appropriate permissions from Twitter to post for this account', 403)
