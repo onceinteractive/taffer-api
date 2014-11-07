@@ -10,19 +10,34 @@
 				<form class="ads">
 					<div>
 						Type: <br/>
-						<select ng-model="type" style="width:100px">
+						<select ng-model="ad.dashboardImageSize" style="width:100px">
 							<option value="">-- Select --</option>
-							<option value="{{type}}" ng-repeat="type in allTypes">{{type}}
+							<option value="{{size}}" ng-repeat="size in allSizes">{{size}}
 						</select>
 					</div>
 					<br/>
+                    <div>
+                        Title: <br/>
+                        <input type="text" ng-model="ad.title" />
+                    </div>
+                    <br/>
+                    <div>
+                        Description: <br/>
+                        <textarea rows="10" cols="30" ng-model="ad.description"></textarea>
+                    </div>
+                    <br/>
+                    <div>
+                        <b>Link:</b><br/>
+                        <input type="url" ng-model="ad.url" />
+                    </div>
+                    <br/>
 					<b>Image:</b><br/>
-						<img ng-src="{{image}}">
+                    <img ng-src="https://s3.amazonaws.com/taffer-dev/{{ad.dashboardImage}}" style="max-width:290px; height:auto;">
 					<br/>
 					<br/>
 					<div>
 						Change image? (optional)<br/>
-						<input type="file" accept="image/x-png, image/jpeg" file-input="images" />
+                        <input type="file" accept="image/x-png, image/jpeg" file-input="dashboardImage"/>
 					</div>
 					<br/>
 					<div>
