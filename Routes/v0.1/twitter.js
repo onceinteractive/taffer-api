@@ -245,7 +245,8 @@ module.exports = function(app, models){
 					} else if(!bar){
 						res.send('Error loading bar', 500)
 					} else {
-
+						console.log("bar twitter access token"+bar.twitterAccessToken);
+						console.log("bar twitter secret token"+bar.twitterSecretToken);
 						if(!bar.twitterAccessToken ||
 							!bar.twitterSecretToken){
 							res.send('We do not have the appropriate permissions from Twitter to post for this account', 403)
