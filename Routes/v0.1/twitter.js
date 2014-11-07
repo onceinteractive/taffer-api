@@ -54,6 +54,7 @@ module.exports = function(app, models){
 			})
 
 			twitter.getRequestToken(function(err, requestToken, requestTokenSecret, results){
+				console.log("...................requestToken :: "+requestToken+", requestTokenSecret :: "+requestTokenSecret+"..........................");
 				if(err){
 					res.send(err, 500)
 				} else {
@@ -217,8 +218,6 @@ module.exports = function(app, models){
 
 	twitter.route('/user/share')
 		.post(app.auth, function(req, res){
-			console.log("twitter access token user "+req.user.twitterAccessToken);
-			console.log("twitter secret token user "+req.user.twitterSecretToken);
 			if(!req.user.twitterAccessToken ||
 				!req.user.twitterSecretToken){
 				res.send('We do not have the appropriate permissions from Twitter to post for this account', 403)
