@@ -6,7 +6,7 @@ module.exports = function(models){
 		name: 'facebookTokenExpiration_v0.1',
 		options: {}
 	}
-
+	console.log("facebook token expiry new file function....");
 	var pushNotification = require('./../Modules/pushNotifications')(models)
 	
 	daemon.job = function(job, done){
