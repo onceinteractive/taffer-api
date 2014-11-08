@@ -61,6 +61,7 @@ module.exports = function(models){
 			//Check if we even have a file
 			function(done){
 				if(!imagePath){
+                    console.log("No Image found");
 					done({
 						status: 500,
 						response: 'Image upload not on request'
@@ -90,6 +91,7 @@ module.exports = function(models){
 
 			//Crop image for our ratio
 			function(image, size, done){
+                console.log("In Resizing");
 				if(!resize){
 					done(null, image)
 					return
@@ -136,6 +138,7 @@ module.exports = function(models){
 				//Because we cropped to our aspect ratio, we
 				//only need to specify width
 				image.resize(desiredSize.width)
+                console.log("Resizing End");
 				done(null, image)
 			},
 
@@ -144,6 +147,7 @@ module.exports = function(models){
 				//Save the file to disk to stream
 				//This is due to a weakness in gm - can't accurately determine stream length
 				var imageFile = uuid.v1() + '.jpg'
+                console.log(imageFile);
 				image.setFormat('jpeg').write('./.uploads/' + imageFile, function(err){
 					if(err){
 						done({
@@ -151,6 +155,7 @@ module.exports = function(models){
 							response: err
 						})
 					} else {
+                        console.log("Sending to S3");
 						var readStream = fs.createReadStream('./.uploads/' + imageFile)
 						// stdout.length = filesize
 						var key = 'userImages/' + req.user._id + '/' + imageFile
@@ -163,6 +168,7 @@ module.exports = function(models){
 						}
 						s3.putObject(data, function(err, res){
 							if(err){
+                                console.log("Error while putting in S3");
 								done({
 									status: 500,
 									response: err.message
