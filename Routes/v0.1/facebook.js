@@ -37,7 +37,7 @@ module.exports = function(app, models){
 						if(err){
 							failure()
 						} else {
-							console.log("facebook token expire1...."+response.expires);
+
 							var accessToken = response.access_token,
 								expiresIn = response.expires
 							graph.extendAccessToken({
@@ -50,12 +50,12 @@ module.exports = function(app, models){
 									accessToken = response.access_token,
 									expiresIn = response.expires
 								}
-								console.log("facebook token expire2...."+response.expires);
+
 								if(err || !accessToken){
 									failure()
 								} else if(expiresIn){
 									var expirationDate = new Date()
-									console.log("facebook new expiry date token expire3...."+expirationDate);
+
 									expirationDate.setSeconds(expirationDate.getSeconds() + expiresIn)
 
 									var expirationTaskDate = expirationDate
