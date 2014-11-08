@@ -159,7 +159,7 @@ module.exports = function(app, models){
 							if(err){
 								done(err)
 							} else {
-
+                                /*
                                 promotion.update({
                                     $set: {
                                         socialImages: imageKey
@@ -167,7 +167,7 @@ module.exports = function(app, models){
                                 }, function(err){
                                     done(err)
                                 })
-
+                                */
 								done(null, promotion, imageKey)
 							}
 						})
