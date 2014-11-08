@@ -165,7 +165,7 @@ module.exports = function(app, models){
                                         socialImages: imageKey
                                     }
                                 }, function(err){
-                                    done(err, promotion)
+                                    done(err)
                                 })
 
 								done(null, promotion, imageKey)
