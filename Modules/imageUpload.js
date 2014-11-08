@@ -157,6 +157,7 @@ module.exports = function(models){
 					} else {
                         console.log("Sending to S3");
 						var readStream = fs.createReadStream('./.uploads/' + imageFile)
+                        console.log("Stream read.");
 						// stdout.length = filesize
 						var key = 'userImages/' + req.user._id + '/' + imageFile
 						var data = {
@@ -166,6 +167,7 @@ module.exports = function(models){
 							ContentType: mime.lookup(imagePath),
 							ACL: 'public-read'
 						}
+                        console.log("Data for S3 image upload created.");
 						s3.putObject(data, function(err, res){
 							if(err){
                                 console.log("Error while putting in S3");
@@ -174,6 +176,7 @@ module.exports = function(models){
 									response: err.message
 								}, null, './.uploads/' + imageFile)
 							} else {
+                                console.log("Uploaded to S3");
 								done(null, key, './.uploads/' + imageFile)
 							}
 						})
