@@ -159,6 +159,15 @@ module.exports = function(app, models){
 							if(err){
 								done(err)
 							} else {
+
+                                promotion.update({
+                                    $set: {
+                                        socialImages: imageKey
+                                    }
+                                }, function(err){
+                                    done(err, promotion)
+                                })
+
 								done(null, promotion, imageKey)
 							}
 						})
