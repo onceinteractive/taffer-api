@@ -46,9 +46,11 @@ module.exports = function(mongoose, models){
 			created: self.created
 		}
 
-		if(self.by.json){
-			result.by = self.by.json()
-		}
+        if( self.by ) {
+            if (self.by.json()) {
+                result.by = self.by.json()
+            }
+        }
 
 		return result
 	}
