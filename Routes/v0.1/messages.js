@@ -196,12 +196,14 @@ module.exports = function(app, models){
 					})
 
 					var pushRecipients = []
+                    console.log("to1:"+thread.participants.toString());
 					thread.participants.forEach(function(participant){
 						if(participant.toString() != req.user._id){
 							pushRecipients.push(participant)
 						}
 					})
-
+                    console.log("push to:"+pushRecipients.toString());
+                    
 					var pushMessage = req.user.firstName + ' ' + req.user.lastName + ' - ' + req.body.message.substring(0, 80)
 					if(req.body.message.length > 80){
 						pushMessage = pushMessage + '...'
@@ -322,25 +324,6 @@ module.exports = function(app, models){
 										res.send(thread)
 									}
 								})
-                                var pushRecipients = []
-                                thread.participants.forEach(function(participant){
-                                    if(participant.toString() != req.user._id){
-                                        pushRecipients.push(participant)
-                                    }
-                                })
-
-                                var pushMessage = req.user.firstName + ' ' + req.user.lastName + ' - ' + req.body.message.substring(0, 80)
-                                if(req.body.message.length > 80){
-                                    pushMessage = pushMessage + '...'
-                                }
-
-                                pushNotification(pushRecipients,
-                                    pushMessage,
-                                    'Main.Messages.List',
-                                    function(err){
-                                        //Nothing to do here regardless
-                                    }
-                                )
 							}
 						})
 					}
@@ -376,25 +359,6 @@ module.exports = function(app, models){
 					})
 
 					res.send(200)
-                    var pushRecipients = []
-                    thread.participants.forEach(function(participant){
-                        if(participant.toString() != req.user._id){
-                            pushRecipients.push(participant)
-                        }
-                    })
-
-                    var pushMessage = req.user.firstName + ' ' + req.user.lastName + ' - ' + req.body.message.substring(0, 80)
-                    if(req.body.message.length > 80){
-                        pushMessage = pushMessage + '...'
-                    }
-
-                    pushNotification(pushRecipients,
-                        pushMessage,
-                        'Main.Messages.List',
-                        function(err){
-                            //Nothing to do here regardless
-                        }
-                    )
 				}
 
 			})

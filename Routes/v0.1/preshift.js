@@ -162,11 +162,14 @@ module.exports = function(app, models){
                         })
                     console.log("Second");
                     var pushRecipients = []
+
+                    console.log("to1:"+preshift.to.toString());
                     preshift.to.forEach(function(participant){
                         if(participant.toString() != req.user._id){
                             pushRecipients.push(participant)
                         }
                     })
+                    console.log("push to:"+pushRecipients.toString());
                     console.log("Third");
                     var pushMessage = "You have received a new pre-shift message"
                     /*
