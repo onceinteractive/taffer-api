@@ -12,7 +12,8 @@ module.exports = function(app, models){
         .get(app.auth, function(req, res){
             if(req.user.hasPermission('preshift.view')){
                 models.Preshift.find({
-                    barId: req.user.barId
+                    barId: req.user.barId,
+                    to: req.user._id
                 })
                     .populate('by')
                     .populate('to')
@@ -157,6 +158,12 @@ module.exports = function(app, models){
                                 res.send(preshift.json())
                             }
                         })
+                    var pushRecipients = []
+                    preshift.to.forEach(function(participant){
+                        if(participant.toString() != req.user._id){
+                            pushRecipients.push(participant)
+                        }
+                    })
                     var pushMessage = req.user.firstName + ' ' + req.user.lastName + ' - ' + req.body.message.substring(0, 80)
                     if(req.body.message.length > 80){
                         pushMessage = pushMessage + '...'
