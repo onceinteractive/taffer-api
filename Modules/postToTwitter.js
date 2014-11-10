@@ -2,10 +2,10 @@ var request = require('request')
 var fs = require('fs')
 var uuid = require('node-uuid')
 var twitterAPI = require('node-twitter-api')
-var baseUrl = process.env.BASE_URL || 'http://taffer-dev.herokuapp.com'
+var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
 var twitter = new twitterAPI({
-	consumerKey: process.env.TWITTER_CONSUMER_KEY || 'Q4sO32c1lysd7m6L75CqcaAOq',
-	consumerSecret: process.env.TWITTER_CONSUMER_SECRET || '0kU5xYGFS9llBdvFEjDte890bYQRw51NmrPfS5Q9iLpgcsmpQ9'
+	consumerKey: process.env.TWITTER_CONSUMER_KEY || 'pt8rAJvQ8Hmhp3nZmNlgapFCT',
+	consumerSecret: process.env.TWITTER_CONSUMER_SECRET || 'K3eTfa6dIK0OHmXbxqzJ3gX3ex0FqQVWvmiTU9VCjpswMSwk61'
 })
 
 module.exports = function(){

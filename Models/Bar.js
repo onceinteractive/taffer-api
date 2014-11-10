@@ -42,6 +42,7 @@ module.exports = function(mongoose, models){
 		created: { type: Date, default: Date.now }
 	})
 
+    /*
 	schema.statics.categoriesList = [
 			'Bar/Pub/Tavern/Lounge',
 			'Nightclub (Dance/Live)',
@@ -52,6 +53,18 @@ module.exports = function(mongoose, models){
 			'Adult',
 			'Media'
 		]
+    */
+
+    schema.statics.categoriesList = [
+        'Nightclub (Dance floor/Entertainment)',
+        'Sports Bar',
+        'Pub/Tavern/Lounge',
+        'Theme Bar (60\'s, Beach, etc.)',
+        'Mixology Bar (Premium spirits, cocktails, etc)',
+        'Live Venue Bar (Live comedy)',
+        'Brew House or Beer Based Concept',
+        'Adult (Gentlemen\'s club)'
+    ]
 
 	schema.statics.requiredAttributes = [
 			'name',

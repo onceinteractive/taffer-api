@@ -28,11 +28,12 @@ module.exports = function(app, models){
                 res.send(403)
                 return
             }
+
             uploadRoute(req, 'ads', function(err, keys){
                 if(err){
                     res.send(err, 500)
                 } else {
-                    req.body.image = keys[0]
+                    req.body.dashboardImage = keys;
                     // The array attached to FormData gets smashed to string according to the 
                     // FormData api, so we have to split it back to an array here.
                     req.body.states = req.body.states.split(',');
@@ -65,14 +66,33 @@ module.exports = function(app, models){
                 }
             })
         })
-        .put(app.adminAuth, function(req, res){
+
+/*
+        .put( app.adminAuth, function(req, res) {
             if(!req.admin.hasPermission('ads.create')){
                 res.send(403)
                 return
             }
 
+            req.body.states = req.body.states.split(',')
+            if( !req.files.image ) {
+                model.ad.update({
+                    _id: req.params.adId
+                },
+                req.body,
+                function (err, ad) {
+
+                })
+            }
+        })
+*/
+        .put(app.adminAuth, function(req, res){
+            if(!req.admin.hasPermission('ads.create')){
+                res.send(403)
+                return
+            }
             models.Ad.findOne({
-                _id: models.ObjectId(req.params.adId)
+                _id: req.params.adId
             }, function(err, ad){
                 if(err){
                     res.send(err, 500)
@@ -92,7 +112,7 @@ module.exports = function(app, models){
                                 res.send(ad)
                             } else {
                                 uploadRoute(req, 'ads', function(err, keys){
-                                    ad.image = keys[0]
+                                    ad.dashboardImage = keys
                                     ad.save(function(err){
                                         if(err){
                                             res.send(err, 500)

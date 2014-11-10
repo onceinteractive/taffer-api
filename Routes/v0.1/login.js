@@ -3,9 +3,9 @@ var uuid = require('node-uuid')
 var express = require('express')
 
 //Twitter stuff
-var baseUrl = process.env.BASE_URL || 'http://taffer-dev.herokuapp.com'
-var consumerKey = process.env.TWITTER_CONSUMER_KEY || 'Q4sO32c1lysd7m6L75CqcaAOq'
-var consumerSecret = process.env.TWITTER_CONSUMER_SECRET || '0kU5xYGFS9llBdvFEjDte890bYQRw51NmrPfS5Q9iLpgcsmpQ9'
+var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
+var consumerKey = process.env.TWITTER_CONSUMER_KEY || '6kk1hqDGjz8Q8BxS4JFRP9dTz'
+var consumerSecret = process.env.TWITTER_CONSUMER_SECRET || 'zTKjwtRt5Vn3jgd3czIE5qGBvudcMfyMxgrDOY5TANFjoFPWrZ'
 var twitterAPI = require('node-twitter-api')
 var twitter = new twitterAPI({
 		consumerKey: consumerKey,
@@ -15,8 +15,8 @@ var twitter = new twitterAPI({
 
 //Facebook stuff
 var graph = require('fbgraph')
-var appId = process.env.FACEBOOK_APP_ID || '686067874800453'
-var appSecret = process.env.FACEBOOK_APP_SECRET || 'd2f1cd47ecdb7ab0e751212c5c542720'
+var appId = process.env.FACEBOOK_APP_ID || '717433561644223'
+var appSecret = process.env.FACEBOOK_APP_SECRET || 'c2438639d21449396b4ef5fa3258682e'
 
 module.exports = function(app, models){
 

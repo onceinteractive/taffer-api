@@ -88,8 +88,8 @@ angular.module('appControllers')
 			fd.append("videoLink", $scope.course.videoLink);
 
 			angular.forEach($scope.course.previewImage, function(file) {
-				fd.append("image", file);
-			});
+                fd.append("image", file);
+            });
 
 			fd.append("quiz", JSON.stringify($scope.course.quiz));
 

@@ -45,7 +45,7 @@ module.exports = function(models){
 						} else {
 							if(scheduledPost.shareableId.selectedPicture.indexOf('https://') == -1
 								|| scheduledPost.shareableId.selectedPicture.indexOf('http://') == -1){
-								scheduledPost.shareableId.selectedPicture = 'htttps://s3.amazonaws.com/'
+								scheduledPost.shareableId.selectedPicture = 'https://s3.amazonaws.com/'
 								+ process.env.IMAGE_BUCKET + '/' + scheduledPost.shareableId.selectedPicture
 							}
 
@@ -53,6 +53,7 @@ module.exports = function(models){
 
 								function(done){
 									if(scheduledPost.network == 'facebook' || scheduledPost.network.indexOf('facebook') != -1){
+										console.log("schedule....posting...fb message="+scheduledPost.shareableId.facebookMessage);
 										postToFacebook(bar,
 											scheduledPost.shareableId.facebookMessage,
 											scheduledPost.shareableId.selectedPicture,
@@ -77,6 +78,7 @@ module.exports = function(models){
 
 								function(done){
 									if(scheduledPost.network == 'twitter' || scheduledPost.network.indexOf('twitter') != -1){
+										console.log("schedule....posting...twitter message="+scheduledPost.shareableId.twitterMessage);
 										postToTwitter(bar,
 											scheduledPost.shareableId.twitterMessage,
 											scheduledPost.shareableId.selectedPicture,

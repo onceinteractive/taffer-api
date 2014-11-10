@@ -10,15 +10,30 @@
 				<form class="ads">
 					<div>
 						Type: <br/>
-						<select ng-model="type" style="width:100px">
+						<select ng-model="ads.dashboardImageSize" style="width:100px">
 							<option value="">-- Select --</option>
 							<option value="{{type}}" ng-repeat="type in allTypes">{{type}}
 						</select>
 					</div>
 					<br/>
+                    <div>
+                        Title: <br/>
+                        <input type="text" ng-model="ads.title" />
+                    </div>
+                    <br/>
+                    <div>
+                        Description: <br/>
+                        <textarea rows="10" cols="30" ng-model="ads.description"></textarea>
+                    </div>
+                    <br/>
+                    <div>
+                        <b>Link:</b><br/>
+                        <input type="url" ng-model="ads.url" />
+                    </div>
+                    <br/>
 					<div>
 						Image:<br/>
-						<input type="file" accept="image/x-png, image/jpeg" file-input="images"/>
+						<input type="file" accept="image/x-png, image/jpeg" file-input="ads.dashboardImage"/>
 					</div>
 					<br/>
 					<div>

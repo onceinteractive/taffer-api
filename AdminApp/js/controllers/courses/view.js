@@ -83,6 +83,15 @@ angular.module('appControllers')
 
 		$scope.updateCourse = function() {
 			console.log($scope.course);
+
+            if(!$scope.course.title || !$scope.course.videoLink || !$scope.course.previewImage || !$scope.course.quiz || !$scope.course.barCategories ) {
+                alert("Please fill in all required fields before submitting course.");
+            } else {
+
+            }
+
+
+
 		}
 
 	}]);

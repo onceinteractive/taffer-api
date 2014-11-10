@@ -159,6 +159,17 @@ module.exports = function(app, models){
 							if(err){
 								done(err)
 							} else {
+                                console.log("Promotion In Upload", promotion);
+                                console.log("Image in Upload", imageKey);
+                                /*
+                                promotion.update({
+                                    $set: {
+                                        socialImages: imageKey
+                                    }
+                                }, function(err){
+                                    done(err)
+                                })
+                                */
 								done(null, promotion, imageKey)
 							}
 						})
