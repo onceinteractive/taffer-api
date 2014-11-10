@@ -93,6 +93,7 @@ module.exports = function(app, models) {
 						});
 					});
 				}, function(err) {
+					console.log("Error sending Apple messages: " + err);
 					finished();
 				});
 			}
@@ -122,6 +123,7 @@ module.exports = function(app, models) {
 		}
 
 		function sendAPN(userDeviceObject, message, pageUrl, done) {
+console.log('Apn called');
 			if(userDeviceObject.apples.length > 0) {
 				async.each(userDeviceObject.apples, function(appleToken, callback) {
 					var unreadCount = userDeviceObject.unread + 1;
@@ -135,6 +137,7 @@ module.exports = function(app, models) {
 						.send(); // This could accept a callback, but it doesn't do what we think it does
 					callback();
 				}, function(err) {
+					console.log(err);
 					done();
 				});
 			} else {
