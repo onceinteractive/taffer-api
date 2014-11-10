@@ -168,7 +168,7 @@ module.exports = function(app, models){
                         }
                     })
                     console.log("Third");
-                    var pushMessage = "abc"
+                    var pushMessage = "You have received a new pre-shift message"
                     /*
                     if(req.body.message.length > 80){
                         pushMessage = pushMessage + '...'
