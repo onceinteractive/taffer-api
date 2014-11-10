@@ -7,6 +7,7 @@ module.exports = function(app, models){
     var preshift = express.Router()
     var uploadRoute = require('../../Modules/imageUpload')(models)
     var pushNotification = require('../../Modules/pushNotifications')(app, models);
+
     preshift.route('/')
         //Get all preshift messages for user
         .get(app.auth, function(req, res){
@@ -144,6 +145,7 @@ module.exports = function(app, models){
                         res.send(err.response, err.status)
                     }
                 } else {
+                    console.log("First");
                     models.Preshift.findOne({
                         _id: preshift._id
                     })
@@ -158,17 +160,20 @@ module.exports = function(app, models){
                                 res.send(preshift.json())
                             }
                         })
+                    console.log("Second");
                     var pushRecipients = []
                     preshift.to.forEach(function(participant){
                         if(participant.toString() != req.user._id){
                             pushRecipients.push(participant)
                         }
                     })
-                    var pushMessage = req.user.firstName + ' ' + req.user.lastName + ' - ' + req.body.message.substring(0, 80)
+                    console.log("Third");
+                    var pushMessage = "abc"
+                    /*
                     if(req.body.message.length > 80){
                         pushMessage = pushMessage + '...'
-                    }
-
+                    }*/
+                    console.log("Fourth");
                     pushNotification(pushRecipients,
                         pushMessage,
                         'Main.Preshift.List',
@@ -176,6 +181,7 @@ module.exports = function(app, models){
                             //Nothing to do here regardless
                         }
                     )
+                    console.log("Fifth");
 
                 }
             })
