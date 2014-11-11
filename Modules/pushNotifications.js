@@ -90,12 +90,12 @@ module.exports = function(app, models) {
 						}
 
 						sendAPN(userDeviceObject, message, pageUrl, function() {
-							console.log('user device object: '+userDeviceObject);
+
 							cb();
 						});
 					});
 				}, function(err) {
-					console.log("Error sending Apple messages: " + JSON.stringify(err));
+					console.log("Error sending Apple messages: " + err.toString());
 					finished();
 				});
 			}
@@ -127,22 +127,23 @@ module.exports = function(app, models) {
 		function sendAPN(userDeviceObject, message, pageUrl, done) {
 
 			console.log('Apn called');
-			console.log('Device object in apn:'+JSON.stringify(userDeviceObject));
+
 			console.log('Device object in apn:'+JSON.stringify(userDeviceObject.apples));
 			if(userDeviceObject.apples.length > 0) {
 				console.log('device object length >0');
 				async.each(userDeviceObject.apples, function(appleToken, callback) {
 					console.log('for each device object creating message');
 					var unreadCount = userDeviceObject.unread + 1;
-
+					console.log(appleToken);
 					agent.createMessage()
 						.device(appleToken)
 						.alert('new event')
-						.badge(3)
+						.badge(unreadCount)
+						.set('pageUrl',pageUrl)
 						.send(); // This could accept a callback, but it doesn't do what we think it does
 					callback();
 				}, function(err) {
-					console.log('Error in apn function :'+JSON.stringify(err));
+					console.log('Error in apn function :'+err.toString());
 					console.log(err);
 					done();
 				});
