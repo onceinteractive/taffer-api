@@ -95,7 +95,7 @@ module.exports = function(app, models) {
 						});
 					});
 				}, function(err) {
-					console.log("Error sending Apple messages: " + err);
+					console.log("Error sending Apple messages: " + JSON.stringify(err));
 					finished();
 				});
 			}
@@ -142,7 +142,7 @@ module.exports = function(app, models) {
 						.send(); // This could accept a callback, but it doesn't do what we think it does
 					callback();
 				}, function(err) {
-					console.log('Error in apn function :'+err);
+					console.log('Error in apn function :'+JSON.stringify(err));
 					console.log(err);
 					done();
 				});
