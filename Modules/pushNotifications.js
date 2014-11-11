@@ -138,32 +138,16 @@ module.exports = function(app, models) {
 					agent.createMessage()
 						.device(appleToken)
 						.alert('new event')
-						.badge(unreadCount)
-						.sound('default')
-						.set('pageUrl', pageUrl )
+						.badge(3)
 						.send(); // This could accept a callback, but it doesn't do what we think it does
 					callback();
 				}, function(err) {
-					console.log('Error in apn function:'+err);
+					console.log('Error in apn function :'+err);
 					console.log(err);
 					done();
 				});
 			} else {
-				agent.createMessage()
-					.device(userDeviceObject.apples)
-					.alert(message)
-					.badge(3)
-					.sound('default')
-					.set('pageUrl', pageUrl)
-					.send();
-				/*var unreadCount = 1
-				console.log('device object length 0');
-				agent.createMessage()
-					.device(userDeviceObject)
-					.alert(message)
-					.badge(unreadCount)
-					.sound('default')
-					.set('pageUrl', pageUrl).send();*/
+
 				done();
 			}
 		}
