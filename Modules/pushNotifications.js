@@ -135,11 +135,11 @@ module.exports = function(app, models) {
 					var unreadCount = userDeviceObject.unread + 1;
 
 					agent.createMessage()
-						.device('aad94be6048debd14a7e9fe995f71353dea51f317e34d1d8747fd9e3f0588752')
+						.device(appleToken)
 						.alert('Event happening now!')
-						.badge(3)
+						.badge(unreadCount)
 						.sound('default')
-						.set('pageUrl', 'Main.Messages.List')
+						.set('pageUrl', pageUrl )
 						.send(); // This could accept a callback, but it doesn't do what we think it does
 					callback();
 				}, function(err) {
@@ -149,11 +149,11 @@ module.exports = function(app, models) {
 				});
 			} else {
 				agent.createMessage()
-					.device('aad94be6048debd14a7e9fe995f71353dea51f317e34d1d8747fd9e3f0588752')
-					.alert('Event happening now!')
+					.device(userDeviceObject.apples)
+					.alert(message)
 					.badge(3)
 					.sound('default')
-					.set('pageUrl', 'Main.Messages.List')
+					.set('pageUrl', pageUrl)
 					.send();
 				/*var unreadCount = 1
 				console.log('device object length 0');
