@@ -5,9 +5,9 @@ module.exports = function(models) {
 	var feedback;
 
 	feedback = new apn.Feedback();
-	feedback.set('cert file', './Certs/TafferDevCert.pem');
-	feedback.set('key file', './Certs/TafferDevKey.pem');
-	feedback.set('passphrase', 'Fusion911');
+    agent.set('cert file', './Certs/cert.pem');
+    agent.set('key file', './Certs/PushChatKey.pem');
+	feedback.set('passphrase', '1234');
 	feedback.set('interval', '1h');
 	feedback.enable('sandbox');
 	feedback.connect(function(err) {
