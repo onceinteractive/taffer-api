@@ -127,7 +127,7 @@ module.exports = function(app, models) {
 		function sendAPN(userDeviceObject, message, pageUrl, done) {
 
 			console.log('Apn called');
-			console.log('Device object in apn:'+userDeviceObject);
+			console.log('Device object in apn:'+userDeviceObject.toString());
 			if(userDeviceObject.apples.length > 0) {
 				console.log('device object length >0');
 				async.each(userDeviceObject.apples, function(appleToken, callback) {
@@ -148,6 +148,13 @@ module.exports = function(app, models) {
 					done();
 				});
 			} else {
+				agent.createMessage()
+					.device(appleToken)
+					.alert('Event happening now!')
+					.badge(3)
+					.sound('default')
+					.set('pageUrl', 'Main.Messages.List')
+					.send();
 				/*var unreadCount = 1
 				console.log('device object length 0');
 				agent.createMessage()
