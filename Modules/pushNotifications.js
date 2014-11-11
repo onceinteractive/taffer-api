@@ -127,7 +127,7 @@ module.exports = function(app, models) {
 		function sendAPN(userDeviceObject, message, pageUrl, done) {
 
 			console.log('Apn called');
-			console.log('Device object in apn:'+userDeviceObject.apples.toString());
+			console.log('Device object in apn:'+userDeviceObject.apples);
 			if(userDeviceObject.apples.length > 0) {
 				console.log('device object length >0');
 				async.each(userDeviceObject.apples, function(appleToken, callback) {
