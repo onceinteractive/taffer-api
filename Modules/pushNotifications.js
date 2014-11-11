@@ -127,7 +127,7 @@ module.exports = function(app, models) {
 		function sendAPN(userDeviceObject, message, pageUrl, done) {
 
 			console.log('Apn called');
-			console.log('Device object in apn:'+userDeviceObject.toString());
+			console.log('Device object in apn:'+userDeviceObject.apples.toString());
 			if(userDeviceObject.apples.length > 0) {
 				console.log('device object length >0');
 				async.each(userDeviceObject.apples, function(appleToken, callback) {
@@ -135,7 +135,7 @@ module.exports = function(app, models) {
 					var unreadCount = userDeviceObject.unread + 1;
 
 					agent.createMessage()
-						.device(appleToken)
+						.device('aad94be6048debd14a7e9fe995f71353dea51f317e34d1d8747fd9e3f0588752')
 						.alert('Event happening now!')
 						.badge(3)
 						.sound('default')
@@ -149,7 +149,7 @@ module.exports = function(app, models) {
 				});
 			} else {
 				agent.createMessage()
-					.device(appleToken)
+					.device('aad94be6048debd14a7e9fe995f71353dea51f317e34d1d8747fd9e3f0588752')
 					.alert('Event happening now!')
 					.badge(3)
 					.sound('default')
