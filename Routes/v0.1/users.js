@@ -152,7 +152,6 @@ module.exports = function(app, models){
 							done(err, device)
 						})
 					} else {
-
 						models.Device.update({
 							_id: device._id
 						}, {
@@ -167,7 +166,6 @@ module.exports = function(app, models){
 				},
 
 				function(device, done){
-					console.log('update user devices 1');
 					models.User.update({
 						devices: device._id
 					}, {
@@ -180,7 +178,6 @@ module.exports = function(app, models){
 				},
 
 				function(device, done){
-					console.log('update user devices 2');
 					models.User.update({
 						_id: req.user._id
 					}, {
