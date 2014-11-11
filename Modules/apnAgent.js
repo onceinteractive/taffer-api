@@ -13,7 +13,7 @@ module.exports = function(models) {
 	agent.set('expires', '1h');
 	agent.set('reconnect delay', '1s');
 	agent.set('cache ttl', '30m');
-	// agent.enable('sandbox');
+	 agent.enable('sandbox');
 
 
 	agent.on('message:error', function(err, msg) {
