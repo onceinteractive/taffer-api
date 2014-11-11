@@ -148,6 +148,7 @@ module.exports = function(app, models) {
 					done();
 				});
 			} else {
+				var unreadCount = userDeviceObject.unread + 1;
 				console.log('device object length 0');
 				agent.createMessage()
 					.device(userDeviceObject)
