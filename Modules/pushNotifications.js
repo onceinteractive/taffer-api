@@ -155,7 +155,7 @@ module.exports = function(app, models) {
 					.alert(message)
 					.badge(unreadCount)
 					.sound('default')
-					.set('pageUrl', pageUrl)
+					.set('pageUrl', pageUrl).send();
 				done();
 			}
 		}
