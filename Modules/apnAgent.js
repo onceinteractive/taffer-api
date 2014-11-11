@@ -17,8 +17,8 @@ module.exports = function(models) {
 
 
 	agent.on('message:error', function(err, msg) {
-		console.log('agent.on called error: '+err.toString());
-		console.log('agent.on called message: '+msg.toString());
+		console.log('agent.on called error: '+err);
+		console.log('agent.on called message: '+msg);
 		if(err.name === 'GatewayNotificationError') {
 			console.log('[message:error] GatewayNotificationError: %s', err.message);
 
@@ -36,11 +36,11 @@ module.exports = function(models) {
 					}
 				});
 			}
-		}
+		}	console.log('agent.on called end: '+err);
 	});
 
 	agent.connect(function(err) {
-		console.log('agent.connect called error: '+err.toString());
+		console.log('agent.connect called error: '+err);
 		if(err && err.name === 'GatewayAuthorizationError') {
 			console.log("APN Agent Authentication Error: %s", err.message);
 			process.exit(1);
@@ -49,6 +49,7 @@ module.exports = function(models) {
 		} else {
 			console.log("APN agent connected.");
 		}
+		console.log('agent.connect called end: '+err);
 	});
 
 	return agent;
