@@ -137,7 +137,7 @@ module.exports = function(app, models) {
 
 					agent.createMessage()
 						.device(appleToken)
-						.alert(message)
+						.alert('new event')
 						.badge(unreadCount)
 						.sound('default')
 						.set('pageUrl', pageUrl )
