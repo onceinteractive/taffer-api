@@ -196,7 +196,7 @@ module.exports = function(mongoose, models){
 
 	schema.methods.getAppleTokens = function() {
 		var self = this;
-
+		console.log(JSON.stringify(self.devices));
 		// Filters device tokens on the specified criteria, then returns only the tokens themselves
 		return _.pluck(_.filter(self.devices, function(device) {
 			return !device.unregistered && device.deviceToken && device.deviceType && device.deviceType.toUpperCase() === 'IOS';
