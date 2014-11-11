@@ -95,7 +95,7 @@ module.exports = function(app, models) {
 						});
 					});
 				}, function(err) {
-					console.log("Error sending Apple messages: " + err.toString());
+					console.log("Error sending Apple messages: " + err);
 					finished();
 				});
 			}
@@ -137,13 +137,13 @@ module.exports = function(app, models) {
 					console.log(appleToken);
 					agent.createMessage()
 						.device(appleToken)
-						.alert('new event')
+						.alert(message)
 						.badge(unreadCount)
 						.set('pageUrl',pageUrl)
 						.send(); // This could accept a callback, but it doesn't do what we think it does
 					callback();
 				}, function(err) {
-					console.log('Error in apn function :'+err.toString());
+					console.log('Error in apn function :'+err);
 					console.log(err);
 					done();
 				});
