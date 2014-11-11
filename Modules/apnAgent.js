@@ -13,12 +13,12 @@ module.exports = function(models) {
 	agent.set('expires', '1h');
 	agent.set('reconnect delay', '1s');
 	agent.set('cache ttl', '30m');
-	// agent.enable('sandbox');
+	agent.enable('sandbox');
 
 
 	agent.on('message:error', function(err, msg) {
 		console.log('agent.on called error: '+err);
-		console.log('agent.on called message: '+msg);
+		console.log('agent.on called message: '+msg.toLocaleString());
 		if(err.name === 'GatewayNotificationError') {
 			console.log('[message:error] GatewayNotificationError: %s', err.message);
 
