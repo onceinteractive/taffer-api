@@ -1,6 +1,7 @@
 var apn = require('apnagent');
 
 module.exports = function(models) {
+	console.log('APNagent.js called ');
 	var agent;
 
 	agent = new apn.Agent();
@@ -14,7 +15,10 @@ module.exports = function(models) {
 	agent.set('cache ttl', '30m');
 	// agent.enable('sandbox');
 
+
 	agent.on('message:error', function(err, msg) {
+		console.log('agent.on called error: '+err.toString());
+		console.log('agent.on called message: '+msg.toString());
 		if(err.name === 'GatewayNotificationError') {
 			console.log('[message:error] GatewayNotificationError: %s', err.message);
 
@@ -36,6 +40,7 @@ module.exports = function(models) {
 	});
 
 	agent.connect(function(err) {
+		console.log('agent.connect called error: '+err.toString());
 		if(err && err.name === 'GatewayAuthorizationError') {
 			console.log("APN Agent Authentication Error: %s", err.message);
 			process.exit(1);
