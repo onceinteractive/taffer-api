@@ -1,1 +1,1 @@
-web: node server.js noHealthCheck
+worker: node server.js noHealthCheck

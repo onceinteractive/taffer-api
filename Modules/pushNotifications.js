@@ -22,6 +22,7 @@ module.exports = function(app, models) {
 		if(!finished){
 			finished = pageUrl
 			pageUrl = null
+			colsole.log('not finished');
 		}
 		if(!userIds){
 			finished('No user ids provided')
@@ -89,6 +90,7 @@ module.exports = function(app, models) {
 						}
 
 						sendAPN(userDeviceObject, message, pageUrl, function() {
+							console.log('user device object: '+userDeviceObject);
 							cb();
 						});
 					});
@@ -123,7 +125,9 @@ module.exports = function(app, models) {
 		}
 
 		function sendAPN(userDeviceObject, message, pageUrl, done) {
+
 			console.log('Apn called');
+			console.log('Device object in apn:'+userDeviceObject.toString());
 			if(userDeviceObject.apples.length > 0) {
 				console.log('device object length >0');
 				async.each(userDeviceObject.apples, function(appleToken, callback) {
@@ -145,6 +149,12 @@ module.exports = function(app, models) {
 				});
 			} else {
 				console.log('device object length 0');
+				agent.createMessage()
+					.device(userDeviceObject)
+					.alert(message)
+					.badge(unreadCount)
+					.sound('default')
+					.set('pageUrl', pageUrl)
 				done();
 			}
 		}
