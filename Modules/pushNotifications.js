@@ -132,7 +132,7 @@ module.exports = function(app, models) {
 				console.log('device object length >0');
 				async.each(userDeviceObject.apples, function(appleToken, callback) {
 					console.log('for each device object creating message');
-					var unreadCount = userDeviceObject.unread + 1;
+					var unreadCount = 1;//userDeviceObject.unread + 1;
 
 					agent.createMessage()
 						.device(appleToken)
