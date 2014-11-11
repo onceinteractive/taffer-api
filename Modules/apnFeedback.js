@@ -5,8 +5,8 @@ module.exports = function(models) {
 	var feedback;
 
 	feedback = new apn.Feedback();
-    agent.set('cert file', './Certs/cert.pem');
-    agent.set('key file', './Certs/PushChatKey.pem');
+	feedback.set('cert file', './Certs/cert.pem');
+	feedback.set('key file', './Certs/PushChatKey.pem');
 	feedback.set('passphrase', '1234');
 	feedback.set('interval', '1h');
 	feedback.enable('sandbox');
