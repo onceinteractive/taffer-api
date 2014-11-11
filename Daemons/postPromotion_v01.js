@@ -12,7 +12,7 @@ module.exports = function(models){
 		name: 'postPromotion_v0.1',
 		options: {}
 	}
-	
+	console.log("TIME :"+(new Date()).getTime()+": scheduledPost file");
 	daemon.job = function(job, done){
 		//Load the scheduledPost
 		models.ScheduledPost.findOne({
@@ -20,6 +20,7 @@ module.exports = function(models){
 		})
 			.populate('shareableId')
 			.exec(function(err, scheduledPost){
+				console.log("TIME :"+(new Date()).getTime()+": scheduledPost : "+scheduledPost);
 				if(err){
 					done(err)
 				} else if(!scheduledPost){
