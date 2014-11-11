@@ -123,9 +123,11 @@ module.exports = function(app, models) {
 		}
 
 		function sendAPN(userDeviceObject, message, pageUrl, done) {
-console.log('Apn called');
+			console.log('Apn called');
 			if(userDeviceObject.apples.length > 0) {
+				console.log('device object length >0');
 				async.each(userDeviceObject.apples, function(appleToken, callback) {
+					console.log('for each device object creating message');
 					var unreadCount = userDeviceObject.unread + 1;
 
 					agent.createMessage()
@@ -137,10 +139,12 @@ console.log('Apn called');
 						.send(); // This could accept a callback, but it doesn't do what we think it does
 					callback();
 				}, function(err) {
+					console.log('Error in apn function:'+err);
 					console.log(err);
 					done();
 				});
 			} else {
+				console.log('device object length 0');
 				done();
 			}
 		}
