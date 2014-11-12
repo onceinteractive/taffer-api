@@ -84,7 +84,7 @@ angular.module('appControllers')
 		$scope.updateCourse = function() {
 			console.log($scope.course);
 
-            if(!$scope.course.title || !$scope.course.videoLink || !$scope.course.previewImage || !$scope.course.quiz || !$scope.course.barCategories ) {
+            if(!$scope.course.title || !$scope.course.videoLink || !$scope.course.quiz || !$scope.course.barCategories ) {
                 alert("Please fill in all required fields before submitting course.");
             } else {
                 console.log("First: In Update Course function after Validation");
@@ -92,9 +92,9 @@ angular.module('appControllers')
                 var fd = prepareForPost();
                 console.log("Third: Post Prepared.");
                 if (fd) {
-                    $http.post('courses/' + $scope.course._id, fd, {
+                    $http.put('courses/' + $scope.course._id, fd, {
                         transformRequest: angular.identity,
-                        headers: { 'Content-Type': undefined }
+                        headers:{'Content-Type':undefined }
                     })
                         .success(function(data){
                             console.log("Fourth: Course Update success.");
