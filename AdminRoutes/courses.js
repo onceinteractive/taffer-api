@@ -110,11 +110,11 @@ module.exports = function(app, models){
                 res.send(403)
                 return
             }
-
+            console.log("In function");
             delete req.body.badges
             delete req.body.updated
             delete req.body.created
-
+            console.log("Removed information");
             req.body.updated = new Date()
 
             async.waterfall([
@@ -123,10 +123,12 @@ module.exports = function(app, models){
                     if(!req.files.image){
                         done(null)
                     } else {
+                        console.log("In uploading image");
                         uploadRoute(req, 'courses', function(err, keys){
                             if(err){
                                 done(err)
                             } else {
+                                console.log("Image uploaded");
                                 req.body.previewImageKey = keys[0]
                                 //Remove old image?
                                 done(null)
@@ -136,6 +138,7 @@ module.exports = function(app, models){
                 },
 
                 function(done){
+                    console.log("In course updating");
                     models.Course.update({
                         _id: models.Object(req.params.courseId)
                     }, req.body, function(err){
