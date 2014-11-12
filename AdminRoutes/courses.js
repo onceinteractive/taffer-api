@@ -77,7 +77,7 @@ module.exports = function(app, models){
                 })
             })
         })
-
+    /*
     courses.route('/:courseId')
         .put(app.adminAuth, function(req, res){
 
@@ -100,6 +100,7 @@ module.exports = function(app, models){
                 }
             })
         })
+        */
 
     courses.route('/:courseId')
         /*
