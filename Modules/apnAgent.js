@@ -5,11 +5,11 @@ module.exports = function(models) {
 	var agent;
 
 	agent = new apn.Agent();
-	 agent.set('cert file', './Certs/cert.pem');
-	 agent.set('key file', './Certs/PushChatKey.pem');
-	//agent.set('cert file', './Certs/TafferProdCert.pem');
-	//agent.set('key file', './Certs/TafferProdKey.pem');
-	agent.set('passphrase', '1234');
+	 agent.set('cert file', './Certs/BarHQDevCert.pem');
+	 agent.set('key file', './Certs/BarHQDevKey.pem');
+	//agent.set('cert file', './Certs/BarHQProdCert.pem');
+	//agent.set('key file', './Certs/BarHQProdKey.pem');
+	agent.set('passphrase', 'B@rHQ123');
 	agent.set('expires', '1h');
 	agent.set('reconnect delay', '1s');
 	agent.set('cache ttl', '30m');
