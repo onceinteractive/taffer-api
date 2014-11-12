@@ -83,7 +83,15 @@ module.exports = function(app, models) {
                         if(!err && users && users.length > 0){
                             var userIds = []
                             users.forEach(function(user){
+
                                 userIds.push(user._id)
+                                pushNotification(user._id,
+                                    req.user.firstName + ' ' + req.user.lastName + ' has made a time off request that requires review for approval.',
+                                    "Main.Schedule.ShiftSwap",
+                                    function(err){
+                                        //Nothing to do
+                                        console.log('error in notifications');
+                                    })
                             })
                             console.log('User Ids:'+JSON.stringify(userIds));
 

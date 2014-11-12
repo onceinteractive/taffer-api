@@ -200,6 +200,13 @@ module.exports = function(app, models){
 					thread.participants.forEach(function(participant){
 						if(participant.toString() != req.user._id){
 							pushRecipients.push(participant)
+							pushNotification(participant,
+								pushMessage,
+								'Main.Messages.List',
+								function(err){
+									//Nothing to do here regardless
+								}
+							)
 						}
 					})
                     console.log("push to:"+pushRecipients.toString());
