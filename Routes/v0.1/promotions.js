@@ -375,6 +375,23 @@ module.exports = function(app, models){
 							}, function(err){
 								done(null)
 							})
+						},
+						function(done)
+						{
+
+							models.Promotion.findOne({
+								_id: req.params.promotionId
+							}, function(err, promotion){
+								if(err){
+									res.send(err, 500)
+								} else if(!promotion){
+									res.send('No promotions found', 404)
+								} else {
+									promotion.remove()
+									res.send(200)
+
+								}
+							})
 						}
 
 					], function(err){
@@ -384,21 +401,7 @@ module.exports = function(app, models){
 				}
 			})
 
-		models.Promotion.findOne({
-			_id: req.params.promotionId
-		}, function(err, promotion){
-			if(err){
-				res.send(err, 500)
-			} else if(!promotion){
-				res.send('No promotions found', 404)
-			} else {
 
-
-					promotion.remove()
-					res.send(200)
-
-			}
-		})
 		})
 
 	promotions.route('/:promotionId')
