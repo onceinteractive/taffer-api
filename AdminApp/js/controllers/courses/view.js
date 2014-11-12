@@ -45,6 +45,16 @@ angular.module('appControllers')
 						$scope.course.quiz = [];
 					}
 					$scope.course.barCategories = utility.arrayToObject($scope.course.barCategories, barCategories);
+
+
+                    for (var key in $scope.course.barCategories) {
+                        if ($scope.course.categories.indexOf(key) != -1) {
+                            $scope.course.barCategories[key] = true;
+                        } else {
+                            $scope.course.barCategories[key] = false;
+                        }
+                    }
+
 					$scope.updateView = true;
 					$scope.viewView = false;
 				});
@@ -92,7 +102,7 @@ angular.module('appControllers')
                 var fd = prepareForPost();
                 console.log("Third: Post Prepared.");
 
-                $http.put('courses/' + $scope.course._id, prepareForPost(), {
+                $http.put('courses/' + $scope.course._id, prepareForPut(), {
                     transformRequest: angular.identity,
                     headers:{'Content-Type':undefined}
                 })
@@ -100,7 +110,6 @@ angular.module('appControllers')
                     console.log("Fourth: Course Update success.");
                     $scope.submitted = "Successfully created a new course!";
                     $scope.course = {};
-                    $scope.course.barCategories = barCategories;
                 })
                 .error(function(error){
                     $scope.submitted = "There was an error creating the course.";
@@ -111,7 +120,7 @@ angular.module('appControllers')
 		}
 
 
-        var prepareForPost = function(){
+        var prepareForPut = function(){
             var fd = new FormData();
 
             fd.append("title", $scope.course.title);
