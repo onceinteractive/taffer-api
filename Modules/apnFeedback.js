@@ -14,7 +14,7 @@ module.exports = function(models) {
 
 	feedback.set('passphrase', 'B@rHQ123');
 	feedback.set('interval', '1h');
-	feedback.enable('sandbox');
+	//feedback.enable('sandbox');
 	feedback.connect(function(err) {
 		if(err) {
 			console.log("Feedback connection error: " + err);

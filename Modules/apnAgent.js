@@ -14,7 +14,7 @@ module.exports = function(models) {
 	agent.set('reconnect delay', '1s');
 	agent.set('cache ttl', '30m');
 
-	 agent.enable('sandbox');
+	 //agent.enable('sandbox');
 
 
 
