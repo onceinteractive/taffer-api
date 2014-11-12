@@ -203,7 +203,7 @@ module.exports = function(app, models){
 						}
 					})
                     console.log("push to:"+pushRecipients.toString());
-                    
+
 					var pushMessage = req.user.firstName + ' ' + req.user.lastName + ' - ' + req.body.message.substring(0, 80)
 					if(req.body.message.length > 80){
 						pushMessage = pushMessage + '...'

@@ -22,7 +22,7 @@ module.exports = function(app, models) {
 		if(!finished){
 			finished = pageUrl
 			pageUrl = null
-			colsole.log('not finished');
+			
 		}
 		if(!userIds){
 			finished('No user ids provided')
@@ -90,12 +90,12 @@ module.exports = function(app, models) {
 						}
 
 						sendAPN(userDeviceObject, message, pageUrl, function() {
-							console.log('user device object: '+userDeviceObject);
+
 							cb();
 						});
 					});
 				}, function(err) {
-					console.log("Error sending Apple messages: " + err);
+
 					finished();
 				});
 			}
@@ -126,43 +126,26 @@ module.exports = function(app, models) {
 
 		function sendAPN(userDeviceObject, message, pageUrl, done) {
 
-			console.log('Apn called');
-			console.log('Device object in apn:'+userDeviceObject.toString());
 			if(userDeviceObject.apples.length > 0) {
-				console.log('device object length >0');
+
 				async.each(userDeviceObject.apples, function(appleToken, callback) {
-					console.log('for each device object creating message');
-					var unreadCount = userDeviceObject.unread + 1;
+					;
+					var unreadCount = 1;//userDeviceObject.unread + 1;
 
 					agent.createMessage()
 						.device(appleToken)
-						.alert('Event happening now!')
-						.badge(3)
+						.alert(message)
+						.badge(unreadCount)
 						.sound('default')
-						.set('pageUrl', 'Main.Messages.List')
+						.set('pageUrl', pageUrl)
 						.send(); // This could accept a callback, but it doesn't do what we think it does
 					callback();
 				}, function(err) {
-					console.log('Error in apn function:'+err);
+
 					console.log(err);
 					done();
 				});
 			} else {
-				agent.createMessage()
-					.device(appleToken)
-					.alert('Event happening now!')
-					.badge(3)
-					.sound('default')
-					.set('pageUrl', 'Main.Messages.List')
-					.send();
-				/*var unreadCount = 1
-				console.log('device object length 0');
-				agent.createMessage()
-					.device(userDeviceObject)
-					.alert(message)
-					.badge(unreadCount)
-					.sound('default')
-					.set('pageUrl', pageUrl).send();*/
 				done();
 			}
 		}
