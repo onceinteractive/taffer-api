@@ -117,7 +117,6 @@ module.exports = function(app, models){
             delete req.body.created
 
             req.body.updated = new Date()
-            console.log("Sixth:",JSON.stringify(req));
             async.waterfall([
 
                 function(done){
