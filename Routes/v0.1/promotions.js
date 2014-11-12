@@ -379,7 +379,7 @@ module.exports = function(app, models){
 					], function() {
 							console.log('Promotion deleted start');
 							models.Promotion.findOne({
-								_id: req.params.promotionId
+								_id: scheduledPromotion.promotionId
 							}, function(err, promotion){
 								if(err){
 									console.log('error found');
