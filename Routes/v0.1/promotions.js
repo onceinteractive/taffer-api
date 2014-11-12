@@ -377,25 +377,25 @@ module.exports = function(app, models){
 							})
 						}
 					], function() {
-							console.log('Promotion deleted start');
+
 							models.Promotion.findOne({
 								_id: scheduledPromotion.promotionId
 							}, function(err, promotion){
 								if(err){
-									console.log('error found');
+
 									res.send(err, 500)
 								} else if(!promotion){
-									console.log('Not found');
+
 									res.send('No promotions found', 404)
 								} else {
-									console.log('removing');
+
 									promotion.remove()
 									res.send(200)
 
 								}
 
 
-								console.log('Promotion deleted end');
+
 							})
 						}
 
