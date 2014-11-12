@@ -208,6 +208,13 @@ module.exports = function(app, models) {
                                             var userIds = []
                                             users.forEach(function(user){
                                                 userIds.push(user._id)
+                                                pushNotification(user._id,
+                                                    swap.requestor.firstName + ' ' + swap.requestor.lastName + ' and ' +
+                                                    req.user.firstName + ' ' + req.user.lastName + ' have agreed to swap shifts - review for approval needed.',
+                                                    "Main.Schedule.ShiftSwap",
+                                                    function(err){
+                                                        //Nothing to do
+                                                    })
                                             })
 
                                             pushNotification(userIds,
