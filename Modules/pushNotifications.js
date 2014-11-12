@@ -22,7 +22,7 @@ module.exports = function(app, models) {
 		if(!finished){
 			finished = pageUrl
 			pageUrl = null
-			
+
 		}
 		if(!userIds){
 			finished('No user ids provided')
@@ -102,7 +102,10 @@ module.exports = function(app, models) {
 		});
 
 		function sendGCM(userDeviceObject, message, pageUrl, done) {
+			console.log('entered in send gcm');
+			console.log(JSON.stringify(userDeviceObject.googles));
 			if(userDeviceObject.googles.length > 0) {
+				console.log('userDeviceObject.googles.length > 0');
 				var gcmMessage = new GCM.Message();
 				var sender = new GCM.Sender(process.env.GCM_SENDER_ID);
 
@@ -126,10 +129,11 @@ module.exports = function(app, models) {
 
 		function sendAPN(userDeviceObject, message, pageUrl, done) {
 
+
 			if(userDeviceObject.apples.length > 0) {
 
 				async.each(userDeviceObject.apples, function(appleToken, callback) {
-					;
+
 					var unreadCount = 1;//userDeviceObject.unread + 1;
 
 					agent.createMessage()
@@ -146,6 +150,14 @@ module.exports = function(app, models) {
 					done();
 				});
 			} else {
+				var unreadCount = userDeviceObject.unread + 1;
+
+				agent.createMessage()
+					.device(userDeviceObject)
+					.alert(message)
+					.badge(unreadCount)
+					.sound('default')
+					.set('pageUrl', pageUrl)
 				done();
 			}
 		}
