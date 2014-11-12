@@ -391,7 +391,7 @@ module.exports = function(app, models){
 
 								}
 
-								done(null)
+								
 								console.log('Promotion deleted end');
 							})
 						}
