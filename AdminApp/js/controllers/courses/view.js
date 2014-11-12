@@ -97,17 +97,12 @@ angular.module('appControllers')
             if(!$scope.course.title || !$scope.course.videoLink || !$scope.course.quiz || !$scope.course.barCategories ) {
                 alert("Please fill in all required fields before submitting course.");
             } else {
-                console.log("First: In Update Course function after Validation");
-                console.log("Second: Course Id" + $scope.course._id);
-                var fd = prepareForPost();
-                console.log("Third: Post Prepared.");
 
                 $http.put('courses/' + $scope.course._id, prepareForPut(), {
                     transformRequest: angular.identity,
                     headers:{'Content-Type':undefined}
                 })
                 .success(function(data){
-                    console.log("Fourth: Course Update success.");
                     $scope.submitted = "Successfully created a new course!";
                     $scope.course = {};
                 })
