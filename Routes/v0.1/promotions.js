@@ -375,10 +375,9 @@ module.exports = function(app, models){
 							}, function(err){
 								done(null)
 							})
-						},
-						function(done)
-						{
-
+						}
+					], function() {
+							console.log('Promotion deleted start');
 							models.Promotion.findOne({
 								_id: req.params.promotionId
 							}, function(err, promotion){
@@ -391,10 +390,13 @@ module.exports = function(app, models){
 									res.send(200)
 
 								}
+
+								done(null)
+								console.log('Promotion deleted end');
 							})
 						}
 
-					], function(err){
+						,function(err){
 						scheduledPromotion.remove()
 						res.send(200)
 					})
