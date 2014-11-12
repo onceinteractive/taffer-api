@@ -91,22 +91,22 @@ angular.module('appControllers')
                 console.log("Second: Course Id" + $scope.course._id);
                 var fd = prepareForPost();
                 console.log("Third: Post Prepared.");
-                if (fd) {
-                    $http.put('courses/' + $scope.course._id, fd, {
-                        transformRequest: angular.identity,
-                        headers:{'Content-Type':undefined }
-                    })
-                        .success(function(data){
-                            console.log("Fourth: Course Update success.");
-                            $scope.submitted = "Successfully created a new course!";
-                            $scope.course = {};
-                            $scope.course.barCategories = barCategories;
-                        })
-                        .error(function(error){
-                            $scope.submitted = "There was an error creating the course.";
-                            console.log(error);
-                        });
-                }
+
+                $http.put('courses/' + $scope.course._id, prepareForPost(), {
+                    transformRequest: angular.identity,
+                    headers:{'Content-Type':undefined}
+                })
+                .success(function(data){
+                    console.log("Fourth: Course Update success.");
+                    $scope.submitted = "Successfully created a new course!";
+                    $scope.course = {};
+                    $scope.course.barCategories = barCategories;
+                })
+                .error(function(error){
+                    $scope.submitted = "There was an error creating the course.";
+                    console.log(error);
+                });
+
             }
 		}
 
