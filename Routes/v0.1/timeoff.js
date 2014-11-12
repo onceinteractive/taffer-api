@@ -79,6 +79,7 @@ module.exports = function(app, models) {
                         barId: req.user.barId,
                         'permissions.schedule.approveTimeOff': true
                     }, function(err, users){
+                        console.log('user found'+JSON.stringify(users));
                         if(!err && users && users.length > 0){
                             var userIds = []
                             users.forEach(function(user){
