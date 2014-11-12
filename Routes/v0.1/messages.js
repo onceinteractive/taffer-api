@@ -196,7 +196,11 @@ module.exports = function(app, models){
 					})
 
 					var pushRecipients = []
-                    console.log("to1:"+thread.participants.toString());
+					var pushMessage = req.user.firstName + ' ' + req.user.lastName + ' - ' + req.body.message.substring(0, 80)
+					if(req.body.message.length > 80){
+						pushMessage = pushMessage + '...'
+					}
+
 					thread.participants.forEach(function(participant){
 						if(participant.toString() != req.user._id){
 							pushRecipients.push(participant)
