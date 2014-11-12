@@ -87,11 +87,65 @@ angular.module('appControllers')
             if(!$scope.course.title || !$scope.course.videoLink || !$scope.course.previewImage || !$scope.course.quiz || !$scope.course.barCategories ) {
                 alert("Please fill in all required fields before submitting course.");
             } else {
+                console.log("First: In Update Course function after Validation");
+                console.log("Second: Course Id" + $scope.course._id);
+                var fd = prepareForPost();
+                console.log("Third: Post Prepared.");
+                if (fd) {
+                    $http.post('courses/' + $scope.course._id, fd, {
+                        transformRequest: angular.identity,
+                        headers: { 'Content-Type': undefined }
+                    })
+                        .success(function(data){
+                            console.log("Fourth: Course Update success.");
+                            $scope.submitted = "Successfully created a new course!";
+                            $scope.course = {};
+                            $scope.course.barCategories = barCategories;
+                        })
+                        .error(function(error){
+                            $scope.submitted = "There was an error creating the course.";
+                            console.log(error);
+                        });
+                }
+            }
+		}
 
+
+        var prepareForPost = function(){
+            var fd = new FormData();
+
+            fd.append("title", $scope.course.title);
+
+            fd.append("videoLink", $scope.course.videoLink);
+
+            angular.forEach($scope.course.previewImage, function(file) {
+                fd.append("image", file);
+            });
+
+            fd.append("quiz", JSON.stringify($scope.course.quiz));
+
+            fd.append("barCategories", JSON.stringify(utility.objectToArray($scope.course.barCategories)));
+
+            if ($scope.course.type){
+                fd.append("type", $scope.course.type);
             }
 
+            if ($scope.course.description){
+                fd.append("description", $scope.course.description);
+            }
+
+            if($scope.course.published){
+                fd.append("published", $scope.course.published);
+            }
+
+            if($scope.course.publishedStartDate && $scope.course.publishedEndDate){
+                fd.append("publishedStartDate", $scope.course.publishedStartDate);
+                fd.append("publishedEndDate", $scope.course.publishedEndDate);
+            }
+
+            return fd;
+        }
 
 
-		}
 
 	}]);
