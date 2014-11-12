@@ -55,7 +55,7 @@ angular.module('appControllers')
 					}
 
 
-					//$scope.course.barCategories = utility.arrayToObject($scope.course.barCategories, barCategories);
+					$scope.course.barCategories = utility.arrayToObject($scope.course.barCategories, barCategories);
 
 
                     for (var key in $scope.course.barCategories) {
