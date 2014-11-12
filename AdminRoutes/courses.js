@@ -141,7 +141,7 @@ module.exports = function(app, models){
                 function(done){
                     console.log("In course updating");
                     models.Course.update({
-                        _id: models.Object(req.params.courseId)
+                        _id: models.ObjectId(req.params.courseId)
                     }, req.body, function(err){
                         done(err)
                     })
