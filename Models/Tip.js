@@ -9,7 +9,7 @@ module.exports = function(mongoose, models){
 		barCategories: { type: [String], index: true }
 	})
 
-	schema.statics.categories = ['Human Resources', 'Marketing', 'Promotions']
+	schema.statics.categories = ['Human Resources', 'Marketing', 'Promotions','Operational']
 
 	return mongoose.model('Tip', schema)
 
