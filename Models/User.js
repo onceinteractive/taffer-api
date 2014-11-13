@@ -365,12 +365,12 @@ module.exports = function(mongoose, models){
         	}
         },
 
-        partender: {
+        /*partender: {
         	view: {
         		defaultValue: false,
         		description: 'Can view the partender tile'
         	}
-        },
+        },*/
 
         schedule: {
         	approveSwap: {
@@ -485,9 +485,9 @@ module.exports = function(mongoose, models){
         	send: true
         },
 
-        partender: {
+       /* partender: {
         	view: true
-        },
+        },*/
 
         schedule: {
         	approveSwap: true,
@@ -548,9 +548,9 @@ module.exports = function(mongoose, models){
         	send: false
         },
 
-        partender: {
+      /*  partender: {
         	view: false
-        },
+        },*/
 
         schedule: {
         	approveSwap: false,
@@ -614,10 +614,10 @@ module.exports = function(mongoose, models){
         	send: true
         },
 
-        partender: {
+      /*  partender: {
         	view: true
         },
-
+*/
         schedule: {
         	approveSwap: true,
         	approveTimeOff: true,

@@ -214,12 +214,6 @@ module.exports = function(app, models){
 						}
 					})
 
-
-					var pushMessage = req.user.firstName + ' ' + req.user.lastName + ' - ' + req.body.message.substring(0, 80)
-					if(req.body.message.length > 80){
-						pushMessage = pushMessage + '...'
-					}
-
 					pushNotification(pushRecipients,
 						pushMessage,
 						'Main.Messages.List',
@@ -335,6 +329,33 @@ module.exports = function(app, models){
 										res.send(thread)
 									}
 								})
+
+								var pushRecipients = []
+								var pushMessage = req.user.firstName + ' ' + req.user.lastName + ' - ' + req.body.message.substring(0, 80)
+								if(req.body.message.length > 80){
+									pushMessage = pushMessage + '...'
+								}
+
+								messageThread.participants.forEach(function(participant){
+									if(participant.toString() != req.user._id){
+										pushRecipients.push(participant)
+										pushNotification(participant,
+											pushMessage,
+											'Main.Messages.List',
+											function(err){
+												//Nothing to do here regardless
+											}
+										)
+									}
+								})
+
+								pushNotification(pushRecipients,
+									pushMessage,
+									'Main.Messages.List',
+									function(err){
+										//Nothing to do here regardless
+									}
+								)
 							}
 						})
 					}
