@@ -3,6 +3,7 @@ angular.module('appControllers')
 		
 		$scope.imagePreview = utility.displayWithPrefix;
 
+
 		$scope.viewView = true;
 		
 		$scope.getCourses = function(){
@@ -28,12 +29,6 @@ angular.module('appControllers')
 				});
 		}
 
-        var barCategories;
-        $http.get('bar/categoriesList', {})
-            .success(function(data) {
-                barCategories = utility.loadObjFromArray(data, false);
-                $scope.course.barCategories = barCategories;
-            });
 
 		$scope.viewCourse = function(id) {
 			// used to auto-populate bar categories checkboxes in create question form
@@ -44,9 +39,11 @@ angular.module('appControllers')
 					$scope.courseResults.forEach(function(course) {
 						if (course._id === id) {
 							$scope.course = course;
-                            objCourse = course;
 						}
 					});
+
+                    console.log($scope.course);
+
 					if (!$scope.course.categories){
 						$scope.course.categories = [];
 					}
@@ -57,7 +54,7 @@ angular.module('appControllers')
 
 					$scope.course.barCategories = utility.arrayToObject($scope.course.barCategories, barCategories);
 
-
+/*
                     for (var key in $scope.course.barCategories) {
                         if (objCourse.barCategories.indexOf(key) != -1) {
                             $scope.course.barCategories[key] = true;
@@ -65,7 +62,7 @@ angular.module('appControllers')
                             $scope.course.barCategories[key] = false;
                         }
                     }
-
+*/
 					$scope.updateView = true;
 					$scope.viewView = false;
 				});
@@ -115,8 +112,6 @@ angular.module('appControllers')
                 })
                 .success(function(data){
                     $scope.submitted = "Successfully created a new course!";
-                    $scope.course = {};
-                    $scope.course.barCategories = barCategories;
                 })
                 .error(function(error){
                     $scope.submitted = "There was an error creating the course.";
@@ -138,7 +133,7 @@ angular.module('appControllers')
                 fd.append("image", file);
             });
 
-            fd.append("quiz", JSON.stringify($scope.course.quiz));
+            fd.append("quiz", JSON.stringify(utility.objectToArray($scope.course.quiz)));
 
             fd.append("barCategories", JSON.stringify(utility.objectToArray($scope.course.barCategories)));
 

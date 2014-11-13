@@ -117,6 +117,9 @@ module.exports = function(app, models){
 
             req.body.updated = new Date()
 
+            req.body.barCategories = JSON.parse(req.body.barCategories);
+            req.body.quiz = JSON.parse(req.body.quiz);
+
             async.waterfall([
 
                 function(done){
