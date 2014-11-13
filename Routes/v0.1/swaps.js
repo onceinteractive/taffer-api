@@ -261,7 +261,12 @@ module.exports = function(app, models) {
                                         //Nothing to do
                                     })
 
-                                    pushNotification([swap.requestor._id, swap.switchWith._id],
+                                    pushNotification(swap.requestor._id,
+                                        req.user.firstName + ' ' + req.user.lastName + ' has approved your shift swap request.',
+                                        function(err){
+                                            //Nothing to do
+                                        })
+                                    pushNotification( swap.switchWith._id,
                                         req.user.firstName + ' ' + req.user.lastName + ' has approved your shift swap request.',
                                         function(err){
                                             //Nothing to do
@@ -269,7 +274,12 @@ module.exports = function(app, models) {
                                 } else {
                                     res.send(200)
 
-                                    pushNotification([swap.requestor._id, swap.switchWith._id],
+                                    pushNotification(swap.requestor._id,
+                                        req.user.firstName + ' ' + req.user.lastName + ' has denied your shift swap request.',
+                                        function(err){
+                                            //Nothing to do
+                                        })
+                                    pushNotification(swap.switchWith._id,
                                         req.user.firstName + ' ' + req.user.lastName + ' has denied your shift swap request.',
                                         function(err){
                                             //Nothing to do
