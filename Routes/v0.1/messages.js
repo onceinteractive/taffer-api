@@ -214,13 +214,6 @@ module.exports = function(app, models){
 						}
 					})
 
-					pushNotification(pushRecipients,
-						pushMessage,
-						'Main.Messages.List',
-						function(err){
-							//Nothing to do here regardless
-						}
-					)
 				}
 			})
 		})
@@ -349,13 +342,7 @@ module.exports = function(app, models){
 									}
 								})
 
-								pushNotification(pushRecipients,
-									pushMessage,
-									'Main.Messages.List',
-									function(err){
-										//Nothing to do here regardless
-									}
-								)
+
 							}
 						})
 					}

@@ -94,13 +94,6 @@ module.exports = function(app, models){
 										)
 									})
 
-									pushNotification(pushRecipients,
-										"A new suggestion has been sent.",
-										'Main.Messages.List',
-										function(err){
-											//Nothing to do here regardless
-										}
-									)
 								}
 							})
 

@@ -168,7 +168,7 @@ module.exports = function(app, models){
 							users.forEach(function(participant){
 								if(participant.toString() != req.user._id){
 									pushRecipients.push(participant)
-									pushNotification(pushRecipients,
+									pushNotification(participant,
 										req.user.firstName + ' ' + req.user.lastName + ' has added a High Priority Item to the Logbook' ,
 										'Main.LogBook.List',
 										function(err){
@@ -178,13 +178,6 @@ module.exports = function(app, models){
 								}
 							})
 
-							pushNotification(pushRecipients,
-								req.user.firstName + ' ' + req.user.lastName + ' has added a High Priority Item to the Logbook' ,
-								'Main.LogBook.List',
-								function(err){
-									//Nothing to do
-								}
-							)
 
 						})
 					}

@@ -94,14 +94,6 @@ module.exports = function(app, models) {
                                     })
                             })
 
-
-                            pushNotification(userIds,
-                                req.user.firstName + ' ' + req.user.lastName + ' has made a time off request that requires review for approval.',
-                                "Main.Schedule.ShiftSwap",
-                                function(err){
-                                    //Nothing to do
-                                    console.log('error in notifications');
-                                })
                         }
                     })
                 }

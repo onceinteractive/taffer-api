@@ -177,13 +177,6 @@ module.exports = function(app, models){
                         }
                     })
 
-                    pushNotification(pushRecipients,
-                        pushMessage,
-                        'Main.Preshift.List',
-                        function(err){
-                            //Nothing to do here regardless
-                        }
-                    )
 
 
                 }

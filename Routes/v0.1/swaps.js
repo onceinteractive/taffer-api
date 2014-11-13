@@ -217,13 +217,6 @@ module.exports = function(app, models) {
                                                     })
                                             })
 
-                                            pushNotification(userIds,
-                                                swap.requestor.firstName + ' ' + swap.requestor.lastName + ' and ' +
-                                                req.user.firstName + ' ' + req.user.lastName + ' have agreed to swap shifts - review for approval needed.',
-                                                "Main.Schedule.ShiftSwap",
-                                                function(err){
-                                                    //Nothing to do
-                                                })
                                         }
                                     })
                                 } else {
