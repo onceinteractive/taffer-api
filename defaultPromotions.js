@@ -124,7 +124,8 @@ if(process.argv.indexOf('localdb') != -1){
 	mongoDbURI = 'mongodb://localhost/taffer'
 } else {
 	//mongoDbURI = 'mongodb://54.221.103.199/taffer'
-    mongoDbURI = 'mongodb://tafferUser:welcome83@ds043170.mongolab.com:43170/heroku_app30278662'
+    //mongoDbURI = 'mongodb://tafferUser:welcome83@ds043170.mongolab.com:43170/heroku_app30278662'
+    mongoDbURI = 'mongodb://barhq_prod_user:taFFerBarhQ@ds053740-a0.mongolab.com:53740,ds053740-a1.mongolab.com:53740/prod_barhq'
 }
 
 var mongoDbOptions = {}
