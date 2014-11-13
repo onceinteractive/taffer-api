@@ -1,1 +1,1 @@
-web: node defaultPromotions.js noHealthCheck
+web: node server.js noHealthCheck
