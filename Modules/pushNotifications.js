@@ -102,10 +102,10 @@ module.exports = function(app, models) {
 		});
 
 		function sendGCM(userDeviceObject, message, pageUrl, done) {
-			console.log('entered in send gcm');
+
 			console.log(JSON.stringify(userDeviceObject.googles));
 			if(userDeviceObject.googles.length > 0) {
-				console.log('userDeviceObject.googles.length > 0');
+
 				var gcmMessage = new GCM.Message();
 				var sender = new GCM.Sender(process.env.GCM_SENDER_ID);
 

@@ -257,16 +257,18 @@ module.exports = function(app, models){
 								var userIds = []
 								users.forEach(function(user){
 									userIds.push(user._id)
+									//Push notification approval process
+									pushNotification(user._id,
+										req.user.firstName + ' ' + req.user.lastName + ' has requested to join your Bar Network',
+										'Main.MyTeam.List',
+										function(err){
+											//Do nothing at this point
+										}
+									)
 								})
 
-								//Push notification approval process
-								pushNotification(userIds,
-									req.user.firstName + ' ' + req.user.lastName + ' has requested to join your Bar Network',
-									'Main.MyTeam.List',
-									function(err){
-									//Do nothing at this point
-									}
-								)
+
+
 							})
 
 						}

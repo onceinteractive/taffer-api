@@ -382,20 +382,21 @@ module.exports = function(app, models){
 								_id: scheduledPromotion.promotionId
 							}, function(err, promotion){
 								if(err){
-
+									console.log('error found');
 									res.send(err, 500)
 								} else if(!promotion){
-
+									console.log('Not found');
 									res.send('No promotions found', 404)
 								} else {
-
+									console.log('removing');
+									scheduledPromotion.remove()
 									promotion.remove()
 									res.send(200)
 
 								}
 
 
-
+								console.log('Promotion deleted end');
 							})
 						}
 

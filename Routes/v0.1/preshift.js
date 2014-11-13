@@ -145,7 +145,7 @@ module.exports = function(app, models){
                         res.send(err.response, err.status)
                     }
                 } else {
-                    console.log("First");
+
                     models.Preshift.findOne({
                         _id: preshift._id
                     })
@@ -160,31 +160,24 @@ module.exports = function(app, models){
                                 res.send(preshift.json())
                             }
                         })
-                    console.log("Second");
+
                     var pushRecipients = []
 
-                    console.log("to1:"+preshift.to.toString());
+                    var pushMessage = "You have received a new pre-shift message"
                     preshift.to.forEach(function(participant){
                         if(participant.toString() != req.user._id){
                             pushRecipients.push(participant)
+                            pushNotification(participant,
+                                pushMessage,
+                                'Main.Preshift.List',
+                                function(err){
+                                    //Nothing to do here regardless
+                                }
+                            )
                         }
                     })
-                    console.log("push to:"+pushRecipients.toString());
-                    console.log("Third");
-                    var pushMessage = "You have received a new pre-shift message"
-                    /*
-                    if(req.body.message.length > 80){
-                        pushMessage = pushMessage + '...'
-                    }*/
-                    console.log("Fourth");
-                    pushNotification(pushRecipients,
-                        pushMessage,
-                        'Main.Preshift.List',
-                        function(err){
-                            //Nothing to do here regardless
-                        }
-                    )
-                    console.log("Fifth");
+
+
 
                 }
             })
