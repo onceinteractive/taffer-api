@@ -1,1 +1,1 @@
-worker: node daemonServer.js noHealthCheck
+worker: node server.js noHealthCheck
