@@ -85,15 +85,15 @@ module.exports = function(app, models){
 
 									users.forEach(function(user){
 										pushRecipients.push(user._id)
+										pushNotification(user._id,
+											"A new suggestion has been sent.",
+											'Main.Messages.List',
+											function(err){
+												//Nothing to do here regardless
+											}
+										)
 									})
 
-									pushNotification(pushRecipients,
-										"A new suggestion has been sent.",
-										'Main.Messages.List',
-										function(err){
-											//Nothing to do here regardless
-										}
-									)
 								}
 							})
 

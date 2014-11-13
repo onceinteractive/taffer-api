@@ -208,15 +208,15 @@ module.exports = function(app, models) {
                                             var userIds = []
                                             users.forEach(function(user){
                                                 userIds.push(user._id)
+                                                pushNotification(user._id,
+                                                    swap.requestor.firstName + ' ' + swap.requestor.lastName + ' and ' +
+                                                    req.user.firstName + ' ' + req.user.lastName + ' have agreed to swap shifts - review for approval needed.',
+                                                    "Main.Schedule.ShiftSwap",
+                                                    function(err){
+                                                        //Nothing to do
+                                                    })
                                             })
 
-                                            pushNotification(userIds,
-                                                swap.requestor.firstName + ' ' + swap.requestor.lastName + ' and ' +
-                                                req.user.firstName + ' ' + req.user.lastName + ' have agreed to swap shifts - review for approval needed.',
-                                                "Main.Schedule.ShiftSwap",
-                                                function(err){
-                                                    //Nothing to do
-                                                })
                                         }
                                     })
                                 } else {
@@ -261,7 +261,12 @@ module.exports = function(app, models) {
                                         //Nothing to do
                                     })
 
-                                    pushNotification([swap.requestor._id, swap.switchWith._id],
+                                    pushNotification(swap.requestor._id,
+                                        req.user.firstName + ' ' + req.user.lastName + ' has approved your shift swap request.',
+                                        function(err){
+                                            //Nothing to do
+                                        })
+                                    pushNotification( swap.switchWith._id,
                                         req.user.firstName + ' ' + req.user.lastName + ' has approved your shift swap request.',
                                         function(err){
                                             //Nothing to do
@@ -269,7 +274,12 @@ module.exports = function(app, models) {
                                 } else {
                                     res.send(200)
 
-                                    pushNotification([swap.requestor._id, swap.switchWith._id],
+                                    pushNotification(swap.requestor._id,
+                                        req.user.firstName + ' ' + req.user.lastName + ' has denied your shift swap request.',
+                                        function(err){
+                                            //Nothing to do
+                                        })
+                                    pushNotification(swap.switchWith._id,
                                         req.user.firstName + ' ' + req.user.lastName + ' has denied your shift swap request.',
                                         function(err){
                                             //Nothing to do

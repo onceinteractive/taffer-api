@@ -22,7 +22,7 @@ module.exports = function(app, models) {
 		if(!finished){
 			finished = pageUrl
 			pageUrl = null
-			colsole.log('not finished');
+
 		}
 		if(!userIds){
 			finished('No user ids provided')
@@ -90,19 +90,22 @@ module.exports = function(app, models) {
 						}
 
 						sendAPN(userDeviceObject, message, pageUrl, function() {
-							console.log('user device object: '+userDeviceObject);
+
 							cb();
 						});
 					});
 				}, function(err) {
-					console.log("Error sending Apple messages: " + err);
+
 					finished();
 				});
 			}
 		});
 
 		function sendGCM(userDeviceObject, message, pageUrl, done) {
+
+			console.log(JSON.stringify(userDeviceObject.googles));
 			if(userDeviceObject.googles.length > 0) {
+
 				var gcmMessage = new GCM.Message();
 				var sender = new GCM.Sender(process.env.GCM_SENDER_ID);
 
@@ -126,44 +129,35 @@ module.exports = function(app, models) {
 
 		function sendAPN(userDeviceObject, message, pageUrl, done) {
 
-			console.log('Apn called');
-			console.log('Device object in apn:'+JSON.stringify(userDeviceObject));
-			console.log('Device object in apn:'+JSON.stringify(userDeviceObject.apples));
+
 			if(userDeviceObject.apples.length > 0) {
-				console.log('device object length >0');
+
 				async.each(userDeviceObject.apples, function(appleToken, callback) {
-					console.log('for each device object creating message');
-					var unreadCount = userDeviceObject.unread + 1;
+
+					var unreadCount = 1;//userDeviceObject.unread + 1;
 
 					agent.createMessage()
 						.device(appleToken)
 						.alert(message)
 						.badge(unreadCount)
 						.sound('default')
-						.set('pageUrl', pageUrl )
+						.set('pageUrl', pageUrl)
 						.send(); // This could accept a callback, but it doesn't do what we think it does
 					callback();
 				}, function(err) {
-					console.log('Error in apn function:'+err);
+
 					console.log(err);
 					done();
 				});
 			} else {
-				agent.createMessage()
-					.device(userDeviceObject.apples)
-					.alert(message)
-					.badge(3)
-					.sound('default')
-					.set('pageUrl', pageUrl)
-					.send();
-				/*var unreadCount = 1
-				console.log('device object length 0');
+				var unreadCount = userDeviceObject.unread + 1;
+
 				agent.createMessage()
 					.device(userDeviceObject)
 					.alert(message)
 					.badge(unreadCount)
 					.sound('default')
-					.set('pageUrl', pageUrl).send();*/
+					.set('pageUrl', pageUrl)
 				done();
 			}
 		}

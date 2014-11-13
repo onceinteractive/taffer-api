@@ -77,7 +77,7 @@ module.exports = function(app, models){
                 })
             })
         })
-
+    /*
     courses.route('/:courseId')
         .put(app.adminAuth, function(req, res){
 
@@ -100,6 +100,7 @@ module.exports = function(app, models){
                 }
             })
         })
+        */
 
     courses.route('/:courseId')
         /*
@@ -110,12 +111,14 @@ module.exports = function(app, models){
                 res.send(403)
                 return
             }
-
             delete req.body.badges
             delete req.body.updated
             delete req.body.created
 
             req.body.updated = new Date()
+
+            req.body.barCategories = JSON.parse(req.body.barCategories);
+            req.body.quiz = JSON.parse(req.body.quiz);
 
             async.waterfall([
 
@@ -137,7 +140,7 @@ module.exports = function(app, models){
 
                 function(done){
                     models.Course.update({
-                        _id: models.Object(req.params.courseId)
+                        _id: models.ObjectId(req.params.courseId)
                     }, req.body, function(err){
                         done(err)
                     })
