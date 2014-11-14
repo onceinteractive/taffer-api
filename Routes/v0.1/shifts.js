@@ -148,6 +148,37 @@ module.exports = function(app, models) {
                     res.send(200)
                 }
             })
+
+            // send notifications to all users who have shifts
+
+            models.Shift.find({
+                bar: req.user.barId,
+                startTimeUTC: { $lt: req.body.weekEnd },
+                endTimeUTC: { $gte: req.body.weekStart },
+                published: true
+            }, function(err, shifts){
+                if(err){
+                    res.send(err, 500)
+                } else {
+                    shifts.forEach(function(shift){
+                        console.log("Sender: "+ user.toString()+ "Receiver: "+req.user._id)
+                       if(shift.user.toString()!=req.user._id){
+                            console.log("Sending notification to "+ shift.user.toString());
+                           pushNotification(shift.user,
+                               req.user.firstName + ' ' + req.user.lastName + ' has published a schedule for you .',
+                               function(err){
+                                   //Nothing to do
+                                   console.log("error in notification");
+                               })
+                       }
+                    })
+
+                }
+            })
+
+            ///end
+
+
         })
 
     shiftRouter.route('/nextShift')
