@@ -497,7 +497,7 @@ module.exports = function(mongoose, models){
         },
 
         social: {
-            manage: false
+            manage: true
         }
 	}
 
