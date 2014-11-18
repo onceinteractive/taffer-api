@@ -24,6 +24,6 @@
     "fbgraph": "~0.2.10",
     "node-twitter-api": "~1.2.3",
     "request": "~2.40.0",
-"newrelic"
+	"newrelic" : "*" 
   }
 }
