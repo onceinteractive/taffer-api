@@ -20,9 +20,10 @@ module.exports = function(){
 			var tmpFilename = './.uploads/' + uuid.v4()
 			console.log("tmpFilename :.........: "+tmpFilename);
 			var imageStream = fs.createWriteStream(tmpFilename)
-			console.log("imageStream :.........: "+imageStream);
+			console.log("imageStream :.........: "+JSON.stringify(imageStream));
 			request(imageUrl).pipe(imageStream)
 				.on('error', function(err){
+					console.log("....error : "+err);
 					cb(err)	
 				})
 				.on('close', function(){
