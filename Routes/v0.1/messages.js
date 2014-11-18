@@ -194,7 +194,7 @@ module.exports = function(app, models){
 							res.send(result)
 						}
 					})
-
+					console.log('starting');
 					var pushRecipients = []
 					var pushMessage = req.user.firstName + ' ' + req.user.lastName + ' - ' + req.body.message.substring(0, 80)
 					if(req.body.message.length > 80){
