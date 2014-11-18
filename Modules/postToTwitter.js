@@ -7,7 +7,7 @@ var twitter = new twitterAPI({
 	consumerKey: process.env.TWITTER_CONSUMER_KEY || 'pt8rAJvQ8Hmhp3nZmNlgapFCT',
 	consumerSecret: process.env.TWITTER_CONSUMER_SECRET || 'K3eTfa6dIK0OHmXbxqzJ3gX3ex0FqQVWvmiTU9VCjpswMSwk61'
 })
-
+console.log("........................postToTwitter.....................");
 module.exports = function(){
 
 	var postToTwitter = function(poster, message, imageUrl, cb){
