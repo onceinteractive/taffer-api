@@ -401,13 +401,14 @@ module.exports = function(mongoose, models){
                 description: 'Can be sent a message from any other employee'
             }
         },
-
+        /*
         social: {
             manage: {
                 defaultValue: false,
                 description: 'Can manage and schedule social media posts for the bar'
             }
         }
+        */
 
     }
 
@@ -495,10 +496,11 @@ module.exports = function(mongoose, models){
             scheduleEvents: true,
             scheduleUsers: true
         },
-
+        /*
         social: {
             manage: true
         }
+        */        
 	}
 
 	schema.statics.defaultStaffPermissions = {
@@ -556,10 +558,11 @@ module.exports = function(mongoose, models){
         	approveSwap: false,
         	approveTimeOff: false,
         },
-
+        /*
         social: {
             manage: false
         }
+        */
 	}
 
 	schema.statics.defaultManagerPermissions = {
