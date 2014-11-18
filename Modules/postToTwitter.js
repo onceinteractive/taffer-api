@@ -7,7 +7,7 @@ var twitter = new twitterAPI({
 	consumerKey: process.env.TWITTER_CONSUMER_KEY || 'pt8rAJvQ8Hmhp3nZmNlgapFCT',
 	consumerSecret: process.env.TWITTER_CONSUMER_SECRET || 'K3eTfa6dIK0OHmXbxqzJ3gX3ex0FqQVWvmiTU9VCjpswMSwk61'
 })
-console.log("........................postToTwitter.....................");
+
 module.exports = function(){
 
 	var postToTwitter = function(poster, message, imageUrl, cb){
@@ -15,15 +15,13 @@ module.exports = function(){
 			cb = imageUrl
 			imageUrl = null
 		}
-		console.log("image url :.........: "+imageUrl);
+
 		if(imageUrl){
-			var tmpFilename = './.uploads/' + uuid.v4()
-			console.log("tmpFilename :.........: "+tmpFilename);
+			var tmpFilename = uuid.v4() + ".png"
 			var imageStream = fs.createWriteStream(tmpFilename)
-			console.log("imageStream :.........: "+JSON.stringify(imageStream));
+
 			request(imageUrl).pipe(imageStream)
 				.on('error', function(err){
-					console.log("....error : "+err);
 					cb(err)	
 				})
 				.on('close', function(){
