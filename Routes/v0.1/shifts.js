@@ -150,7 +150,7 @@ module.exports = function(app, models) {
             })
 
             // send notifications to all users who have shifts
-
+            console.log('start');
             models.Shift.find({
                 bar: req.user.barId,
                 startTimeUTC: { $lt: req.body.weekEnd },
