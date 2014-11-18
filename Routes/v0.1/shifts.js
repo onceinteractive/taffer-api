@@ -128,6 +128,7 @@ module.exports = function(app, models) {
 
     shiftRouter.route('/publish')
         .post(app.auth, function(req,res){
+            console.log('start publishing');
             if(!req.user.hasPermission('schedule.scheduleUsers')){
                 res.send(403)
                 return
