@@ -7,8 +7,8 @@ var uuid = require('node-uuid');
 
 module.exports = function(app, models) {
 
-    var shiftRouter = express.Router();
-    var pushNotification = require('../../Modules/pushNotifications')(app, models)
+    var shiftRouter = express.Router()
+    var pushNotification = require('../../Modules/pushNotifications')(app, models);
 
     shiftRouter.route('/')
         .all(app.auth)
