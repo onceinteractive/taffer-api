@@ -15,11 +15,12 @@ module.exports = function(){
 			cb = imageUrl
 			imageUrl = null
 		}
-
+		console.log("image url :.........: "+imageUrl);
 		if(imageUrl){
 			var tmpFilename = './.uploads/' + uuid.v4()
+			console.log("tmpFilename :.........: "+tmpFilename);
 			var imageStream = fs.createWriteStream(tmpFilename)
-
+			console.log("imageStream :.........: "+imageStream);
 			request(imageUrl).pipe(imageStream)
 				.on('error', function(err){
 					cb(err)	
