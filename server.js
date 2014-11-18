@@ -1,3 +1,5 @@
+require('newrelic');
+
 var cluster = require('cluster')
 var express = require('express')
 
