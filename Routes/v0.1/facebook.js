@@ -24,6 +24,7 @@ module.exports = function(app, models){
 				res.redirect(baseUrl + '/v0.1/facebook/' + req.params.userId + '/auth?result=failure')
 			}
 			console.log("facebook...linking....3");
+			console.log("userId : "+req.params.userId);
 			models.User.findOne({
 				_id: models.ObjectId(req.params.userId)
 			}, function(err, user){
