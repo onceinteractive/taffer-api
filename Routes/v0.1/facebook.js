@@ -88,18 +88,23 @@ module.exports = function(app, models){
 														console.log("facebook...linking....13");
 													} else {
 														console.log("facebook...linking....14");
-														res.redirect(baseUrl + '/v0.1/facebook/' + req.params.userId + '/auth?result=success')
-														console.log("facebook...linking....15");
 														//Get the user and save it if at all possible
 														graph.get('me/?access_token=' + accessToken, function(err, response){
 															if(!err && response){
-																console.log("facebook...linking....16");
+																console.log("facebook...linking....15");
 																models.User.update({
 																	_id: user._id
 																}, {
 																	facebookUserId: response.id
 																}, function(err){
 																	//Nothing to do
+																	if(err){
+																		failure()
+																		console.log("facebook...linking....16");
+																	} else {
+																		console.log("facebook...linking....17");
+																		res.redirect(baseUrl + '/v0.1/facebook/' + req.params.userId + '/auth?result=success')				
+																	}
 																})
 
 															}
