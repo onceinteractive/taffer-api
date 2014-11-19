@@ -149,10 +149,10 @@ module.exports = function(app, models){
 
 	fb.route('/setUser')
 		.post(app.auth, function(req, res){
-			if(!req.user.hasPermission('social.manage')){
-				res.send("You do not have permission to access this bar's social media", 403)
-				return
-			}
+			// if(!req.user.hasPermission('social.manage')){
+			// 	res.send("You do not have permission to access this bar's social media", 403)
+			// 	return
+			// }
 
 			if(!req.user.facebookAccessToken){
 				res.send('We have not been given access to your Facebook account', 403)
