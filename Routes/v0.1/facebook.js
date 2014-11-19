@@ -14,19 +14,22 @@ module.exports = function(app, models){
 	fb.route('/:userId/auth')
 		.get(function(req, res){
 			if(req.query.result){
+				console.log("facebook...linking....1");
 				res.end()
 				return
 			}
 
 			var failure = function(){
+				console.log("facebook...linking....2");
 				res.redirect(baseUrl + '/v0.1/facebook/' + req.params.userId + '/auth?result=failure')
 			}
-
+			console.log("facebook...linking....3");
 			models.User.findOne({
 				_id: models.ObjectId(req.params.userId)
 			}, function(err, user){
 				if(err || !user){
 					failure()
+					console.log("facebook...linking....4");
 				} else {
 					graph.authorize({
 						'client_id': appId,
@@ -36,8 +39,9 @@ module.exports = function(app, models){
 					}, function(err, response){
 						if(err){
 							failure()
+							console.log("facebook...linking....5");
 						} else {
-
+							console.log("facebook...linking....6");
 							var accessToken = response.access_token,
 								expiresIn = response.expires
 							graph.extendAccessToken({
@@ -45,19 +49,20 @@ module.exports = function(app, models){
 								'client_id': appId,
 								'client_secret': appSecret
 							}, function(err, response){
-
+								console.log("facebook...linking....7");
 								if(!err){
 									accessToken = response.access_token,
 									expiresIn = response.expires
 								}
-
+								console.log("facebook...linking....8");
 								if(err || !accessToken){
 									failure()
+									console.log("facebook...linking....9");
 								} else if(expiresIn){
 									var expirationDate = new Date()
-
+									console.log("facebook...linking....10");
 									expirationDate.setSeconds(expirationDate.getSeconds() + expiresIn)
-
+									console.log("facebook...linking....11");
 									var expirationTaskDate = expirationDate
 									expirationTaskDate.setDate(expirationTaskDate.getDate() - 14)
 									models.Agenda.create('facebookTokenExpiration_v0.1', {
@@ -67,7 +72,9 @@ module.exports = function(app, models){
 										.save(function(err, task){
 											if(err){
 												failure()
+												console.log("facebook...linking....11");
 											} else {
+												console.log("facebook...linking....12");	
 												models.User.update({
 													_id: user._id
 												}, {
@@ -78,12 +85,15 @@ module.exports = function(app, models){
 												}, function(err){
 													if(err){
 														failure()
+														console.log("facebook...linking....13");
 													} else {
+														console.log("facebook...linking....14");
 														res.redirect(baseUrl + '/v0.1/facebook/' + req.params.userId + '/auth?result=success')
+														console.log("facebook...linking....15");
 														//Get the user and save it if at all possible
 														graph.get('me/?access_token=' + accessToken, function(err, response){
 															if(!err && response){
-
+																console.log("facebook...linking....16");
 																models.User.update({
 																	_id: user._id
 																}, {
