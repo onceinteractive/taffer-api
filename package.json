@@ -23,6 +23,7 @@
     "mandrill-api": "~1.0.40",
     "fbgraph": "~0.2.10",
     "node-twitter-api": "~1.2.3",
-    "request": "~2.40.0"
+    "request": "~2.40.0",
+	"newrelic" : "*" 
   }
 }
