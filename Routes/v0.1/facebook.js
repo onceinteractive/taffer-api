@@ -1,7 +1,7 @@
 var express = require('express')
 var graph = require('fbgraph')
 
-var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
+var baseUrl = process.env.BASE_URL || 'http://barhq-api.herokuapp.com'
 var appId = process.env.FACEBOOK_APP_ID || '717433561644223'
 var appSecret = process.env.FACEBOOK_APP_SECRET || 'c2438639d21449396b4ef5fa3258682e'
 
