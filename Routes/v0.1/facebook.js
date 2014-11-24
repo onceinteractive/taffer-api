@@ -36,6 +36,7 @@ module.exports = function(app, models){
 				if(err || !user){
 					failure()
 				} else {
+					console.log("..........................................................................");
 					graph.authorize({
 						'client_id': appId,
 						'client_secret': appSecret,
@@ -60,6 +61,7 @@ module.exports = function(app, models){
 								if(err || !accessToken){
 									failure()
 								} else if(expiresIn){
+									console.log("...........................no access token...............................................");
 									console.log("extend access token ....func call");
 									var expirationDate = new Date()
 									expirationDate.setSeconds(expirationDate.getSeconds() + expiresIn)
@@ -99,6 +101,7 @@ module.exports = function(app, models){
 																		failure()
 																	} else {
 																		console.log("return ....func call");
+																		console.log("..............................end.no access token...........................................");
 																		res.redirect(baseUrl + '/v0.1/facebook/' + req.params.userId + '/auth?result=success')				
 																	}
 																})
@@ -111,6 +114,7 @@ module.exports = function(app, models){
 											}
 										})
 								} else {
+									console.log("..................................access token......................................");
 									models.User.update({
 										_id: user._id
 									}, {
@@ -120,6 +124,7 @@ module.exports = function(app, models){
 										if(err){
 											failure()
 										} else {
+											console.log("..........................end access token................................................");
 											res.redirect(baseUrl + '/v0.1/facebook/' + req.params.userId + '/auth?result=success')
 
 											//Get the user and save it if at all possible
