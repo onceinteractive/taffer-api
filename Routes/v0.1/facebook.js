@@ -36,7 +36,7 @@ module.exports = function(app, models){
 				if(err || !user){
 					failure()
 				} else {
-					console.log("..........................................................................");
+					console.log("..........................................................................\n\n\n\n\n\n\n\n\n\n\n\n");
 					graph.authorize({
 						'client_id': appId,
 						'client_secret': appSecret,
@@ -102,9 +102,7 @@ module.exports = function(app, models){
 																	if(err){
 																		failure()
 																	} else {
-																		console.log("return ....func call");
 																		console.log("..............................end.no access token...........................................");
-																						
 																	}
 																})
 
@@ -171,7 +169,8 @@ module.exports = function(app, models){
 			// 	res.send("You do not have permission to access this bar's social media", 403)
 			// 	return
 			// }
-
+			console.log("\n\n\n\n\n");
+			console.log("request data :: "+JSON.stringify(req.user));
 			if(!req.user.facebookAccessToken){
 				res.send('We have not been given access to your Facebook account', 403)
 				return
