@@ -170,8 +170,10 @@ module.exports = function(app, models){
 			// 	return
 			// }
 			console.log("\n\n\n\n\n");
-			console.log("request data :: "+JSON.stringify(req.user));
+			//console.log("request data :: "+JSON.stringify(req.user));
+			console.log("req.user.facebookAccessToken :: "+req.user.facebookAccessToken);
 			if(!req.user.facebookAccessToken){
+				console.log("\n\n\n...................in fb access token not found call......................");
 				res.send('We have not been given access to your Facebook account', 403)
 				return
 			}
