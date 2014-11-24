@@ -43,6 +43,7 @@ module.exports = function(app, models){
 						'redirect_uri': baseUrl + '/v0.1/facebook/' + req.params.userId + '/auth',
 						'code': req.query.code
 					}, function(err, response){
+						console.log("...............................in authorize func call..........................");
 						if(err){
 							failure()
 						} else {
@@ -88,6 +89,7 @@ module.exports = function(app, models){
 														failure()
 													} else {
 														console.log("get fb user id ....func call");
+														res.redirect(baseUrl + '/v0.1/facebook/' + req.params.userId + '/auth?result=success')
 														//Get the user and save it if at all possible
 														graph.get('me/?access_token=' + accessToken, function(err, response){
 															if(!err && response){
@@ -102,7 +104,7 @@ module.exports = function(app, models){
 																	} else {
 																		console.log("return ....func call");
 																		console.log("..............................end.no access token...........................................");
-																		res.redirect(baseUrl + '/v0.1/facebook/' + req.params.userId + '/auth?result=success')				
+																						
 																	}
 																})
 
