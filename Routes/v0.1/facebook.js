@@ -12,7 +12,7 @@ var appSecret = process.env.FACEBOOK_APP_SECRET || 'c2438639d21449396b4ef5fa3258
 */
 // Facebook Test App Credentials
 var appId = process.env.FACEBOOK_APP_ID || '402154059950883'
-var appSecret = process.env.FACEBOOK_APP_SECRET || 'addde0fba7d1e153c55f5113aa830fe2'
+var appSecret = process.env.FACEBOOK_APP_SECRET || '6b60d0fb02536f5d049e2329a62016d4'
 
 var postToFacebook = require('../../Modules/postToFacebook')()
 
