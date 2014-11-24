@@ -25,7 +25,7 @@ var appId = process.env.FACEBOOK_APP_ID || '717433561644223'
 var appSecret = process.env.FACEBOOK_APP_SECRET || 'c2438639d21449396b4ef5fa3258682e'
 */
 // Facebook Test App
-var appId = process.env.FACEBOOK_APP_ID || '732727473448165'
+var appId = process.env.FACEBOOK_APP_ID || '402154059950883'
 var appSecret = process.env.FACEBOOK_APP_SECRET || 'addde0fba7d1e153c55f5113aa830fe2'
 
 module.exports = function(app, models){
