@@ -2,8 +2,11 @@ var uuid = require('node-uuid')
 
 var express = require('express')
 
-//Twitter stuff
-var baseUrl = process.env.BASE_URL || 'http://barhq-api.herokuapp.com'
+// Production App 
+//var baseUrl = process.env.BASE_URL || 'http://barhq-api.herokuapp.com'
+// Test App
+var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
+//Twitter Production stuff
 var consumerKey = process.env.TWITTER_CONSUMER_KEY || '6kk1hqDGjz8Q8BxS4JFRP9dTz'
 var consumerSecret = process.env.TWITTER_CONSUMER_SECRET || 'zTKjwtRt5Vn3jgd3czIE5qGBvudcMfyMxgrDOY5TANFjoFPWrZ'
 var twitterAPI = require('node-twitter-api')
@@ -15,8 +18,15 @@ var twitter = new twitterAPI({
 
 //Facebook stuff
 var graph = require('fbgraph')
+
+// Facebook Production App
+/*
 var appId = process.env.FACEBOOK_APP_ID || '717433561644223'
 var appSecret = process.env.FACEBOOK_APP_SECRET || 'c2438639d21449396b4ef5fa3258682e'
+*/
+// Facebook Test App
+var appId = process.env.FACEBOOK_APP_ID || '732727473448165'
+var appSecret = process.env.FACEBOOK_APP_SECRET || 'addde0fba7d1e153c55f5113aa830fe2'
 
 module.exports = function(app, models){
 
