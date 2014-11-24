@@ -45,6 +45,7 @@ module.exports = function(app, models){
 						if(err){
 							failure()
 						} else {
+							console.log("authorize....func call");
 							var accessToken = response.access_token,
 								expiresIn = response.expires
 							graph.extendAccessToken({
@@ -59,6 +60,7 @@ module.exports = function(app, models){
 								if(err || !accessToken){
 									failure()
 								} else if(expiresIn){
+									console.log("extend access token ....func call");
 									var expirationDate = new Date()
 									expirationDate.setSeconds(expirationDate.getSeconds() + expiresIn)
 									var expirationTaskDate = expirationDate
@@ -71,6 +73,7 @@ module.exports = function(app, models){
 											if(err){
 												failure()
 											} else {
+												console.log("save user access token ....func call");
 												models.User.update({
 													_id: user._id
 												}, {
@@ -82,6 +85,7 @@ module.exports = function(app, models){
 													if(err){
 														failure()
 													} else {
+														console.log("get fb user id ....func call");
 														//Get the user and save it if at all possible
 														graph.get('me/?access_token=' + accessToken, function(err, response){
 															if(!err && response){
@@ -94,6 +98,7 @@ module.exports = function(app, models){
 																	if(err){
 																		failure()
 																	} else {
+																		console.log("return ....func call");
 																		res.redirect(baseUrl + '/v0.1/facebook/' + req.params.userId + '/auth?result=success')				
 																	}
 																})
