@@ -161,15 +161,17 @@ module.exports = function(app, models){
 							} else {
                                 console.log("Promotion In Upload", promotion);
                                 console.log("Image in Upload", imageKey);
-                             	promotion.update({
-									$set: {
-										socialImages: imageKey
-									}
-								}, function(err){
-									console.log("\n\n\n Error : "+err);
-									done(err, promotion)
-								})
-
+                             	try {
+	                             	promotion.update({
+										$set: {
+											socialImages: imageKey
+										}
+									}, function(err){
+										done(err, promotion)
+									})
+                             	} catch(e) {
+                             		console.log("Exception Message : "+JSON.stringify(e));
+                             	}
                              	/*
                                 promotion.update({
                                     $set: {
