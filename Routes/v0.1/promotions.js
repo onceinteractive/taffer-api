@@ -161,7 +161,18 @@ module.exports = function(app, models){
 							} else {
                                 console.log("Promotion In Upload", promotion);
                                 console.log("Image in Upload", imageKey);
-                                /*
+                             	
+                             	if(imageKey) {
+                             		promotion.update({
+										socialImages: imageKey
+									}, function(err){
+										done(err, promotion)
+									})	
+                             	}else{
+                             		done(null, promotion, imageKey)	
+                             	}
+                             	
+                             	/*
                                 promotion.update({
                                     $set: {
                                         socialImages: imageKey
@@ -170,7 +181,7 @@ module.exports = function(app, models){
                                     done(err)
                                 })
                                 */
-								done(null, promotion, imageKey)
+								//
 							}
 						})
 					} else {
