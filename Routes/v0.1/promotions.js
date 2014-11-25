@@ -161,13 +161,12 @@ module.exports = function(app, models){
 							} else {
                                 console.log("Promotion In Upload", promotion);
                                 console.log("Image in Upload", imageKey);
-                             	imageKeys.push(imageKey)
-                             	console.log("Image Array form = " + JSON.stringify(imageKeys));
-                                promotion.update({
+                             	promotion.update({
 									$set: {
-										socialImages: imageKeys
+										socialImages: imageKey
 									}
 								}, function(err){
+									console.log("\n\n\n Error : "+err);
 									done(err, promotion)
 								})
 
