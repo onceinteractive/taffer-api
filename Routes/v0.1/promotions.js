@@ -220,7 +220,8 @@ module.exports = function(app, models){
 								return;
 							}
 							shareables.push(shareable._id)
-
+							console.log("update promotion link of sharables .. 1");
+							console.log("newShareable.postOn : "+newShareable.postOn);
 							//Now create the postOns
 							if(newShareable.postOn) {
 							    async.each(newShareable.postOn, function(postOn, done){
@@ -232,12 +233,14 @@ module.exports = function(app, models){
 									done(err)
 								})	
 							}
+							console.log("update promotion link of sharables ... 2");
 						})
 
 					}, function(err){
 						if(err){
 							done(err)
 						} else {
+							console.log("update promotion link of sharables");
 							promotion.update({
 								$set: {
 									shareables: shareables
