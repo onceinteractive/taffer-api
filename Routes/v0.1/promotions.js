@@ -201,7 +201,7 @@ module.exports = function(app, models){
 					
 					async.each(req.body.shareables, function(newShareable, done){
 						if(imageKey && newShareable.selectedImage == 'UPLOAD'){
-							newShareable.selectedImage = imageKey
+							newShareable.selectedImage = "https://s3.amazonaws.com/taffer-dev/" + imageKey
 						}
 
 						models.Shareable.create({
