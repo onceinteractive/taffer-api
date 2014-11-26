@@ -163,7 +163,7 @@ module.exports = function(app, models){
                                 console.log("Image in Upload", imageKey);
                              	
                              	models.Promotion.update({
-									_id: promotion.promotionId
+									_id: promotion._id
 								}, {
 									socialImages: imageKey
 								}, function(err){
