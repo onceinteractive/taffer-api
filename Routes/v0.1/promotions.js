@@ -139,6 +139,7 @@ module.exports = function(app, models){
 							custom: true,
 							barId: req.user.barId
 						}, function(err, customPromotion){
+							console.log("custome Promotions : "+customPromotion);
 							console.log("customPromotion._id : "+customPromotion._id);
 							if(err){
 								done(err)
@@ -153,7 +154,7 @@ module.exports = function(app, models){
 						})
 					} else {
 						console.log("test path 2");
-						done(null, promotion,customPromotion._id)
+						done(null, promotion)
 					}
 				},
 
@@ -199,7 +200,7 @@ module.exports = function(app, models){
 				//For each shareable, schedule their tasks
 				function(promotion, imageKey, done){
 					var shareables = []
-
+					console.log("shareables : "+req.body.shareables);
 					if(!req.body.shareables || req.body.shareables.length == 0){
 						done(null, promotion)
 						return
