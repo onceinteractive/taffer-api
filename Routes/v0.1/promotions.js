@@ -237,7 +237,9 @@ module.exports = function(app, models){
 						})
 
 					}, function(err){
+						console.log("in callback function....");						
 						if(err){
+							console.log("in callback function..in error block..");
 							done(err)
 						} else {
 							console.log("update promotion link of sharables");
@@ -246,6 +248,7 @@ module.exports = function(app, models){
 									shareables: shareables
 								}
 							}, function(err){
+								console.log("update promotion link of sharables...errror"+JSON.stringify(err));
 								done(err, promotion)
 							})
 						}
