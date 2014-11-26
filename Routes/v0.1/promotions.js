@@ -132,6 +132,7 @@ module.exports = function(app, models){
 				//Create the custom promotion if it's a custom.
 				function(promotion, done){
 					if(!req.body.promotion.promotionId){
+						console.log("custom promotion");
 						models.Promotion.create({
 							title: promotion.title,
 							description: promotion.description,
@@ -141,6 +142,7 @@ module.exports = function(app, models){
 							if(err){
 								done(err)
 							} else {
+								console.log("custom promotion"+customPromotion);
 								promotion.update({
 									promotionId: customPromotion._id
 								}, function(err){
