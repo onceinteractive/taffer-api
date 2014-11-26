@@ -132,7 +132,6 @@ module.exports = function(app, models){
 				//Create the custom promotion if it's a custom.
 				function(promotion, done){
 					if(!req.body.promotion.promotionId){
-						console.log("custom promotion");
 						models.Promotion.create({
 							title: promotion.title,
 							description: promotion.description,
@@ -142,22 +141,20 @@ module.exports = function(app, models){
 							if(err){
 								done(err)
 							} else {
-								console.log("custom promotion id "+customPromotion._id);
 								promotion.update({
 									promotionId: customPromotion._id
 								}, function(err){
-									done(err, promotion)
-								})
-								console.log("updated custom promotion "+promotion);
-								done(null, promotion)
+									done(err, promotion,customPromotion._id)
+								})																
 							}
 						})
 					} else {
-						done(null, promotion)
+						done(null, promotion,customPromotion._id)
 					}
 				},
 
-				function(promotion, done){
+				function(promotion,promotionId, done){
+					console.log("promotionId :: "+promotionId);
 					if(req.files.image || req.body.image){
 						uploadRoute(req, req.body.image, function(err, imageKey){
 							if(err){
@@ -167,7 +164,7 @@ module.exports = function(app, models){
                                 console.log("Image in Upload", imageKey);
                              	
                              	models.Promotion.update({
-									_id: promotion.promotionId
+									_id: promotionId
 								}, {
 									socialImages: imageKey
 								}, function(err){
