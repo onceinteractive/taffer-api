@@ -304,7 +304,7 @@ module.exports = function(app, models){
 				res.send('We do not have the appropriate permissions from Facebook to post for this Account', 403)
 				return
 			}
-
+			console.log("image Url in req: "+req.body.imageUrl);
 			postToFacebook(req.user, req.body.message, req.body.imageUrl, function(err){
 				if(err){
 					res.send(err, 500)
