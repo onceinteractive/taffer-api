@@ -3,12 +3,12 @@
 var cluster = require('cluster')
 var express = require('express')
 
-if(process.env.NODETIME_ACCOUNT_KEY) {
-    require('nodetime').profile({
-        accountKey: process.env.NODETIME_ACCOUNT_KEY,
-        appName: 'BarHQ Test API' // optional
-    });
-}
+// if(process.env.NODETIME_ACCOUNT_KEY) {
+//     require('nodetime').profile({
+//         accountKey: process.env.NODETIME_ACCOUNT_KEY,
+//         appName: 'BarHQ Test API' // optional
+//     });
+// }
 
 //Cluster out, or create cluster watcher
 if(cluster.isMaster && process.argv.indexOf('noCluster') == -1){
