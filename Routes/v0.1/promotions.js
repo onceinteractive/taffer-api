@@ -132,7 +132,6 @@ module.exports = function(app, models){
 				//Create the custom promotion if it's a custom.
 				function(promotion, done){
 					if(!req.body.promotion.promotionId){
-						console.log("test path 0");
 						models.Promotion.create({
 							title: promotion.title,
 							description: promotion.description,
@@ -147,19 +146,16 @@ module.exports = function(app, models){
 								promotion.update({
 									promotionId: customPromotion._id
 								}, function(err){
-									console.log("test path 1");
 									done(err, promotion,customPromotion._id)
 								})																
 							}
 						})
 					} else {
-						console.log("test path 2");
 						done(null, promotion)
 					}
 				},
 
 				function(promotion,promotionId, done){
-					console.log("promotionId :: "+promotionId);
 					if(req.files.image || req.body.image){
 						uploadRoute(req, req.body.image, function(err, imageKey){
 							if(err){
@@ -200,7 +196,6 @@ module.exports = function(app, models){
 				//For each shareable, schedule their tasks
 				function(promotion, imageKey, done){
 					var shareables = []
-					console.log("shareables : "+req.body.shareables);
 					if(!req.body.shareables || req.body.shareables.length == 0){
 						done(null, promotion)
 						return
