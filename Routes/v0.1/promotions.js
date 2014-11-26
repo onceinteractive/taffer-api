@@ -138,8 +138,6 @@ module.exports = function(app, models){
 							custom: true,
 							barId: req.user.barId
 						}, function(err, customPromotion){
-							console.log("custome Promotions : "+customPromotion);
-							console.log("customPromotion._id : "+customPromotion._id);
 							if(err){
 								done(err)
 							} else {
