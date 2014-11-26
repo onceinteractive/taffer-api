@@ -161,7 +161,7 @@ module.exports = function(app, models){
 							} else {
                                 console.log("Promotion In Upload", promotion);
                                 console.log("Image in Upload", imageKey);
-                             	
+                             	/*
                              	models.Promotion.update({
 									_id: promotion.promotionId
 								}, {
@@ -171,7 +171,8 @@ module.exports = function(app, models){
 										done(err)
 									} 
 								})
-
+								*/
+								
                              	/*
                                 promotion.update({
                                     $set: {
