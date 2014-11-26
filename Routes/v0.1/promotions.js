@@ -195,6 +195,7 @@ module.exports = function(app, models){
 				function(promotion, imageKey, done){
 					var shareables = []
 					if(!req.body.shareables || req.body.shareables.length == 0){
+						console.log("shareable data not found");
 						done(null, promotion)
 						return
 					}
@@ -214,11 +215,12 @@ module.exports = function(app, models){
 							selectedPicture: newShareable.selectedImage
 						}, function(err, shareable){
 							if(err){
+								console.log("shareable not created error : "+err);
 								done(err)
 								return;
 							}
 							shareables.push(shareable._id)
-
+							
 							//Now create the postOns
 							async.each(newShareable.postOn, function(postOn, done){
 								shareable.schedule(postOn.postTime, postOn.network,
