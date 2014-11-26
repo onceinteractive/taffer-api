@@ -220,17 +220,18 @@ module.exports = function(app, models){
 								return;
 							}
 							shareables.push(shareable._id)
-							
+
 							//Now create the postOns
-							async.each(newShareable.postOn, function(postOn, done){
+							if(newShareable.postOn) {
+							    async.each(newShareable.postOn, function(postOn, done){
 								shareable.schedule(postOn.postTime, postOn.network,
 									function(err, scheduledPost){
 										done(err)
 									})
-							}, function(err){
-								done(err)
-							})
-
+								}, function(err){
+									done(err)
+								})	
+							}
 						})
 
 					}, function(err){
