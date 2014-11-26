@@ -142,12 +142,14 @@ module.exports = function(app, models){
 							if(err){
 								done(err)
 							} else {
-								console.log("custom promotion"+customPromotion);
+								console.log("custom promotion id "+customPromotion._id);
 								promotion.update({
 									promotionId: customPromotion._id
 								}, function(err){
 									done(err, promotion)
 								})
+								console.log("updated custom promotion "+promotion);
+								done(null, promotion)
 							}
 						})
 					} else {
@@ -165,7 +167,7 @@ module.exports = function(app, models){
                                 console.log("Image in Upload", imageKey);
                              	
                              	models.Promotion.update({
-									_id: promotion._id
+									_id: promotion.promotionId
 								}, {
 									socialImages: imageKey
 								}, function(err){
