@@ -132,23 +132,27 @@ module.exports = function(app, models){
 				//Create the custom promotion if it's a custom.
 				function(promotion, done){
 					if(!req.body.promotion.promotionId){
+						console.log("test path 0");
 						models.Promotion.create({
 							title: promotion.title,
 							description: promotion.description,
 							custom: true,
 							barId: req.user.barId
 						}, function(err, customPromotion){
+							console.log("customPromotion._id : "+customPromotion._id);
 							if(err){
 								done(err)
 							} else {
 								promotion.update({
 									promotionId: customPromotion._id
 								}, function(err){
+									console.log("test path 1");
 									done(err, promotion,customPromotion._id)
 								})																
 							}
 						})
 					} else {
+						console.log("test path 2");
 						done(null, promotion,customPromotion._id)
 					}
 				},
