@@ -221,7 +221,7 @@ module.exports = function(app, models){
 							}
 							shareables.push(shareable._id)
 							console.log("update promotion link of sharables .. 1");
-							console.log("newShareable.postOn : "+newShareable.postOn);
+							console.log("newShareable.postOn : "+JSON.stringify(newShareable.postOn));
 							//Now create the postOns
 							//if(newShareable.postOn) {
 								//console.log("poston...check");
