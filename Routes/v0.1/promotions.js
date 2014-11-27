@@ -159,9 +159,7 @@ module.exports = function(app, models){
 							if(err){
 								done(err)
 							} else {
-                                console.log("Promotion In Upload", promotion);
-                                console.log("Image in Upload", imageKey);
-                             	
+
                              	models.Promotion.update({
 									_id: promotionId
 								}, {
@@ -195,7 +193,6 @@ module.exports = function(app, models){
 				function(promotion, imageKey, done){
 					var shareables = []
 					if(!req.body.shareables || req.body.shareables.length == 0){
-						console.log("shareable data not found");
 						done(null, promotion)
 						return
 					}
@@ -215,17 +212,12 @@ module.exports = function(app, models){
 							selectedPicture: newShareable.selectedImage
 						}, function(err, shareable){
 							if(err){
-								console.log("shareable not created error : "+err);
 								done(err)
 								return;
 							}
 							shareables.push(shareable._id)
-							console.log("update promotion link of sharables .. 1");
-							console.log("newShareable.postOn : "+JSON.stringify(newShareable.postOn));
-							//Now create the postOns
-							if(typeof newShareable.postOn !== "undefined") {
-								console.log("poston...check");
-							    async.each(newShareable.postOn, function(postOn, done){
+
+						    async.each(newShareable.postOn, function(postOn, done){
 								shareable.schedule(postOn.postTime, postOn.network,
 									function(err, scheduledPost){
 										done(err)
@@ -233,23 +225,18 @@ module.exports = function(app, models){
 								}, function(err){
 									done(err)
 								})	
-							}
-							console.log("update promotion link of sharables ... 2");
+							//}
 						})
 
 					}, function(err){
-						console.log("in callback function....");						
 						if(err){
-							console.log("in callback function..in error block..");
 							done(err)
 						} else {
-							console.log("update promotion link of sharables");
 							promotion.update({
 								$set: {
 									shareables: shareables
 								}
 							}, function(err){
-								console.log("update promotion link of sharables...errror"+JSON.stringify(err));
 								done(err, promotion)
 							})
 						}
