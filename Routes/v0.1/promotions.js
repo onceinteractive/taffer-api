@@ -223,8 +223,8 @@ module.exports = function(app, models){
 							console.log("update promotion link of sharables .. 1");
 							console.log("newShareable.postOn : "+JSON.stringify(newShareable.postOn));
 							//Now create the postOns
-							//if(newShareable.postOn) {
-								//console.log("poston...check");
+							if(newShareable.postOn.length != 0) {
+								console.log("poston...check");
 							    async.each(newShareable.postOn, function(postOn, done){
 								shareable.schedule(postOn.postTime, postOn.network,
 									function(err, scheduledPost){
@@ -233,7 +233,7 @@ module.exports = function(app, models){
 								}, function(err){
 									done(err)
 								})	
-							//}
+							}
 							console.log("update promotion link of sharables ... 2");
 						})
 
