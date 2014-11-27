@@ -456,8 +456,17 @@ background-image: linear-gradient(to bottom right, #333030 0%, #171717 100%);;
   display:inline-block;
   vertical-align: top;
   padding:5px;
+}
+
+.inlineDivAds {
+    display:inline-block;
+    vertical-align: top;
+    padding:5px;
+    width: 300px;
+    word-wrap: break-word;
 
 }
+
 .inlineText {
   display:inline-block;
   vertical-align: top;
