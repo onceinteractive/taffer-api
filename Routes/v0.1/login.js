@@ -7,15 +7,15 @@ var express = require('express')
 // Test App
 var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
 //Twitter Production App
-/*
+
 var consumerKey = process.env.TWITTER_CONSUMER_KEY || 'wW5zpikQPxXefHRscyT6FgUQx'
 var consumerSecret = process.env.TWITTER_CONSUMER_SECRET || 'mTjacdvJjuvYwiIisqkTCgosattPpUtMTjMPyWQDrkWNycpd1G'
-*/
-//Twitter Test App
 
+//Twitter Test App
+/*
 var consumerKey = process.env.TWITTER_CONSUMER_KEY || '6kk1hqDGjz8Q8BxS4JFRP9dTz'
 var consumerSecret = process.env.TWITTER_CONSUMER_SECRET || 'zTKjwtRt5Vn3jgd3czIE5qGBvudcMfyMxgrDOY5TANFjoFPWrZ'
-
+*/
 var twitterAPI = require('node-twitter-api')
 var twitter = new twitterAPI({
 		consumerKey: consumerKey,
@@ -27,14 +27,15 @@ var twitter = new twitterAPI({
 var graph = require('fbgraph')
 
 // Facebook Production App
-/*
+
 var appId = process.env.FACEBOOK_APP_ID || '877533475604494'
 var appSecret = process.env.FACEBOOK_APP_SECRET || '5e4428deec3cf75cf15ef21e8c961afe'
-*/
+
 // Facebook Test App
+/*
 var appId = process.env.FACEBOOK_APP_ID || '402154059950883'
 var appSecret = process.env.FACEBOOK_APP_SECRET || '6b60d0fb02536f5d049e2329a62016d4'
-
+*/
 module.exports = function(app, models){
 
 	var login = express.Router()
