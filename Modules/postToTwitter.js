@@ -4,9 +4,9 @@ var uuid = require('node-uuid')
 var twitterAPI = require('node-twitter-api')
 
 // Production App
-//var baseUrl = process.env.BASE_URL || 'http://barhq-api.herokuapp.com'
+var baseUrl = process.env.BASE_URL || 'http://barhq-api.herokuapp.com'
 // Test App
-var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
+//var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
 //Twitter Production App
 
 var consumerKey = process.env.TWITTER_CONSUMER_KEY || 'wW5zpikQPxXefHRscyT6FgUQx'

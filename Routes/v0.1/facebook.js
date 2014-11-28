@@ -2,9 +2,9 @@ var express = require('express')
 var graph = require('fbgraph')
 
 // Production App
-//var baseUrl = process.env.BASE_URL || 'http://barhq-api.herokuapp.com'
+var baseUrl = process.env.BASE_URL || 'http://barhq-api.herokuapp.com'
 // Test App
-var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
+//var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
 // Facebook Production App Credentials
 
 var appId = process.env.FACEBOOK_APP_ID || '877533475604494'
