@@ -75,13 +75,25 @@ module.exports = function(mongoose, models){
 			'category'
 		]
 
+	/*schema.statics.defaultRoles = [
+	 { position: 'Owner', permissions: 'admin' },
+	 { position: 'Manager', permissions: 'manager' },
+	 { position: 'Bartender', permissions: 'staff' },
+	 { position: 'Waiter', permissions: 'staff' },
+	 { position: 'Chef', permissions: 'staff' },
+	 { position: 'Waitstaff', permissions: 'staff' }
+	 ]
+	 */
 	schema.statics.defaultRoles = [
 		{ position: 'Owner', permissions: 'admin' },
 		{ position: 'Manager', permissions: 'manager' },
+		{ position: 'Assistant Manager', permissions: 'staff' },
 		{ position: 'Bartender', permissions: 'staff' },
 		{ position: 'Waiter', permissions: 'staff' },
-		{ position: 'Chef', permissions: 'staff' },
-		{ position: 'Waitstaff', permissions: 'staff' }
+		{ position: 'Host', permissions: 'staff' },
+		{ position: 'BarBack', permissions: 'staff' },
+		{ position: 'Cook', permissions: 'staff' }
+
 	]
 
 	schema.methods.json = function(){
