@@ -18,6 +18,7 @@ module.exports = function(mongoose, model) {
         }],
 
         badges: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Badge', default: [] }],
+        badgeImage: String,
 
         published: { type: Boolean, default: false },
         publishedStartDate: Date,
@@ -38,6 +39,7 @@ module.exports = function(mongoose, model) {
     		description: self.description,
     		videoLink: self.videoLink,
         previewImageKey: self.previewImageKey,
+            badgeImage: self.badgeImage,
         quiz: self.quiz,
     		badges: []
     	}

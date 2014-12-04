@@ -31,27 +31,27 @@ module.exports = function(app, models){
 
         /*
             Example POST:
-            {
-                title: String,
-                description: String,
-                videoLink: String,
-                type: String,
+         {
+         title: String,
+         description: String,
+         videoLink: String,
+         type: String,
 
-                quiz: [
-                    {
-                        question: String,
-                        correctAnswer: String,
-                        reason: String,
-                        wrongAnswers: [String]
-                    }
-                ],
+         quiz: [
+         {
+         question: String,
+         correctAnswer: String,
+         reason: String,
+         wrongAnswers: [String]
+         }
+         ],
 
-                publishedStartDate: Date,
-                publishedEndDate: Date,
+         publishedStartDate: Date,
+         publishedEndDate: Date,
 
-                barCategories: [String]
-            }
-            Image upload [image] -> preview image to be shown on the phone
+         barCategories: [String]
+         }
+         Image upload [image] -> preview image to be shown on the phone
         */
         .post(app.adminAuth, function(req, res){
             if(!req.admin.hasPermission('courses.create')){
@@ -62,11 +62,11 @@ module.exports = function(app, models){
             req.body.barCategories = JSON.parse(req.body.barCategories);
             req.body.quiz = JSON.parse(req.body.quiz);
 
-            console.log(req.files);
+
             uploadRoute(req, 'courses', function(err, keys){
-                req.body.previewImageKey = keys;
-                console.log(req.body);
-                console.log(err);
+                req.body.previewImageKey = keys[1];
+                req.body.badgeImage = keys[0];
+
                 models.Course.create(req.body, function(err, course){
                     if(err){
                         res.send(err, 500);
@@ -76,6 +76,9 @@ module.exports = function(app, models){
                     }
                 })
             })
+
+
+
         })
     /*
     courses.route('/:courseId')
@@ -130,7 +133,8 @@ module.exports = function(app, models){
                             if(err){
                                 done(err)
                             } else {
-                                req.body.previewImageKey = keys[0]
+                                req.body.previewImageKey = keys[1]
+                                req.body.badgeImage = keys[0]
                                 //Remove old image?
                                 done(null)
                             }

@@ -59,6 +59,19 @@
 							none
 						</span>
 					</div><br/>
+
+
+                    <div>
+                        <b>Badge Image:</b><br/>
+						<span ng-show="course.badgeImage">
+							<img ng-src="{{imagePreview(course.badgeImage)}}" />
+						</span>
+						<span ng-hide="course.badgeImage">
+							none
+						</span>
+                    </div><br/>
+
+
 					<div>
 						<b>Description: </b>{{ course.description || "none" }}
 					</div><br/>
@@ -142,19 +155,46 @@
 						<tr>
 							<td>
 								<div>
-									Change Image?</br>
+									Change Preview Image?</br>
 									<span class="smallText" style="color:red;">LEAVE BLANK FOR NO CHANGE</span><br/>
 									<input type="file" accept="image/x-png, image/jpeg" file-input="course.previewImage"/>
 								</div>
 							</td>
 							<td>
-								<div>
-									<b>Type:</b><br/>
-									<input type="text" ng-model="course.type" />
-								</div>
+
 							</td>
 						<td>
 						</tr>
+
+
+                        <tr>
+                            <td colspan="2">
+                                <b>Badge Image:</b><br/>
+								<span ng-show="course.badgeImage">
+								<img ng-src="{{imagePreview(course.badgeImage)}}" />
+								</span>
+								<span ng-hide="course.badgeImage">
+									none
+								</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>
+                                    Change Badge Image?</br>
+                                    <span class="smallText" style="color:red;">LEAVE BLANK FOR NO CHANGE</span><br/>
+                                    <input type="file" accept="image/x-png, image/jpeg" file-input="course.badgeImage"/>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <b>Type:</b><br/>
+                                    <input type="text" ng-model="course.type" />
+                                </div>
+                            </td>
+                        </tr>
+
+
 						<tr>
 							<td>
 								<div>

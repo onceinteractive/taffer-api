@@ -133,7 +133,11 @@ angular.module('appControllers')
                 fd.append("image", file);
             });
 
-            fd.append("quiz", JSON.stringify(utility.objectToArray($scope.course.quiz)));
+            angular.forEach($scope.course.badgeImage, function(file) {
+                fd.append("image", file);
+            });
+
+            fd.append("quiz", JSON.stringify($scope.course.quiz));
 
             fd.append("barCategories", JSON.stringify(utility.objectToArray($scope.course.barCategories)));
 

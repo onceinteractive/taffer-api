@@ -28,6 +28,7 @@
 								</div>
 							</td>
 						</tr>
+                        <tr>
 							<td>
 								<div>
 									<b>Type:</b><br/>
@@ -40,27 +41,33 @@
 									<input type="file" accept="image/x-png, image/jpeg" file-input="course.previewImage"/>
 								</div>
 							</td>
-						<td>
+
 						</tr>
 						<tr>
 							<td>
-								<div>
-									<b>Description:</b><br/>
-									<textarea rows="10" cols="30" ng-model="course.description"></textarea>
-								</div>
+                                <div>
+                                    <b>Description:</b><br/>
+                                    <textarea rows="10" cols="30" ng-model="course.description"></textarea>
+                                </div>
 							</td>
 							<td>
-								<div>
-									<b>Bar Categories:</b><br/>
-									<div style="text-align:left;">
-										<input type="checkbox" value="false" ng-model="allBarCategories">All
-										<div ng-repeat="(key, value) in course.barCategories">
-											<input type="checkbox" value="{{value}}" ng-model="course.barCategories[key]">{{key}}
-                                        </div>
-									</div>
-								</div>
+                                <b>Badge Image:</b><br/>
+                                <input type="file" accept="image/x-png, image/jpeg" file-input="course.badgeImage"/>
 							</td>
 						</tr>
+                        <tr>
+                            <td>
+                                <div>
+                                    <b>Bar Categories:</b><br/>
+                                    <div style="text-align:left;">
+                                        <input type="checkbox" value="false" ng-model="allBarCategories">All
+                                        <div ng-repeat="(key, value) in course.barCategories">
+                                            <input type="checkbox" value="{{value}}" ng-model="course.barCategories[key]">{{key}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
 						<tr>
 							<td style="padding-bottom:0px;vertical-align:bottom;">
 								<input type="checkbox" value="false" ng-model="course.published" style="margin-right:10px;" /><b>Published</b>
