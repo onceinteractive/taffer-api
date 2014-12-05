@@ -1,20 +1,20 @@
 var express = require('express')
 var graph = require('fbgraph')
-
+/*
 // Production App
 var baseUrl = process.env.BASE_URL || 'http://barhq-api.herokuapp.com'
-// Test App
-//var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
 // Facebook Production App Credentials
-
 var appId = process.env.FACEBOOK_APP_ID || '877533475604494'
 var appSecret = process.env.FACEBOOK_APP_SECRET || '5e4428deec3cf75cf15ef21e8c961afe'
+*/
 
+
+// Test App
+var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
 // Facebook Test App Credentials
-/*
 var appId = process.env.FACEBOOK_APP_ID || '402154059950883'
 var appSecret = process.env.FACEBOOK_APP_SECRET || '6b60d0fb02536f5d049e2329a62016d4'
-*/
+
 var postToFacebook = require('../../Modules/postToFacebook')()
 
 module.exports = function(app, models){
