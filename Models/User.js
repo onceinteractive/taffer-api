@@ -131,8 +131,11 @@ module.exports = function(mongoose, models){
             barId: self.barId,
             tipsTriggered: self.tipsTriggered,
             id: self._id,  // Required for persistence.js
-            _lastChange: self._lastChange // Required for persistence.js
-    	}
+            _lastChange: self._lastChange, // Required for persistence.js
+			twitterAccessToken: self.twitterAccessToken,
+			facebookAccessToken: self.facebookAccessToken,
+			facebookAccessTokenExpiration: self.facebookAccessTokenExpiration,
+			Today: new Date()}
 		if(!attrs){
 			attrs = []
 		}
