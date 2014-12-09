@@ -264,6 +264,8 @@ module.exports = function(app, models){
 			}
 
 			graph.get('me/accounts?access_token=' + req.user.facebookAccessToken, function(err, response){
+                console.log("Error on facebook: " + req.user.facebookAccessToken);
+                console.log("Error on facebook: " + JSON.stringify(response));
 				if(err){
 					res.send(err, 500)
 				} else if(!response.data){
