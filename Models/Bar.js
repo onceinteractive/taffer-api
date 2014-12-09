@@ -24,6 +24,8 @@ module.exports = function(mongoose, models){
 		emailsSent: { type: [String], default: [] },
 
 		facebookPageId: String,
+
+		facebookProfileName: String,
 		facebookAccessToken: String,
 		facebookPageAccessToken: String,
 		facebookAccessDate: Date,
@@ -32,6 +34,7 @@ module.exports = function(mongoose, models){
 
 		twitterRequestToken: String,
 		twitterRequestTokenSecret: String,
+		twitterProfileName:String,
 		twitterAccessToken: String,
 		twitterSecretToken: String,
 		twitterAccessDate: Date,
