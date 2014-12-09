@@ -23,6 +23,7 @@ module.exports = function(app, models){
 
 	fb.route('/:userId/auth')
 		.get(function(req, res){
+			console.log("....return.....");
 			if(req.query.result){
 				res.end()
 				return
@@ -37,14 +38,14 @@ module.exports = function(app, models){
 				if(err || !user){
 					failure()
 				} else {
-					console.log("..........................................................................\n\n\n\n\n\n\n\n\n\n\n\n");
+					console.log("\n\n.......start.........\n\n");
 					graph.authorize({
 						'client_id': appId,
 						'client_secret': appSecret,
 						'redirect_uri': baseUrl + '/v0.1/facebook/' + req.params.userId + '/auth',
 						'code': req.query.code
 					}, function(err, response){
-						console.log("...............................in authorize func call..........................");
+						console.log("................in authorize func call..................");
 						if(err){
 							failure()
 						} else {
@@ -170,7 +171,6 @@ module.exports = function(app, models){
 			// 	res.send("You do not have permission to access this bar's social media", 403)
 			// 	return
 			// }
-			console.log("\n\n\n\n\n");
 			//console.log("request data :: "+JSON.stringify(req.user));
 			console.log("req.user.facebookAccessToken :: "+req.user.facebookAccessToken);
 			if(!req.user.facebookAccessToken){

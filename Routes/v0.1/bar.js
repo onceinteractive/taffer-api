@@ -15,7 +15,21 @@ module.exports = function(app, models){
 				} else if(!bar){
 					res.send('No such bar found', 404)
 				} else {
-					res.send(bar.json())
+					//res.send(bar.json())
+					var result = bar.json()
+					// get the user and check facebook credentials
+					models.User.findOne({
+						_id: models.ObjectId(result.ownerId)
+					}, function(err, user) {
+						if (err || !user) {
+							res.send(err, 500)
+						} else {
+							if(user.facebookAccessToken && user.facebookUserId) {
+								result.facebook = true
+							}
+							res.send(result)
+						}
+					})
 				}
 			})
 		})

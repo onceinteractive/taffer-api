@@ -110,7 +110,11 @@ module.exports = function(mongoose, models){
 			code: self.code
 		}
 
-		if(self.facebookPageId && self.facebookPageAccessToken){
+		/*if(self.facebookPageId && self.facebookPageAccessToken){
+			json.facebook = true
+		}*/
+
+		if(self.facebookAccessUser && self.facebookAccessToken){
 			json.facebook = true
 		}
 
