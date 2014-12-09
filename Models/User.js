@@ -64,12 +64,14 @@ module.exports = function(mongoose, models){
 
         _lastChange: Number,
 
+		facebookProfileName: String,
         facebookAccessToken: String,
         facebookAccessTokenDate: Date,
         facebookAccessTokenExpiration: Date,
         facebookTokenExpirationTask: mongoose.Schema.Types.ObjectId,
         facebookUserId: { type: String, index: true },
 
+		twitterProfileName:String,
         twitterRequestToken: String,
         twitterRequestTokenSecret: String,
         twitterAccessToken: String,
@@ -132,7 +134,9 @@ module.exports = function(mongoose, models){
             tipsTriggered: self.tipsTriggered,
             id: self._id,  // Required for persistence.js
             _lastChange: self._lastChange, // Required for persistence.js
+			twitterProfileName:self.twitterProfileName,
 			twitterAccessToken: self.twitterAccessToken,
+			facebookProfileName:self.facebookProfileName,
 			facebookAccessToken: self.facebookAccessToken,
 			facebookAccessTokenExpiration: self.facebookAccessTokenExpiration,
 			Today: new Date()}
