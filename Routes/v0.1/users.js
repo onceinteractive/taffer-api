@@ -478,7 +478,9 @@ module.exports = function(app, models){
 
 	users.route('/:userId')
 		//Update the user
+
 		.put(app.auth, function(req, res){
+			console.log("On server: "+JSON.stringify(req));
 			async.waterfall([
 
 				function(done){
