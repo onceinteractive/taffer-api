@@ -206,10 +206,10 @@ module.exports = function(app, models){
 
 	fb.route('/accounts')
 		.get(app.auth, function(req, res){
-			if(!req.user.hasPermission('social.manage')){
+			/*if(!req.user.hasPermission('social.manage')){
 				res.send("You do not have permission to access this bar's social media", 403)
 				return
-			}
+			}*/
 
 			if(!req.user.facebookAccessToken){
 				res.send('We have not been given access to your Facebook account', 403)
@@ -249,10 +249,10 @@ module.exports = function(app, models){
 			}
 		*/
 		.post(app.auth, function(req, res){
-			if(!req.user.hasPermission('social.manage')){
+			/*if(!req.user.hasPermission('social.manage')){
 				res.send("You do not have permission to access this bar's social media", 403)
 				return
-			}
+			}*/
 
 			if(!req.user.facebookAccessToken){
 				res.send('We have not been given access to your Facebook account', 403)
@@ -319,10 +319,10 @@ module.exports = function(app, models){
 
 	fb.route('/bar/share')
 		.post(app.auth, function(req, res){
-			if(!req.user.hasPermission('social.manage')){
+			/*if(!req.user.hasPermission('social.manage')){
 				res.send("You do not have permission to access this bar's social media", 403)
 				return
-			}
+			}*/
 
 			models.Bar.findOne({
 				_id: req.user.barId
