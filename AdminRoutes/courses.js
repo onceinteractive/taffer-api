@@ -129,12 +129,13 @@ module.exports = function(app, models){
                     if(!req.files.image){
                         done(null)
                     } else {
+                        console.log("In Image Uploading");
                         uploadRoute(req, 'courses', function(err, keys){
                             if(err){
                                 done(err)
                             } else {
-                                req.body.previewImageKey = keys[1]
-                                req.body.badgeImage = keys[0]
+
+                                req.body.previewImageKey = keys;
                                 //Remove old image?
                                 done(null)
                             }
@@ -253,6 +254,52 @@ module.exports = function(app, models){
         })
 
     courses.route('/:courseId/badges')
+        .put(app.adminAuth, function(req, res){
+            if(!req.admin.hasPermission('courses.create')){
+                res.send(403)
+                return
+            }
+            async.waterfall([
+
+                function(done){
+                    if(!req.files.image){
+                        done(null)
+                    } else {
+                        console.log("In Badge uploading");
+                        uploadRoute(req, 'courses', function(err, keys){
+                            if(err){
+                                done(err)
+                            } else {
+
+                                req.body.badgeImage = keys;
+                                console.log(req.body);
+                                //Remove old image?
+                                done(null)
+                            }
+                        })
+                    }
+                },
+
+                function(done){
+                    console.log(req.body);
+                    models.Course.update({
+                        _id: models.ObjectId(req.params.courseId)
+                    }, req.body, function(err){
+                        done(err)
+                    })
+                }
+
+            ], function(err){
+                if(err){
+                    res.send(err, 500)
+                } else {
+                    res.send(200)
+                }
+            })
+
+        })
+
+
         /*
             Assign / remove badges to a course
             Example PUT:
@@ -260,6 +307,7 @@ module.exports = function(app, models){
                 badges: [String] -> id
             }
         */
+        /*
         .put(app.adminAuth, function(req, res){
             if(!req.admin.hasPermission('courses.create')){
                 res.send(403)
@@ -370,7 +418,7 @@ module.exports = function(app, models){
                 }
             })
 
-        })
+        })*/
 
     courses.route('/badges')
         .get(app.adminAuth, function(req, res){

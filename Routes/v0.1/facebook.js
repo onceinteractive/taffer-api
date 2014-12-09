@@ -12,8 +12,8 @@ var appSecret = process.env.FACEBOOK_APP_SECRET || '5e4428deec3cf75cf15ef21e8c96
 // Test App
 var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
 // Facebook Test App Credentials
-var appId = process.env.FACEBOOK_APP_ID || '402154059950883'
-var appSecret = process.env.FACEBOOK_APP_SECRET || '6b60d0fb02536f5d049e2329a62016d4'
+var appId = process.env.FACEBOOK_APP_ID || '717433561644223'
+var appSecret = process.env.FACEBOOK_APP_SECRET || 'c2438639d21449396b4ef5fa3258682e'
 
 var postToFacebook = require('../../Modules/postToFacebook')()
 
@@ -206,10 +206,10 @@ module.exports = function(app, models){
 
 	fb.route('/accounts')
 		.get(app.auth, function(req, res){
-			if(!req.user.hasPermission('social.manage')){
+			/*if(!req.user.hasPermission('social.manage')){
 				res.send("You do not have permission to access this bar's social media", 403)
 				return
-			}
+			}*/
 
 			if(!req.user.facebookAccessToken){
 				res.send('We have not been given access to your Facebook account', 403)
@@ -222,7 +222,9 @@ module.exports = function(app, models){
 			}
 
 			graph.get('me/accounts?access_token=' + req.user.facebookAccessToken, function(err, response){
-				if(err){
+                console.log("Error on facebook: " + req.user.facebookAccessToken);
+                console.log("Error on facebook: " + JSON.stringify(response));
+                if(err){
 					res.send(err, 500)
 				} else if(!response.data){
 					res.send('No account data found', 404)
@@ -249,10 +251,10 @@ module.exports = function(app, models){
 			}
 		*/
 		.post(app.auth, function(req, res){
-			if(!req.user.hasPermission('social.manage')){
+			/*if(!req.user.hasPermission('social.manage')){
 				res.send("You do not have permission to access this bar's social media", 403)
 				return
-			}
+			}*/
 
 			if(!req.user.facebookAccessToken){
 				res.send('We have not been given access to your Facebook account', 403)
@@ -264,6 +266,7 @@ module.exports = function(app, models){
 			}
 
 			graph.get('me/accounts?access_token=' + req.user.facebookAccessToken, function(err, response){
+
 				if(err){
 					res.send(err, 500)
 				} else if(!response.data){
@@ -319,10 +322,10 @@ module.exports = function(app, models){
 
 	fb.route('/bar/share')
 		.post(app.auth, function(req, res){
-			if(!req.user.hasPermission('social.manage')){
+			/*if(!req.user.hasPermission('social.manage')){
 				res.send("You do not have permission to access this bar's social media", 403)
 				return
-			}
+			}*/
 
 			models.Bar.findOne({
 				_id: req.user.barId

@@ -54,9 +54,11 @@ module.exports = function(app, models){
 
 	twitter.route('/bar/requestToken')
 		.get(app.auth, function(req, res){
-			if(!req.user.hasPermission('social.manage')){
+			/*
+            if(!req.user.hasPermission('social.manage')){
 				res.send("You do not have permission to manage this bar's social media.")
 			}
+			*/
 
 			var twitter = new twitterAPI({
 				consumerKey: consumerKey,
@@ -244,7 +246,33 @@ module.exports = function(app, models){
 
 	twitter.route('/bar/share')
 		.post(app.auth, function(req, res){
-			if(!req.user.hasPermission('social.manage')){
+
+            models.Bar.findOne({
+                _id: req.user.barId
+            }, function(err, bar){
+                if(err){
+                    res.send(err, 500)
+                } else if(!bar){
+                    res.send('Error loading bar', 500)
+                } else {
+
+                    if(!bar.twitterAccessToken ||
+                        !bar.twitterSecretToken){
+                        res.send('We do not have the appropriate permissions from Twitter to post for this account', 403)
+                    } else {
+                        postToTwitter(bar, req.body.message, req.body.imageUrl, function(err){
+                            if(err){
+                                res.send(err, 500)
+                            } else {
+                                res.send(200)
+                            }
+                        })
+                    }
+
+                }
+            })
+
+/*			if(!req.user.hasPermission('social.manage')){
 				res.send("You do not have permission to access this bar's social media", 403)
 			} else {
 
@@ -274,7 +302,7 @@ module.exports = function(app, models){
 				})
 
 
-			}
+			}*/
 		})
 
 	twitter.route('/deactivate')
