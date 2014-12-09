@@ -39,6 +39,7 @@ module.exports = function(mongoose, models){
 		twitterSecretToken: String,
 		twitterAccessDate: Date,
 
+		
 		surveyAnswers: [{type: mongoose.Schema.Types.ObjectId, ref: 'BarSurveyAnswer' }],
 
 		updated: { type: Date, default: Date.now },
