@@ -64,14 +64,14 @@ module.exports = function(mongoose, models){
 
         _lastChange: Number,
 
-		facebookProfileName: String,
+
         facebookAccessToken: String,
         facebookAccessTokenDate: Date,
         facebookAccessTokenExpiration: Date,
         facebookTokenExpirationTask: mongoose.Schema.Types.ObjectId,
         facebookUserId: { type: String, index: true },
 
-		twitterProfileName:String,
+
         twitterRequestToken: String,
         twitterRequestTokenSecret: String,
         twitterAccessToken: String,
@@ -82,7 +82,10 @@ module.exports = function(mongoose, models){
         tipsTriggered: [String],
 
 		updated: { type: Date, default: Date.now },
-		created: { type: Date, default: Date.now }
+		created: { type: Date, default: Date.now },
+		ProfileNameTwitter:String,
+		ProfileNameFacebook: String
+
 	})
 
 	schema.methods.setPassword = function(password, cb){

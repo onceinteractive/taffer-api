@@ -25,7 +25,7 @@ module.exports = function(mongoose, models){
 
 		facebookPageId: String,
 
-		facebookProfileName: String,
+
 		facebookAccessToken: String,
 		facebookPageAccessToken: String,
 		facebookAccessDate: Date,
@@ -33,14 +33,16 @@ module.exports = function(mongoose, models){
 		facebookAccessUser: {type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 		twitterRequestToken: String,
 		twitterRequestTokenSecret: String,
-		twitterProfileName:String,
+
 		twitterAccessToken: String,
 		twitterSecretToken: String,
 		twitterAccessDate: Date,
 		surveyAnswers: [{type: mongoose.Schema.Types.ObjectId, ref: 'BarSurveyAnswer' }],
 
 		updated: { type: Date, default: Date.now },
-		created: { type: Date, default: Date.now }
+		created: { type: Date, default: Date.now },
+		ProfileNameTwitter:String,
+		ProfileNameFacebook: String
 	})
 
     /*
