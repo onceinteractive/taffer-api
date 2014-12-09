@@ -137,9 +137,9 @@ module.exports = function(mongoose, models){
             tipsTriggered: self.tipsTriggered,
             id: self._id,  // Required for persistence.js
             _lastChange: self._lastChange, // Required for persistence.js
-			twitterProfileName:self.twitterProfileName,
+			ProfileNameTwitter:self.ProfileNameTwitter,
 			twitterAccessToken: self.twitterAccessToken,
-			facebookProfileName:self.facebookProfileName,
+			ProfileNameFacebook:self.ProfileNameFacebook,
 			facebookAccessToken: self.facebookAccessToken,
 			facebookAccessTokenExpiration: self.facebookAccessTokenExpiration,
 			Today: new Date()}
