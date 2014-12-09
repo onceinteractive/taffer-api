@@ -12,8 +12,8 @@ var appSecret = process.env.FACEBOOK_APP_SECRET || '5e4428deec3cf75cf15ef21e8c96
 // Test App
 var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
 // Facebook Test App Credentials
-var appId = process.env.FACEBOOK_APP_ID || '402154059950883'
-var appSecret = process.env.FACEBOOK_APP_SECRET || '6b60d0fb02536f5d049e2329a62016d4'
+var appId = process.env.FACEBOOK_APP_ID || '717433561644223'
+var appSecret = process.env.FACEBOOK_APP_SECRET || 'c2438639d21449396b4ef5fa3258682e'
 
 var postToFacebook = require('../../Modules/postToFacebook')()
 
