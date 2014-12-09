@@ -191,7 +191,6 @@ module.exports = function(mongoose, models){
 
 		return unread.length;
 	}
-	
 	schema.methods.getAndroidTokens = function() {
 		var self = this;
 

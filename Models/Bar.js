@@ -31,15 +31,12 @@ module.exports = function(mongoose, models){
 		facebookAccessDate: Date,
 		facebookTokenExpiration: Date,
 		facebookAccessUser: {type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-
 		twitterRequestToken: String,
 		twitterRequestTokenSecret: String,
 		twitterProfileName:String,
 		twitterAccessToken: String,
 		twitterSecretToken: String,
 		twitterAccessDate: Date,
-
-		
 		surveyAnswers: [{type: mongoose.Schema.Types.ObjectId, ref: 'BarSurveyAnswer' }],
 
 		updated: { type: Date, default: Date.now },
