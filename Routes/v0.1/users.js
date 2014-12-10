@@ -500,8 +500,9 @@ module.exports = function(app, models){
 				//Is it his user, OR is he the owner/manager of the bar
 				//this user belongs to?
 				function(user, done){
+					console.log("Profile name updating:");
 					if(user._id.toString() != req.user._id.toString()){
-						console.log("Profile name updating: "+req.params.ProfileNameFacebook);
+						console.log("Profile name updating: 2");
 
 						if( req.user.hasPermission('users.edit') &&
 							req.user.barId.toString() == user.barId.toString()){
