@@ -499,7 +499,7 @@ module.exports = function(app, models){
 				res.send(403)
 				return
 			}
-
+			console.log("........promotion scheduled data.....1....."+JSON.stringify(req.body));
 			models.Shareable.findOne({
 				_id: models.ObjectId(req.params.shareableId),
 				barId: req.user.barId,
@@ -512,7 +512,7 @@ module.exports = function(app, models){
 					} else if(!shareable){
 						res.send('Shareable not found', 404)
 					} else {
-
+						console.log("........promotion scheduled data....2......"+JSON.stringify(req.body));
 						//If the shareable is more up to date, sync with the
 						//newer one first
 						if(shareable.updated < req.body.update){
