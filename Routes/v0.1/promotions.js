@@ -538,17 +538,17 @@ module.exports = function(app, models){
 						}
 						console.log("near image upload check"+JSON.stringify(req.body));
 						// update image with shareable
-						if(req.files.image || req.body.SelectedImage){
+						if(req.files.image || req.body.image){
 							console.log("selected image check");
-							uploadRoute(req, req.body.SelectedImage, function(err, imageKey){
+							uploadRoute(req, req.body.image, function(err, imageKey){
 								console.log("in upload function"+imageKey);
 								if(err){
 									done(err)
 								} else {
 									console.log("in else condition");
-									//if(imageKey && req.body.SelectedPicture == 'UPLOAD'){
+									if(imageKey && req.body.selectedImage == 'UPLOAD'){
 										uploaded_promotion_image = "https://s3.amazonaws.com/taffer-dev/" + imageKey
-									//}
+									}
 									shareable.update({SelectedPicture: uploaded_promotion_image}, function(err){
 										if(err){
 											res.send(err, 500)
