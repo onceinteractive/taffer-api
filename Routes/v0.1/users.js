@@ -480,7 +480,7 @@ module.exports = function(app, models){
 		//Update the user
 
 		.put(app.auth, function(req, res){
-			console.log("On server: "+JSON.stringify(req));
+			console.log("On server: "+req);
 			async.waterfall([
 
 				function(done){
@@ -500,7 +500,10 @@ module.exports = function(app, models){
 				//Is it his user, OR is he the owner/manager of the bar
 				//this user belongs to?
 				function(user, done){
+					console.log("Profile name updating:");
 					if(user._id.toString() != req.user._id.toString()){
+						console.log("Profile name updating: 1");
+
 						if( req.user.hasPermission('users.edit') &&
 							req.user.barId.toString() == user.barId.toString()){
 							done(null, user)
@@ -509,6 +512,7 @@ module.exports = function(app, models){
 							done("insufficent ownership")
 						}
 					} else {
+						console.log("Profile name updating: 2");
 						done(null, user)
 					}
 				},
@@ -595,6 +599,7 @@ module.exports = function(app, models){
 
 				//Update each attribute of the user as per req.body
 				function(user, done){
+					console.log("Profile name updating: 3");
 					Object.keys(req.body).forEach(function(update){
 						//Make sure that the update is actually a schema field for users
 						if(models.User.editableFields.indexOf(update) != -1){
