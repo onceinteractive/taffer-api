@@ -536,11 +536,11 @@ module.exports = function(app, models){
 							postOn = req.body.postOn
 							delete req.body.postOn
 						}
-						console.log("near image upload check");
+						console.log("near image upload check"+JSON.stringify(req.body));
 						// update image with shareable
-						if(req.files.image || req.body.SelectedPicture){
-							console.log("selcted image check");
-							uploadRoute(req, req.body.SelectedPicture, function(err, imageKey){
+						if(req.files.image || req.body.SelectedImage){
+							console.log("selected image check");
+							uploadRoute(req, req.body.SelectedImage, function(err, imageKey){
 								console.log("in upload function"+imageKey);
 								if(err){
 									done(err)
@@ -557,7 +557,7 @@ module.exports = function(app, models){
 								}
 							})
 						}
-
+						console.log("new other details update function");
 						shareable.update(req.body, function(err){
 							if(err){
 								res.send(err, 500)
