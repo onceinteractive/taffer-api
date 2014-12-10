@@ -499,7 +499,6 @@ module.exports = function(app, models){
 				res.send(403)
 				return
 			}
-			console.log("........promotion scheduled data.....1....."+JSON.stringify(req.body));
 			models.Shareable.findOne({
 				_id: models.ObjectId(req.params.shareableId),
 				barId: req.user.barId,
@@ -512,7 +511,6 @@ module.exports = function(app, models){
 					} else if(!shareable){
 						res.send('Shareable not found', 404)
 					} else {
-						console.log("........promotion scheduled data....2......"+JSON.stringify(req.body));
 						//If the shareable is more up to date, sync with the
 						//newer one first
 						if(shareable.updated < req.body.update){
@@ -536,19 +534,16 @@ module.exports = function(app, models){
 							postOn = req.body.postOn
 							delete req.body.postOn
 						}
-						console.log("near image upload check"+JSON.stringify(req.body));
 						// update image with shareable
 						if(req.files.image || req.body.image){
-							console.log("selected image check");
 							uploadRoute(req, req.body.image, function(err, imageKey){
-								console.log("in upload function"+imageKey);
 								if(err){
 									done(err)
 								} else {
-									console.log("in else condition");
 									if(imageKey && req.body.selectedImage == 'UPLOAD'){
 										uploaded_promotion_image = "https://s3.amazonaws.com/taffer-dev/" + imageKey
 									}
+									console.log("....image....."+uploaded_promotion_image);
 									shareable.update({SelectedPicture: uploaded_promotion_image}, function(err){
 										if(err){
 											res.send(err, 500)
@@ -557,7 +552,6 @@ module.exports = function(app, models){
 								}
 							})
 						}
-						console.log("new other details update function");
 						shareable.update(req.body, function(err){
 							if(err){
 								res.send(err, 500)
