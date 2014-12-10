@@ -544,7 +544,7 @@ module.exports = function(app, models){
 										uploaded_promotion_image = "https://s3.amazonaws.com/taffer-dev/" + imageKey
 									}
 									console.log("....image....."+uploaded_promotion_image);
-									shareable.update({SelectedPicture: uploaded_promotion_image}, function(err){
+									shareable.update({selectedPicture: uploaded_promotion_image}, function(err){
 										if(err){
 											res.send(err, 500)
 										}
