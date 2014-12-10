@@ -536,12 +536,16 @@ module.exports = function(app, models){
 							postOn = req.body.postOn
 							delete req.body.postOn
 						}
+						console.log("near image upload check");
 						// update image with shareable
 						if(req.files.image || req.body.SelectedPicture){
+							console.log("selcted image check");
 							uploadRoute(req, req.body.SelectedPicture, function(err, imageKey){
+								console.log("in upload function"+imageKey);
 								if(err){
 									done(err)
 								} else {
+									console.log("in else condition");
 									//if(imageKey && req.body.SelectedPicture == 'UPLOAD'){
 										uploaded_promotion_image = "https://s3.amazonaws.com/taffer-dev/" + imageKey
 									//}
