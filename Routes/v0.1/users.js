@@ -603,11 +603,13 @@ module.exports = function(app, models){
 					Object.keys(req.body).forEach(function(update){
 						//Make sure that the update is actually a schema field for users
 						if(models.User.editableFields.indexOf(update) != -1){
+							console.log("Profile name updating: 4");
 							user[update] = req.body[update]
 						}
 					})
 
 					if(!req.body.updated){
+						console.log("Profile name updating: 5");
 						user.updated = new Date()
 					}
 
@@ -619,6 +621,7 @@ module.exports = function(app, models){
 						if(err){
 							res.send(500, err)
 						} else {
+							console.log("Profile name updating: 6");
 							done(null, user)
 						}
 					})
@@ -626,6 +629,7 @@ module.exports = function(app, models){
 
 			], function(err, user){
 				if(!err){
+					console.log("Profile name updating: 7");
 					res.send(user.json())
 				}
 			})
