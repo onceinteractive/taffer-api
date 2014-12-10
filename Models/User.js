@@ -645,6 +645,8 @@ module.exports = function(mongoose, models){
 		'payRate',
 		'role',
 		'phoneNumber',
+		'ProfileNameTwitter',
+		'ProfileNameFacebook'
 		// 'permissions'
 	]
 
