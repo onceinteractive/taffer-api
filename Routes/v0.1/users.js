@@ -501,6 +501,8 @@ module.exports = function(app, models){
 				//this user belongs to?
 				function(user, done){
 					if(user._id.toString() != req.user._id.toString()){
+						console.log("Profile name updating: "+req.params.ProfileNameFacebook);
+
 						if( req.user.hasPermission('users.edit') &&
 							req.user.barId.toString() == user.barId.toString()){
 							done(null, user)
