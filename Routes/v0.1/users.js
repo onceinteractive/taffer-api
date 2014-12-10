@@ -502,7 +502,7 @@ module.exports = function(app, models){
 				function(user, done){
 					console.log("Profile name updating:");
 					if(user._id.toString() != req.user._id.toString()){
-						console.log("Profile name updating: 2");
+						console.log("Profile name updating: 1");
 
 						if( req.user.hasPermission('users.edit') &&
 							req.user.barId.toString() == user.barId.toString()){
@@ -512,6 +512,7 @@ module.exports = function(app, models){
 							done("insufficent ownership")
 						}
 					} else {
+						console.log("Profile name updating: 2");
 						done(null, user)
 					}
 				},
@@ -598,6 +599,7 @@ module.exports = function(app, models){
 
 				//Update each attribute of the user as per req.body
 				function(user, done){
+					console.log("Profile name updating: 3");
 					Object.keys(req.body).forEach(function(update){
 						//Make sure that the update is actually a schema field for users
 						if(models.User.editableFields.indexOf(update) != -1){
