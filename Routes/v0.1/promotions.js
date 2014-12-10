@@ -289,6 +289,40 @@ module.exports = function(app, models){
 				})
 		})
 
+	promotions.route('/scheduled/update/:scheduledPromotionId')
+		.get(app.auth, function(req, res){
+			console.log("Request Params : "+JSON.stringify(req.params));
+			console.log("Request Body : "+JSON.stringify(req.body));
+			models.ScheduledPromotion.findOne({
+				barId: req.user.barId,
+				_id: req.params.scheduledPromotionId
+			})
+				.populate('shareables')
+				.exec(function(err, scheduledPromotion){
+					console.log("scheduledPromotion : "+JSON.stringify(scheduledPromotion));
+					if(err){
+						res.send(err, 500)
+					} else if(!scheduledPromotion){
+						res.send(404)
+					} else {
+						models.Shareable.update({
+							_id: scheduledPromotion.shareableId
+						}, {
+							facebookMessage: req.body.facebookMessage,
+							twitterMessage: req.body.twitterMessage,
+							selectedPicture: req.body.selectedImage,
+							postOn: req.body.postOn
+						}, function(err){
+							if(err){
+								res.send(err, 500)
+							} else {
+								res.send(200)
+							}
+						})
+					}
+				})
+		})
+
 		//Update the promotion with new information/variables
 		//NOT the shareables
 		/*
