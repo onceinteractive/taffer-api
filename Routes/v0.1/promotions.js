@@ -536,6 +536,23 @@ module.exports = function(app, models){
 							postOn = req.body.postOn
 							delete req.body.postOn
 						}
+						// update image with shareable
+						if(req.files.image || req.body.SelectedPicture){
+							uploadRoute(req, req.body.SelectedPicture, function(err, imageKey){
+								if(err){
+									done(err)
+								} else {
+									//if(imageKey && req.body.SelectedPicture == 'UPLOAD'){
+										uploaded_promotion_image = "https://s3.amazonaws.com/taffer-dev/" + imageKey
+									//}
+									shareable.update({SelectedPicture: uploaded_promotion_image}, function(err){
+										if(err){
+											res.send(err, 500)
+										}
+									})
+								}
+							})
+						}
 
 						shareable.update(req.body, function(err){
 							if(err){
@@ -561,6 +578,7 @@ module.exports = function(app, models){
 								})
 							}
 						})
+
 
 					}
 				})
