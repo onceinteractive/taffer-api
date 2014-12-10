@@ -480,7 +480,7 @@ module.exports = function(app, models){
 		//Update the user
 
 		.put(app.auth, function(req, res){
-			console.log("On server: "+JSON.stringify(req));
+			console.log("On server: "+req);
 			async.waterfall([
 
 				function(done){
