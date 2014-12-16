@@ -65,7 +65,7 @@ module.exports = function(app, models){
 
             uploadRoute(req, 'courses', function(err, keys){
                 req.body.previewImageKey = keys[0];
-                req.body.badgeImage = keys[1];
+                //req.body.badgeImage = keys[1];
 
                 models.Course.create(req.body, function(err, course){
                     if(err){

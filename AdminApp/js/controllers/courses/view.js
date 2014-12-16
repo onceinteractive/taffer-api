@@ -117,19 +117,19 @@ angular.module('appControllers')
                             headers:{'Content-Type':undefined}
                         })
                         .success(function(data){
-                                $scope.submitted = "Successfully created a new course!";
+                                $scope.submitted = "Successfully updated course!";
                         })
                         .error(function(error){
-                            $scope.submitted = "There was an error creating the course.";
+                            $scope.submitted = "There was an error updating the course.";
                             console.log(error);
                         });
                     } else {
-                        $scope.submitted = "Successfully created a new course!";
+                        $scope.submitted = "Successfully updated course!";
                     }
 
                 })
                 .error(function(error){
-                    $scope.submitted = "There was an error creating the course.";
+                    $scope.submitted = "There was an error updating the course.";
                     console.log(error);
                 });
 

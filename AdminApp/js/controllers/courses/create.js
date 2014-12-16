@@ -68,9 +68,26 @@ angular.module('appControllers')
 						headers: { 'Content-Type': undefined }
 					})
 					.success(function(data){
-						$scope.submitted = "Successfully created a new course!";
-						$scope.course = {};
-						$scope.course.barCategories = barCategories;
+                            console.log(JSON.stringify(data));
+                            if( typeof $scope.course.badgeImage != "string" ) {
+
+                                $http.put('courses/' + data._id + '/badges', prepareForPutBadge(), {
+                                    transformRequest: angular.identity,
+                                    headers:{'Content-Type':undefined}
+                                })
+                                    .success(function(data){
+                                        //$scope.submitted = "Successfully updated course!";
+                                    })
+                                    .error(function(error){
+                                        //$scope.submitted = "There was an error updating the course.";
+                                        console.log(error);
+                                    });
+
+                            }
+                            $scope.submitted = "Successfully created a new course!";
+                            $scope.course = {};
+                            $scope.course.barCategories = barCategories;
+
 					})
 					.error(function(error){
 						$scope.submitted = "There was an error creating the course.";
@@ -79,6 +96,15 @@ angular.module('appControllers')
 				}
 			}
 		}
+
+        var prepareForPutBadge = function() {
+            var fd = new FormData();
+
+            angular.forEach($scope.course.badgeImage, function(file) {
+                fd.append("image", file);
+            });
+            return fd;
+        }
 
 		var prepareForPost = function(){
 			var fd = new FormData();
@@ -90,11 +116,11 @@ angular.module('appControllers')
 			angular.forEach($scope.course.previewImage, function(file) {
                 fd.append("image", file);
             });
-
+            /*
             angular.forEach($scope.course.badgeImage, function(file) {
                 fd.append("image", file);
             });
-
+            */
 
 			fd.append("quiz", JSON.stringify($scope.course.quiz));
 
