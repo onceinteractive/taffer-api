@@ -269,7 +269,7 @@ module.exports = function(app, models){
 						var postOnArr = [];
 						//console.log("scheduledPromotion = "+JSON.stringify(scheduledPromotions));
 						scheduledPromotions.forEach(function(scheduledPromotion){
-							if(scheduledPromotion.shareables.length > 0) {
+							if(scheduledPromotion.shareables && scheduledPromotion.shareables.length > 0) {
 								console.log("In sharebales check")
 								if(scheduledPromotion.shareables[0].postOn.length > 0) {
 									console.log("In sharebales postOn check")
