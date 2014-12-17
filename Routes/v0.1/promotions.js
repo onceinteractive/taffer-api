@@ -269,23 +269,25 @@ module.exports = function(app, models){
 						var postOnArr = [];
 						console.log("scheduledPromotion = "+JSON.stringify(scheduledPromotions));
 						scheduledPromotions.forEach(function(scheduledPromotion){
-							if(scheduledPromotion.shareables[0].postOn.length > 0) {
-								models.Shareables.find({
-									_id: scheduledPromotion.shareables[0]
-								})
-									.populate('postOn')
-									.exec(function(err, postOns){
-										if(err){
-											//res.send(err, 500)
-										} else if(!postOns){
-											//res.send([])
-										} else {
-											postOns.forEach(function(postOn){
-												postOnArr.push(postOn);
-											});
-										}
-									});
+							if(scheduledPromotion.shareables.length > 0) {
+								if(scheduledPromotion.shareables[0].postOn.length > 0) {
+									models.Shareables.find({
+										_id: scheduledPromotion.shareables[0]
+									})
+										.populate('ScheduledPost')
+										.exec(function(err, postOns){
+											if(err){
+												//res.send(err, 500)
+											} else if(!postOns){
+												//res.send([])
+											} else {
+												postOns.forEach(function(postOn){
+													postOnArr.push(postOn);
+												});
+											}
+										});
 								}
+							}
 						})
 						console.log("postOnArr = "+JSON.stringify(postOnArr));
 						scheduledPromotions.shareables[0].postOn.push(postOnArr);
