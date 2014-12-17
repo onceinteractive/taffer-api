@@ -279,21 +279,25 @@ module.exports = function(app, models){
 										.populate('ScheduledPost')
 										.exec(function(err, postOns){
 											if(err){
+												console.log("postOn error 1")
 												//res.send(err, 500)
 											} else if(!postOns){
+												console.log("postOn error 2")
 												//res.send([])
 											} else {
+												console.log("postOn 3")
 												postOns.forEach(function(postOn){
 													postOnArr.push(postOn);
 												});
+												console.log("postOn = "+JSON.stringify(postOn));
 											}
 										});
 								}
 							}
 						})
-						console.log("postOnArr = "+JSON.stringify(postOnArr));
-						scheduledPromotions.shareables[0].postOn.push(postOnArr);
-						res.send(scheduledPromotions)
+						//console.log("postOnArr = "+JSON.stringify(postOnArr));
+						//scheduledPromotions.shareables[0].postOn.push(postOnArr);
+						//res.send(scheduledPromotions)
 					}
 				})
 		})
