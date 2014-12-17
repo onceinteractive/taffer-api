@@ -287,9 +287,10 @@ module.exports = function(app, models){
 											} else {
 												console.log("postOn 3")
 												postOns.forEach(function(postOn){
+													console.log("postOn...."+JSON.stringify(postOn))
 													postOnArr.push(postOn);
 												});
-												console.log("postOn = "+JSON.stringify(postOn));
+												console.log("postOn = "+JSON.stringify(postOns));
 											}
 										});
 								}
