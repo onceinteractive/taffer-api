@@ -267,7 +267,7 @@ module.exports = function(app, models){
 						res.send([])
 					} else {
 						var postOnArr = [];
-						console.log("scheduledPromotion = "+JSON.stringify(scheduledPromotion));
+						console.log("scheduledPromotion = "+JSON.stringify(scheduledPromotions));
 						scheduledPromotions.forEach(function(scheduledPromotion){
 							if(scheduledPromotion.shareables[0].postOn.length > 0) {
 								models.Shareables.find({
