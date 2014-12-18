@@ -260,13 +260,14 @@ module.exports = function(app, models){
 				barId: req.user.barId
 			})
 				.populate('shareables')
+				.populate('shareables.postOn')
 				.exec(function(err, scheduledPromotions){
 					if(err){
 						res.send(err, 500)
 					} else if(!scheduledPromotions){
 						res.send([])
 					} else {
-						var postOnArr = [];
+						/*var postOnArr = [];
 						scheduledPromotions.forEach(function(scheduledPromotion){
 							if(scheduledPromotion.shareables && scheduledPromotion.shareables.length > 0) {
 								if(scheduledPromotion.shareables[0].postOn.length > 0) {
@@ -284,12 +285,11 @@ module.exports = function(app, models){
 												postOnArr.push(postOn.postOn);
 												scheduledPromotion.shareables[0].postOn.push(postOn.postOn);
 											});
-											//scheduledPromotion.shareables[0].postOn = postOnArr;
 										}
 									});
 								}
 							}
-						})
+						})*/
 						console.log("...............SCHEDULE PROMOTION...........");
 						console.log(JSON.stringify(scheduledPromotions));
 						res.send(scheduledPromotions)
