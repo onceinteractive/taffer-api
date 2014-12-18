@@ -291,7 +291,7 @@ module.exports = function(app, models){
 							}
 						})
 						console.log("...............SCHEDULE PROMOTION...........");
-						console.log(JSON.stringify(scheduledPromotions[0]));
+						console.log(JSON.stringify(scheduledPromotions));
 						res.send(scheduledPromotions)
 					}
 				})
