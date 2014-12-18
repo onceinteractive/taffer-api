@@ -283,14 +283,14 @@ module.exports = function(app, models){
 											postOns.forEach(function(postOn){
 												postOnArr.push(postOn.postOn);
 											});
+											//scheduledPromotion.shareables[0].postOn = postOnArr;
 										}
 									});
 								}
 							}
-							console.log("...........................start postOnArr.....................");
-							console.log(JSON.stringify(postOnArr));
-							console.log("............................end postOnArr......................");
 						})
+						console.log("...............SCHEDULE PROMOTION...........");
+						console.log(JSON.stringify(scheduledPromotions));
 						res.send(scheduledPromotions)
 					}
 				})
