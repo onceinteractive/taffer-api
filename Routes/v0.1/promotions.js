@@ -266,7 +266,7 @@ module.exports = function(app, models){
 					} else if(!scheduledPromotions){
 						res.send([])
 					} else {
-						var postOnArr = [];
+						/*var postOnArr = [];
 						scheduledPromotions.forEach(function(scheduledPromotion){
 							if(scheduledPromotion.shareables && scheduledPromotion.shareables.length > 0) {
 								if(scheduledPromotion.shareables[0].postOn.length > 0) {
@@ -290,7 +290,7 @@ module.exports = function(app, models){
 							}
 						})
 						console.log("...............SCHEDULE PROMOTION...........");
-						console.log(JSON.stringify(scheduledPromotions));
+						console.log(JSON.stringify(scheduledPromotions));*/
 						res.send(scheduledPromotions)
 					}
 				})
