@@ -282,7 +282,7 @@ module.exports = function(app, models){
 										} else {
 											postOns.forEach(function(postOn){
 												//postOnArr.push(postOn.postOn);
-												scheduledPromotion.shareables[0].postOn.push(postOn.postOn);
+												scheduledPromotion.shareables[0].postOn  = postOn.postOn;
 											});
 										}
 									});
