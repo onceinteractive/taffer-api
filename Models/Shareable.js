@@ -72,7 +72,7 @@ module.exports = function(mongoose, models){
 		 cb - callback function(err, postOn)
 		 */
 
-		schema.methods.schedulepost = function(shareableId, cb) {
+		/*schema.methods.schedulepost = function(shareableId, cb) {
 			var self = this
 
 			models.Shareable.findOne({
@@ -88,7 +88,7 @@ module.exports = function(mongoose, models){
 					cb(null, postOn.postOn);
 				}
 			})
-		}
+		}*/
 
 		// models.Agenda.create('postPromotion', { _id: self._id })
 		// 	.schedule(postOn)
