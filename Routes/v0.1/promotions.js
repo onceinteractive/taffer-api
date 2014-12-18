@@ -260,7 +260,6 @@ module.exports = function(app, models){
 				barId: req.user.barId
 			})
 				.populate('shareables')
-				.populate('shareables.postOn')
 				.exec(function(err, scheduledPromotions){
 					if(err){
 						res.send(err, 500)
