@@ -282,6 +282,7 @@ module.exports = function(app, models){
 										} else {
 											postOns.forEach(function(postOn){
 												postOnArr.push(postOn.postOn);
+												scheduledPromotion.shareables[0].postOn.push(postOn.postOn);
 											});
 											//scheduledPromotion.shareables[0].postOn = postOnArr;
 										}
@@ -290,7 +291,7 @@ module.exports = function(app, models){
 							}
 						})
 						console.log("...............SCHEDULE PROMOTION...........");
-						console.log(JSON.stringify(scheduledPromotions));
+						console.log(JSON.stringify(scheduledPromotions[0]));
 						res.send(scheduledPromotions)
 					}
 				})
