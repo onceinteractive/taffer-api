@@ -287,10 +287,10 @@ module.exports = function(app, models){
 									});
 								}
 							}
+							console.log("...........................start postOnArr.....................");
+							console.log(JSON.stringify(postOnArr));
+							console.log("............................end postOnArr......................");
 						})
-						console.log("...........................start postOnArr.....................");
-      					console.log(JSON.stringify(postOnArr));
-						console.log("............................end postOnArr......................");
 						res.send(scheduledPromotions)
 					}
 				})
