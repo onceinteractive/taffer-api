@@ -281,11 +281,14 @@ module.exports = function(app, models){
 											//res.send([])
 										} else {
 											postOns.forEach(function(postOn){
-												postOnArr.push(postOn.postOn);
+												//postOnArr.push(postOn.postOn);
+												console.log("...........................start postOn.....................");
+												console.log(JSON.stringify(postOn.postOn));
+												console.log("............................end postOn......................");
 											});
-											console.log("...........................start postOnArr.....................");
+											/*console.log("...........................start postOnArr.....................");
 											console.log(JSON.stringify(postOnArr));
-											console.log("............................end postOnArr......................");
+											console.log("............................end postOnArr......................");*/
 										}
 									});
 								}
