@@ -67,6 +67,24 @@ module.exports = function(mongoose, models){
 			}
 		})
 
+		schema.methods.schedulePost = function(shareableId) {
+			var self = this
+
+			self.find({
+				_id: shareableId
+			})
+				.populate('postOn')
+				.exec(function (err, postOns) {
+					if (err) {
+						res.send(err, 500)
+					} else if (!postOns) {
+						res.send([])
+					} else {
+						res.send(postOn.postOn)
+					}
+				});
+		}
+
 		// models.Agenda.create('postPromotion', { _id: self._id })
 		// 	.schedule(postOn)
 		// 	.save(function(err, task){

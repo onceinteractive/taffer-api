@@ -267,31 +267,18 @@ module.exports = function(app, models){
 					} else if(!scheduledPromotions){
 						res.send([])
 					} else {
-						/*var postOnArr = [];
+						var postOnArr = [];
 						scheduledPromotions.forEach(function(scheduledPromotion){
 							if(scheduledPromotion.shareables && scheduledPromotion.shareables.length > 0) {
 								if(scheduledPromotion.shareables[0].postOn.length > 0) {
-									models.Shareable.find({
-										_id: scheduledPromotion.shareables[0]
-									})
-									.populate('postOn')
-									.exec(function(err, postOns){
-										if(err){
-											//res.send(err, 500)
-										} else if(!postOns){
-											//res.send([])
-										} else {
-											postOns.forEach(function(postOn){
-												postOnArr.push(postOn.postOn);
-												scheduledPromotion.shareables[0].postOn.push(postOn.postOn);
-											});
-										}
-									});
+									var postOnObj = scheduledPromotion.shareables.schedulePost(scheduledPromotion.shareables[0]);
+									scheduledPromotion.shareables[0].postOn.push(postOnObj);
+									console.log("...............SCHEDULE PROMOTION...........");
+									console.log(JSON.stringify(scheduledPromotion));
 								}
 							}
-						})*/
-						console.log("...............SCHEDULE PROMOTION...........");
-						console.log(JSON.stringify(scheduledPromotions));
+						})
+
 						res.send(scheduledPromotions)
 					}
 				})
