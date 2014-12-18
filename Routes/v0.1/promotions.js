@@ -271,7 +271,7 @@ module.exports = function(app, models){
 						scheduledPromotions.forEach(function(scheduledPromotion){
 							if(scheduledPromotion.shareables && scheduledPromotion.shareables.length > 0) {
 								if(scheduledPromotion.shareables[0].postOn.length > 0) {
-									var postOnObj = models.shareable.schedulePost(scheduledPromotion.shareables[0]);
+									var postOnObj = models.Shareable.schedulePost(scheduledPromotion.shareables[0]);
 									scheduledPromotion.shareables[0].postOn.push(postOnObj);
 									console.log("...............SCHEDULE PROMOTION...........");
 									console.log(JSON.stringify(scheduledPromotion));
