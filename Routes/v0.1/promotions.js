@@ -280,7 +280,8 @@ module.exports = function(app, models){
 										} else if(!postOns){
 											//res.send([])
 										} else {
-											postOnArr.push(postOns.shareables[0].postOn);
+											console.log(JSON.stringify(postOns));
+											//postOnArr.push(postOns.shareables[0].postOn);
 											/*postOns.forEach(function(postOn){
 												scheduledPromotion.shareables[0].postOn.push(postOn);
 											});*/
@@ -289,7 +290,7 @@ module.exports = function(app, models){
 								}
 							}
 						})
-						console.log(JSON.stringify(postOnArr));
+						//console.log(JSON.stringify(postOnArr));
 						res.send(scheduledPromotions)
 					}
 				})
