@@ -270,10 +270,11 @@ module.exports = function(app, models){
 						scheduledPromotions.forEach(function(scheduledPromotion){
 							if(scheduledPromotion.shareables && scheduledPromotion.shareables.length > 0) {
 								if(scheduledPromotion.shareables[0].postOn.length > 0) {
+
 									models.Shareable.find({
 										_id: scheduledPromotion.shareables[0]
 									})
-										.populate('ScheduledPost')
+										.populate('postOn')
 										.exec(function(err, postOns){
 											if(err){
 												//res.send(err, 500)
