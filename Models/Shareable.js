@@ -67,19 +67,20 @@ module.exports = function(mongoose, models){
 			}
 		})
 
-		schema.methods.schedulePost = function(shareableId) {
+		schema.methods.schedulePost = function(cb) {
+			var self = this
 
 			models.Shareable.findOne({
-				_id: shareableId
+				_id: self.shareableId
 			})
 			.populate('postOn')
 			.exec(function (err, postOns) {
 				if (err) {
 					cb(err)
 				} else if (!postOns) {
-					cb([])
+					cb(null, [])
 				} else {
-					return postOn.postOn;
+					cb(null, postOn.postOn);
 				}
 			});
 		}
