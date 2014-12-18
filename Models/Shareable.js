@@ -68,7 +68,7 @@ module.exports = function(mongoose, models){
 		})
 
 		schema.methods.schedulePost = function(shareableId) {
-			
+
 			models.Shareable.findOne({
 				_id: shareableId
 			})
