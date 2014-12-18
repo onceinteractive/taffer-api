@@ -267,8 +267,7 @@ module.exports = function(app, models){
 						res.send([])
 					} else {
 						var postOnArr = [];
-						//console.log("scheduledPromotion = "+JSON.stringify(scheduledPromotions));
-						/*scheduledPromotions.forEach(function(scheduledPromotion){
+						scheduledPromotions.forEach(function(scheduledPromotion){
 							if(scheduledPromotion.shareables && scheduledPromotion.shareables.length > 0) {
 								if(scheduledPromotion.shareables[0].postOn.length > 0) {
 									models.Shareable.find({
@@ -281,17 +280,16 @@ module.exports = function(app, models){
 											} else if(!postOns){
 												//res.send([])
 											} else {
-												postOns.forEach(function(postOn){
-													console.log("postOn...."+JSON.stringify(postOn))
+												scheduledPromotion.shareables[0].postOn = {};
+												scheduledPromotion.shareables[0].postOn.push(postOns);
+												/*postOns.forEach(function(postOn){
 													scheduledPromotion.shareables[0].postOn.push(postOn);
-												});
+												});*/
 											}
 										});
 								}
 							}
-						})*/
-						//console.log("postOnArr = "+JSON.stringify(postOnArr));
-						//scheduledPromotions.shareables[0].postOn.push(postOnArr);
+						})
 						res.send(scheduledPromotions)
 					}
 				})
