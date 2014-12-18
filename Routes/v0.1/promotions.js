@@ -280,10 +280,10 @@ module.exports = function(app, models){
 											} else if(!postOns){
 												//res.send([])
 											} else {
-												scheduledPromotion.shareables[0].postOn.testvalue = "test post on";
-												/*postOns.forEach(function(postOn){
+												console.log("postOns = "+JSON.stringify(postOns));
+												postOns.forEach(function(postOn){
 													scheduledPromotion.shareables[0].postOn.push(postOn);
-												});*/
+												});
 											}
 										});
 								}
