@@ -281,7 +281,6 @@ module.exports = function(app, models){
 											} else if(!postOns){
 												//res.send([])
 											} else {
-												console.log("postOns = "+JSON.stringify(postOns));
 												postOns.forEach(function(postOn){
 													scheduledPromotion.shareables[0].postOn.push(postOn);
 												});
@@ -290,6 +289,7 @@ module.exports = function(app, models){
 								}
 							}
 						})
+						console.log(JSON.stringify(scheduledPromotions));
 						res.send(scheduledPromotions)
 					}
 				})
