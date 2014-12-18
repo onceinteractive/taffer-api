@@ -280,8 +280,7 @@ module.exports = function(app, models){
 											} else if(!postOns){
 												//res.send([])
 											} else {
-												scheduledPromotion.shareables[0].postOn = [];
-												scheduledPromotion.shareables[0].postOn.push(postOns);
+												scheduledPromotion.shareables[0].postOn.push("test post on");
 												/*postOns.forEach(function(postOn){
 													scheduledPromotion.shareables[0].postOn.push(postOn);
 												});*/
