@@ -157,10 +157,6 @@ module.exports = function(mongoose, models){
 		})
 	}
 
-	var shareable = mongoose.model('Shareable', schema)
-
-	shareable.schedulePost = schedulePost;
-
-	return shareable
+	return mongoose.model('Shareable', schema)
 
 }
