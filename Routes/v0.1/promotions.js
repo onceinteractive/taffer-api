@@ -283,6 +283,7 @@ module.exports = function(app, models){
 											var shareable = models.Shareable({
 												_id: shareableId
 											})
+											shareable.schedulePost = schedulePost;
 											shareable.schedulePost(shareableId, function(err, posts){
 												console.log("schedule posts : "+JSON.stringify(posts));
 												//scheduledPromotion.shareables[0].postOn  = posts;
