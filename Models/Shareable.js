@@ -72,7 +72,7 @@ module.exports = function(mongoose, models){
 		 cb - callback function(err, postOn)
 		 */
 
-		/*schema.methods.schedulepost = function(shareableId, cb) {
+		schema.statics.schedulePost = function(shareableId) {
 			var self = this
 
 			models.Shareable.findOne({
@@ -80,15 +80,17 @@ module.exports = function(mongoose, models){
 			})
 			.populate('postOn')
 			.exec(function (err, postOns) {
+				var response = '';
 				if (err) {
-					cb(err)
+					response = err
 				} else if (!postOns) {
-					cb(null, [])
+					response = []
 				} else {
-					cb(null, postOn.postOn);
+					response = postOn.postOn;
 				}
+				return response;
 			})
-		}*/
+		}
 
 		// models.Agenda.create('postPromotion', { _id: self._id })
 		// 	.schedule(postOn)
