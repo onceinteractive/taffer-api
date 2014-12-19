@@ -279,15 +279,15 @@ module.exports = function(app, models){
 										} else if(!postOns){
 											//res.send([])
 										} else {
+											 models.Shareable.schedulePost(scheduledPromotion.shareables[0]._id, function(err, posts){
+												console.log("schedule posts : "+JSON.stringify(posts));
+												//scheduledPromotion.shareables[0].postOn  = posts;
+											})
+/*
 											postOns.forEach(function(postOn){
-												var shareableId = scheduledPromotion.shareables[0]._id;
-												var shareable = models.Shareable({
-													_id: shareableId
-												})
-												var schedulePosts = shareable.schedulePost();
-												console.log("schedule posts : "+JSON.stringify(schedulePosts));
-												scheduledPromotion.shareables[0].postOn  = schedulePosts;
-											});
+
+											})
+*/
 										}
 									});
 								}

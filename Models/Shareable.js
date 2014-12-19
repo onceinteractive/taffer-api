@@ -1,24 +1,47 @@
 var async = require('async')
 
-module.exports = function(mongoose, models){
+var schema = mongoose.Schema({
 
-	var schema = mongoose.Schema({
+	barId: { type: mongoose.Schema.Types.ObjectId, ref: 'Bar' },
+	scheduledPromotionId: { type: mongoose.Schema.Types.ObjectId, ref: 'ScheduledPromotion' },
 
-		barId: { type: mongoose.Schema.Types.ObjectId, ref: 'Bar' },
-		scheduledPromotionId: { type: mongoose.Schema.Types.ObjectId, ref: 'ScheduledPromotion' },
+	facebookMessage: String,
+	twitterMessage: String,
 
-		facebookMessage: String,
-		twitterMessage: String,
+	selectedPicture: String,
 
-		selectedPicture: String,
+	postOn: [ { type: mongoose.Schema.Types.ObjectId, ref: 'ScheduledPost' } ],
 
-		postOn: [ { type: mongoose.Schema.Types.ObjectId, ref: 'ScheduledPost' } ],
+	sharedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
 
-		sharedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+	updated: { type: Date, default: Date.now },
+	created: { type: Date, default: Date.now }
+})
 
-		updated: { type: Date, default: Date.now },
-		created: { type: Date, default: Date.now }
+/*
+ shareableId - shareable object id
+ cb - callback function(err, postOn)
+ */
+
+schema.statics.schedulePost = function(shareableId, cb) {
+	var self = this
+
+	models.Shareable.findOne({
+		_id: shareableId
 	})
+		.populate('postOn')
+		.exec(function (err, postOns) {
+			if (err) {
+				cb(err)
+			} else if (!postOns) {
+				cb(null, [])
+			} else {
+				cb(null, postOns.postOn);
+			}
+		})
+}
+
+module.exports = function(mongoose, models){
 
 	/*
 		postOn - Date
@@ -67,27 +90,7 @@ module.exports = function(mongoose, models){
 			}
 		})
 
-		/*
-		 shareableId - shareable object id
-		 cb - callback function(err, postOn)
-		 */
 
-		schema.methods.schedulePost = function(shareableId) {
-			var self = this
-
-			self.populate('postOn')
-				.exec(function (err, postOns) {
-				var response = '';
-				if (err) {
-					response = err
-				} else if (!postOns) {
-					response = []
-				} else {
-					response = postOn.postOn;
-				}
-				return response;
-			})
-		}
 
 		// models.Agenda.create('postPromotion', { _id: self._id })
 		// 	.schedule(postOn)
