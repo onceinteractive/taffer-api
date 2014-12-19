@@ -72,9 +72,9 @@ module.exports = function(mongoose, models){
 		 cb - callback function(err, postOn)
 		 */
 
-		schema.schedulePost = function(shareableId, cb) {
+		schema.methods.schedulePost = function(shareableId, cb) {
 			var self = this
-			console.log("..............................in schedule post function..........................")
+
 			models.Shareable.findOne({
 				_id: shareableId
 			})
