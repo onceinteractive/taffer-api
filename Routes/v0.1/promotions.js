@@ -280,8 +280,11 @@ module.exports = function(app, models){
 											//res.send([])
 										} else {
 											postOns.forEach(function(postOn){
-												console.log("shareable id : "+scheduledPromotion.shareables[0]._id);
-												var schedulePosts = models.Shareable.schedulePost(scheduledPromotion.shareables[0]._id);
+												var shareableId = scheduledPromotion.shareables[0]._id;
+												var shareable = models.Shareable({
+													_id: shareableId
+												})
+												var schedulePosts = shareable.schedulePost();
 												console.log("schedule posts : "+JSON.stringify(schedulePosts));
 												scheduledPromotion.shareables[0].postOn  = schedulePosts;
 											});

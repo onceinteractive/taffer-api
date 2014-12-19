@@ -72,14 +72,11 @@ module.exports = function(mongoose, models){
 		 cb - callback function(err, postOn)
 		 */
 
-		schema.statics.schedulePost = function(shareableId) {
+		schema.methods.schedulePost = function(shareableId) {
 			var self = this
 
-			models.Shareable.findOne({
-				_id: shareableId
-			})
-			.populate('postOn')
-			.exec(function (err, postOns) {
+			self.populate('postOn')
+				.exec(function (err, postOns) {
 				var response = '';
 				if (err) {
 					response = err
