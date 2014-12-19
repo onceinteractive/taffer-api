@@ -279,7 +279,8 @@ module.exports = function(app, models){
 										} else if(!postOns){
 											//res.send([])
 										} else {
-											 models.Shareable.schedulePost(scheduledPromotion.shareables[0]._id, function(err, posts){
+											var shareable = models.Shareable()
+											shareable.schedulePost(scheduledPromotion.shareables[0]._id, function(err, posts){
 												console.log("schedule posts : "+JSON.stringify(posts));
 												//scheduledPromotion.shareables[0].postOn  = posts;
 											})
