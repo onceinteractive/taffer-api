@@ -62,6 +62,7 @@ module.exports = function(app, models){
 					if(err || !user){
 						res.send(err, 500)
 					} else {
+						console.log("user id  = "+req.user._id)
 						var userObj = user.json();
 						models.User.findOne({
 							_id: req.user._id
@@ -71,7 +72,7 @@ module.exports = function(app, models){
 								if(err || !bar){
 									res.send(err, 500)
 								} else {
-									console.log("bar = ".JSON.stringify(bar))
+									console.log("bar = "+JSON.stringify(bar))
 									var barObj = {
 										facebookPageId: bar.facebookPageId,
 										facebookPageAccessToken: bar.facebookPageAccessToken
