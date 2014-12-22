@@ -3,6 +3,7 @@ var async = require('async');
 var uuid = require('node-uuid');
 var util = require('util');
 var graph = require('fbgraph')
+var underscore = require('underscore')
 
 module.exports = function(app, models){
 
@@ -61,7 +62,25 @@ module.exports = function(app, models){
 					if(err || !user){
 						res.send(err, 500)
 					} else {
-						res.send(user.json())
+						var userObj = user.json();
+						models.User.findOne({
+							_id: req.user._id
+						})
+							.populate('barId')
+							.exec(function(err, bar){
+								if(err || !bar){
+									res.send(err, 500)
+								} else {
+									var barObj = {
+										facebookPageId: bar.facebookPageId,
+										facebookPageAccessToken: bar.facebookPageAccessToken
+									}
+									var respObj = _.extend(userObj, barObj);
+									console.log("respObj = "+JSON.stringify(respObj))
+									res.send(respObj)
+								}
+						})
+						//res.send(user.json())
 					}
 				})
 		})
