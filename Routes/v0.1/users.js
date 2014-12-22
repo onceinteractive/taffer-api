@@ -72,10 +72,10 @@ module.exports = function(app, models){
 								if(err || !bar){
 									res.send(err, 500)
 								} else {
-									console.log("bar = "+JSON.stringify(bar))
+									//console.log("bar = "+JSON.stringify(bar))
 									var barObj = {
-										facebookPageId: bar.facebookPageId,
-										facebookPageAccessToken: bar.facebookPageAccessToken
+										facebookPageId: bar.barId.facebookPageId,
+										facebookPageAccessToken: bar.barId.facebookPageAccessToken
 									}
 									console.log("respObj = "+JSON.stringify(barObj))
 									var respObj = underscore.extend(userObj, barObj);
