@@ -161,7 +161,7 @@ module.exports = function(app, models){
 
 	fb.route('/auth/url')
 		.get(app.auth, function(req, res){
-			console.log("in auth url call...");
+			//console.log("in auth url call...");
 		    res.send(graph.getOauthUrl({
 		        'client_id': appId,
 				'redirect_uri': baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth',
