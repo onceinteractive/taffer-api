@@ -75,7 +75,7 @@ module.exports = function(app, models){
 										facebookPageId: bar.facebookPageId,
 										facebookPageAccessToken: bar.facebookPageAccessToken
 									}
-									var respObj = _.extend(userObj, barObj);
+									var respObj = underscore.extend(userObj, barObj);
 									console.log("respObj = "+JSON.stringify(respObj))
 									res.send(respObj)
 								}
