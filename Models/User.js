@@ -84,7 +84,8 @@ module.exports = function(mongoose, models){
 		updated: { type: Date, default: Date.now },
 		created: { type: Date, default: Date.now },
 		ProfileNameTwitter:String,
-		ProfileNameFacebook: String
+		ProfileNameFacebook: String,
+		ProfileNameFacebookPage: String
 
 	})
 
@@ -140,6 +141,7 @@ module.exports = function(mongoose, models){
 			ProfileNameTwitter:self.ProfileNameTwitter,
 			twitterAccessToken: self.twitterAccessToken,
 			ProfileNameFacebook:self.ProfileNameFacebook,
+			ProfileNameFacebookPage: self.ProfileNameFacebookPage,
 			facebookAccessToken: self.facebookAccessToken,
 			facebookAccessTokenExpiration: self.facebookAccessTokenExpiration,
 			Today: new Date()}
