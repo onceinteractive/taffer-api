@@ -119,7 +119,7 @@ module.exports = function(app, models){
 											}
 										})
 								} else {
-									console.log("..................................access token......................................");
+									console.log("..................1................access token...................2...................");
 									models.User.update({
 										_id: user._id
 									}, {
@@ -149,6 +149,7 @@ module.exports = function(app, models){
 											})
 										}
 									})
+									console.log("..................................call stack finished.......................................")
 								}
 
 							})
@@ -179,7 +180,7 @@ module.exports = function(app, models){
 			console.log("req.user.facebookAccessToken :: "+req.user.facebookAccessToken);
 			if(!req.user.facebookAccessToken){
 				console.log("\n\n\n...................in fb access token not found call......................");
-				res.send(baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth')
+				res.redirect(baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth')
 				//return
 			}
 
