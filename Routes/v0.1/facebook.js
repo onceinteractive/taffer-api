@@ -218,6 +218,10 @@ module.exports = function(app, models){
 				res.send('We have not been given access to your Facebook account', 403)
 				return
 			}
+
+			if(req.user.facebookAccessTokenExpiration == null) {
+				req.user.facebookAccessTokenExpiration = undefined;
+			}
 			console.log(".............accounts.......facebookAccessTokenExpiration..............."+req.user.facebookAccessTokenExpiration);
 			if(req.user.facebookAccessTokenExpiration < new Date()){
 				res.send('Your Facebook access token has expired', 403)
