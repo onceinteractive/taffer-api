@@ -322,7 +322,7 @@ module.exports = function(app, models){
 				res.send('We do not have the appropriate permissions from Facebook to post for this Account', 403)
 				return
 			}
-			console.log("image Url in req: "+req.body.imageUrl);
+			//console.log("image Url in req: "+req.body.imageUrl);
 			postToFacebook(req.user, req.body.message, req.body.imageUrl, function(err){
 				if(err){
 					res.send(err, 500)
@@ -347,10 +347,9 @@ module.exports = function(app, models){
 				} else if(!bar){
 					res.send('Error loading bar', 500)
 				} else {
-
-					if(!bar.facebookPageAccessToken
-						|| !bar.facebookAccessToken){
-						res.send('We do not have the appropriate permissions from Twitter to post for this account', 403)
+					// || !bar.facebookAccessToken
+					if(!bar.facebookPageAccessToken || !bar.facebookPageId){
+						res.send('We do not have the appropriate permissions from Facebook to post for this account', 403)
 					} else {
 						postToFacebook(bar, req.body.message, req.body.imageUrl, function(err){
 							if(err){
