@@ -144,7 +144,7 @@ module.exports = function(mongoose, models){
 			ProfileNameFacebookPage: self.ProfileNameFacebookPage,
 			facebookAccessToken: self.facebookAccessToken,
 			facebookAccessTokenExpiration: self.facebookAccessTokenExpiration,
-			badges:self.badges,
+			//badges:self.badges,
 			Today: new Date()}
 		if(!attrs){
 			attrs = []
