@@ -196,23 +196,28 @@ module.exports = function(app, models){
                         models.User.findOne({
                             _id: req.user._id
                         })
-                            .populate('badges')
+
                             .exec(function(err, user){
                                 if(err || !user){
                                     res.send(err, 500)
                                     return
                                 }
-                                models.User.update({
-                                    _id: user._id
-                                }, {
-                                    $push: {
-                                        badges: course.badgeImage
-                                    }
-                                }, function(err){
-                                    //Do nothing for now
-                                })
-                                result.badgeImage=course.badgeImage
+                                if(req.body.complete) {
 
+                                    models.User.update({
+                                        _id: user._id
+                                    }, {
+                                        $push: {
+                                            badges: course.badgeImage
+                                        }
+                                    }, function (err) {
+                                        //Do nothing for now
+                                    })
+                                    result.badges.push(course.badgeImage)
+
+
+                                }
+                                res.send(result)
                                 /*async.each(course.badges, function(badge, done){
                                     if(req.user.badges && req.user.badges.length > 0){
                                         var isCompletedAlready
