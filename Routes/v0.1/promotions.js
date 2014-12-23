@@ -175,7 +175,7 @@ module.exports = function(app, models){
 							}
 						})
 					} else {
-						done(null, promotion, "")
+						done(null, promotion)
 					}
 				},
 
