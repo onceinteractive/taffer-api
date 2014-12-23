@@ -144,6 +144,7 @@ module.exports = function(mongoose, models){
 			ProfileNameFacebookPage: self.ProfileNameFacebookPage,
 			facebookAccessToken: self.facebookAccessToken,
 			facebookAccessTokenExpiration: self.facebookAccessTokenExpiration,
+			badges:self.badges,
 			Today: new Date()}
 		if(!attrs){
 			attrs = []
@@ -152,14 +153,14 @@ module.exports = function(mongoose, models){
 			user[attr] = self[attr]
 		})
 
-		if(self.badges
+		/*if(self.badges
 			&& self.badges.length > 0
 			&& self.badges[0].json){
 			user.badges = []
 			self.badges.forEach(function(badge){
 				user.badges.push(badge.json(self))
 			})
-		}
+		}*/
 
         if(self.twitterAccessToken
             && self.twitterSecretToken){
