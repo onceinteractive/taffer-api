@@ -57,7 +57,7 @@ module.exports = function(app, models){
 			models.User.findOne({
 				_id: req.user._id
 			})
-				.populate('badges')
+				//.populate('badges')
 				.exec(function(err, user){
 					if(err || !user){
 						res.send(err, 500)
@@ -346,7 +346,7 @@ module.exports = function(app, models){
 			models.User.find({
 				barId: req.user.barId
 			})
-				.populate('badges')
+				//.populate('badges')
 				.exec(function(err, users){
 					var results = []
 					users.forEach(function(user){
