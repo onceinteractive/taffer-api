@@ -202,7 +202,7 @@ module.exports = function(app, models){
                                     res.send(err, 500)
                                     return
                                 }
-                                if(course.score >=2) {
+                                if(req.body.complete) {
 
                                     models.User.update({
                                         _id: user._id
