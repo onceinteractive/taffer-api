@@ -53,8 +53,6 @@ module.exports = function(app, models){
 							failure()
 						} else {
 							console.log("authorize....func call");
-							console.log(".....RESPONSE.....")
-							console.log(JSON.stringify(response));
 							var accessToken = response.access_token,
 								expiresIn = response.expires
 							graph.extendAccessToken({
@@ -186,8 +184,9 @@ module.exports = function(app, models){
 			}
 
 			if(req.user.facebookAccessTokenExpiration < new Date()){
-				res.send('Your Facebook access token has expired', 403)
-				return
+				res.send(baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth')
+				//res.send('Your Facebook access token has expired', 403)
+				//return
 			}
 
 			models.Bar.update({
