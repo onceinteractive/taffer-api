@@ -211,8 +211,8 @@ module.exports = function(app, models){
                                 }, function(err){
                                     //Do nothing for now
                                 })
-                                result.badgeImage=course.badgeImage
-
+                                result.badges.push(course.badgeImage)
+                                res.send(result)
                                 /*async.each(course.badges, function(badge, done){
                                     if(req.user.badges && req.user.badges.length > 0){
                                         var isCompletedAlready
