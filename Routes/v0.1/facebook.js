@@ -218,12 +218,12 @@ module.exports = function(app, models){
 				res.send('We have not been given access to your Facebook account', 403)
 				return
 			}
-			console.log(".............accounts.......1...............")
+
 			if(req.user.facebookAccessTokenExpiration < new Date()){
 				res.send('Your Facebook access token has expired', 403)
 				return
 			}
-			console.log(".............accounts........2..............")
+
 			graph.get('me/accounts?access_token=' + req.user.facebookAccessToken, function(err, response){
                 console.log("Error on facebook: " + req.user.facebookAccessToken);
                 console.log("Error on facebook: " + JSON.stringify(response));
@@ -263,11 +263,11 @@ module.exports = function(app, models){
 				res.send('We have not been given access to your Facebook account', 403)
 				return
 			}
-
+			console.log(".............accounts.......1...............");
 			if(req.user.facebookAccessTokenExpiration < new Date()){
 				res.send('Your Facebook access token has expired', 403)
 			}
-
+			console.log(".............accounts........2..............");
 			graph.get('me/accounts?access_token=' + req.user.facebookAccessToken, function(err, response){
 
 				if(err){
