@@ -58,7 +58,7 @@ module.exports = function(mongoose, models){
         viewedCourses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course', default: [] }],
 		completedCourses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course', default: [] }],
 
-		badges: [{ type: String ,default: []}],
+		badges: [String],
 
 		shared: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Shareable' }],
 
