@@ -53,6 +53,8 @@ module.exports = function(app, models){
 							failure()
 						} else {
 							console.log("authorize....func call");
+							console.log(".....RESPONSE.....")
+							console.log(JSON.stringify(response));
 							var accessToken = response.access_token,
 								expiresIn = response.expires
 							graph.extendAccessToken({
@@ -60,8 +62,6 @@ module.exports = function(app, models){
 								'client_id': appId,
 								'client_secret': appSecret
 							}, function(err, response){
-								console.log(".....RESPONSE.....")
-								console.log(JSON.stringify(response));
 								if(!err){
 									accessToken = response.access_token,
 									expiresIn = response.expires
