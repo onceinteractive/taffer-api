@@ -170,15 +170,6 @@ module.exports = function(app, models){
 									} 
 								})
 
-                             	/*
-                                promotion.update({
-                                    $set: {
-                                        socialImages: imageKey
-                                    }
-                                }, function(err){
-                                    done(err)
-                                })
-                                */
 
 								done(null, promotion, imageKey)
 							}
@@ -192,11 +183,13 @@ module.exports = function(app, models){
 				//For each shareable, schedule their tasks
 				function(promotion, imageKey, done){
 					var shareables = []
+                    console.log(req.body.shareables);
 					if(!req.body.shareables || req.body.shareables.length == 0){
+                        console.log("no shareable found.");
 						done(null, promotion)
 						return
 					}
-					
+					console.log("starting asyn calls");
 					async.each(req.body.shareables, function(newShareable, done){
 						if(imageKey && newShareable.selectedImage == 'UPLOAD'){
 							newShareable.selectedImage = "https://s3.amazonaws.com/taffer-dev/" + imageKey
