@@ -269,6 +269,10 @@ module.exports = function(app, models){
 				return
 			}
 
+			if(req.user.facebookAccessTokenExpiration == null) {
+				req.user.facebookAccessTokenExpiration = undefined;
+			}
+
 			if(req.user.facebookAccessTokenExpiration < new Date()){
 				res.send('Your Facebook access token has expired', 403)
 			}
