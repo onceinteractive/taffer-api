@@ -402,9 +402,9 @@ module.exports = function(app, models){
 
 	fb.route('/deactivate/page')
 		.delete(app.auth, function(req, res){
+			console.log("user request data = "+JSON.stringify(req.user));
 			models.Bar.update({
-				_id: req.user.barId,
-				facebookAccessToken: req.user.facebookAccessToken
+				_id: req.user.barId
 			}, {
 				facebookPageId: null,
 				facebookAccessToken: null,
