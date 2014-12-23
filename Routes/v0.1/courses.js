@@ -196,7 +196,7 @@ module.exports = function(app, models){
                         models.User.findOne({
                             _id: req.user._id
                         })
-                            .populate('badges')
+
                             .exec(function(err, user){
                                 if(err || !user){
                                     res.send(err, 500)
