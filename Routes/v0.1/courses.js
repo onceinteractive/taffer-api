@@ -185,13 +185,13 @@ module.exports = function(app, models){
                         }
 
                         //If there's no badges to award, return
-                        if(!course.badges
+                       /* if(!course.badges
                             || course.badges.length == 0
                             || !req.body.complete){
                             res.send(result)
                             return
                         }
-
+*/
                         //Update the user model with populated badges
                         models.User.findOne({
                             _id: req.user._id
@@ -202,8 +202,18 @@ module.exports = function(app, models){
                                     res.send(err, 500)
                                     return
                                 }
+                                models.User.update({
+                                    _id: user._id
+                                }, {
+                                    $push: {
+                                        badges: course.badgeImage
+                                    }
+                                }, function(err){
+                                    //Do nothing for now
+                                })
+                                result.badges.push(course.badgeImage)
 
-                                async.each(course.badges, function(badge, done){
+                                /*async.each(course.badges, function(badge, done){
                                     if(req.user.badges && req.user.badges.length > 0){
                                         var isCompletedAlready
                                         user.badges.forEach(function(earnedBadge){
@@ -238,7 +248,7 @@ module.exports = function(app, models){
 
                                 }, function(err){
                                     res.send(result)
-                                })
+                                })*/
 
 
 
