@@ -60,6 +60,8 @@ module.exports = function(app, models){
 								'client_id': appId,
 								'client_secret': appSecret
 							}, function(err, response){
+								console.log(".....RESPONSE.....")
+								console.log(JSON.stringify(response));
 								if(!err){
 									accessToken = response.access_token,
 									expiresIn = response.expires
@@ -88,7 +90,7 @@ module.exports = function(app, models){
 													facebookTokenExpirationTask: task.attrs._id,
 													facebookAccessToken: accessToken,
 													facebookAccessTokenDate: new Date(),
-													facebookAccessTokenExpiration: expirationDate,
+													facebookAccessTokenExpiration: expirationDate
 												}, function(err){
 													if(err){
 														failure()
@@ -402,23 +404,24 @@ module.exports = function(app, models){
 
 	fb.route('/deactivate/page')
 		.delete(app.auth, function(req, res){
-			console.log("user request data = "+JSON.stringify(req.user));
-			models.Bar.update({
-				_id: req.user.barId
-			}, {
-				facebookPageId: null,
-				facebookAccessToken: null,
-				facebookPageAccessToken: null,
-				facebookAccessDate: null,
-				facebookTokenExpiration: null,
-				facebookAccessUser: null
-			}, function(err){
-				if(err){
-					res.send(err, 500)
-				} else {
-					res.send(200)
-				}
-			})
+			if(req.user.facebookAccessToken){
+				models.Bar.update({
+					_id: req.user.barId
+				}, {
+					facebookPageId: null,
+					facebookAccessToken: null,
+					facebookPageAccessToken: null,
+					facebookAccessDate: null,
+					facebookTokenExpiration: null,
+					facebookAccessUser: null
+				}, function(err){
+					if(err){
+						res.send(err, 500)
+					} else {
+						res.send(200)
+					}
+				})
+			}
 		})
 
 	return fb
