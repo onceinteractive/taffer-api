@@ -170,27 +170,38 @@ module.exports = function(app, models){
 									} 
 								})
 
+                             	/*
+                                promotion.update({
+                                    $set: {
+                                        socialImages: imageKey
+                                    }
+                                }, function(err){
+                                    done(err)
+                                })
+                                */
 
 								done(null, promotion, imageKey)
 							}
 						})
 					} else {
-						done(null, promotion)
+                        console.log("Image not found");
+						done(null, promotion, null)
 					}
 				},
 
 				//With the promotion created, now create the shareables
 				//For each shareable, schedule their tasks
 				function(promotion, imageKey, done){
+                    console.log("In Shareabkes function");
 					var shareables = []
-                    console.log(req.body.shareables);
 					if(!req.body.shareables || req.body.shareables.length == 0){
-                        console.log("no shareable found.");
+                        console.log("Shareables not found");
 						done(null, promotion)
 						return
 					}
-					console.log("starting asyn calls");
+
 					async.each(req.body.shareables, function(newShareable, done){
+                        console.log("In Shareabkes async");
 						if(imageKey && newShareable.selectedImage == 'UPLOAD'){
 							newShareable.selectedImage = "https://s3.amazonaws.com/taffer-dev/" + imageKey
 						}
