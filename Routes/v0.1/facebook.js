@@ -215,18 +215,23 @@ module.exports = function(app, models){
 			}*/
 
 			if(!req.user.facebookAccessToken){
-				res.send('We have not been given access to your Facebook account', 403)
-				return
+				res.redirect(baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth')
+				/*res.send('We have not been given access to your Facebook account', 403)
+				return*/
 			}
 
+			if(req.user.facebookAccessTokenExpiration == null) {
+				req.user.facebookAccessTokenExpiration = undefined;
+			}
+			//console.log(".............accounts.......facebookAccessTokenExpiration..............."+req.user.facebookAccessTokenExpiration);
 			if(req.user.facebookAccessTokenExpiration < new Date()){
 				res.send('Your Facebook access token has expired', 403)
 				return
 			}
-
+			//console.log(".............accounts........2..............");
 			graph.get('me/accounts?access_token=' + req.user.facebookAccessToken, function(err, response){
-                console.log("Error on facebook: " + req.user.facebookAccessToken);
-                console.log("Error on facebook: " + JSON.stringify(response));
+                //console.log("facebookAccessToken 1: " + req.user.facebookAccessToken);
+                //console.log("Response from facebook 2: " + JSON.stringify(response));
                 if(err){
 					res.send(err, 500)
 				} else if(!response.data){
@@ -262,6 +267,10 @@ module.exports = function(app, models){
 			if(!req.user.facebookAccessToken){
 				res.send('We have not been given access to your Facebook account', 403)
 				return
+			}
+
+			if(req.user.facebookAccessTokenExpiration == null) {
+				req.user.facebookAccessTokenExpiration = undefined;
 			}
 
 			if(req.user.facebookAccessTokenExpiration < new Date()){
@@ -403,7 +412,7 @@ module.exports = function(app, models){
 
 	fb.route('/deactivate/page')
 		.delete(app.auth, function(req, res){
-			if(req.user.facebookAccessToken){
+			//if(req.user.facebookAccessToken){
 				models.Bar.update({
 					_id: req.user.barId
 				}, {
@@ -420,7 +429,7 @@ module.exports = function(app, models){
 						res.send(200)
 					}
 				})
-			}
+			//}
 		})
 
 	return fb
