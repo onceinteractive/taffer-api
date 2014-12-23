@@ -375,7 +375,7 @@ module.exports = function(app, models){
 				if(err){
 					res.send(err, 500)
 				} else {
-					if(req.user.facebookAccessToken){
+					/*if(req.user.facebookAccessToken){
 						models.Bar.update({
 							_id: req.user.barId,
 							facebookAccessToken: req.user.facebookAccessToken
@@ -393,9 +393,30 @@ module.exports = function(app, models){
 								res.send(200)
 							}
 						})
-					} else {
+					} else {*/
 						res.send(200)
-					}
+					//}
+				}
+			})
+		})
+
+	fb.route('/deactivate/page')
+		.delete(app.auth, function(req, res){
+			models.Bar.update({
+				_id: req.user.barId,
+				facebookAccessToken: req.user.facebookAccessToken
+			}, {
+				facebookPageId: null,
+				facebookAccessToken: null,
+				facebookPageAccessToken: null,
+				facebookAccessDate: null,
+				facebookTokenExpiration: null,
+				facebookAccessUser: null
+			}, function(err){
+				if(err){
+					res.send(err, 500)
+				} else {
+					res.send(200)
 				}
 			})
 		})
