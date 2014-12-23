@@ -202,16 +202,21 @@ module.exports = function(app, models){
                                     res.send(err, 500)
                                     return
                                 }
-                                models.User.update({
-                                    _id: user._id
-                                }, {
-                                    $push: {
-                                        badges: course.badgeImage
-                                    }
-                                }, function(err){
-                                    //Do nothing for now
-                                })
-                                result.badges.push(course.badgeImage)
+                                if(course.score >=2) {
+
+                                    models.User.update({
+                                        _id: user._id
+                                    }, {
+                                        $push: {
+                                            badges: course.badgeImage
+                                        }
+                                    }, function (err) {
+                                        //Do nothing for now
+                                    })
+                                    result.badges.push(course.badgeImage)
+
+
+                                }
                                 res.send(result)
                                 /*async.each(course.badges, function(badge, done){
                                     if(req.user.badges && req.user.badges.length > 0){
