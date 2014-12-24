@@ -183,12 +183,12 @@ module.exports = function(app, models){
 				res.redirect(baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth')
 				//return
 			}
-
+			console.log("..................before facebook token expiration.............................");
 			if(req.user.facebookAccessTokenExpiration < new Date()){
 				res.send('Your Facebook access token has expired', 403)
 				return
 			}
-
+			console.log("..................after facebook token expiration.............................");
 			models.Bar.update({
 				_id: req.user.barId
 			}, {
@@ -199,9 +199,11 @@ module.exports = function(app, models){
 				facebookAccessTokenExpiration: req.user.facebookAccessTokenExpiration,
 				facebookAccessTokenExpirationTask: req.user.facebookAccessTokenExpirationTask
 			}, function(err){
+				console.log("..................bar info updated.error ...................."+err);
 				if(err){
 					res.send(err, 500)
 				} else {
+					console.log("..................bar info updated.............................");
 					res.send(200)
 				}
 			})
