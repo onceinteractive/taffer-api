@@ -54,6 +54,7 @@ module.exports = function(app, models){
 							failure()
 						} else {
 							console.log("authorize....func call");
+							console.log(JSON.stringify(response));
 							var accessToken = response.access_token,
 								expiresIn = response.expires
 							graph.extendAccessToken({
@@ -61,6 +62,8 @@ module.exports = function(app, models){
 								'client_id': appId,
 								'client_secret': appSecret
 							}, function(err, response){
+								console.log("Extend fb token");
+								console.log(JSON.stringify(response));
 								if(!err){
 									accessToken = response.access_token,
 									expiresIn = response.expires
@@ -178,11 +181,10 @@ module.exports = function(app, models){
 			// 	return
 			// }
 			//console.log("request data :: "+JSON.stringify(req.user));
-			console.log("req.user.facebookAccessToken :: "+req.user.facebookAccessToken);
 			if(!req.user.facebookAccessToken){
 				console.log("\n\n\n...................in fb access token not found call......................");
-				res.redirect(baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth');
-				//return
+				res.send('We have not been given access to your Facebook account', 403)
+				return
 			}
 
 			if(req.user.facebookAccessTokenExpiration < new Date()){
