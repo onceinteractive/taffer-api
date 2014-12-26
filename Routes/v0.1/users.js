@@ -699,13 +699,13 @@ module.exports = function(app, models){
 			}
 
 			models.User.findOne({
-				barId: req.user.barId,
+				applyingToBarId: req.user.barId,
 				_id: models.ObjectId(req.params.userId)
 			}, function(err, user){
 				if(err){
 					res.send(500)
 				} else if(!user){
-					console.log("error Message"+err+" req.user.barId "+req.user.barId+" req.params.userId "+req.params.userId );
+					//console.log("error Message"+err+" req.user.barId "+req.user.barId+" req.params.userId "+req.params.userId );
 					res.send(404)
 				} else {
 					user.status = 'deactivated'
