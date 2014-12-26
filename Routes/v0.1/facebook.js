@@ -2,19 +2,21 @@ var express = require('express')
 var graph = require('fbgraph')
 
 // Production App
+/*
 
 var baseUrl = process.env.BASE_URL || 'http://barhq-api.herokuapp.com'
 // Facebook Production App Credentials
 var appId = process.env.FACEBOOK_APP_ID || '877533475604494'
 var appSecret = process.env.FACEBOOK_APP_SECRET || '5e4428deec3cf75cf15ef21e8c961afe'
 
+*/
 
 
 // Test App
-//var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
-// Facebook Test App Credentials
-//var appId = process.env.FACEBOOK_APP_ID || '717433561644223'
-//var appSecret = process.env.FACEBOOK_APP_SECRET || 'c2438639d21449396b4ef5fa3258682e'
+var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
+//Facebook Test App Credentials
+var appId = process.env.FACEBOOK_APP_ID || '717433561644223'
+var appSecret = process.env.FACEBOOK_APP_SECRET || 'c2438639d21449396b4ef5fa3258682e'
 
 var postToFacebook = require('../../Modules/postToFacebook')()
 
@@ -218,16 +220,14 @@ module.exports = function(app, models){
 			}*/
 
 			if(!req.user.facebookAccessToken){
-				//res.redirect(baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth')
-				res.send('We have not been given access to your Facebook account', 403)
-				return
+				res.redirect(baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth')
+				/*res.send('We have not been given access to your Facebook account', 403)
+				return*/
 			}
 
-/*
 			if(req.user.facebookAccessTokenExpiration == null) {
 				req.user.facebookAccessTokenExpiration = undefined;
 			}
-*/
 
 			if(req.user.facebookAccessTokenExpiration < new Date()){
 				res.send('Your Facebook access token has expired', 403)
@@ -272,11 +272,9 @@ module.exports = function(app, models){
 				return
 			}
 
-/*
 			if(req.user.facebookAccessTokenExpiration == null) {
 				req.user.facebookAccessTokenExpiration = undefined;
 			}
-*/
 
 			if(req.user.facebookAccessTokenExpiration < new Date()){
 				res.send('Your Facebook access token has expired', 403)
