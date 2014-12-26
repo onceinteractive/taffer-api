@@ -192,7 +192,7 @@ module.exports = function(app, models){
 			}
 */
 
-			/*models.Bar.update({
+			models.Bar.update({
 				_id: req.user.barId
 			}, {
 				facebookPageAccessToken: null,
@@ -207,7 +207,7 @@ module.exports = function(app, models){
 				} else {
 					res.send(200)
 				}
-			})*/
+			})
 		})
 
 	fb.route('/accounts')
