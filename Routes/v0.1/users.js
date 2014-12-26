@@ -705,6 +705,7 @@ module.exports = function(app, models){
 				if(err){
 					res.send(500)
 				} else if(!user){
+					console.log("error Message"+err);
 					res.send(404)
 				} else {
 					user.status = 'deactivated'
