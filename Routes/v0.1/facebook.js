@@ -26,6 +26,7 @@ module.exports = function(app, models){
 		.get(function(req, res){
 			console.log("....return.....");
 			if(req.query.result){
+				console.log("....return...back..");
 				res.end()
 				return
 			}
