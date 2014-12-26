@@ -350,7 +350,8 @@ module.exports = function(app, models){
 				} else if(!bar){
 					res.send('Error loading bar', 500)
 				} else {
-					if(!bar.facebookPageAccessToken || !bar.facebookAccessToken){
+					// || !bar.facebookAccessToken
+					if(!bar.facebookPageAccessToken || !bar.facebookPageId){
 						res.send('We do not have the appropriate permissions from Facebook to post for this account', 403)
 					} else {
 						postToFacebook(bar, req.body.message, req.body.imageUrl, function(err){
