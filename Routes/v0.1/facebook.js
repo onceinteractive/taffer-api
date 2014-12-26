@@ -2,19 +2,19 @@ var express = require('express')
 var graph = require('fbgraph')
 
 // Production App
-/*
+
 var baseUrl = process.env.BASE_URL || 'http://barhq-api.herokuapp.com'
 // Facebook Production App Credentials
 var appId = process.env.FACEBOOK_APP_ID || '877533475604494'
 var appSecret = process.env.FACEBOOK_APP_SECRET || '5e4428deec3cf75cf15ef21e8c961afe'
-*/
+
 
 
 // Test App
-var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
+//var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
 // Facebook Test App Credentials
-var appId = process.env.FACEBOOK_APP_ID || '717433561644223'
-var appSecret = process.env.FACEBOOK_APP_SECRET || 'c2438639d21449396b4ef5fa3258682e'
+//var appId = process.env.FACEBOOK_APP_ID || '717433561644223'
+//var appSecret = process.env.FACEBOOK_APP_SECRET || 'c2438639d21449396b4ef5fa3258682e'
 
 var postToFacebook = require('../../Modules/postToFacebook')()
 
@@ -26,6 +26,7 @@ module.exports = function(app, models){
 		.get(function(req, res){
 			console.log("....return.....");
 			if(req.query.result){
+				console.log("....return...back..");
 				res.end()
 				return
 			}
@@ -162,7 +163,6 @@ module.exports = function(app, models){
 
 	fb.route('/auth/url')
 		.get(app.auth, function(req, res){
-			//console.log("in auth url call...");
 		    res.send(graph.getOauthUrl({
 		        'client_id': appId,
 				'redirect_uri': baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth',
@@ -180,14 +180,17 @@ module.exports = function(app, models){
 			console.log("req.user.facebookAccessToken :: "+req.user.facebookAccessToken);
 			if(!req.user.facebookAccessToken){
 				console.log("\n\n\n...................in fb access token not found call......................");
-				res.redirect(baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth')
+				res.redirect(baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth');
 				//return
 			}
 
+/*
 			if(req.user.facebookAccessTokenExpiration < new Date()){
+				//res.redirect(baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth');
 				res.send('Your Facebook access token has expired', 403)
 				return
 			}
+*/
 
 			models.Bar.update({
 				_id: req.user.barId
@@ -215,23 +218,23 @@ module.exports = function(app, models){
 			}*/
 
 			if(!req.user.facebookAccessToken){
-				res.redirect(baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth')
-				/*res.send('We have not been given access to your Facebook account', 403)
-				return*/
+				//res.redirect(baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth')
+				res.send('We have not been given access to your Facebook account', 403)
+				return
 			}
 
+/*
 			if(req.user.facebookAccessTokenExpiration == null) {
 				req.user.facebookAccessTokenExpiration = undefined;
 			}
-			//console.log(".............accounts.......facebookAccessTokenExpiration..............."+req.user.facebookAccessTokenExpiration);
+*/
+
 			if(req.user.facebookAccessTokenExpiration < new Date()){
 				res.send('Your Facebook access token has expired', 403)
 				return
 			}
-			//console.log(".............accounts........2..............");
+
 			graph.get('me/accounts?access_token=' + req.user.facebookAccessToken, function(err, response){
-                //console.log("facebookAccessToken 1: " + req.user.facebookAccessToken);
-                //console.log("Response from facebook 2: " + JSON.stringify(response));
                 if(err){
 					res.send(err, 500)
 				} else if(!response.data){
@@ -269,9 +272,11 @@ module.exports = function(app, models){
 				return
 			}
 
+/*
 			if(req.user.facebookAccessTokenExpiration == null) {
 				req.user.facebookAccessTokenExpiration = undefined;
 			}
+*/
 
 			if(req.user.facebookAccessTokenExpiration < new Date()){
 				res.send('Your Facebook access token has expired', 403)
@@ -347,8 +352,7 @@ module.exports = function(app, models){
 				} else if(!bar){
 					res.send('Error loading bar', 500)
 				} else {
-					// || !bar.facebookAccessToken
-					if(!bar.facebookPageAccessToken || !bar.facebookPageId){
+					if(!bar.facebookPageAccessToken || !bar.facebookAccessToken){
 						res.send('We do not have the appropriate permissions from Facebook to post for this account', 403)
 					} else {
 						postToFacebook(bar, req.body.message, req.body.imageUrl, function(err){

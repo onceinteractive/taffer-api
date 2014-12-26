@@ -649,7 +649,8 @@ module.exports = function(mongoose, models){
 		'role',
 		'phoneNumber',
 		'ProfileNameTwitter',
-		'ProfileNameFacebook'
+		'ProfileNameFacebook',
+		'ProfileNameFacebookPage'
 		// 'permissions'
 	]
 
