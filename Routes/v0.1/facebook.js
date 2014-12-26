@@ -41,7 +41,7 @@ module.exports = function(app, models){
 				} else {
 
 					console.log("\n\n.......start.........\n\n");
-
+					console.log(JSON.stringify(user))
 					graph.authorize({
 						'client_id': appId,
 						'client_secret': appSecret,
@@ -70,7 +70,7 @@ module.exports = function(app, models){
 								}
 								if(err || !accessToken){
 									failure()
-								} else if(expiresIn){
+								} else if(expiresIn || !user.facebookAccessTokenExpiration){
 									console.log("...........................no access token...............................................");
 									console.log("extend access token ....func call");
 									var expirationDate = new Date()
