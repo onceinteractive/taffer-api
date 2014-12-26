@@ -41,7 +41,7 @@ module.exports = function(app, models){
 				} else {
 
 					console.log("\n\n.......start.........\n\n");
-					console.log(JSON.stringify(user))
+
 					graph.authorize({
 						'client_id': appId,
 						'client_secret': appSecret,
@@ -49,12 +49,10 @@ module.exports = function(app, models){
 						'code': req.query.code
 					}, function(err, response){
 						console.log("................in authorize func call..................");
-						console.log(JSON.stringify(response));
 						if(err){
 							failure()
 						} else {
 							console.log("authorize....func call");
-							console.log(JSON.stringify(response));
 							var accessToken = response.access_token,
 								expiresIn = response.expires
 							graph.extendAccessToken({
@@ -62,23 +60,17 @@ module.exports = function(app, models){
 								'client_id': appId,
 								'client_secret': appSecret
 							}, function(err, response){
-								console.log("Extend fb token");
-								console.log(JSON.stringify(response));
 								if(!err){
 									accessToken = response.access_token,
 									expiresIn = response.expires
 								}
 								if(err || !accessToken){
 									failure()
-								} else if(expiresIn || !user.facebookAccessTokenExpiration){
+								} else if(expiresIn){
 									console.log("...........................no access token...............................................");
 									console.log("extend access token ....func call");
 									var expirationDate = new Date()
-									if(!expiresIn) {
-										expirationDate.setSeconds(expirationDate.getSeconds())
-									} else {
-										expirationDate.setSeconds(expirationDate.getSeconds() + expiresIn)
-									}
+									expirationDate.setSeconds(expirationDate.getSeconds() + expiresIn)
 									var expirationTaskDate = expirationDate
 									expirationTaskDate.setDate(expirationTaskDate.getDate() - 14)
 									models.Agenda.create('facebookTokenExpiration_v0.1', {
@@ -170,7 +162,6 @@ module.exports = function(app, models){
 
 	fb.route('/auth/url')
 		.get(app.auth, function(req, res){
-			//console.log("in auth url call...");
 		    res.send(graph.getOauthUrl({
 		        'client_id': appId,
 				'redirect_uri': baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth',
@@ -184,14 +175,16 @@ module.exports = function(app, models){
 			// 	res.send("You do not have permission to access this bar's social media", 403)
 			// 	return
 			// }
-			console.log("request data :: "+JSON.stringify(req.user));
+			//console.log("request data :: "+JSON.stringify(req.user));
+			console.log("req.user.facebookAccessToken :: "+req.user.facebookAccessToken);
 			if(!req.user.facebookAccessToken){
 				console.log("\n\n\n...................in fb access token not found call......................");
-				res.send('We have not been given access to your Facebook account', 403)
-				return
+				res.redirect(baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth');
+				//return
 			}
 
 			if(req.user.facebookAccessTokenExpiration < new Date()){
+				//res.redirect(baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth');
 				res.send('Your Facebook access token has expired', 403)
 				return
 			}
@@ -222,9 +215,16 @@ module.exports = function(app, models){
 			}*/
 
 			if(!req.user.facebookAccessToken){
+				//res.redirect(baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth')
 				res.send('We have not been given access to your Facebook account', 403)
 				return
 			}
+
+/*
+			if(req.user.facebookAccessTokenExpiration == null) {
+				req.user.facebookAccessTokenExpiration = undefined;
+			}
+*/
 
 			if(req.user.facebookAccessTokenExpiration < new Date()){
 				res.send('Your Facebook access token has expired', 403)
@@ -268,6 +268,12 @@ module.exports = function(app, models){
 				res.send('We have not been given access to your Facebook account', 403)
 				return
 			}
+
+/*
+			if(req.user.facebookAccessTokenExpiration == null) {
+				req.user.facebookAccessTokenExpiration = undefined;
+			}
+*/
 
 			if(req.user.facebookAccessTokenExpiration < new Date()){
 				res.send('Your Facebook access token has expired', 403)
