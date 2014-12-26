@@ -74,7 +74,11 @@ module.exports = function(app, models){
 									console.log("...........................no access token...............................................");
 									console.log("extend access token ....func call");
 									var expirationDate = new Date()
-									expirationDate.setSeconds(expirationDate.getSeconds() + expiresIn)
+									if(!expiresIn) {
+										expirationDate.setSeconds(expirationDate.getSeconds())
+									} else {
+										expirationDate.setSeconds(expirationDate.getSeconds() + expiresIn)
+									}
 									var expirationTaskDate = expirationDate
 									expirationTaskDate.setDate(expirationTaskDate.getDate() - 14)
 									models.Agenda.create('facebookTokenExpiration_v0.1', {
@@ -180,7 +184,7 @@ module.exports = function(app, models){
 			// 	res.send("You do not have permission to access this bar's social media", 403)
 			// 	return
 			// }
-			//console.log("request data :: "+JSON.stringify(req.user));
+			console.log("request data :: "+JSON.stringify(req.user));
 			if(!req.user.facebookAccessToken){
 				console.log("\n\n\n...................in fb access token not found call......................");
 				res.send('We have not been given access to your Facebook account', 403)
