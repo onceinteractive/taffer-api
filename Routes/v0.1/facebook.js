@@ -41,7 +41,8 @@ module.exports = function(app, models){
 				} else {
 
 					console.log("\n\n.......start.........\n\n");
-
+					console.log("req.query.code = "+req.query.code);
+					console.log(baseUrl + '/v0.1/facebook/' + req.params.userId + '/auth');
 					graph.authorize({
 						'client_id': appId,
 						'client_secret': appSecret,
