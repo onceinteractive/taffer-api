@@ -70,7 +70,7 @@ module.exports = function(app, models){
 								}
 								if(err || !accessToken){
 									failure()
-								} else if(expiresIn || !user.req.facebookAccessTokenExpiration){
+								} else if(expiresIn){
 									console.log("...........................no access token...............................................");
 									console.log("extend access token ....func call");
 									var expirationDate = new Date()
