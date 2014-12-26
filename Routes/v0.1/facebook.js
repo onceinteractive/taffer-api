@@ -185,9 +185,8 @@ module.exports = function(app, models){
 			}
 
 			if(req.user.facebookAccessTokenExpiration < new Date()){
-				res.redirect(baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth');
-				/*res.send('Your Facebook access token has expired', 403)
-				return*/
+				res.send('Your Facebook access token has expired', 403)
+				return
 			}
 
 			models.Bar.update({
@@ -348,8 +347,7 @@ module.exports = function(app, models){
 				} else if(!bar){
 					res.send('Error loading bar', 500)
 				} else {
-					// || !bar.facebookAccessToken
-					if(!bar.facebookPageAccessToken || !bar.facebookPageId){
+					if(!bar.facebookPageAccessToken || !bar.facebookAccessToken){
 						res.send('We do not have the appropriate permissions from Facebook to post for this account', 403)
 					} else {
 						postToFacebook(bar, req.body.message, req.body.imageUrl, function(err){
