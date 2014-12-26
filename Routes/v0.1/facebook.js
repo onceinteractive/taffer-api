@@ -49,6 +49,7 @@ module.exports = function(app, models){
 						'code': req.query.code
 					}, function(err, response){
 						console.log("................in authorize func call..................");
+						console.log(JSON.stringify(response));
 						if(err){
 							failure()
 						} else {
