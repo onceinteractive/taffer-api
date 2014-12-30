@@ -17,7 +17,7 @@ var consumerSecret = process.env.TWITTER_CONSUMER_SECRET || 'K3eTfa6dIK0OHmXbxqz
 
 var twitter = new twitterAPI({
 	consumerKey: consumerKey,
-	consumerSecret: consumerSecret,
+	consumerSecret: consumerSecret
 })
 
 module.exports = function(){
