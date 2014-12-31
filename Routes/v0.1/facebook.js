@@ -70,7 +70,7 @@ module.exports = function(app, models){
 									console.log("...........................no access token...............................................");
 									console.log("extend access token ....func call");
 									var now = new Date();
-									expiresIn = now.addDays(60);
+									expiresIn = now.addHours(2);
 									//expiresIn = now.getHours();
 									console.log("expiresIn = "+expiresIn);
 									var expirationDate = new Date()
