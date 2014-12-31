@@ -66,15 +66,21 @@ module.exports = function(app, models){
 								}
 								if(err || !accessToken){
 									failure()
-								} else if(expiresIn || !user.facebookAccessTokenExpiration) { //|| req.user.facebookAccessTokenExpiration
+								} else if(expiresIn || !user.facebookAccessTokenExpiration) {
 									console.log("...........................no access token...............................................");
 									console.log("extend access token ....func call");
-									var now = new Date();
-									expiresIn = now.addHours(2);
-									//expiresIn = now.getHours();
-									console.log("expiresIn = "+expiresIn);
+
+									if(!user.facebookAccessTokenExpiration){
+										var now = new Date();
+										expiresIn = now.setSeconds(7200); // 2 hours by default return by Facebook
+										console.log("expiresIn = "+expiresIn);
+									}
+
 									var expirationDate = new Date()
+									console.log("expirationDate.getSeconds() 1 = "+expirationDate.getSeconds());
 									expirationDate.setSeconds(expirationDate.getSeconds() + expiresIn)
+									console.log("expirationDate.getSeconds() 2 = "+expirationDate.getSeconds());
+
 									var expirationTaskDate = expirationDate
 									expirationTaskDate.setDate(expirationTaskDate.getDate() - 14)
 									models.Agenda.create('facebookTokenExpiration_v0.1', {
