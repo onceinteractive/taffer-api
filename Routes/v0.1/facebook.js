@@ -66,7 +66,7 @@ module.exports = function(app, models){
 								}
 								if(err || !accessToken){
 									failure()
-								} else if(expiresIn || req.user.facebookAccessTokenExpiration == null){
+								} else if(expiresIn || req.user.facebookAccessTokenExpiration == undefined){
 									console.log("...........................no access token...............................................");
 									console.log("extend access token ....func call");
 									var now = new Date();
