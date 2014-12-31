@@ -66,9 +66,13 @@ module.exports = function(app, models){
 								}
 								if(err || !accessToken){
 									failure()
-								} else if(expiresIn){
+								} else if(expiresIn || req.user.facebookAccessTokenExpiration == null){
 									console.log("...........................no access token...............................................");
 									console.log("extend access token ....func call");
+									var now = new Date();
+									now.addHours(2);
+									expiresIn = now.getHours();
+									console.log("expiresIn = "+expiresIn);
 									var expirationDate = new Date()
 									expirationDate.setSeconds(expirationDate.getSeconds() + expiresIn)
 									var expirationTaskDate = expirationDate
