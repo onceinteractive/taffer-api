@@ -69,18 +69,14 @@ module.exports = function(app, models){
 								} else if(expiresIn || !user.facebookAccessTokenExpiration) {
 									console.log("...........................no access token...............................................");
 									console.log("extend access token ....func call");
-
+									var expirationDate = new Date()
 									if(!user.facebookAccessTokenExpiration){
-										var now = new Date();
-										console.log("now = "+now);
-										expiresIn = now.addSeconds(7200); // 2 hours by default return by Facebook
-										console.log("expiresIn = "+expiresIn);
+										expirationDate = expirationDate.addDays(60); // 60 days added to expire token
+									}else if(expiresIn){
+										expirationDate.setSeconds(expirationDate.getSeconds() + expiresIn)
 									}
 
-									var expirationDate = new Date()
-									console.log("expirationDate.getSeconds() 1 = "+expirationDate.getSeconds());
-									expirationDate.setSeconds(expirationDate.getSeconds() + expiresIn)
-									console.log("expirationDate.getSeconds() 2 = "+expirationDate.getSeconds());
+									console.log("expirationDate = "+expirationDate);
 
 									var expirationTaskDate = expirationDate
 									expirationTaskDate.setDate(expirationTaskDate.getDate() - 14)
