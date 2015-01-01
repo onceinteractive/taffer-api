@@ -422,6 +422,13 @@ module.exports = function(app, models){
 			//}
 		})
 
+	fb.route('/user')
+		.get(app.auth, function(req, res){
+			var fbUser = graph.get('/'+req.user.facebookUserId);
+			console("facebook user = "+JSON.stringify(fbUser));
+			res.send(user);
+		})
+
 	return fb
 
 }
