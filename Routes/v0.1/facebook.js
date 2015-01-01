@@ -291,9 +291,9 @@ module.exports = function(app, models){
 						models.Bar.update({
 							_id: req.user.barId
 						}, {
-							facebookAccessToken: null,
-							facebookTokenExpiration: null,
-							facebookAccessDate: null,
+							facebookAccessToken: req.user.facebookAccessToken,
+							facebookTokenExpiration: req.user.facebookAccessTokenExpiration,
+							facebookAccessDate: new Date(),
 							facebookPageId: foundAccount.id,
 							facebookPageAccessToken: foundAccount.access_token,
 							facebookAccessUser: req.user._id
