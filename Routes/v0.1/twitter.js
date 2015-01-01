@@ -2,15 +2,17 @@ var express = require('express')
 var twitterAPI = require('node-twitter-api')
 
 // Production App
+/*
 var baseUrl = process.env.BASE_URL || 'http://barhq-api.herokuapp.com'
 var consumerKey = process.env.TWITTER_CONSUMER_KEY || 'wW5zpikQPxXefHRscyT6FgUQx'
 var consumerSecret = process.env.TWITTER_CONSUMER_SECRET || 'mTjacdvJjuvYwiIisqkTCgosattPpUtMTjMPyWQDrkWNycpd1G'
+*/
 
 
 // Test App
-/*var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
+var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
 var consumerKey = process.env.TWITTER_CONSUMER_KEY || 'pt8rAJvQ8Hmhp3nZmNlgapFCT'
-var consumerSecret = process.env.TWITTER_CONSUMER_SECRET || 'K3eTfa6dIK0OHmXbxqzJ3gX3ex0FqQVWvmiTU9VCjpswMSwk61'*/
+var consumerSecret = process.env.TWITTER_CONSUMER_SECRET || 'K3eTfa6dIK0OHmXbxqzJ3gX3ex0FqQVWvmiTU9VCjpswMSwk61'
 
 
 var postToTwitter = require('../../Modules/postToTwitter')()
@@ -344,10 +346,12 @@ module.exports = function(app, models){
 	twitter.route('/user')
 		.get(app.auth, function(req, res){
 			console.log("twitter user info");
-			if(!req.user.twitterAccessToken){
-				res.send('We have not been given access to your Twitter account', 403)
-				return
+
+			if(!req.user.twitterAccessToken ||
+				!req.user.twitterSecretToken){
+				res.send('We do not have the appropriate permissions from Twitter to post for this account', 403)
 			}
+
 			var params = {
 				user_id: req.user.twitterUserId
 			};
