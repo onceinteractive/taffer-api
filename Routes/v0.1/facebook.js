@@ -424,6 +424,13 @@ module.exports = function(app, models){
 
 	fb.route('/user')
 		.get(app.auth, function(req, res){
+
+			if(!req.user.facebookAccessToken){
+				res.send('We have not been given access to your Facebook account', 403)
+				return
+			}
+			console.log("facebook user id = "+req.user.facebookUserId);
+			
 			var fbUser = graph.get('/'+req.user.facebookUserId);
 			console.log("facebook user = "+JSON.stringify(fbUser));
 			res.send(user);
