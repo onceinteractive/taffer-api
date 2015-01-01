@@ -99,10 +99,10 @@ module.exports = function(app, models){
 						res.send(404)
 					} else {
 						if (req.body.question.toLowerCase() != user.question) {
-							res.send('question do not match', 500)
+							res.send('Security question does not match', 500)
 						}
 						else if (req.body.answer.toLowerCase() != user.answer) {
-							res.send('answer do not match', 500)
+							res.send('Wrong answer', 500)
 						}
 						else {
 							var newPassword = Math.random().toString(36).slice(-8)
