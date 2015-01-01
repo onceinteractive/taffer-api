@@ -76,7 +76,7 @@ module.exports = function(app, models){
 										expirationDate.setSeconds(expirationDate.getSeconds() + expiresIn)
 									}
 
-									console.log("expirationDate = "+expirationDate);
+									//console.log("expirationDate = "+expirationDate);
 
 									var expirationTaskDate = expirationDate
 									expirationTaskDate.setDate(expirationTaskDate.getDate() - 14)
@@ -190,13 +190,10 @@ module.exports = function(app, models){
 				//return
 			}
 
-/*
 			if(req.user.facebookAccessTokenExpiration < new Date()){
-				//res.redirect(baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth');
 				res.send('Your Facebook access token has expired', 403)
 				return
 			}
-*/
 
 			models.Bar.update({
 				_id: req.user.barId
@@ -229,9 +226,11 @@ module.exports = function(app, models){
 				return*/
 			}
 
+/*
 			if(req.user.facebookAccessTokenExpiration == null) {
 				req.user.facebookAccessTokenExpiration = undefined;
 			}
+*/
 
 			if(req.user.facebookAccessTokenExpiration < new Date()){
 				res.send('Your Facebook access token has expired', 403)
@@ -276,9 +275,11 @@ module.exports = function(app, models){
 				return
 			}
 
+/*
 			if(req.user.facebookAccessTokenExpiration == null) {
 				req.user.facebookAccessTokenExpiration = undefined;
 			}
+*/
 
 			if(req.user.facebookAccessTokenExpiration < new Date()){
 				res.send('Your Facebook access token has expired', 403)
