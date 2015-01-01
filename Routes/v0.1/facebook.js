@@ -75,9 +75,6 @@ module.exports = function(app, models){
 									}else if(expiresIn){
 										expirationDate.setSeconds(expirationDate.getSeconds() + expiresIn)
 									}
-
-									//console.log("expirationDate = "+expirationDate);
-
 									var expirationTaskDate = expirationDate
 									expirationTaskDate.setDate(expirationTaskDate.getDate() - 14)
 									models.Agenda.create('facebookTokenExpiration_v0.1', {
