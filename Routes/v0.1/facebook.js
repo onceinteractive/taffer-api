@@ -73,7 +73,7 @@ module.exports = function(app, models){
 									if(!user.facebookAccessTokenExpiration){
 										var now = new Date();
 										console.log("now = "+now);
-										expiresIn = now.setSeconds(now.getSeconds() + 7200); // 2 hours by default return by Facebook
+										expiresIn = now.addSeconds(7200); // 2 hours by default return by Facebook
 										console.log("expiresIn = "+expiresIn);
 									}
 
