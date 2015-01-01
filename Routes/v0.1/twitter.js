@@ -343,7 +343,7 @@ module.exports = function(app, models){
 
 	twitter.route('/user')
 		.get(app.auth, function(req, res){
-
+			console.log("twitter user info");
 			if(!req.user.twitterAccessToken){
 				res.send('We have not been given access to your Twitter account', 403)
 				return
