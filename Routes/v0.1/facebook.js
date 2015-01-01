@@ -422,6 +422,44 @@ module.exports = function(app, models){
 			//}
 		})
 
+	fb.route('/user')
+		.get(app.auth, function(req, res){
+
+			if(!req.user.facebookAccessToken){
+				res.send('We have not been given access to your Facebook account', 403)
+				return
+			}
+			graph.get('me/?access_token=' + req.user.facebookAccessToken, function(err, response) {
+				res.send(response);
+			});
+		})
+
+	fb.route('/page')
+		.get(app.auth, function(req, res){
+
+			models.Bar.findOne({
+				_id: req.user.barId
+			}, function(err, bar){
+				if(err){
+					res.send(err, 500)
+				} else if(!bar){
+					res.send('Error loading bar', 500)
+				} else {
+					if(!bar.facebookPageAccessToken || !bar.facebookAccessToken){
+						res.send('We do not have the appropriate permissions from Facebook to post for this account', 403)
+					} else {
+						if (err) {
+							res.send(err, 500)
+						} else {
+							graph.get(bar.facebookPageId + '?access_token=' + bar.facebookAccessToken, function (err, response) {
+								res.send(response);
+							});
+						}
+					}
+				}
+			});
+		})
+
 	return fb
 
 }
