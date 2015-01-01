@@ -200,8 +200,8 @@ module.exports = function(app, models){
 				facebookPageId: null,
 				facebookAccessToken: req.user.facebookAccessToken,
 				facebookAccessUser: req.user._id,
-				facebookAccessTokenExpiration: req.user.facebookAccessTokenExpiration,
-				facebookAccessTokenExpirationTask: req.user.facebookAccessTokenExpirationTask
+				facebookTokenExpiration: req.user.facebookAccessTokenExpiration,
+				facebookAccessDate: new Date()
 			}, function(err){
 				if(err){
 					res.send(err, 500)
@@ -219,16 +219,9 @@ module.exports = function(app, models){
 			}*/
 
 			if(!req.user.facebookAccessToken){
-				//res.redirect(baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth')
 				res.send('We have not been given access to your Facebook account', 403)
 				return
 			}
-
-/*
-			if(req.user.facebookAccessTokenExpiration == null) {
-				req.user.facebookAccessTokenExpiration = undefined;
-			}
-*/
 
 			if(req.user.facebookAccessTokenExpiration < new Date()){
 				res.send('Your Facebook access token has expired', 403)
@@ -273,12 +266,6 @@ module.exports = function(app, models){
 				return
 			}
 
-/*
-			if(req.user.facebookAccessTokenExpiration == null) {
-				req.user.facebookAccessTokenExpiration = undefined;
-			}
-*/
-
 			if(req.user.facebookAccessTokenExpiration < new Date()){
 				res.send('Your Facebook access token has expired', 403)
 			}
@@ -305,8 +292,8 @@ module.exports = function(app, models){
 							_id: req.user.barId
 						}, {
 							facebookAccessToken: null,
-							facebookAccesTokenExpiration: null,
-							facebookAccessTokenExpirationTask: null,
+							facebookTokenExpiration: null,
+							facebookAccessDate: null,
 							facebookPageId: foundAccount.id,
 							facebookPageAccessToken: foundAccount.access_token,
 							facebookAccessUser: req.user._id
@@ -328,7 +315,6 @@ module.exports = function(app, models){
 				res.send('We do not have the appropriate permissions from Facebook to post for this Account', 403)
 				return
 			}
-			//console.log("image Url in req: "+req.body.imageUrl);
 			postToFacebook(req.user, req.body.message, req.body.imageUrl, function(err){
 				if(err){
 					res.send(err, 500)
@@ -353,8 +339,7 @@ module.exports = function(app, models){
 				} else if(!bar){
 					res.send('Error loading bar', 500)
 				} else {
-					// || !bar.facebookAccessToken
-					if(!bar.facebookPageAccessToken || !bar.facebookPageId){
+					if(!bar.facebookPageAccessToken || !bar.facebookAccessToken){
 						res.send('We do not have the appropriate permissions from Facebook to post for this account', 403)
 					} else {
 						postToFacebook(bar, req.body.message, req.body.imageUrl, function(err){
