@@ -96,7 +96,7 @@ module.exports = function(app, models){
 					email: req.body.email.toLowerCase()
 				}, function(err, user){
 					if(err || !user){
-						res.send(404)
+						res.send('Email address does not exist',404)
 					} else {
 						if (req.body.question.toLowerCase() != user.question) {
 							res.send('Security question does not match', 500)
