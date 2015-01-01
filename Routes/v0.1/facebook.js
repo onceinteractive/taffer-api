@@ -429,11 +429,10 @@ module.exports = function(app, models){
 				res.send('We have not been given access to your Facebook account', 403)
 				return
 			}
-			console.log("facebook user id = "+req.user.facebookUserId);
-			
-			var fbUser = graph.get('/'+req.user.facebookUserId);
-			console.log("facebook user = "+JSON.stringify(fbUser));
-			res.send(user);
+			graph.get('me/?access_token=' + req.user.facebookAccessToken, function(err, response) {
+				console.log("facebook user = "+JSON.stringify(response));
+				res.send(response);
+			});
 		})
 
 	return fb
