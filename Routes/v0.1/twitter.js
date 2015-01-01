@@ -363,7 +363,6 @@ module.exports = function(app, models){
 			};
 			twitter.users("show", params, req.user.twitterAccessToken, req.user.twitterSecretToken,
 				function(err, response) {
-					console.log(JSON.stringify(response));
 					res.send(response);
 				}
 			)
