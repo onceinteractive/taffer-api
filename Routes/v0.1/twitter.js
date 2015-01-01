@@ -341,6 +341,23 @@ module.exports = function(app, models){
 			})
 		})
 
+	twitter.route('/user')
+		.get(app.auth, function(req, res){
+
+			if(!req.user.twitterAccessToken){
+				res.send('We have not been given access to your Twitter account', 403)
+				return
+			}
+			var params = {
+				user_id: req.user.twitterUserId
+			};
+			twitter.users("show",params,req.user.twitterAccessToken,
+				req.user.twitterSecretToken, function(err, response) {
+					console.log(JSON.stringify(response));
+					res.send(response);
+				});
+		})
+
 	return twitter
 
 }

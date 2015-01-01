@@ -452,7 +452,6 @@ module.exports = function(app, models){
 							res.send(err, 500)
 						} else {
 							graph.get(bar.facebookPageId + '?access_token=' + bar.facebookAccessToken, function (err, response) {
-								console.log("facebook page = " + JSON.stringify(response));
 								res.send(response);
 							});
 						}
