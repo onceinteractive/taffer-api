@@ -24,7 +24,9 @@ module.exports = function(app, models){
 			var user = models.User({
 				email: req.body.email.toLowerCase(),
 				firstName: req.body.firstName,
-				lastName: req.body.lastName
+				lastName: req.body.lastName,
+				question:req.body.question.toLowerCase(),
+				answer:req.body.answer.toLowerCase()
 			})
 
 			user.save(function(err, user){
@@ -96,29 +98,36 @@ module.exports = function(app, models){
 					if(err || !user){
 						res.send(404)
 					} else {
-						var newPassword = Math.random().toString(36).slice(-8)
+						if (req.body.question.toLowerCase() != user.question) {
+							res.send('question do not match', 500)
+						}
+						else if (req.body.answer.toLowerCase() != user.answer) {
+							res.send('answer do not match', 500)
+						}
+						else {
+							var newPassword = Math.random().toString(36).slice(-8)
 
-						user.setPassword(newPassword, function(err){
-							app.mail(user,
-								'Your Bar HQ password has been reset',
-								'passwordReset',
-								{
-									firstName: user.firstName,
-									password: newPassword
-								}, function(err){
-									if(err){
-										res.send(err, 500)
-									} else {
-										res.send(200)
-									}
+							user.setPassword(newPassword, function (err) {
+								app.mail(user,
+									'Your Bar HQ password has been reset',
+									'passwordReset',
+									{
+										firstName: user.firstName,
+										password: newPassword
+									}, function (err) {
+										if (err) {
+											res.send(err, 500)
+										} else {
+											res.send(200)
+										}
+									})
 							})
-						})
 
+						}
 					}
 				})
 			}
 		})
-
 	var uploadRoute = require('../../Modules/imageUpload')(models)
 	users.route('/image')
 		.post(app.auth, function(req, res){

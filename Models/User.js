@@ -85,7 +85,9 @@ module.exports = function(mongoose, models){
 		created: { type: Date, default: Date.now },
 		ProfileNameTwitter:String,
 		ProfileNameFacebook: String,
-		ProfileNameFacebookPage: String
+		ProfileNameFacebookPage: String,
+		question: String,
+		answer:String
 
 	})
 
