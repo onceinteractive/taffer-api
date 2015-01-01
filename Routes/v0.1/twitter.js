@@ -352,14 +352,21 @@ module.exports = function(app, models){
 				res.send('We do not have the appropriate permissions from Twitter to post for this account', 403)
 			}
 
+			var twitter = new twitterAPI({
+				consumerKey: consumerKey,
+				consumerSecret: consumerSecret,
+				callback: baseUrl + '/v0.1/twitter/bar/' + req.params.barId + '/auth'
+			})
+
 			var params = {
 				user_id: req.user.twitterUserId
 			};
-			twitter.users("show",params,req.user.twitterAccessToken,
-				req.user.twitterSecretToken, function(err, response) {
+			twitter.users("show", params, req.user.twitterAccessToken, req.user.twitterSecretToken,
+				function(err, response) {
 					console.log(JSON.stringify(response));
 					res.send(response);
-				});
+				}
+			)
 		})
 
 	return twitter
