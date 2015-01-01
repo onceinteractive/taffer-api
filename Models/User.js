@@ -573,7 +573,7 @@ module.exports = function(mongoose, models){
         schedule: {
         	approveSwap: false,
         	approveTimeOff: false,
-        },
+        }
         /*
         social: {
             manage: false
