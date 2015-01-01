@@ -183,8 +183,9 @@ module.exports = function(app, models){
 			console.log("req.user.facebookAccessToken :: "+req.user.facebookAccessToken);
 			if(!req.user.facebookAccessToken){
 				console.log("\n\n\n...................in fb access token not found call......................");
-				res.redirect(baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth');
-				//return
+				//res.redirect(baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth');
+				res.send('We have not been given access to your Facebook account', 403)
+				return
 			}
 
 			if(req.user.facebookAccessTokenExpiration < new Date()){
@@ -218,9 +219,9 @@ module.exports = function(app, models){
 			}*/
 
 			if(!req.user.facebookAccessToken){
-				res.redirect(baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth')
-				/*res.send('We have not been given access to your Facebook account', 403)
-				return*/
+				//res.redirect(baseUrl + '/v0.1/facebook/' + req.user._id.toString() + '/auth')
+				res.send('We have not been given access to your Facebook account', 403)
+				return
 			}
 
 /*
