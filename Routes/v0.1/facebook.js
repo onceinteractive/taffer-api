@@ -193,6 +193,11 @@ module.exports = function(app, models){
 				return
 			}
 
+			if(!req.user.bar.facebookPageId || !req.user.bar.facebookAccessToken){
+				res.send('Your Facebook Bar Pages Not Found', 404)
+				return
+			}
+
 			models.Bar.update({
 				_id: req.user.barId
 			}, {
