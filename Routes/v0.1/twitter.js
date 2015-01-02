@@ -355,7 +355,7 @@ module.exports = function(app, models){
 			var twitter = new twitterAPI({
 				consumerKey: consumerKey,
 				consumerSecret: consumerSecret,
-				callback: baseUrl + '/v0.1/twitter/bar/' + req.params.barId + '/auth'
+				callback: baseUrl + '/v0.1/twitter/user/' + req.params.userId + '/auth'
 			})
 
 			var params = {
