@@ -69,18 +69,15 @@ module.exports = function(app, models){
 							_id: req.user._id
 						})
 							.populate('barId')
-							.populate('shared')
 							.exec(function(err, bar){
 								if(err || !bar){
 									res.send(err, 500)
 								} else {
-									console.log("shareable = "+JSON.stringify(bar))
-									var shareableObj = bar.shared;
 									var barObj = {
 										facebookPageId: bar.barId.facebookPageId,
 										facebookPageAccessToken: bar.barId.facebookPageAccessToken
 									}
-									var respObj = underscore.extend(userObj, barObj, shareableObj);
+									var respObj = underscore.extend(userObj, barObj);
 									res.send(respObj)
 								}
 						})
