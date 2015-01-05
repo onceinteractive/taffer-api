@@ -69,12 +69,11 @@ module.exports = function(app, models){
 							_id: req.user._id
 						})
 							.populate('barId shared')
-							.exec(function(err, bar, shareable){
+							.exec(function(err, bar){
 								if(err || !bar){
 									res.send(err, 500)
 								} else {
-									var sharedObj = shareable;
-									console.log("shareable = "+JSON.stringify(shareable))
+									console.log("shareable = "+JSON.stringify(bar))
 									var barObj = {
 										facebookPageId: bar.barId.facebookPageId,
 										facebookPageAccessToken: bar.barId.facebookPageAccessToken
