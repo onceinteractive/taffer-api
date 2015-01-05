@@ -270,17 +270,20 @@ module.exports = function(app, models){
                             if(err){
                                 done(err)
                             } else {
-
+                                console.log("Update Badges in Users");
                                 req.body.badgeImage = keys;
                                 console.log(req.body);
                                 //Remove old image?
 
                                 // Update badges in Users
-                                console.log("Update Badges in Users");
+                              //  console.log("Update Badges in Users");
                                 models.User.update(
                                     { badges: course.badgeImage },
-                                    { $set: { "badges.$" : keys } }
-                                )
+                                    { $set: { "badges.$" : keys }
+
+                                    },function(err){
+                                        done(err)
+                                    })
                                 done(null)
                             }
                         })
