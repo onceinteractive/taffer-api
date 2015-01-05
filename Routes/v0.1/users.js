@@ -68,7 +68,7 @@ module.exports = function(app, models){
 						models.User.findOne({
 							_id: req.user._id
 						})
-							.populate('barId')
+							.populate('barId shared')
 							.exec(function(err, bar){
 								if(err || !bar){
 									res.send(err, 500)
