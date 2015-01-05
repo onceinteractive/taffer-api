@@ -265,7 +265,7 @@ module.exports = function(app, models){
                     if(!req.files.image){
                         done(null)
                     } else {
-                        console.log("In Badge uploading");
+                        console.log("In Badge uploading================================");
 
                         //  console.log("Update Badges in Users");
                         /*models.User.update(
