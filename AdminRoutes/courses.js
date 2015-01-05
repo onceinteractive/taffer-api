@@ -274,6 +274,13 @@ module.exports = function(app, models){
                                 req.body.badgeImage = keys;
                                 console.log(req.body);
                                 //Remove old image?
+
+                                // Update badges in Users
+                                console.log("Update Badges in Users");
+                                models.User.update(
+                                    { badges: course.badgeImage },
+                                    { $set: { "badges.$" : keys } }
+                                )
                                 done(null)
                             }
                         })
