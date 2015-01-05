@@ -62,7 +62,8 @@ angular.module('appControllers')
                             $scope.course.barCategories[key] = false;
                         }
                     }
-*/
+*/					$cope.OldbBadgeImage=$scope.course.badgeImage;
+
 					$scope.updateView = true;
 					$scope.viewView = false;
 				});
@@ -142,11 +143,14 @@ angular.module('appControllers')
             angular.forEach($scope.course.badgeImage, function(file) {
                 fd.append("image", file);
             });
+			updateUserBadges();
             return fd;
         }
 
 
         var prepareForPut = function(){
+
+
             var fd = new FormData();
 
             fd.append("title", $scope.course.title);
@@ -187,6 +191,40 @@ angular.module('appControllers')
             return fd;
         }
 
+	function updateUserBadges (){
+		console.log("updateUserBadges called:-------------------------------");
 
+		$http.put('users/' + $scope.OldbBadgeImage, prepareForPutUser(), {
+			transformRequest: angular.identity,
+			headers:{'Content-Type':undefined}
+		})
+						.success(function(data){
+							$scope.submitted = "Successfully updated user!";
+						})
+						.error(function(error){
+							$scope.submitted = "There was an error updating the user.";
+							console.log(error);
+						});
+
+
+	}
+
+
+		var prepareForPutUser = function(){
+			console.log("prepareForPutUser called:-------------------------------");
+			var fd = new FormData();
+			$http.get('users/' + $scope.OldbBadgeImage, {}).success(function(users) {
+				angular.forEach(users, function(users){
+
+					fd.append("badges", $scope.course.badgeImage);
+
+				});
+
+			});
+
+
+
+			return fd;
+		}
 
 	}]);
