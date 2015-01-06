@@ -296,7 +296,7 @@ module.exports = function(app, models){
                                                 users.forEach(function(user){
                                                     results.push(user.json())
                                                 })
-                                                res.send(results)
+
                                                 console.log(results.toString);
                                             }
                                         })
