@@ -289,9 +289,14 @@ module.exports = function(app, models){
                                         models.User.find({
                                             badges: course.badgeImage
                                         }, function(err, users){
-                                            if(err){
+                                            if(err) {
+                                                console.log("Error finding users");
                                                 res.send(err, 500)
-                                            } else {
+                                            } else if(!users){
+                                                console.log("No user Found");
+                                                    res.send(404)
+                                                } else {
+                                                console.log("user Found");
                                                 var results = []
                                                 users.forEach(function(user){
                                                     results.push(user.json())
