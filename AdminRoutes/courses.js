@@ -303,11 +303,12 @@ module.exports = function(app, models){
                                                 })
 
                                                 console.log(results.toString);
+                                                done(null)
                                             }
                                         })
                                     }
                                 })
-                                done(null)
+
                             }
                         })
                     }
