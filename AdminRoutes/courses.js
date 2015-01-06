@@ -277,7 +277,7 @@ module.exports = function(app, models){
                                 req.body.badgeImage = keys;
                                 console.log(req.body);
                                 //Remove old image?
-                                models.Course.findOne({
+                             /*   models.Course.findOne({
                                     _id: models.ObjectId(eq.params.courseId)
                                 }, function(err, course){
                                     if(err){
@@ -295,7 +295,7 @@ module.exports = function(app, models){
                                                 done(err)
                                             })
                                     }
-                                })
+                                })*/
                                 done(null)
                             }
                         })
