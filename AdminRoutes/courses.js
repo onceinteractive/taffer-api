@@ -278,7 +278,7 @@ module.exports = function(app, models){
                                 console.log(req.body);
                                 //Remove old image?
                                 models.Course.findOne({
-                                    _id: models.ObjectId(eq.params.courseId)
+                                    _id: models.ObjectId(req.params.courseId)
                                 }, function(err, course){
                                     if(err){
                                         res.send(err, 500)
