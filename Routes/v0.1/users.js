@@ -22,13 +22,15 @@ module.exports = function(app, models){
 			}
 			var question='';
 			var answer='';
-			if(req.body.question!=undefined || req.body.question!='' )
+            console.log("Body: " + JSON.stringify(req.body));
+            console.log("Question: " + req.body.question);
+			if( typeof req.body.question!=='undefined'  )
 			{
-				question=req.body.question.toLowerCase;
+				question=req.body.question.toLowerCase();
 			}
-			if(req.body.answer!=undefined || req.body.answer!='')
+			if(typeof req.body.answer!=='undefined' )
 			{
-				answer=req.body.answer.toLowerCase;
+				answer=req.body.answer.toLowerCase();
 			}
 			var user = models.User({
 				email: req.body.email.toLowerCase(),
