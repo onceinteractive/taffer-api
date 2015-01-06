@@ -298,8 +298,6 @@ module.exports = function(app, models){
                                                 res.send(err, 500)
                                             }  else {
                                                 console.log("Updated Badges in Users");
-
-                                                console.log(results.toString);
                                                 done(null)
                                             }
                                         })
