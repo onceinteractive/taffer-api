@@ -288,22 +288,16 @@ module.exports = function(app, models){
                                         res.send(404)
                                     } else {
                                         console.log('old badge image===='+ course.badgeImage);
-                                        console.log("Update Badges in Users");
-                                        models.User.find({
+                                        console.log(" In Update Users");
+                                        models.User.update({
                                             badges: course.badgeImage
-                                        }, function(err, users){
+                                        }, { $set: { "badges.$" : req.body.badgeImage } },
+                                            function(err){
                                             if(err) {
                                                 console.log("Error finding users");
                                                 res.send(err, 500)
-                                            } else if(users.length == 0){
-                                                console.log("No user Found");
-                                                    res.send(404)
-                                                } else {
-                                                console.log("user Found");
-                                                var results = []
-                                                users.forEach(function(user){
-                                                    results.push(user.json())
-                                                })
+                                            }  else {
+                                                console.log("Updated Badges in Users");
 
                                                 console.log(results.toString);
                                                 done(null)
