@@ -277,17 +277,25 @@ module.exports = function(app, models){
                                 req.body.badgeImage = keys;
                                 console.log(req.body);
                                 //Remove old image?
+                                models.Course.findOne({
+                                    _id: models.ObjectId(eq.params.courseId)
+                                }, function(err, course){
+                                    if(err){
+                                        res.send(err, 500)
+                                    } else if(!course){
+                                        res.send(404)
+                                    } else {
+                                        console.log("Update Badges in Users");
+                                        models.User.update(
+                                            {badges: course.badgeImage},
+                                            {
+                                                $set: {"badges.$": keys}
 
-                                 console.log("Update Badges in Users");
-                                models.User.update(
-                                    { badges: course.badgeImage },
-                                    { $set: { "badges.$" : keys }
-
-                                    },function(err){
-                                        done(err)
-                                    })
-
-
+                                            }, function (err) {
+                                                done(err)
+                                            })
+                                    }
+                                })
                                 done(null)
                             }
                         })
