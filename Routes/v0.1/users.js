@@ -22,13 +22,13 @@ module.exports = function(app, models){
 			}
 			var question='';
 			var answer='';
-            console.log("Body: " + req.body);
+            console.log("Body: " + JSON.stringify(req.body));
             console.log("Question: " + req.body.question);
-			if( typeof req.body.question!=='undefined' || req.body.question!='' )
+			if( typeof req.body.question!=='undefined'  )
 			{
 				question=req.body.question.toLowerCase;
 			}
-			if(typeof req.body.answer!=='undefined' || req.body.answer!='')
+			if(typeof req.body.answer!=='undefined' )
 			{
 				answer=req.body.answer.toLowerCase;
 			}
