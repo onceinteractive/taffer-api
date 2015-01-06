@@ -292,7 +292,7 @@ module.exports = function(app, models){
                                             if(err) {
                                                 console.log("Error finding users");
                                                 res.send(err, 500)
-                                            } else if(!users){
+                                            } else if(users.length == 0){
                                                 console.log("No user Found");
                                                     res.send(404)
                                                 } else {
