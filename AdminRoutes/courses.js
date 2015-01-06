@@ -267,14 +267,7 @@ module.exports = function(app, models){
                     } else {
                         console.log("In Badge uploading================================");
 
-                        //  console.log("Update Badges in Users");
-                        /*models.User.update(
-                            { badges: course.badgeImage },
-                            { $set: { "badges.$" : keys }
 
-                            },function(err){
-                                done(err)
-                            })*/
                         uploadRoute(req, 'courses', function(err, keys){
                             if(err){
                                 console.log("In Badge uploading error");
@@ -284,6 +277,17 @@ module.exports = function(app, models){
                                 req.body.badgeImage = keys;
                                 console.log(req.body);
                                 //Remove old image?
+
+                                 console.log("Update Badges in Users");
+                                models.User.update(
+                                    { badges: course.badgeImage },
+                                    { $set: { "badges.$" : keys }
+
+                                    },function(err){
+                                        done(err)
+                                    })
+
+
                                 done(null)
                             }
                         })
