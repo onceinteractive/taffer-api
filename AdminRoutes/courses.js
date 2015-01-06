@@ -276,6 +276,8 @@ module.exports = function(app, models){
                                 console.log("In Badge uploading else");
                                 req.body.badgeImage = keys;
                                 console.log(req.body);
+
+                                console.log('new badge image===='+ req.body.badgeImage);
                                 //Remove old image?
                                 models.Course.findOne({
                                     _id: models.ObjectId(req.params.courseId)
@@ -285,6 +287,7 @@ module.exports = function(app, models){
                                     } else if(!course){
                                         res.send(404)
                                     } else {
+                                        console.log('old badge image===='+ course.badgeImage);
                                         console.log("Update Badges in Users");
                                         models.User.find({
                                             badges: course.badgeImage
