@@ -26,11 +26,11 @@ module.exports = function(app, models){
             console.log("Question: " + req.body.question);
 			if( typeof req.body.question!=='undefined'  )
 			{
-				question=req.body.question.toLowerCase;
+				question=req.body.question.toLowerCase();
 			}
 			if(typeof req.body.answer!=='undefined' )
 			{
-				answer=req.body.answer.toLowerCase;
+				answer=req.body.answer.toLowerCase();
 			}
 			var user = models.User({
 				email: req.body.email.toLowerCase(),
