@@ -21,12 +21,12 @@ module.exports = function(app, models){
 				}
 			}
 			var question='';
-			var answer;
-			if(req.body.question!='' || req.body.question!=undefined)
+			var answer='';
+			if(req.body.question!=undefined || req.body.question!='' )
 			{
 				question=req.body.question.toLowerCase;
 			}
-			if(req.body.answer!='' || req.body.answer!=undefined)
+			if(req.body.answer!=undefined || req.body.answer!='')
 			{
 				answer=req.body.answer.toLowerCase;
 			}
