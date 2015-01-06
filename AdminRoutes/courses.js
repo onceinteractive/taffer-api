@@ -277,7 +277,7 @@ module.exports = function(app, models){
                                 req.body.badgeImage = keys;
                                 console.log(req.body);
                                 //Remove old image?
-                             /*   models.Course.findOne({
+                                models.Course.findOne({
                                     _id: models.ObjectId(eq.params.courseId)
                                 }, function(err, course){
                                     if(err){
@@ -286,16 +286,22 @@ module.exports = function(app, models){
                                         res.send(404)
                                     } else {
                                         console.log("Update Badges in Users");
-                                        models.User.update(
-                                            {badges: course.badgeImage},
-                                            {
-                                                $set: {"badges.$": keys}
-
-                                            }, function (err) {
-                                                done(err)
-                                            })
+                                        models.User.find({
+                                            badges: course.badgeImage
+                                        }, function(err, users){
+                                            if(err){
+                                                res.send(err, 500)
+                                            } else {
+                                                var results = []
+                                                users.forEach(function(user){
+                                                    results.push(user.json())
+                                                })
+                                                res.send(results)
+                                                console.log(results.toString);
+                                            }
+                                        })
                                     }
-                                })*/
+                                })
                                 done(null)
                             }
                         })
