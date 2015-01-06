@@ -20,13 +20,22 @@ module.exports = function(app, models){
 					return
 				}
 			}
-
+			var question='';
+			var answer;
+			if(req.body.question!='' || req.body.question!=undefined)
+			{
+				question=req.body.question.toLowerCase;
+			}
+			if(req.body.answer!='' || req.body.answer!=undefined)
+			{
+				answer=req.body.answer.toLowerCase;
+			}
 			var user = models.User({
 				email: req.body.email.toLowerCase(),
 				firstName: req.body.firstName,
 				lastName: req.body.lastName,
-				question:req.body.question.toLowerCase(),
-				answer:req.body.answer.toLowerCase()
+				question:question,
+				answer:answer
 			})
 
 			user.save(function(err, user){
