@@ -270,14 +270,14 @@ module.exports = function(app, models){
 
                         uploadRoute(req, 'courses', function(err, keys){
                             if(err){
-                                console.log("In Badge uploading error");
+
                                 done(err)
                             } else {
-                                console.log("In Badge uploading else");
+
                                 req.body.badgeImage = keys;
                                 console.log(req.body);
 
-                                console.log('new badge image===='+ req.body.badgeImage);
+
                                 //Remove old image?
                                 models.Course.findOne({
                                     _id: models.ObjectId(req.params.courseId)
@@ -287,17 +287,16 @@ module.exports = function(app, models){
                                     } else if(!course){
                                         res.send(404)
                                     } else {
-                                        console.log('old badge image===='+ course.badgeImage);
-                                        console.log(" In Update Users");
+
                                         models.User.update({
                                             badges: course.badgeImage
-                                        }, { $set: { "badges.$" : req.body.badgeImage } },
+                                        }, { $set: {badges :[req.body.badgeImage]} },
                                             function(err){
                                             if(err) {
-                                                console.log("Error finding users");
+
                                                 res.send(err, 500)
                                             }  else {
-                                                console.log("Updated Badges in Users");
+
                                                 done(null)
                                             }
                                         })
@@ -310,7 +309,7 @@ module.exports = function(app, models){
                 },
 
                 function(done){
-                    console.log("In course update");
+
                     console.log(req.body);
                     models.Course.update({
                         _id: models.ObjectId(req.params.courseId)
