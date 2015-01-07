@@ -71,10 +71,11 @@ module.exports = function(app, models) {
 
         .post(function(req, res){
             if(!req.user.hasPermission('schedule.scheduleUsers')){
+                console.log("don not have permission");
                 res.send(403)
                 return
             }
-
+            console.log("permission granted");
             req.body.user = models.ObjectId(req.body.user)
 
             models.User.findOne({
