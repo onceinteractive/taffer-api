@@ -77,7 +77,7 @@ module.exports = function(app, models) {
             }
             console.log("permission granted");
             req.body.user = models.ObjectId(req.body.user)
-
+            console.log("user :: "+req.body.user)
             models.User.findOne({
                 _id: req.body.user,
                 barId: req.user.barId
@@ -87,6 +87,7 @@ module.exports = function(app, models) {
                 } if(!user){
                     res.send(404)
                 } else {
+                    console.log("bar :: "+req.user.barId)
                     req.body.bar = req.user.barId
                     req.body.scheduler = req.user._id
 
@@ -94,7 +95,7 @@ module.exports = function(app, models) {
                         if(err){
                             res.send(err, 500)
                         } else {
-
+                            console.log("create new shift..1..")
                             models.Shift.find({
                                 bar: req.user.barId,
                                 startTimeUTC: { $lt: req.body.weekEnd },
@@ -106,6 +107,7 @@ module.exports = function(app, models) {
                                 } else if(!shifts || shifts.length == 0){
                                     res.send(shift.json())
                                 } else {
+                                    console.log("create new shift..2..")
                                     models.Shift.update({
                                         _id: shift._id
                                     }, {
