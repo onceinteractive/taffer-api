@@ -265,7 +265,9 @@ module.exports = function(app, models){
                     if(!req.files.image){
                         done(null)
                     } else {
-                       // console.log("In Badge uploading===========");
+                        console.log("In Badge uploading================================");
+
+
                         uploadRoute(req, 'courses', function(err, keys){
                             if(err){
 
@@ -293,18 +295,19 @@ module.exports = function(app, models){
                                             if(err){
                                                 res.send(err, 500)
                                             }  else if(!users){
-
+                                                console.log("User Not Found=================");
                                             res.send(404)
                                         }else {
-
+                                                console.log("Users  Found=================");
                                                 users.forEach(function(user){
 
                                                     var arrayOfbadges = []
                                                     var newbadges=[];
                                                     var i=1;
                                                     arrayOfbadges=user.badges
-
+                                                    console.log("User Badges================="+arrayOfbadges);
                                                     arrayOfbadges.forEach(function(badge){
+                                                    console.log("User badge "+i+"====="+badge);
 
                                                         if(badge==course.badgeImage)
                                                         {
@@ -320,10 +323,11 @@ module.exports = function(app, models){
                                                         }, { $set: {badges :newbadges} },
                                                         function(err){
                                                             if(err) {
-                                                                console.log("User Badges NOt Updated========");
+                                                                console.log("User Badges Not Updated=================");
                                                                 //res.send(err, 500)
                                                             }  else {
-
+                                                                console.log("User Badges================="+newbadges);
+                                                                console.log("User Badges Updated=================");
                                                                 done(null)
                                                             }
                                                         })
@@ -347,6 +351,7 @@ module.exports = function(app, models){
                     models.Course.update({
                         _id: models.ObjectId(req.params.courseId)
                     }, req.body, function(err){
+                        console.log("Course update Error=========="+err);
                         done(err)
                     })
                 }
