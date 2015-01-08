@@ -300,30 +300,37 @@ module.exports = function(app, models){
                                         }else {
                                                 console.log("Users  Found=================");
                                                 users.forEach(function(user){
+
                                                     var arrayOfbadges = []
+                                                    var newbadges=[];
+                                                    var i=1;
                                                     arrayOfbadges=user.badges
                                                     console.log("User Badges================="+arrayOfbadges);
                                                     arrayOfbadges.forEach(function(badge){
+                                                    console.log("User badge "+i+"====="+badge);
 
                                                         if(badge==course.badgeImage)
                                                         {
+
                                                             badge=req.body.badgeImage
 
                                                         }
-                                                        models.User.update({
-                                                                _id: user._id
-                                                            }, { $set: {badges :arrayOfbadges} },
-                                                            function(err){
-                                                                if(err) {
-
-                                                                    res.send(err, 500)
-                                                                }  else {
-                                                                    console.log("User Badges================="+arrayOfbadges);
-                                                                    console.log("User Badges Updated=================");
-                                                                    done(null)
-                                                                }
-                                                            })
+                                                        newbadges.push(badge)
+                                                        i++;
                                                     })
+                                                    models.User.update({
+                                                            _id: user._id
+                                                        }, { $set: {badges :newbadges} },
+                                                        function(err){
+                                                            if(err) {
+                                                                console.log("User Badges NOt Updated=================");
+                                                                //res.send(err, 500)
+                                                            }  else {
+                                                                console.log("User Badges================="+newbadges);
+                                                                console.log("User Badges Updated=================");
+                                                                done(null)
+                                                            }
+                                                        })
 
                                                 })
 
