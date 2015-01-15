@@ -28,7 +28,8 @@ module.exports = function(){
 
 		var post = {
 			message: message,
-			caption: "BarHQ"
+			caption: "BarHQ",
+			link: "http://www.thebarhq.com/"
 		}
 
 		if(imageUrl){
