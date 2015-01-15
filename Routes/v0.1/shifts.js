@@ -269,7 +269,7 @@ module.exports = function(app, models) {
             req.body.updated = new Date()
             req.body.scheduler = req.user._id
             req.body.bar = req.user.barId
-
+            console.log("====================In save shift====================");
             models.Shift.findOne({
                 bar: req.user.barId,
                 _id: models.ObjectId(req.params.shiftId)
