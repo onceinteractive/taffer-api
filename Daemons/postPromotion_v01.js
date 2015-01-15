@@ -15,13 +15,11 @@ module.exports = function(models){
 
 	daemon.job = function(job, done){
 		//Load the scheduledPost
-		console.log(".....postPromotions...job....");
 		models.ScheduledPost.findOne({
 			_id: job.attrs.data._id
 		})
 			.populate('shareableId')
 			.exec(function(err, scheduledPost){
-				console.log("SchedulePost ::: "+JSON.stringify(scheduledPost));
 				if(err){
 					done(err)
 				} else if(!scheduledPost){
@@ -55,7 +53,6 @@ module.exports = function(models){
 
 								function(done){
 									if(scheduledPost.network == 'facebook' || scheduledPost.network.indexOf('facebook') != -1){
-										console.log(".....facebook......");
 										postToFacebook(bar,
 											scheduledPost.shareableId.facebookMessage,
 											scheduledPost.shareableId.selectedPicture,
