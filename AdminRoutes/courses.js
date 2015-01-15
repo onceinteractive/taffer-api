@@ -295,19 +295,18 @@ module.exports = function(app, models){
                                             if(err){
                                                 res.send(err, 500)
                                             }  else if(!users){
-                                                console.log("User Not Found=================");
+
                                             res.send(404)
                                         }else {
-                                                console.log("Users  Found=================");
+
                                                 users.forEach(function(user){
 
                                                     var arrayOfbadges = []
                                                     var newbadges=[];
                                                     var i=1;
                                                     arrayOfbadges=user.badges
-                                                    console.log("User Badges================="+arrayOfbadges);
+
                                                     arrayOfbadges.forEach(function(badge){
-                                                    console.log("User badge "+i+"====="+badge);
 
                                                         if(badge==course.badgeImage)
                                                         {
@@ -326,8 +325,7 @@ module.exports = function(app, models){
                                                                 console.log("User Badges Not Updated=================");
                                                                 //res.send(err, 500)
                                                             }  else {
-                                                                console.log("User Badges================="+newbadges);
-                                                                console.log("User Badges Updated=================");
+
                                                                 done(null)
                                                             }
                                                         })

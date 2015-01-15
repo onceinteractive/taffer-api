@@ -7,8 +7,8 @@ var express = require('express')
 // Test App
 var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
 //Twitter Production App
-
 /*
+
 var consumerKey = process.env.TWITTER_CONSUMER_KEY || 'wW5zpikQPxXefHRscyT6FgUQx'
 var consumerSecret = process.env.TWITTER_CONSUMER_SECRET || 'mTjacdvJjuvYwiIisqkTCgosattPpUtMTjMPyWQDrkWNycpd1G'
 */
