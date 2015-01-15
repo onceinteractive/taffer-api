@@ -12,7 +12,7 @@ module.exports = function(models){
 		name: 'postPromotion_v0.1',
 		options: {}
 	}
-	
+	console.log(".....postPromotions.....");
 	daemon.job = function(job, done){
 		//Load the scheduledPost
 		models.ScheduledPost.findOne({
