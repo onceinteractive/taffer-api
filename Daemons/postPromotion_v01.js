@@ -53,6 +53,7 @@ module.exports = function(models){
 
 								function(done){
 									if(scheduledPost.network == 'facebook' || scheduledPost.network.indexOf('facebook') != -1){
+										console.log(".....facebook......");
 										postToFacebook(bar,
 											scheduledPost.shareableId.facebookMessage,
 											scheduledPost.shareableId.selectedPicture,
