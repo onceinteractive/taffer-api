@@ -27,7 +27,8 @@ module.exports = function(){
 		var token = poster.facebookPageAccessToken || poster.facebookAccessToken
 
 		var post = {
-			message: message
+			message: message,
+			caption: "BarHQ"
 		}
 
 		if(imageUrl){
