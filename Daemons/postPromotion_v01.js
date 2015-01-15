@@ -12,14 +12,16 @@ module.exports = function(models){
 		name: 'postPromotion_v0.1',
 		options: {}
 	}
-	console.log(".....postPromotions.....");
+
 	daemon.job = function(job, done){
 		//Load the scheduledPost
+		console.log(".....postPromotions...job....");
 		models.ScheduledPost.findOne({
 			_id: job.attrs.data._id
 		})
 			.populate('shareableId')
 			.exec(function(err, scheduledPost){
+				console.log("SchedulePost ::: "+JSON.stringify(scheduledPost));
 				if(err){
 					done(err)
 				} else if(!scheduledPost){
