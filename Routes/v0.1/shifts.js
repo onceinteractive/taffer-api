@@ -93,7 +93,7 @@ module.exports = function(app, models) {
                         if(err){
                             res.send(err, 500)
                         } else {
-                            console.log("==============Create a new shift==============");
+                          
                             models.Shift.find({
                                 bar: req.user.barId,
                                 startTimeUTC: { $lt: req.body.weekEnd },
@@ -104,12 +104,8 @@ module.exports = function(app, models) {
                                     res.send(err, 500)
                                 } else if(!shifts || shifts.length == 0){
 
-                                    console.log("=============No shift found with this time============");
-
                                     res.send(shift.json())
                                 } else {
-
-                                    console.log("=========Shift found with this time======");
 
                                     models.Shift.update({
                                         _id: shift._id
@@ -329,7 +325,7 @@ module.exports = function(app, models) {
                 if(err){
                     res.end(err, 500)
                 } else {
-                    
+
                     res.send(200)
                 }
             })
