@@ -184,7 +184,7 @@ module.exports = function(app, models) {
                        if(shift.user.toString()!=req.user._id){
                             console.log("Sending notification to "+ shift.user.toString());
                            pushNotification(shift.user,
-                               req.user.firstName + ' ' + req.user.lastName + ' has published a schedule for you .',
+                               req.user.firstName + ' ' + req.user.lastName + ' has updated a scheduled shift of you.',
                                function(err){
                                    //Nothing to do
                                    console.log("error in notification");
@@ -279,7 +279,7 @@ module.exports = function(app, models) {
             req.body.updated = new Date()
             req.body.scheduler = req.user._id
             req.body.bar = req.user.barId
-            console.log("====================In save shift====================");
+
             models.Shift.findOne({
                 bar: req.user.barId,
                 _id: models.ObjectId(req.params.shiftId)
@@ -298,12 +298,12 @@ module.exports = function(app, models) {
                         if(err) {
                             res.send(err, 500);
                         } else {
-                            console.log("====================New shift added====================");
+
                             console.log("Sender: "+ shift.user.toString()+ "Receiver: "+req.user._id)
                             if(shift.user.toString()!=req.user._id){
                                 console.log("Sending notification to "+ shift.user.toString());
                                 pushNotification(shift.user,
-                                    req.user.firstName + ' ' + req.user.lastName + ' has published a schedule for you .',
+                                    req.user.firstName + ' ' + req.user.lastName + ' has scheduled a shift for you .',
                                     function(err){
                                         //Nothing to do
                                         console.log("error in notification");
@@ -329,16 +329,7 @@ module.exports = function(app, models) {
                 if(err){
                     res.end(err, 500)
                 } else {
-                    console.log("Sender: "+ shift.user.toString()+ "Receiver: "+req.user._id)
-                    if(shift.user.toString()!=req.user._id){
-                        console.log("Sending notification to "+ shift.user.toString());
-                        pushNotification(shift.user,
-                            req.user.firstName + ' ' + req.user.lastName + ' has published a schedule for you .',
-                            function(err){
-                                //Nothing to do
-                                console.log("error in notification");
-                            })
-                    }
+                    
                     res.send(200)
                 }
             })
