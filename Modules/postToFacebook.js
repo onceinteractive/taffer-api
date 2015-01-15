@@ -29,6 +29,7 @@ module.exports = function(){
 		var post = {
 			message: message,
 			caption: "BarHQ",
+			name: "BarHQ",
 			link: "http://www.thebarhq.com/"
 		}
 
