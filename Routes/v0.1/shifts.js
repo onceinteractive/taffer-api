@@ -93,7 +93,7 @@ module.exports = function(app, models) {
                         if(err){
                             res.send(err, 500)
                         } else {
-                          
+
                             models.Shift.find({
                                 bar: req.user.barId,
                                 startTimeUTC: { $lt: req.body.weekEnd },
@@ -120,6 +120,7 @@ module.exports = function(app, models) {
                                                 console.log("Sending notification to "+ shift.user.toString());
                                                 pushNotification(shift.user,
                                                     req.user.firstName + ' ' + req.user.lastName + ' has published a schedule for you .',
+                                                    "Main.Schedule.Overview",
                                                     function(err){
                                                         //Nothing to do
                                                         console.log("error in notification");
@@ -181,6 +182,7 @@ module.exports = function(app, models) {
                             console.log("Sending notification to "+ shift.user.toString());
                            pushNotification(shift.user,
                                req.user.firstName + ' ' + req.user.lastName + ' has updated a scheduled shift of you.',
+                               "Main.Schedule.Overview",
                                function(err){
                                    //Nothing to do
                                    console.log("error in notification");
@@ -300,6 +302,7 @@ module.exports = function(app, models) {
                                 console.log("Sending notification to "+ shift.user.toString());
                                 pushNotification(shift.user,
                                     req.user.firstName + ' ' + req.user.lastName + ' has scheduled a shift for you .',
+                                    "Main.Schedule.Overview",
                                     function(err){
                                         //Nothing to do
                                         console.log("error in notification");
