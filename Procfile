@@ -1,1 +1,1 @@
-web: node server.js noHealthCheck
+web: node Server.js noHealthCheck
