@@ -119,7 +119,7 @@ module.exports = function(app, models) {
                                             if(shift.user.toString()!=req.user._id){
                                                 console.log("Sending notification to "+ shift.user.toString());
                                                 pushNotification(shift.user,
-                                                    req.user.firstName + ' ' + req.user.lastName + ' has updated a schedule shift of you .',
+                                                    req.user.firstName + ' ' + req.user.lastName + ' has updated a scheduled shift of you.',
                                                     "Main.Schedule.Overview",
                                                     function(err){
                                                         //Nothing to do
@@ -181,7 +181,7 @@ module.exports = function(app, models) {
                        if(shift.user.toString()!=req.user._id){
                             console.log("Sending notification to "+ shift.user.toString());
                            pushNotification(shift.user,
-                               req.user.firstName + ' ' + req.user.lastName + ' has published a schedule for you',
+                               req.user.firstName + ' ' + req.user.lastName + ' has published a schedule for you.',
                                "Main.Schedule.Overview",
                                function(err){
                                    //Nothing to do
@@ -301,7 +301,7 @@ module.exports = function(app, models) {
                             if(shift.user.toString()!=req.user._id){
                                 console.log("Sending notification to "+ shift.user.toString());
                                 pushNotification(shift.user,
-                                    req.user.firstName + ' ' + req.user.lastName + ' has scheduled a shift for you .',
+                                    req.user.firstName + ' ' + req.user.lastName + ' has scheduled a shift for you.',
                                     "Main.Schedule.Overview",
                                     function(err){
                                         //Nothing to do
