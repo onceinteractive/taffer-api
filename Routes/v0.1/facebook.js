@@ -320,6 +320,7 @@ module.exports = function(app, models){
 				if(err){
 					res.send(err, 500)
 				} else {
+					models.User.findAndModify({query : { _id: req.user._id }, update : { $inc : {sharedPromotions : 1}}});
 					res.send(200)
 				}
 			})
@@ -347,6 +348,7 @@ module.exports = function(app, models){
 							if(err){
 								res.send(err, 500)
 							} else {
+								models.User.findAndModify({query : { _id: req.user._id }, update : { $inc : {sharedPromotions : 1}}});
 								res.send(200)
 							}
 						})

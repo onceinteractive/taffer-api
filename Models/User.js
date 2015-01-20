@@ -87,7 +87,8 @@ module.exports = function(mongoose, models){
 		ProfileNameFacebook: String,
 		ProfileNameFacebookPage: String,
 		question: String,
-		answer:String
+		answer:String,
+		sharedPromotions: String
 
 	})
 
@@ -149,6 +150,7 @@ module.exports = function(mongoose, models){
 			badges:self.badges,
 			question:self.question,
 			answer:self.answer,
+			sharedPromotions: self.sharedPromotions,
 			Today: new Date()}
 		if(!attrs){
 			attrs = []
@@ -656,7 +658,8 @@ module.exports = function(mongoose, models){
 		'ProfileNameFacebook',
 		'ProfileNameFacebookPage',
 		'question',
-		'answer'
+		'answer',
+		'sharedPromotions'
 		// 'permissions'
 	]
 
