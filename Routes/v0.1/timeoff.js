@@ -131,15 +131,20 @@ module.exports = function(app, models) {
                 .populate('approvalManager')
                 .exec(function(err, timeOffs){
                     if(err){
+                        console.log("=======error in timeoffs"+err);
                         res.send(err)
                     } else {
+
                         var results = []
-
-                        timeOffs.forEach(function(timeOff){
-                            results.push(timeOff.json())
-                        })
-
+                        if(timeOffs.length>0) {
+                            console.log("timeoffs found========");
+                            timeOffs.forEach(function (timeOff) {
+                                results.push(timeOff.json())
+                            })
+                        }
+                        console.log("no timeoffs found=======");
                         res.send(results)
+
                     }
                 })
         })
