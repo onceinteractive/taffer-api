@@ -75,25 +75,27 @@ module.exports = function(app, models){
 					if(err || !user){
 						res.send(err, 500)
 					} else {
-						var respObj = user.json();
-						models.User.findOne({
-							_id: req.user._id
-						})
-							.populate('barId')
-							.exec(function(err, bar){
-								if(err || !bar){
-									res.send(err, 500)
-								} else {
-									var userObj = respObj;
-									var barObj = {
-										facebookPageId: bar.barId.facebookPageId,
-										facebookPageAccessToken: bar.barId.facebookPageAccessToken
+						var userObj = user.json();
+						if(userObj.barId){
+							models.User.findOne({
+								_id: req.user._id
+							})
+								.populate('barId')
+								.exec(function(err, bar){
+									if(err || !bar){
+										res.send(err, 500)
+									} else {
+										var barObj = {
+											facebookPageId: bar.barId.facebookPageId,
+											facebookPageAccessToken: bar.barId.facebookPageAccessToken
+										}
+										var respObj = underscore.extend(userObj, barObj);
+										res.send(respObj)
 									}
-									var respObj = underscore.extend(userObj, barObj);
-								}
-								res.send(respObj)
-						})
-						//res.send(user.json())
+							})
+						}else{
+							res.send(user.json())
+						}
 					}
 				})
 		})
