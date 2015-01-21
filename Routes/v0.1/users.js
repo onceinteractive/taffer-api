@@ -75,7 +75,7 @@ module.exports = function(app, models){
 					if(err || !user){
 						res.send(err, 500)
 					} else {
-						var userObj = user.json();
+						var respObj = user.json();
 						models.User.findOne({
 							_id: req.user._id
 						})
@@ -84,13 +84,14 @@ module.exports = function(app, models){
 								if(err || !bar){
 									res.send(err, 500)
 								} else {
+									var userObj = respObj;
 									var barObj = {
 										facebookPageId: bar.barId.facebookPageId,
 										facebookPageAccessToken: bar.barId.facebookPageAccessToken
 									}
 									var respObj = underscore.extend(userObj, barObj);
-									res.send(respObj)
 								}
+								res.send(respObj)
 						})
 						//res.send(user.json())
 					}
