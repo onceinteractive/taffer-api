@@ -63,7 +63,6 @@ if(cluster.isMaster && process.argv.indexOf('noCluster') == -1){
 
         /*Prod Database*/
         //mongoDbURI = 'mongodb://barhq_prod_user:taFFerBarhQ@ds053740-a0.mongolab.com:53740,ds053740-a1.mongolab.com:53740/prod_barhq'
-
 	}
 
 	var mongoDbOptions = {}
