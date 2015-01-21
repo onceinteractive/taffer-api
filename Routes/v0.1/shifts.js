@@ -298,7 +298,7 @@ module.exports = function(app, models) {
                         } else {
 
                             console.log("Sender: "+ shift.user.toString()+ "Receiver: "+req.user._id)
-                            if(shift.user.toString()!=req.user._id){
+                            if(shift.user.toString()!=req.user._id && (shift.published)){
                                 console.log("Sending notification to "+ shift.user.toString());
                                 pushNotification(shift.user,
                                     req.user.firstName + ' ' + req.user.lastName + ' has updated a scheduled shift of you.',
