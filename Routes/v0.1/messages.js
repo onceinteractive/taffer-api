@@ -333,7 +333,7 @@ module.exports = function(app, models){
 
 								messageThread.participants.forEach(function(participant){
 									if(participant.toString() != req.user._id){
-										console.log("participant id"+participant.toString());
+										console.log("participant id "+participant.toString());
 										pushRecipients.push(participant)
 										pushNotification(participant,
 											pushMessage,

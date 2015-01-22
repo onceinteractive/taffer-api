@@ -33,7 +33,7 @@ module.exports = function(app, models) {
 		}
 
 		var sender = new GCM.Sender(process.env.GCM_SENDER_ID);
-
+		console.log(".........user id ............"+userIds.toString());
 		var userDevices = [];
 		async.each(userIds, function(userId, next) {
 			var mongooseUserId;
@@ -48,7 +48,7 @@ module.exports = function(app, models) {
 				if(err) {
 					next(err);
 				} else {
-
+					console.log("............user devices..........."+user.toString());
 					var notification = {
 						message: message,
 						sendDate: new Date(),
