@@ -56,7 +56,7 @@ module.exports = function(app, models) {
 						status: 'unread',
 						pageUrl: pageUrl
 					};
-
+					console.log(".........notification.............."+notification.toString());
 					models.Notification.create(notification, function(err, savedNotification) {
 						if(err) {
 							next(err);
