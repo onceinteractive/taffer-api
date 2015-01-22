@@ -59,19 +59,18 @@ module.exports = function(app, models) {
 
 					models.Notification.create(notification, function(err, savedNotification) {
 						if(err) {
+							console.log('............error occurred.....1.........');
 							next(err);
 						} else {
-							console.log("........user update query ......else.......");
+							console.log('............error occurred......2........');
 							user.update({
 								$push: {
 									notifications: savedNotification._id
 								}
 							}, function(err) {
-								console.log("........user update query .......error......");
 								if(err) {
 									next(err);
 								} else {
-									console.log("........user update query ....push.........");
 									userDevices.push({googles: user.getAndroidTokens(), apples: user.getAppleTokens(), unread: user.getUnreadMessagesCount()});
 									next();
 								}
@@ -82,20 +81,16 @@ module.exports = function(app, models) {
 
 			});
 		}, function(err) {
-			console.log("........user update query ....error 2.........");
 			if(err) {
-				console.log("........user update query ....error 2 0.........");
 				finished(err);
 			} else {
-				console.log("........user update query ....error 3.........");
 				// Time to send messages
 				async.each(userDevices, function(userDeviceObject, cb) {
-					console.log("........user update query ....error 3 0.........");
 					sendGCM(userDeviceObject, message, pageUrl, function(err) {
 						if(err) {
 							console.log("Error sending Android messages: " + err);
 						}
-						console.log("........user update query ....error 4.........");
+
 						sendAPN(userDeviceObject, message, pageUrl, function() {
 
 							cb();
@@ -109,10 +104,10 @@ module.exports = function(app, models) {
 		});
 
 		function sendGCM(userDeviceObject, message, pageUrl, done) {
-			console.log("........user update query ....error 5.........");
+
 			console.log(JSON.stringify(userDeviceObject.googles));
 			if(userDeviceObject.googles.length > 0) {
-				console.log("........user update query ....error 5 0.........");
+
 				var gcmMessage = new GCM.Message();
 				var sender = new GCM.Sender(process.env.GCM_SENDER_ID);
 
@@ -125,7 +120,7 @@ module.exports = function(app, models) {
 					gcmMessage.addData('pageUrl', pageUrl);
 				}
 				gcmMessage.timeToLive = 1800 // 30 minutes - Duration in seconds to hold in GCM and retry before timing out
-				console.log("........user update query ....error 5 1.........");
+
 				sender.send(gcmMessage, userDeviceObject.googles, 3, function(err, result) {
 					done(err);
 				});
