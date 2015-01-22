@@ -5,20 +5,20 @@ module.exports = function(models) {
 	var agent;
 
 	agent = new apn.Agent();
-	agent.set('cert file', './Certs/BarHQDevCert.pem');
-	agent.set('key file', './Certs/BarHQDevKey.pem');
+	//agent.set('cert file', './Certs/BarHQDevCert.pem');
+	//agent.set('key file', './Certs/BarHQDevKey.pem');
 
 	//Production
-	/*agent.set('cert file', './Certs/BarHQProdCert.pem');
+	agent.set('cert file', './Certs/BarHQProdCert.pem');
 	agent.set('key file', './Certs/BarHQProdKey.pem');
 
 	agent.set('passphrase', 'B@rHQ123');
 	agent.set('expires', '1h');
 	agent.set('reconnect delay', '1s');
-	agent.set('cache ttl', '30m');*/
+	agent.set('cache ttl', '30m');
 
 	//uncomment incase of test server
-	 agent.enable('sandbox');
+	 //agent.enable('sandbox');
 
 
 
