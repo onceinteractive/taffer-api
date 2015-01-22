@@ -27,6 +27,7 @@ module.exports = function(mongoose, models){
 	*/
 	schema.methods.schedule = function(postOn, network, cb){
 		var self = this
+		console.log("====Post on : "+postOn.toString());
 
 		models.ScheduledPost.create({
 			shareableId: self._id,
@@ -44,6 +45,7 @@ module.exports = function(mongoose, models){
 					if(err){
 						cb(err)
 					} else {
+						console.log("====Post on : "+postOn.toString());
 						models.Agenda.create('postPromotion_v0.1',
 						{
 							_id: scheduledPost._id
