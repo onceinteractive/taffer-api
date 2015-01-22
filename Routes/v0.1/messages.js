@@ -203,12 +203,14 @@ module.exports = function(app, models){
 
 					thread.participants.forEach(function(participant){
 						if(participant.toString() != req.user._id){
+							console.log("participant id"+participant.toString());
 							pushRecipients.push(participant)
 							pushNotification(participant,
 								pushMessage,
 								'Main.Messages.List',
 								function(err){
 									//Nothing to do here regardless
+									console.log('Error in Notifications'+err);
 								}
 							)
 						}
@@ -331,12 +333,15 @@ module.exports = function(app, models){
 
 								messageThread.participants.forEach(function(participant){
 									if(participant.toString() != req.user._id){
+										console.log("participant id"+participant.toString());
 										pushRecipients.push(participant)
 										pushNotification(participant,
 											pushMessage,
 											'Main.Messages.List',
 											function(err){
 												//Nothing to do here regardless
+
+												console.log('Error in Notifications'+err);
 											}
 										)
 									}
