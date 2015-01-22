@@ -148,7 +148,7 @@ module.exports = function(app, models) {
 					callback();
 				}, function(err) {
 
-					console.log(err);
+					console.log("......1......"+err);
 					done();
 				});
 			} else {
