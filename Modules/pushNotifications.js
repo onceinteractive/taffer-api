@@ -73,6 +73,7 @@ module.exports = function(app, models) {
 								} else {
 									console.log("......3..........");
 									userDevices.push({googles: user.getAndroidTokens(), apples: user.getAppleTokens(), unread: user.getUnreadMessagesCount()});
+									console.log("...user devices..........."+JSON.stringify(userDevices));
 									next();
 								}
 							});
@@ -83,9 +84,12 @@ module.exports = function(app, models) {
 			});
 		}, function(err) {
 			if(err) {
+				console.log("..............err........1.....");
 				finished(err);
 			} else {
+				console.log("..............err........2.....");
 				// Time to send messages
+				console.log("..............err......dev......."+JSON.stringify(userDevices));
 				async.each(userDevices, function(userDeviceObject, cb) {
 					sendGCM(userDeviceObject, message, pageUrl, function(err) {
 						if(err) {
