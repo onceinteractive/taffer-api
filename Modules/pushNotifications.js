@@ -59,10 +59,8 @@ module.exports = function(app, models) {
 
 					models.Notification.create(notification, function(err, savedNotification) {
 						if(err) {
-							console.log('............error occurred.....1.........');
 							next(err);
 						} else {
-							console.log('............error occurred......2........');
 							user.update({
 								$push: {
 									notifications: savedNotification._id
@@ -81,9 +79,12 @@ module.exports = function(app, models) {
 
 			});
 		}, function(err) {
+			console.log("..........1.............");
 			if(err) {
+				console.log("..........2.............");
 				finished(err);
 			} else {
+				console.log("..........3.............");
 				// Time to send messages
 				async.each(userDevices, function(userDeviceObject, cb) {
 					sendGCM(userDeviceObject, message, pageUrl, function(err) {
@@ -97,17 +98,17 @@ module.exports = function(app, models) {
 						});
 					});
 				}, function(err) {
-
+					console.log("..........4.............");
 					finished();
 				});
 			}
 		});
 
 		function sendGCM(userDeviceObject, message, pageUrl, done) {
-
+			console.log("..........1 1.............");
 			console.log(JSON.stringify(userDeviceObject.googles));
 			if(userDeviceObject.googles.length > 0) {
-
+				console.log("..........22.............");
 				var gcmMessage = new GCM.Message();
 				var sender = new GCM.Sender(process.env.GCM_SENDER_ID);
 
@@ -125,15 +126,16 @@ module.exports = function(app, models) {
 					done(err);
 				});
 			} else {
+				console.log("..........33.............");
 				done();
 			}
 		}
 
 		function sendAPN(userDeviceObject, message, pageUrl, done) {
 
-
+			console.log("..........444.............");
 			if(userDeviceObject.apples.length > 0) {
-
+				console.log("..........555.............");
 				async.each(userDeviceObject.apples, function(appleToken, callback) {
 
 					var unreadCount = 1;//userDeviceObject.unread + 1;
@@ -147,8 +149,8 @@ module.exports = function(app, models) {
 						.send(); // This could accept a callback, but it doesn't do what we think it does
 					callback();
 				}, function(err) {
-
-					console.log("......1......"+err);
+					console.log("..........666.............");
+					console.log(err);
 					done();
 				});
 			} else {
