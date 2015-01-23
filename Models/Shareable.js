@@ -29,6 +29,10 @@ module.exports = function(mongoose, models){
 		var self = this
 		console.log("====Post on : "+postOn.toString());
 
+
+        var future = new Date(postOn);
+        //future.setDate( future.getDate() + 1);
+
 		models.ScheduledPost.create({
 			shareableId: self._id,
 			network: network,
@@ -50,7 +54,7 @@ module.exports = function(mongoose, models){
 						{
 							_id: scheduledPost._id
 						})
-							.schedule(postOn)
+							.schedule(future)
 							.save(function(err, task){
 								if(err){
 									cb(err)
