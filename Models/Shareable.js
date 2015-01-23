@@ -27,8 +27,8 @@ module.exports = function(mongoose, models){
 	*/
 	schema.methods.schedule = function(postOn, network, cb){
 		var self = this
-		console.log("====Post on : "+postOn.toString());
-
+		console.log("====Post on : "+postOnDate.toString());
+		var postOnDate = new Date(postOn);
 
         var future = new Date(postOn);
         //future.setDate( future.getDate() + 1);
@@ -36,7 +36,7 @@ module.exports = function(mongoose, models){
 		models.ScheduledPost.create({
 			shareableId: self._id,
 			network: network,
-			postOn: postOn,
+			postOn: postOnDate,
 		}, function(err, scheduledPost){
 			if(err){
 				cb(err)
@@ -49,7 +49,7 @@ module.exports = function(mongoose, models){
 					if(err){
 						cb(err)
 					} else {
-						console.log("====Post on : "+postOn.toString());
+						console.log("====Post on : "+postOnDate.toString());
 						models.Agenda.create('postPromotion_v0.1',
 						{
 							_id: scheduledPost._id

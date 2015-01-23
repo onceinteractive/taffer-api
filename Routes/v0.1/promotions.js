@@ -499,7 +499,7 @@ module.exports = function(app, models){
 			})
 		})
 
-	promotions.route('/scheduled/:scheduledPromotionId/:shareableId/:postTime')
+	promotions.route('/scheduled/:scheduledPromotionId/:shareableId')
 		//Get shareable
 		.get(app.auth, function(req, res){
 			models.Shareable.findOne({
@@ -602,8 +602,8 @@ module.exports = function(app, models){
 									//Now schedule the tasks if different
 									if(postOn){
 										async.each(postOn, function(time, done){
-											console.log("=========Post on========"+time.postOn);
-											shareable.schedule(req.params.postTime, time.network, function(err, scheduledPost){
+
+											shareable.schedule(time.postOn, time.network, function(err, scheduledPost){
 												done(err)
 											})
 
