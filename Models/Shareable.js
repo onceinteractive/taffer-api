@@ -27,7 +27,7 @@ module.exports = function(mongoose, models){
 	*/
 	schema.methods.schedule = function(postOn, network, cb){
 		var self = this
-		console.log("====Post on : "+postOnDate.toString());
+		//console.log("====Post on : "+postOnDate.toString());
 		var postOnDate = new Date(postOn);
 
         var future = new Date(postOn);
