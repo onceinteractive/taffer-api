@@ -50,6 +50,7 @@ module.exports = function(mongoose, models){
 						{
 							_id: scheduledPost._id
 						})
+							.schedule(postOn)
 							.save(function(err, task){
 								if(err){
 									cb(err)
