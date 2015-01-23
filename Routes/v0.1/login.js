@@ -3,9 +3,9 @@ var uuid = require('node-uuid')
 var express = require('express')
 
 // Production App 
-var baseUrl = process.env.BASE_URL || 'http://barhq-api.herokuapp.com'
+//var baseUrl = process.env.BASE_URL || 'http://barhq-api.herokuapp.com'
 // Test App
-//var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
+var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
 //Twitter Production App
 /*
 
