@@ -602,7 +602,7 @@ module.exports = function(app, models){
 									//Now schedule the tasks if different
 									if(postOn){
 										async.each(postOn, function(time, done){
-											console.log("=========Post on========"+time.postOn);
+
 											shareable.schedule(time.postOn, time.network, function(err, scheduledPost){
 												done(err)
 											})
