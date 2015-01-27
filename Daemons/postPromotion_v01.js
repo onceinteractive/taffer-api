@@ -77,24 +77,37 @@ module.exports = function(models){
 
 								function(done){
 									if(scheduledPost.network == 'twitter' || scheduledPost.network.indexOf('twitter') != -1){
-										postToTwitter(bar,
-											scheduledPost.shareableId.twitterMessage,
-											scheduledPost.shareableId.selectedPicture,
-											function(err, data){
-												var update = {}
-												if(err){
-													update.twitterPostError = err
-												} else {
-													update.twitterPostId = data.id
+										models.Shareable.find({
+											_id: scheduledPost.shareableId
+										})
+										.populate('sharedBy')
+										.exec(function(err, shareable){
+											if(err){
+												done(err)
+											} else if(!shareable){
+												done("There is error in getting twitter post data")
+											} else {
+												var user = shareable.sharedBy;
+												postToTwitter(user,
+													scheduledPost.shareableId.twitterMessage,
+													scheduledPost.shareableId.selectedPicture,
+													function (err, data) {
+														var update = {}
+														if (err) {
+															update.twitterPostError = err
+														} else {
+															update.twitterPostId = data.id
+														}
+
+														models.ScheduledPost.update({
+															_id: scheduledPost._id
+														}, update, function (anotherError) {
+															done(err)
+														})
+
+													})
 												}
-
-												models.ScheduledPost.update({
-													_id: scheduledPost._id
-												}, update, function(anotherError){
-													done(err)
-												})
-
-											})
+											});
 									} else {
 										done(null)
 									}
