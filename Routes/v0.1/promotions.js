@@ -212,7 +212,7 @@ module.exports = function(app, models){
 
 							facebookMessage: newShareable.facebookMessage,
 							twitterMessage: newShareable.twitterMessage,
-
+							sharedBy: req.user,
 							selectedPicture: newShareable.selectedImage
 						}, function(err, shareable){
 							if(err){
