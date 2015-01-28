@@ -609,7 +609,7 @@ module.exports = function(app, models){
 									_id: shareable._id
 								}, function(err, shareable){
 									res.send(shareable)
-									console.log("=================PostOn==============="+postOn.toString());
+									console.log("=================PostOn==============="+JSON.stringify(postOn));
 									//Now schedule the tasks if different
 									if(postOn){
 										async.each(postOn, function(time, done){
