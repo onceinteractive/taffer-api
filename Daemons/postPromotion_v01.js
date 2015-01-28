@@ -53,6 +53,43 @@ module.exports = function(models){
 
 								function(done){
 									if(scheduledPost.network == 'facebook' || scheduledPost.network.indexOf('facebook') != -1){
+										models.Shareable.find({
+											_id: scheduledPost.shareableId
+										})
+											.populate('sharedBy')
+											.exec(function(err, shareable) {
+												if (err) {
+													done(err)
+												} else if (!shareable) {
+													done("There is error in getting twitter post data")
+												} else {
+													var user = shareable[0].sharedBy.pop();
+													postToFacebook(user,
+														scheduledPost.shareableId.facebookMessage,
+														scheduledPost.shareableId.selectedPicture,
+														function(err, response){
+															var update = {}
+															if(err){
+																update.facebookPostError = err
+															} else {
+																update.facebookPostId = response.id
+															}
+
+															models.ScheduledPost.update({
+																_id: scheduledPost._id
+															}, update, function(anotherErr){
+																done(err)
+															})
+														})
+												}
+											})
+									} else {
+										done(null)
+									}
+								},
+
+								function(done){
+									if(scheduledPost.network == 'facebook-page' || scheduledPost.network.indexOf('facebook-page') != -1){
 										postToFacebook(bar,
 											scheduledPost.shareableId.facebookMessage,
 											scheduledPost.shareableId.selectedPicture,
