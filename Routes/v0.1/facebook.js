@@ -470,7 +470,13 @@ module.exports = function(app, models){
 							graph.get(bar.facebookPageId + '?access_token=' + bar.facebookAccessToken, function (err, response) {
 								var output = [];
 								for (property in response) {
-									output.push(response[property]);
+									if(typeof response[property] === 'object'){
+										for (property1 in response[property]) {
+											output.push(response[property][property1]);
+										}
+									}else{
+										output.push(response[property]);
+									}
 								}
 								console.log("============Facebook============="+JSON.stringify(output));
 								res.send(output);
