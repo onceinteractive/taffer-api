@@ -381,13 +381,7 @@ module.exports = function(app, models){
 				function(err, response) {
 					var output = [];
 					for (property in response) {
-						if(typeof response[property] === 'object'){
-							for (property1 in response[property]) {
-								output.push(response[property][property1]);
-							}
-						}else{
-							output.push(response[property]);
-						}
+						output.push(response[property]);
 					}
 					console.log("============Twitter============="+JSON.stringify(output));
 					res.send(output);
