@@ -13,6 +13,9 @@ module.exports = function(mongoose, models){
 		facebookPostId: String,
 		facebookPostError: String,
 
+		facebookPagePostId: String,
+		facebookPagePostError: String,
+
 		twitterPostId: String,
 		twitterPostError: String,
 

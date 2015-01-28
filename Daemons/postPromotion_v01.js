@@ -96,9 +96,9 @@ module.exports = function(models){
 											function(err, response){
 												var update = {}
 												if(err){
-													update.facebookPostError = err
+													update.facebookPagePostError = err
 												} else {
-													update.facebookPostId = response.id
+													update.facebookPagePostId = response.id
 												}
 
 												models.ScheduledPost.update({
