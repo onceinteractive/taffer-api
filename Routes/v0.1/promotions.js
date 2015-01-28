@@ -591,11 +591,13 @@ module.exports = function(app, models){
 							})
 						}
 						// update sharedBy user array
+						console.log("==============USER============"+JSON.stringify(req.user));
 						shareable.update({
 							$push: {
 								sharedBy: req.user
 							}
 						}, function(err) {
+							console.log("==================ERROR===================="+err);
 							if (err) {
 								res.send(err, 500)
 							}
