@@ -590,6 +590,7 @@ module.exports = function(app, models){
 								}
 							})
 						}
+						req.body.sharedBy = req.user; // Add user information
 						shareable.update(req.body, function(err){
 							if(err){
 								res.send(err, 500)
