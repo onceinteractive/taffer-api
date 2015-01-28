@@ -89,7 +89,7 @@ module.exports = function(models){
 								},
 
 								function(done){
-									if(scheduledPost.network == 'facebook-page' || scheduledPost.network.indexOf('facebook-page') != -1){
+									if(scheduledPost.network == 'facebookPage' || scheduledPost.network.indexOf('facebookPage') != -1){
 										postToFacebook(bar,
 											scheduledPost.shareableId.facebookMessage,
 											scheduledPost.shareableId.selectedPicture,

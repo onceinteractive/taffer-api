@@ -4,7 +4,7 @@ module.exports = function(mongoose, models){
 
         shareableId: {type: mongoose.Schema.Types.ObjectId, ref: 'Shareable' },
 
-		network: [String], //facebook,facebook-page, twitter
+		network: [String], //facebook,facebookPage, twitter
 		postOn: Date,
 		taskId: { type: mongoose.Schema.Types.ObjectId, index: true },
 
