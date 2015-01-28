@@ -379,11 +379,11 @@ module.exports = function(app, models){
 			};
 			twitter.users("show", params, req.user.twitterAccessToken, req.user.twitterSecretToken,
 				function(err, response) {
-					var output = '';
+					var output = [];
 					for (property in response) {
-						output += property + ': ' + response[property]+'; ';
+						output.push(response[property]);
 					}
-					console.log("============Twitter============="+output);
+					console.log("============Twitter============="+JSON.stringify(output));
 					res.send(output);
 				}
 			)

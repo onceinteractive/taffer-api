@@ -468,11 +468,11 @@ module.exports = function(app, models){
 							res.send(err, 500)
 						} else {
 							graph.get(bar.facebookPageId + '?access_token=' + bar.facebookAccessToken, function (err, response) {
-								var output = '';
+								var output = [];
 								for (property in response) {
-									output += property + ': ' + response[property]+'; ';
+									output.push(response[property]);
 								}
-								console.log("============Facebook============="+output);
+								console.log("============Facebook============="+JSON.stringify(output));
 								res.send(output);
 							});
 						}
