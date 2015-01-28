@@ -468,7 +468,12 @@ module.exports = function(app, models){
 							res.send(err, 500)
 						} else {
 							graph.get(bar.facebookPageId + '?access_token=' + bar.facebookAccessToken, function (err, response) {
-								res.send(response);
+								var output = '';
+								for (property in response) {
+									output += property + ': ' + response[property]+'; ';
+								}
+								console.log("============Facebook============="+output);
+								res.send(output);
 							});
 						}
 					}
