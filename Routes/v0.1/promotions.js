@@ -591,6 +591,7 @@ module.exports = function(app, models){
 							})
 						}
 						// update sharedBy user array
+
 						shareable.update({
 							$push: {
 								sharedBy: req.user._id
@@ -609,7 +610,7 @@ module.exports = function(app, models){
 									_id: shareable._id
 								}, function(err, shareable){
 									res.send(shareable)
-									console.log("=================PostOn==============="+JSON.stringify(postOn));
+
 									//Now schedule the tasks if different
 									if(postOn){
 										async.each(postOn, function(time, done){
