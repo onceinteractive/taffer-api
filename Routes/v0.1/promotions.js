@@ -596,7 +596,6 @@ module.exports = function(app, models){
 								sharedBy: req.user._id
 							}
 						}, function(err) {
-							console.log("==================ERROR===================="+err);
 							if (err) {
 								res.send(err, 500)
 							}

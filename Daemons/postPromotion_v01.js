@@ -87,9 +87,7 @@ module.exports = function(models){
 											} else if(!shareable){
 												done("There is error in getting twitter post data")
 											} else {
-												//console.log("=========shareable==========="+JSON.stringify(shareable[0]));
-												var user = shareable[0].sharedBy[0];
-												//console.log("=========USER==========="+JSON.stringify(user));
+												var user = shareable[0].sharedBy.pop();
 												postToTwitter(user,
 													scheduledPost.shareableId.twitterMessage,
 													scheduledPost.shareableId.selectedPicture,
