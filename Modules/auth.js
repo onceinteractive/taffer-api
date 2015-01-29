@@ -16,6 +16,8 @@ module.exports = function(models){
 				} else {
 					if(req.signedCookies.token != user.sessionToken){
 						console.log("================user signed cookie not valid================");
+						console.log("=================user.sessionToken================"+user.sessionToken);
+						console.log("=================req.signedCookies.token=========="+req.signedCookies.token);
 						res.send(401)
 					} else if(user.locked){
 						console.log("================user locked================");
