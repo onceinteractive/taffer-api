@@ -3,9 +3,9 @@ var uuid = require('node-uuid')
 var express = require('express')
 
 // Production App 
-//var baseUrl = process.env.BASE_URL || 'http://barhq-api.herokuapp.com'
+var baseUrl = process.env.BASE_URL || 'http://barhq-api.herokuapp.com'
 // Test App
-var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
+//var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
 //Twitter Production App
 /*
 
@@ -43,43 +43,34 @@ module.exports = function(app, models){
 	login.route('/')
 
 		.post(function(req, res){
-			console.log("================login====1=================");
 			if(!req.body || !req.body.email || !req.body.password){
-				console.log("================login====2=================");
 				res.send(401)
 			} else {
-				console.log("================login====3=================");
 				models.User.findOne({
 					email: req.body.email.toLowerCase()
 				}, function(err, user){
-					console.log("================login====4=================");
 					if(err || !user){
-						console.log("================login====5=================");
 						res.send(401)
 					} else {
-						console.log("================login====6=================");
+
 						user.authenticatePassword(req.body.password, function(err, result){
 							if(err){
-								console.log("================login====7=================");
 								res.send(401)
 							} else if(!result){
-								console.log("================login====8=================");
 								res.send(401)
 							} else {
-								console.log("================login====9=================");
+
 								res.cookie('id', user._id, { signed: true })
 								var token = uuid.v4()
-								//console.log("=========cookie token set========"+token.toString());
 								res.cookie('token', token, { signed: true })
+
 								user.update({
 									sessionToken: token,
 									lastLogin: new Date()
 								}, function(err){
 									if(err){
-										console.log("================login====10=================");
 										res.send(401)
 									} else {
-										console.log("================login====11=================");
 										var json = user.json()
 										json.token = token
 										res.send(json)
