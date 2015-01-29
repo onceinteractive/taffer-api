@@ -4,20 +4,16 @@ module.exports = function(models){
 		if(!req.signedCookies
 			|| !req.signedCookies.id
 			|| !req.signedCookies.token){
-			console.log("=============user signed cookies not found ==================");
 			res.send(401)
 		} else {
 			models.User.findOne({
 				_id: req.signedCookies.id
 			}, function(err, user){
 				if(err || !user){
-					console.log("================user not found================");
 					res.send(401)
 				} else {
 					if(req.signedCookies.token != user.sessionToken){
-						console.log("================user signed cookie not valid================");
-						console.log("=================user.sessionToken================"+user.sessionToken);
-						console.log("=================req.signedCookies.token=========="+req.signedCookies.token);
+						console.log("=======req.signedCookies.token======"+req.signedCookies.token);
 						res.send(401)
 					} else if(user.locked){
 						console.log("================user locked================");

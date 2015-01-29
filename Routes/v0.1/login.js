@@ -63,7 +63,7 @@ module.exports = function(app, models){
 								res.cookie('id', user._id, { signed: true })
 								var token = uuid.v4()
 								res.cookie('token', token, { signed: true })
-
+								console.log("========update user session=========");
 								user.update({
 									sessionToken: token,
 									lastLogin: new Date()
