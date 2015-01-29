@@ -3,9 +3,9 @@ var uuid = require('node-uuid')
 var express = require('express')
 
 // Production App 
-var baseUrl = process.env.BASE_URL || 'http://barhq-api.herokuapp.com'
+//var baseUrl = process.env.BASE_URL || 'http://barhq-api.herokuapp.com'
 // Test App
-//var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
+var baseUrl = process.env.BASE_URL || 'http://taffer-heroku-test.herokuapp.com'
 //Twitter Production App
 /*
 
@@ -46,15 +46,17 @@ module.exports = function(app, models){
 			if(!req.body || !req.body.email || !req.body.password){
 				res.send(401)
 			} else {
+				console.log("=====================login======================="+JSON.stringify(req.body));
 				models.User.findOne({
 					email: req.body.email.toLowerCase()
 				}, function(err, user){
 					if(err || !user){
 						res.send(401)
 					} else {
-
+						console.log("=====================user found=======================");
 						user.authenticatePassword(req.body.password, function(err, result){
 							if(err){
+								console.log("=====================user not found=======================");
 								res.send(401)
 							} else if(!result){
 								res.send(401)
