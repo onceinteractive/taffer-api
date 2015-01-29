@@ -61,7 +61,7 @@ module.exports = function(app, models){
 							} else if(!result){
 								res.send(401)
 							} else {
-
+								console.log("=====================user password authenticate=======================");
 								res.cookie('id', user._id, { signed: true })
 								var token = uuid.v4()
 								res.cookie('token', token, { signed: true })
