@@ -4,6 +4,7 @@ module.exports = function(models){
 		if(!req.signedCookies
 			|| !req.signedCookies.id
 			|| !req.signedCookies.token){
+			console.log("=============user signed cookies not found ==================");
 			res.send(401)
 		} else {
 			models.User.findOne({
@@ -12,6 +13,7 @@ module.exports = function(models){
 				if(err || !user){
 					res.send(401)
 				} else {
+					console.log("=============user session token =================="+user.sessionToken);
 					if(req.signedCookies.token != user.sessionToken){
 						res.send(401)
 					} else if(user.locked){
