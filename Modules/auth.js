@@ -1,7 +1,7 @@
 module.exports = function(models){
 
 	return function(req, res, next){
-		console.log("=======1======cookie token get=====1======"+req.signedCookies);
+		console.log("=======1======cookie token get=====1======"+JSON.stringify(req.signedCookies));
 		if(!req.signedCookies
 			|| !req.signedCookies.id
 			|| !req.signedCookies.token){
