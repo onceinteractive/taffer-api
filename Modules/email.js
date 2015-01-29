@@ -4,8 +4,9 @@ var mandrill = require('mandrill-api/mandrill'),
     mailBuilder = new mandrill.Mandrill(MANDRILL_API_KEY),
     fromEmail = process.env.DEFAULT_FROM_EMAIL || 'doNotReply@taffer.com'
     fromName = process.env.DEFAULT_FROM_NAME || 'DoNotReply'
-    baseUrl = process.env.BASE_URL || 'http://taffer-dev.herokuapp.com'
-    	baseUrl += '/StaticAssets/'
+   // baseUrl = process.env.BASE_URL || 'http://barhq-api.herokuapp.com/'
+    baseUrl ='http://barhq-api.herokuapp.com'
+    	baseUrl += '/Static'
 
 module.exports = function(){
 
