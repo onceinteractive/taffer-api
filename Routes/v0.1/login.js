@@ -46,22 +46,20 @@ module.exports = function(app, models){
 			if(!req.body || !req.body.email || !req.body.password){
 				res.send(401)
 			} else {
-				console.log("=====================login======================="+JSON.stringify(req.body));
 				models.User.findOne({
 					email: req.body.email.toLowerCase()
 				}, function(err, user){
 					if(err || !user){
 						res.send(401)
 					} else {
-						console.log("=====================user found=======================");
+
 						user.authenticatePassword(req.body.password, function(err, result){
 							if(err){
-								console.log("=====================user not found=======================");
 								res.send(401)
 							} else if(!result){
 								res.send(401)
 							} else {
-								console.log("=====================user password authenticate=======================");
+
 								res.cookie('id', user._id, { signed: true })
 								var token = uuid.v4()
 								res.cookie('token', token, { signed: true })
