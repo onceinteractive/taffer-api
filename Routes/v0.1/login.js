@@ -62,7 +62,7 @@ module.exports = function(app, models){
 
 								res.cookie('id', user._id, { signed: true })
 								var token = uuid.v4()
-								console.log("=========cookie token set========"+token.toString());
+								//console.log("=========cookie token set========"+token.toString());
 								res.cookie('token', token, { signed: true })
 								user.update({
 									sessionToken: token,
