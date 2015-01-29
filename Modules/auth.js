@@ -13,9 +13,7 @@ module.exports = function(models){
 					res.send(401)
 				} else {
 					if(req.signedCookies.token != user.sessionToken){
-						req.user = user
-						next()
-						//res.send(401)
+						res.send(401)
 					} else if(user.locked){
 						res.send({ locked: true }, 401)
 					} else {
