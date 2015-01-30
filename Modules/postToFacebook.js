@@ -17,9 +17,8 @@ module.exports = function(){
 			cb = imageUrl
 			imageUrl = null
 		}
-		
-		if(!poster.facebookPageAccessToken &&
-			!poster.facebookAccessToken){
+
+		if(typeof(poster.facebookPageAccessToken) == "undefined" && typeof(poster.facebookAccessToken) == "undefined") {
 			cb('This poster does not have a valid access token associated with it')
 			return
 		}
