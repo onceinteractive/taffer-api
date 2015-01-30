@@ -22,8 +22,13 @@ module.exports = function(){
 			cb('This poster does not have a valid access token associated with it')
 			return
 		}
+		var token = '';
+		if(typeof(poster.facebookPageAccessToken) != "undefined") {
+			token = poster.facebookPageAccessToken
+		}else if(typeof(poster.facebookAccessToken) != "undefined"){
+			token = poster.facebookAccessToken
+		}
 
-		var token = poster.facebookPageAccessToken || poster.facebookAccessToken
 
 		var post = {
 			message: message,
