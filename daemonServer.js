@@ -23,7 +23,7 @@ if(cluster.isMaster){
         //mongoDbURI = 'mongodb://54.221.103.199/taffer'
 
         /*Test Database*/
-        mongoDbURI = 'mongodb://tafferUser:welcome83@ds043170.mongolab.com:43170/heroku_app30278662'
+        mongoDbURI = 'mongodb://developer:onceinteractive@ds035603.mongolab.com:35603/taffer-test'
 
         /*Demo Database*/
         //mongoDbURI = 'mongodb://tafferUser:welcome83@ds047930.mongolab.com:47930/heroku_app30886667'
